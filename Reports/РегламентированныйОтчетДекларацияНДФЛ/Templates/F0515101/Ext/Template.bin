@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>РОЗРАХУНОК  податкових зобов'язань з податку на доходи фізичних осіб
+за звітний (податковий) період, в якому виявлено помилку  </xs:documentation>
+	</xs:annotation>
+
+ <xs:include schemaLocation="common_types.xsd" />
+
+	<xs:element name="DECLAR" type="DeclarContent"/>
+	<xs:complexType name="DeclarContent">
+		<xs:sequence>
+			<xs:element name="DECLARHEAD" type="DHead" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="DECLARBODY" type="DBody" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DHead">
+		<xs:sequence>
+			<xs:element name="TIN" type="DGLong" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC" type="xs:string" minOccurs="1" maxOccurs="1" fixed="F05"/>
+			<xs:element name="C_DOC_SUB" type="xs:string" minOccurs="1" maxOccurs="1" fixed="151"/>
+			<xs:element name="C_DOC_VER" type="xs:string" minOccurs="1" maxOccurs="1" fixed="1"/>
+			<xs:element name="C_DOC_TYPE" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC_CNT" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_REG" type="DGsti" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_RAJ" type="DGsti" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_MONTH" type="DGMonth" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_TYPE" type="DGPType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_YEAR" type="DGYear" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_STI_ORIG" type="DGc_dpi" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC_STAN" type="DGSTAN" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="LINKED_DOCS" nillable="true" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="DOC" minOccurs="1" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="C_DOC" type="DGC_DOC" minOccurs="1" maxOccurs="1"/>
+									<xs:element name="C_DOC_SUB" type="DGC_DOC_SUB" minOccurs="1" maxOccurs="1"/>
+									<xs:element name="C_DOC_VER" type="DGC_DOC_VER" minOccurs="1" maxOccurs="1"/>
+									<xs:element name="C_DOC_TYPE" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+									<xs:element name="C_DOC_CNT" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+									<xs:element name="C_DOC_STAN" type="DGSTAN" minOccurs="1" maxOccurs="1"/>
+									<xs:element name="FILENAME" type="DGFilename" minOccurs="1" maxOccurs="1"/>
+								</xs:sequence>
+								<xs:attribute name="NUM" type="xs:nonNegativeInteger"/>
+								<xs:attribute name="TYPE" type="DGTypeLinkDoc"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:unique name="UH_DOC_NUM">
+					<xs:selector xpath="DOC"/>
+					<xs:field xpath="@NUM"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="D_FILL" type="DGDate" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="SOFTWARE" type="xs:string" nillable="true" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DBody">
+		<xs:sequence>
+    <!--HEAD-->
+		<xs:element name="HNUM" type="DGdecimal0"    nillable="true" minOccurs="0"  />
+
+
+			<xs:element name="HZM" type="DGMonth"/>
+			<xs:element name="HZY" type="DGYear"/>
+
+			<xs:element name="HZMP" type="DGMonth" nillable="true" minOccurs="0"/>
+			<xs:element name="HZYP" type="DGYear" nillable="true" minOccurs="0"/>
+
+			 <xs:element name="HNAME" type="DGHNAME"/>
+
+			<xs:choice>
+			<xs:element name="HTIN" type="DGHTINF"/>
+			<xs:element name="HPASS" type="DGPass"/>
+			</xs:choice>
+
+    <xs:element name="R010G3" type="DGdecimal2" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+    <xs:element name="R020G3" type="DGdecimal2" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+    <xs:element name="R030G3" type="DGdecimal2" nillable="true" minOccurs="0" maxOccurs="1"/>
+    <xs:element name="R031G3" type="DGdecimal2" nillable="true" minOccurs="0" maxOccurs="1"/>
+    <xs:element name="R032G3" type="DGdecimal2" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+    <xs:element name="R040G1" type="DGdecimal0" nillable="true" minOccurs="0" maxOccurs="1"/>
+    <xs:element name="R040G3" type="DGdecimal2" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+    <xs:element name="R050G3" type="DGdecimal2" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+    <xs:element name="HFILL" type="DGDate"  minOccurs="1" maxOccurs="1"/>
+
+      <!--FOOTER-->
+			<xs:element name="HKBOS" type="DGLong"	nillable="true" minOccurs="0" />
+			<xs:element name="HBOS" type="DGHBOS"  nillable="true" minOccurs="0" />
+
+			<xs:element name="HKBUH" type="DGLong"	nillable="true" minOccurs="0" />
+			<xs:element name="HBUH" type="DGHBUH"  nillable="true" minOccurs="0" />
+
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

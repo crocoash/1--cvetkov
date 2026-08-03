@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html xmlns:o="urn:schemas-microsoft-com:office:office"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><link href="v8help://service_book/service_style" type="text/css" rel="stylesheet"></link><meta content="MSHTML 6.00.6000.16481" name="GENERATOR"></meta></head><body>
+<h1 class="">Справочник "Показатели схем мотивации"</h1>
+<p>Данный справочник содержит показатели для схем мотивации работников. На основании значений показателей рассчитываются начисления и удержания. В данном справочнике описываются показатели. </p>
+<p>Показатель может нести следующие признаки:</p>
+<h2 class="">Вид показателя</h2>
+<p>Вид показателя определяет сущьность показателя. Виды могут быть следующими:</p>
+<p><strong>Денежный показатель</strong> - это значит, что значение показателя это деньги и в дальнейшем нужно запрашивать валюту, в которой указано значение показателя. </p>
+<p><strong>Числовой показатель</strong> - это значит, что значение показателя это число.</p>
+<p><strong>Процентный показатель</strong> - это означает, что показатель задан в процентах и для расчетов нужно значение переводить в число. Например, если задано значение 50 для процентного показателя, то необходимо в расчетах использовать число 50/100 т.е. 0,5.</p>
+<p><strong>Оценочная шкала. </strong>Так же, показатель может быть шкалой оценки. Шкала оценки это таблица из трех столбцов. В первых двух столбацах задается диапазон (С ...  По ... ), а в третьей колонке задается результат (Размер). Оценка по шкале производится следующим образом. Предположим, шкале оценки передается число Х. В оценочной таблице находится строка, в которой  число Х находится между значениями в колонках "С" и "По".  Из найденной строки возвращается число из колонки "Размер". </p>
+<p>Например, зададим таблицу для расчета премии с продаж. Премия будет вычисляться как процент от оклада в зависимости от количества продаж. В первых двух колонках зададим диапазоны количества продаж, а в третьей колонке - размер премии в проценте от оклада. 
+</p><table style="WIDTH: 158px; HEIGHT: 70px" width="158" border="1"><tbody><tr><td bgcolor="#ded9cc">С</td>
+<td bgcolor="#ded9cc">По</td>
+<td bgcolor="#ded9cc">Размер</td></tr><tr><td>
+<p align="right">0</p></td>
+<td>
+<p align="right">10</p></td>
+<td>
+<p align="right">50%</p></td></tr><tr><td>
+<p align="right">11</p></td>
+<td>
+<p align="right">20</p></td>
+<td>
+<p align="right">100%</p></td></tr><tr><td>
+<p align="right">21</p></td>
+<td>
+<p align="right">30</p></td>
+<td>
+<p align="right">150%</p></td></tr></tbody></table><p>Как работает таблица. Если сторудник сделал 12 продаж, тогда в соответствии с таблицей ему причетается 100% от оклада. Если сделал 6 продаж, тогда только 50%. И так далее. </p>
+<p>Оценочная шкала бывает двух видов. Числовая шкала и процентная шкала. Если шкала процентная, то это значит, что при расчетах нужно значения из колоники "Результат" переводить в число. В качестве нашего предыдущего примера приведена процентная оценочная таблица.</p>
+<h2 class="">Порядок ввода</h2>
+<p>Этот реквизит говорит о порядке ввода показателя пользователем. Возможны следующие варианты: </p>
+<p><strong>Вводится только при кадровых изменениях - </strong>это значит, что значение показателя будет задано при приеме на работу и может изменяться только при кадровых перемещениях работника. Например, это может быть значение месячной тарифной ставки (оклада), часового тарифа, нормы выработки и т.д.</p>
+<p><strong>Может изменяться при расчете</strong> - это значит что значение показателя может быть изменено при начислении зарплаты (в документе <a href="Document.НачислениеЗарплатыРаботникамОрганизаций/Help">Начисление зарплаты работникам организации</a>), но по умолчанию будет использоваться значение уже заданное при приеме на работу или кадровом назначении. </p>
+<p><strong>Вводится только при расчете</strong> - это значит, что значение показателя не задано и его каждый раз нужно вводить при расчете. Это может быть любой показатель эффективности (KPI), например, количество продаж, доход от продаж, средний чек, количество заказов, узнаваемость торговой марки и т.д.</p>
+<p>Для <em>предопределенных показателей </em>схем мотивации, таких как Норма времени в днях, Время в днях, Сдельная выработка порядок ввода не задается. Такие предопределенные показателли рассчитываются программой автоматически на стадии расчета докумета <a href="Document.НачислениеЗарплатыРаботникамОрганизаций/Help">Начисление зарплаты работникам организации</a>.</p>
+<h2 class="">Ключевые показатели эффективности</h2>
+<p class=""><strong>Для компании в целом:</strong></p>
+<ul><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Прибыль<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Продажи<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Маржа<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Оборот<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Оборот на метр арендуемой площади<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Качество обслуживания<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Скорость обслуживания клиентов<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Площадь торговых точек<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Средняя стоимость товара<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Индекс постоянных клиентов<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Маржинальный доход<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Прибыль<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Средняя оборачиваемость денежных средств<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Рентабельность<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Коммерческие расходы на единицу товарной продукции<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Объём активов на сотрудника<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Прибыль на сотрудника<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Доход от нового продукта на одного клиента<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Процент выполнения инвестиционных программ<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Скорость выполнения заказов<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Недостача товара вне норм естественной убыли<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Количество испорченной при хранении продукции<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Соблюдение бюджета</font></div></li></ul><p class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1"></font> </p>
+<p class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1"><strong>Для кадровой службы:</strong></font></p>
+<ul><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Скорость закрытия вакансий<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Процент прошедших испытательный срок</font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Соблюдение конкурсного коэффициента<o:p></o:p></font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Выполнение плана по набору</font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Количество закрытых вакансий</font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Продолжительность обучения</font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Процент прошедших аттестацию</font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Оценка менеджеров, сотрудников</font></div>
+</li><li>
+<div class="" style="MARGIN: 0cm 0cm 0pt; tab-stops: list 36.0pt"><font size="1">Текучка среди сотрудников прошедших аттетстацию</font></div></li></ul></body></html>

@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.18">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="BeforeWrite">ПередЗаписью</Event>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="Группа2" id="24">
+			<Group>Horizontal</Group>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="Группа2РасширеннаяПодсказка" id="25"/>
+			<ChildItems>
+				<InputField name="id_pbx" id="4">
+					<DataPath>Объект.id_pbx</DataPath>
+					<Enabled>false</Enabled>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>ID АТС</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="id_pbxКонтекстноеМеню" id="5"/>
+					<ExtendedTooltip name="id_pbxРасширеннаяПодсказка" id="6"/>
+				</InputField>
+				<InputField name="Наименование" id="1">
+					<DataPath>Объект.Description</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Наименование АТС</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="НаименованиеКонтекстноеМеню" id="2"/>
+					<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="3"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="Группа3" id="26">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Учетные данные от web-интерфейса АТС:</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Horizontal</Group>
+			<ExtendedTooltip name="Группа3РасширеннаяПодсказка" id="27"/>
+			<ChildItems>
+				<InputField name="Логин" id="28">
+					<DataPath>Объект.Логин</DataPath>
+					<ContextMenu name="ЛогинКонтекстноеМеню" id="29"/>
+					<ExtendedTooltip name="ЛогинРасширеннаяПодсказка" id="30"/>
+				</InputField>
+				<InputField name="Пароль" id="31">
+					<DataPath>Объект.Пароль</DataPath>
+					<PasswordMode>true</PasswordMode>
+					<ContextMenu name="ПарольКонтекстноеМеню" id="32"/>
+					<ExtendedTooltip name="ПарольРасширеннаяПодсказка" id="33"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="Группа1" id="22">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Параметры подключения к АТС:</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Horizontal</Group>
+			<ExtendedTooltip name="Группа1РасширеннаяПодсказка" id="23"/>
+			<ChildItems>
+				<InputField name="АдресСервера" id="7">
+					<DataPath>Объект.АдресСервера</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="АдресСервераКонтекстноеМеню" id="8"/>
+					<ExtendedTooltip name="АдресСервераРасширеннаяПодсказка" id="9"/>
+				</InputField>
+				<InputField name="ПортСервера" id="10">
+					<DataPath>Объект.ПортСервера</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ПортСервераКонтекстноеМеню" id="11"/>
+					<ExtendedTooltip name="ПортСервераРасширеннаяПодсказка" id="12"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="Группа4" id="34">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Прочие настройки:</v8:content>
+				</v8:item>
+			</Title>
+			<ExtendedTooltip name="Группа4РасширеннаяПодсказка" id="35"/>
+			<ChildItems>
+				<InputField name="РесурсCDR" id="13">
+					<DataPath>Объект.РесурсCDR</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="РесурсCDRКонтекстноеМеню" id="14"/>
+					<ExtendedTooltip name="РесурсCDRРасширеннаяПодсказка" id="15"/>
+				</InputField>
+				<InputField name="РесурсCEL" id="16">
+					<DataPath>Объект.РесурсCEL</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="РесурсCELКонтекстноеМеню" id="17"/>
+					<ExtendedTooltip name="РесурсCELРасширеннаяПодсказка" id="18"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:CatalogObject.МИКО_ДополнительныеАТС</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+	</Attributes>
+</Form>

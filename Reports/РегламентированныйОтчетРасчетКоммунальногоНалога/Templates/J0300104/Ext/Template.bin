@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>ПОДАТКОВИЙ	РОЗРАХУНОК	КОМУНАЛЬНОГО ПОДАТКУ</xs:documentation>
+	</xs:annotation>
+
+  <xs:include schemaLocation="common_types.xsd" />
+
+	<xs:element name="DECLAR" type="DeclarContent"/>
+	<xs:complexType name="DeclarContent">
+		<xs:sequence>
+			<xs:element name="DECLARHEAD" type="DHead" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="DECLARBODY" type="DBody" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DHead">
+		<xs:sequence>
+			<xs:element name="TIN" type="DGLong" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC" type="xs:string" minOccurs="1" maxOccurs="1" fixed="J03"/>
+			<xs:element name="C_DOC_SUB" type="xs:string" minOccurs="1" maxOccurs="1" fixed="001"/>
+			<xs:element name="C_DOC_VER" type="xs:string" minOccurs="1" maxOccurs="1" fixed="4"/>
+			<xs:element name="C_DOC_TYPE" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC_CNT" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_REG" type="DGsti" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_RAJ" type="DGsti" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_MONTH" type="DGMonth" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_TYPE" type="DGPType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_YEAR" type="DGYear" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC_STAN" type="DGSTAN" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="D_FILL" type="DGDate" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="SOFTWARE" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DBody">
+		<xs:sequence>
+			<!--header-->
+			<xs:choice>
+			<xs:element name="HZ" type="DGchk" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HZN" type="DGchk" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HZU" type="DGchk" nillable="true" minOccurs="0" maxOccurs="1"/>
+			</xs:choice>
+			<xs:element name="HJ" type="DGchk" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HZM" type="DGMonth0" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="HZY" type="DGYear" minOccurs="1" maxOccurs="1"/>
+			<xs:choice>
+			<xs:element name="HM" type="DGchk" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HKV" type="DGchk" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HY" type="DGchk" nillable="true" minOccurs="0" maxOccurs="1"/>
+			</xs:choice>
+			<xs:element name="HNAME" type="DGHNAME"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HTIN" type="DGHTINJ"	nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HKVED" type="DGkved"	nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HZIP" type="DGHZIP"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HLOC" type="DGHLOC"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HINTURB" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HTEL" type="DGHTEL"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HEMAIL" type="DGHEMAIL"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HFAX" type="DGHFAX"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HSTI" type="DGHSTI"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HKOATUU" type="DGKOATUU"  nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<!--body-->
+			<xs:element name="R01G3" type="xs:nonNegativeInteger"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R02G3" type="DGdecimal2"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R03G3" type="DGdecimal2"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R04G3" type="DGdecimal2"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R05G3" type="DGdecimal2"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R06G3" type="DGdecimal2"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R07G3" type="DGdecimal2"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R08G3" type="DGdecimal2"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R09G3" type="DGdecimal2"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R10G3S" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R11G1S" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<!--footer-->
+			<xs:element name="HFILL" type="DGDate"	nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HBOS" type="DGHBOS"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HBUH" type="DGHBUH"  nillable="true" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

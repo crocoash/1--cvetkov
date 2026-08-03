@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>РОЗРАХУНОК ЕКСПОРТНОГО ВІДШКОДУВАННЯ (Додаток 1 до податкової декларації з податку на додану вартість)</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="DGMonth">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DGYear">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1991"/>
+			<xs:maxInclusive value="2099"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DGsti">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+<xs:simpleType name="DGLong">
+		<xs:restriction base="xs:unsignedLong">
+			<xs:minInclusive value="1000"/>
+			<xs:maxInclusive value="9999999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DGDate">
+		<xs:restriction base="xs:string">
+			<xs:length value="8"/>
+			<xs:pattern value="(((((0[1-9]|[1-2][0-9])(0(1|[3-9])|1[0-2]))|(30(0(1|[3-9])|1[0-2]))|(31(01|03|05|07|08|10|12)))(19|20)\d{2})|((0[1-9]|[1-2][0-9])02(19|20)[0-9](0|4))|((0[1-9]|[1-2][0-8]|19)02(19|20)[0-9](1|2|3|5|6|7|8|9)))"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DGKv">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="DECLAR" type="DeclarContent"/>
+	<xs:complexType name="DeclarContent">
+		<xs:sequence>
+			<xs:element name="DECLARHEAD" type="DHead"/>
+			<xs:element name="DECLARBODY" type="DBody"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DHead">
+		<xs:sequence>
+			<xs:element name="TIN" type="DGLong" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC" type="xs:string" minOccurs="1" maxOccurs="1" fixed="J02" />
+			<xs:element name="C_DOC_SUB" type="xs:string" minOccurs="1" maxOccurs="1" fixed="037"/>
+			<xs:element name="C_DOC_VER" type="xs:string" minOccurs="1" maxOccurs="1" fixed="3"/>
+			<xs:element name="C_DOC_TYPE" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC_CNT" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_REG" type="DGsti" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_RAJ" type="DGsti" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_MONTH" type="DGMonth" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_YEAR" type="DGYear" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="D_FILL" type="DGDate" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="SOFTWARE" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DBody">
+		<xs:sequence>
+			<!--header-->
+			<xs:element name="HZY" type="DGYear"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HZM" type="DGMonth"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HZKV" type="DGKv"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HNAME" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="HNPDV" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HNSPDV" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="HLOC" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HTEL" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<!---body-->
+			<xs:element name="R01GB" type="xs:decimal"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R02GB" type="xs:decimal"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R03GA" type="xs:decimal"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R04GA" type="xs:decimal"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R05GA" type="xs:decimal"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R06GB" type="xs:decimal"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R07GB" type="xs:decimal"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<!---footer-->
+			<xs:element name="HFILL" type="DGDate"  nillable="true" minOccurs="0"/>
+			<xs:element name="HBOS" type="xs:string"  nillable="true" minOccurs="0"/>
+			<xs:element name="HBUH" type="xs:string"  nillable="true" minOccurs="0"/>
+			<xs:element name="HFO" type="xs:string"  nillable="true" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

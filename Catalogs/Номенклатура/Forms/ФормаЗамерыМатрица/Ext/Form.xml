@@ -1,0 +1,485 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.18">
+	<Title>
+		<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Замеры</v8:content>
+		</v8:item>
+	</Title>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="ГруппаШапка" id="10">
+			<Group>Horizontal</Group>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаШапкаРасширеннаяПодсказка" id="11"/>
+			<ChildItems>
+				<InputField name="Номенклатура" id="12">
+					<DataPath>Номенклатура</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<ContextMenu name="НоменклатураКонтекстноеМеню" id="13"/>
+					<ExtendedTooltip name="НоменклатураРасширеннаяПодсказка" id="14"/>
+				</InputField>
+				<InputField name="ТипИзделия" id="15">
+					<DataPath>ТипИзделия</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Тип изделия</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ТипИзделияКонтекстноеМеню" id="16"/>
+					<ExtendedTooltip name="ТипИзделияРасширеннаяПодсказка" id="17"/>
+				</InputField>
+				<InputField name="НовоеПоле" id="57">
+					<DataPath>НовоеПоле</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Добавить поле</v8:content>
+						</v8:item>
+					</Title>
+					<ClearButton>true</ClearButton>
+					<ContextMenu name="НовоеПолеКонтекстноеМеню" id="58"/>
+					<ExtendedTooltip name="НовоеПолеРасширеннаяПодсказка" id="59"/>
+					<Events>
+						<Event name="OnChange">НовоеПолеПриИзменении</Event>
+					</Events>
+				</InputField>
+				<InputField name="УбираемоеПоле" id="70">
+					<DataPath>УбираемоеПоле</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Убрать поле</v8:content>
+						</v8:item>
+					</Title>
+					<ClearButton>true</ClearButton>
+					<ContextMenu name="УбираемоеПолеКонтекстноеМеню" id="71"/>
+					<ExtendedTooltip name="УбираемоеПолеРасширеннаяПодсказка" id="72"/>
+					<Events>
+						<Event name="OnChange">УбираемоеПолеПриИзменении</Event>
+					</Events>
+				</InputField>
+				<InputField name="НоменклатураЗаполнения" id="18">
+					<DataPath>НоменклатураЗаполнения</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Заполнить из модели</v8:content>
+						</v8:item>
+					</Title>
+					<ClearButton>true</ClearButton>
+					<ContextMenu name="НоменклатураЗаполненияКонтекстноеМеню" id="19"/>
+					<ExtendedTooltip name="НоменклатураЗаполненияРасширеннаяПодсказка" id="62"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<CommandBar name="ГруппаКоманды" id="20">
+			<ExtendedTooltip name="ГруппаКомандыРасширеннаяПодсказка" id="21"/>
+			<ChildItems>
+				<Button name="ФормаЗаписатьИЗакрыть" id="22">
+					<Type>CommandBarButton</Type>
+					<DefaultButton>true</DefaultButton>
+					<CommandName>Form.Command.ЗаписатьИЗакрыть</CommandName>
+					<ExtendedTooltip name="ФормаЗаписатьИЗакрытьРасширеннаяПодсказка" id="23"/>
+				</Button>
+				<Button name="ФормаЗаписать" id="24">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.Записать</CommandName>
+					<ExtendedTooltip name="ФормаЗаписатьРасширеннаяПодсказка" id="25"/>
+				</Button>
+				<Button name="ФормаОбновить" id="26">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.Обновить</CommandName>
+					<ExtendedTooltip name="ФормаОбновитьРасширеннаяПодсказка" id="27"/>
+				</Button>
+				<Button name="ФормаИзменитьПоле" id="36">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.ИзменитьПоле</CommandName>
+					<ExtendedTooltip name="ФормаИзменитьПолеРасширеннаяПодсказка" id="37"/>
+				</Button>
+				<Button name="ФормаВПрайс" id="38">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.ВПрайс</CommandName>
+					<ExtendedTooltip name="ФормаВПрайсРасширеннаяПодсказка" id="39"/>
+				</Button>
+				<Button name="ФормаЛевее" id="50">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.Левее</CommandName>
+					<ExtendedTooltip name="ФормаЛевееРасширеннаяПодсказка" id="51"/>
+				</Button>
+				<Button name="ФормаПравее" id="52">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.Правее</CommandName>
+					<ExtendedTooltip name="ФормаПравееРасширеннаяПодсказка" id="53"/>
+				</Button>
+				<Button name="ФормаЗаполнитьИзМодели" id="55">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.ЗаполнитьИзМодели</CommandName>
+					<ExtendedTooltip name="ФормаЗаполнитьИзМоделиРасширеннаяПодсказка" id="56"/>
+				</Button>
+				<Button name="ФормаПоляЗамеров" id="32">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.ПоляЗамеров</CommandName>
+					<ExtendedTooltip name="ФормаПоляЗамеровРасширеннаяПодсказка" id="33"/>
+				</Button>
+				<Button name="ФормаСклеитьДубли" id="60">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.СклеитьДубли</CommandName>
+					<ExtendedTooltip name="ФормаСклеитьДублиРасширеннаяПодсказка" id="61"/>
+				</Button>
+				<Button name="ФормаПеренестиСтарыеДанные" id="34">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.ПеренестиСтарыеДанные</CommandName>
+					<ExtendedTooltip name="ФормаПеренестиСтарыеДанныеРасширеннаяПодсказка" id="35"/>
+				</Button>
+			</ChildItems>
+		</CommandBar>
+		<Table name="ТабЗамеры" id="40">
+			<Representation>List</Representation>
+			<ChangeRowSet>false</ChangeRowSet>
+			<ChangeRowOrder>false</ChangeRowOrder>
+			<DataPath>ТабЗамеры</DataPath>
+			<SearchStringLocation>None</SearchStringLocation>
+			<ViewStatusLocation>None</ViewStatusLocation>
+			<SearchControlLocation>None</SearchControlLocation>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="ТабЗамерыКонтекстноеМеню" id="41"/>
+			<AutoCommandBar name="ТабЗамерыКоманднаяПанель" id="42">
+				<Autofill>false</Autofill>
+			</AutoCommandBar>
+			<ExtendedTooltip name="ТабЗамерыРасширеннаяПодсказка" id="43"/>
+			<SearchStringAddition name="ТабЗамерыСтрокаПоиска" id="63">
+				<AdditionSource>
+					<Item>ТабЗамеры</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ТабЗамерыСтрокаПоискаКонтекстноеМеню" id="64"/>
+				<ExtendedTooltip name="ТабЗамерыСтрокаПоискаРасширеннаяПодсказка" id="65"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ТабЗамерыСостояниеПросмотра" id="66">
+				<AdditionSource>
+					<Item>ТабЗамеры</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ТабЗамерыСостояниеПросмотраКонтекстноеМеню" id="67"/>
+				<ExtendedTooltip name="ТабЗамерыСостояниеПросмотраРасширеннаяПодсказка" id="68"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ТабЗамерыУправлениеПоиском" id="69">
+				<AdditionSource>
+					<Item>ТабЗамеры</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ТабЗамерыУправлениеПоискомКонтекстноеМеню" id="70"/>
+				<ExtendedTooltip name="ТабЗамерыУправлениеПоискомРасширеннаяПодсказка" id="71"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="OnActivateField">ТабЗамерыПриАктивизацииПоля</Event>
+			</Events>
+			<ChildItems>
+				<InputField name="ТабЗамерыРазмер" id="44">
+					<DataPath>ТабЗамеры.Размер</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<Width>8</Width>
+					<ContextMenu name="ТабЗамерыРазмерКонтекстноеМеню" id="45"/>
+					<ExtendedTooltip name="ТабЗамерыРазмерРасширеннаяПодсказка" id="46"/>
+				</InputField>
+				<InputField name="ТабЗамерыПолнота" id="47">
+					<DataPath>ТабЗамеры.Полнота</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<Width>8</Width>
+					<ContextMenu name="ТабЗамерыПолнотаКонтекстноеМеню" id="48"/>
+					<ExtendedTooltip name="ТабЗамерыПолнотаРасширеннаяПодсказка" id="49"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Номенклатура" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Номенклатура</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.Номенклатура</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ТипИзделия" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Тип изделия</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.ЗначенияСвойствОбъектов</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ТабЗамеры" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Замеры</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Размер" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Размер</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>20</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Полнота" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Полнота</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>20</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="НоменклатураЗаполнения" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Заполнить из модели</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.Номенклатура</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="НовоеПоле" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Добавить поле</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.ПоляЗамеров</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="УбираемоеПоле" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Убрать поле</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.ПоляЗамеров</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ИмяТекущейКолонки" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Имя текущей колонки</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>50</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ЗаписатьИЗакрыть" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Записать и закрыть</v8:content>
+				</v8:item>
+			</Title>
+			<Action>КомандаЗаписатьИЗакрыть</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Записать" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Записать</v8:content>
+				</v8:item>
+			</Title>
+			<Action>КомандаЗаписать</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Обновить" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Обновить</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Перечитать замеры и набор полей заново</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>КомандаОбновить</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ПоляЗамеров" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Поля замеров</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Справочник полей: названия и переводы</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>КомандаПоляЗамеров</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ПеренестиСтарыеДанные" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Перенести старые данные</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Разовый перенос строковых названий полей в справочник ПоляЗамеров</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>КомандаПеренестиСтарыеДанные</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ИзменитьПоле" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Изменить поле</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Открыть карточку поля текущей колонки: названия и переводы</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>КомандаИзменитьПоле</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ВПрайс" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>В прайс</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Включить или выключить текущее поле в прайсе</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>КомандаВПрайс</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Левее" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Левее</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сдвинуть текущую колонку влево</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>КомандаЛевее</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Правее" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Правее</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сдвинуть текущую колонку вправо</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>КомандаПравее</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ЗаполнитьИзМодели" id="12">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Заполнить из модели</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Подставить замеры указанной модели по совпадающим размерам и полям. Записи не происходит - посмотрите и нажмите Записать</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>КомандаЗаполнитьИзМодели</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="СклеитьДубли" id="13">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Склеить дубли</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Свести два одинаковых по смыслу поля в одно</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>КомандаСклеитьДубли</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

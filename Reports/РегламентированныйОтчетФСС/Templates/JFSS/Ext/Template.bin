@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:simpleType name="DGMonth">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DGYear">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1991"/>
+			<xs:maxInclusive value="2099"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DGLong">
+		<xs:restriction base="xs:unsignedLong">
+			<xs:minInclusive value="100000"/>
+		        <xs:maxInclusive value="9999999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DGLongCSTRAX">
+		<xs:restriction base="xs:unsignedLong">
+			<xs:minInclusive value="100000"/>
+		        <xs:maxInclusive value="9999999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DGSummaVKopejkah">
+		<xs:restriction base="xs:integer">
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DGLCTRL">
+		<xs:restriction base="xs:string">
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DGDate">
+		<xs:restriction base="xs:string">
+		<xs:length value="8"/>
+		<xs:pattern value="(((((0[1-9]|[1-2][0-9])(0(1|[3-9])|1[0-2]))|(30(04|06|09|11))|(31(01|03|05|07|08|10|12)))(19|20)\d{2})|((0[1-9]|[1-2][0-9])02(19|20)[0-9](0|4))|((0[1-9]|[1-2][0-8]|19)02(19|20)[0-9](1|2|3|5|6|7|8|9)))"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DGVYDZbora">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="7"/>
+		</xs:restriction>
+	 </xs:simpleType>
+	<xs:simpleType name="SimpleString">
+		<xs:restriction base="xs:string">
+		</xs:restriction>
+	 </xs:simpleType>
+
+	<xs:element name="F4" type="F4Content"/>
+	<xs:complexType name="F4Content">
+		<xs:sequence>
+                       	 	<xs:element name="CSTRAX" type="DGLongCSTRAX" minOccurs="1" maxOccurs="1"/>
+                        		<xs:element name="NSTRAX" type="SimpleString" minOccurs="0" maxOccurs="1"/>
+                        		<xs:element name="OKPO"   type="DGLong" minOccurs="1" maxOccurs="1"/> 
+                        		<xs:element name="TNALOG" type="DGVYDZbora" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="DATA"   type="DDBODY" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="DATAF14" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DDBODY">
+		<xs:sequence>
+			<xs:element name="P1" type="DGData" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="P2" type="DGData" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="P3" type="DGData" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="P4" type="DGData" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+     <xs:complexType name="DGData">
+        <xs:sequence>
+		<xs:element name="T1" type="DGYear" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S1" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S2" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S3" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S5" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S6" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S7" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S8" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S9" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S10" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S11" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S12" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S13" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S14" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S15" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S16" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S17" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S18" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S95" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+	       	<xs:element name="S96" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S97" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S99" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S160" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S161" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S162" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S163" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S164" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S165" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S166" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S167" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S168" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S169" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S170" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S171" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S172" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S173" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S174" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S175" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S176" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S177" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+	        	<xs:element name="S178" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S179" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S180" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S181" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S182" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S183" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S184" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S185" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S186" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+    	        	<xs:element name="S243" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S244" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S245" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S246" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S247" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S248" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S249" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S250" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S251" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S252" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+	        	<xs:element name="S20" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S22" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S23" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S24" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S25" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S27" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S28" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S29" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S30" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S31" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S32" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S33" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S34" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S35" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S36" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S37" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S39" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S40" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S41" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S42" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S43" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S44" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S45" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S46" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+	        	<xs:element name="S47" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S48" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S49" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S50" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S51" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S52" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S53" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S54" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S55" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+	        	<xs:element name="S56" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S57" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S58" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S59" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S60" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S93" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S94" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S98" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+	        	<xs:element name="S100" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S101" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S102" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S103" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S104" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S126" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S127" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S128" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S129" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S135" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S140" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S141" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S142" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S187" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S193" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S194" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S195" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S196" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S197" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S198" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S199" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S200" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S201" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S202" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S203" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S204" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S205" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S206" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S207" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S208" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S209" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S210" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S211" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S213" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S214" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S215" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S226" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S227" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S228" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S229" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S230" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S231" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S263" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S264" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S265" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S266" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S267" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S268" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S269" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S270" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S271" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S272" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S285" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S61" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S62" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S63" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S64" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S67" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S69" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S70" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S71" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S72" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S76" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S77" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S81" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S82" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S86" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S88" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S92" type="DGSummaVKopejkah"  minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S105" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S106" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S273" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S274" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S275" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S277" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S279" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S284" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S286" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="S287" type="DGSummaVKopejkah" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="C61" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="C62" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+                		<xs:element name="C63" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="C64" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="C67" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+                		<xs:element name="C69" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="C70" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="C71" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+                		<xs:element name="C77" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="C88" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="C105" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="C284" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+	        	<xs:element name="LCTRL" type="DGLCTRL" minOccurs="1" maxOccurs="1"/>
+     </xs:sequence>
+  </xs:complexType>
+</xs:schema>

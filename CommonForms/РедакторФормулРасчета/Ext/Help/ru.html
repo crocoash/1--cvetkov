@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html xmlns:o="urn:schemas-microsoft-com:office:office"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><link href="v8help://service_book/service_style" type="text/css" rel="stylesheet"></link><meta content="MSHTML 6.00.2900.3354" name="GENERATOR"></meta></head><body>
+<h1 class="">Редактор формулы расчета</h1>
+<p class="">Редактор формул расчета позволяет вводить математические формулы расчета начислений или удержаний, по которым будет производиться расчет зарплаты.</p>
+<p class="">Для описания формул расчета можно использовать:</p>
+<ul><li>
+<div class=""><a href="#_Идентификаторы">Идентификаторы показателей расчета;</a></div>
+</li><li>
+<div class=""><a href="#_Простые">Простые арифметические действия:</a> "<font color="#ff0000" size="3"><strong>+</strong></font>", "<font color="#ff0000" size="3"><strong>-</strong></font>" , "<font color="#ff0000" size="3"><strong>/</strong></font>" ,"<font color="#ff0000" size="3"><strong>*</strong></font>", в том числе с использованием скобок <font color="#ff0000">()</font>;</div>
+</li><li>
+<div class=""><a href="#_Математические">Математические фукнции</a> такие как: <font color="#0000ff"><a href="#_Макс">Макс</a></font><font color="#ff0000">()</font>, <font color="#0000ff"><a href="#_Мин">Мин</a></font><font color="#ff0000">()</font>, <font color="#0000ff"><a href="#_Окр">Окр</a></font><font color="#ff0000">()</font>, <font color="#0000ff"><a href="#_Цел">Цел</a></font><font color="#ff0000">()</font>;</div>
+</li><li>
+<div class=""><a href="#_Конструкцию">Конструкция условия </a><font color="#ff0000">?(,,)</font>;</div>
+</li><li>
+<div class=""><a href="#_Функция">Функцию ОценитьПо<font color="#ff0000">()</font>.</a></div></li></ul><p class="">
+</p><hr></hr><p></p>
+<h2 class="">Идентификаторы показателей расчета</h2>
+<p class="">Показатели расчета - это входные значения для расчета. Над этими значениями выполняются манипуляции для расчета результата начисления. Показатели вводятся пользователем при проведении тех или иных документов, вводятся в регистре сведений "Значения показателей схем мотивации" или загружаются автоматически. </p>
+<p class="">Примеры показателей:</p>
+<ul><li>
+<div class="">Время в днях;</div>
+</li><li>
+<div class="">Норма времени в днях;</div>
+</li><li>
+<div class="">Выручка;</div>
+</li><li>
+<div class="">Процент.</div></li></ul><p class="Usual">Идентификатор показателя - символьное представление показателя, которое не содержит разделителей и специальных символов.</p>
+<p class="">Примеры идентификаторов показателя:</p>
+<ul><li>
+<div class="">ВремяВДнях;</div>
+</li><li>
+<div class="">НормаВремениВДнях;</div>
+</li><li>
+<div class="">Выручка;</div>
+</li><li>
+<div class="">Процент.</div></li></ul><p class="">Все доступные для использования идентификаторы находятся в таблице "Показатели" данного редактора формул.</p>
+<h2 class="">
+<hr></hr></h2>
+<h2 class=""><a name="_Простые">Простые арифметические действия</a></h2>
+<p class="">При описании формул расчета можно использовать арифметические действия "<font color="#ff0000" size="3"><strong>+</strong></font>", "<font color="#ff0000" size="3"><strong>-</strong></font>", "<font color="#ff0000" size="3"><strong>/</strong></font>", "<font color="#ff0000" size="3"><strong>*</strong></font>", в том числе с использованием скобок <font color="#ff0000">()</font>.</p>
+<p class="">Пример: <font color="#0000ff">Выручка</font> <font color="#ff0000">*</font> <font color="#0000ff">Процент</font></p>
+<p class="">
+</p><hr></hr><p></p>
+<h2 class=""><a name="_Математические">Математические функции</a> </h2>
+<div class="V8SH_heading"> </div>
+<div class="V8SH_heading">
+<div class="V8SH_heading"><strong><a name="_Макс">Макс</a></strong>(&lt;Значение 1&gt;, ..., &lt;Значение N&gt;) </div>
+<p></p>
+<div class="V8SH_chapter">&lt;Значение 1&gt;, ..., &lt;Значение N&gt; - набор значений для сравнения. <br>Возвращается максимальное из переданных в функцию значений. </div>
+<div class="V8SH_chapter"> </div>
+<div class="V8SH_chapter">Пример:</div>
+<div class="V8SH_chapter"><font color="#0000ff">Макс</font><font color="#ff0000">(</font><font color="#0000ff">Оклад</font><font color="#ff0000">/</font><font color="#0000ff">НормаДней</font><font color="#ff0000">*</font><font color="#0000ff">ОтработаноДней</font><font color="#ff0000">,</font> <font color="#0000ff">Выручка</font><font color="#ff0000">*</font><font color="#0000ff">Процент</font><font color="#ff0000">)</font></div>
+<p class="MsoNormal" style="MARGIN: 0cm 0cm 0pt"> </p>
+<div class="V8SH_heading"><strong><a name="_Мин">Мин</a></strong>(&lt;Значение 1&gt;, ..., &lt;Значение N&gt;) </div>
+<div class="V8SH_chapter">&lt;Значение 1&gt;, ..., &lt;Значение N&gt; - набор значений для сравнения. <br>Возвращается минимальное из переданных в функцию значений. </div>
+<div class="V8SH_chapter"> </div>
+<div class="V8SH_chapter">Пример:</div>
+<div class="V8SH_chapter"><font color="#0000ff">Мин</font><font color="#ff0000">(</font><font color="#0000ff">Оклад</font><font color="#ff0000">/</font><font color="#0000ff">НормаДней</font><font color="#ff0000">*</font><font color="#0000ff">ОтработаноДней</font><font color="#ff0000">,</font> <font color="#0000ff">Выручка</font><font color="#ff0000">*</font><font color="#0000ff">Процент</font><font color="#ff0000">)</font></div>
+<p class="MsoNormal" style="MARGIN: 0cm 0cm 0pt"> </p></div>
+<div class="V8SH_codesample">
+<div class="V8SH_heading"><a name="_Окр"><strong>Окр</strong></a><strong>(</strong>&lt;Число&gt;, &lt;Разрядность&gt;<strong>)</strong></div>
+<div class="V8SH_chapter"> </div>
+<div class="V8SH_rubric">&lt;Разрядность&gt; - определяет число знаков дробной части, до которых производится округление. Если параметр отрицательный, то число округляется до соответствующего разряда в целой части, начиная с младших разрядов.<br>Значение по умолчанию: 0 </div>
+<div class="V8SH_rubric"> </div>
+<div class="V8SH_chapter">Пример:</div>
+<div class="V8SH_codesample"><font color="#0000ff">Окр</font><font color="#ff0000">(</font><font color="#0000ff">ОкладПоДням</font><font color="#ff0000">*</font><font color="#0000ff">ОтработаноДней</font><font color="#ff0000">,</font> 2<font color="#ff0000">)</font><br><br><div class="V8SH_codesample"> </div>
+<div class="V8SH_heading"><a name="_Цел"><strong>Цел</strong></a><strong>(</strong>&lt;Число&gt;<strong>)</strong></div>
+<div class="V8SH_heading"><strong></strong> </div>
+<div class="V8SH_rubric">&lt;Число&gt; - исходное число или показатель.</div>
+<div class="V8SH_rubric"> </div>
+<div class="V8SH_chapter">Пример:</div>
+<div class="V8SH_codesample"><font color="#0000ff">Цел</font><font color="#ff0000">(</font><font color="#0000ff">Выручка</font><font color="#ff0000">*</font><font color="#0000ff">Процент</font><font color="#ff0000">);</font></div>
+<div class="V8SH_codesample"> </div>
+<div class="V8SH_codesample">
+<hr></hr></div>
+<h2 class=""><a name="_Конструкцию">Конструкция условия </a><font color="#ff0000">?(,,)</font></h2>
+<p><b><u>? (вычислить выражение по условию)</u></b><br><b>Синтаксис:<br></b>?(&lt;Логическое выражение&gt;, &lt;Выражение 1&gt;, &lt;Выражение 2&gt;)<br><b>Параметры:<br></b><u>&lt;Логическое выражение&gt;</u><br>Логическое выражение, результат вычисления которого определяет одно из результирующих выражений, которые будут вычислены. Если результат его вычисления Истина, то будет вычисляться &lt;Выражение 1&gt;. Если результат Ложь – то &lt;Выражение 2&gt;.<br><u>&lt;Выражение 1&gt;</u><br>Результирующее выражение, которое будет вычисляться, если результат логического выражения Истина.<br><u>&lt;Выражение 2&gt;<br></u>Результирующее выражение, которое будет вычисляться, если результат логического выражения Ложь.<br><b>Возвращаемое значение:</b><br>Результат вычисления одного из результирующих выражений. <br><b>Описание:<br></b>Позволяет вычислить одно из двух заданных выражений в зависимости от результата вычисления логического выражения.</p></div>
+<h3 class="">Пример применения конструкции условия для описания формул способов расчета:</h3>
+<p class="">Нужно ввести надбавку за выслугу лет, которая рассчитывается как процент от оклада, при этом процент надбавки зависит от выслуги лет и определяется по шкале:</p>
+<p class="">
+</p><table style="WIDTH: 208px; HEIGHT: 124px" bordercolor="#000000" width="208" border="1"><tbody><tr><td>с    </td>
+<td>по  </td>
+<td>процент</td></tr><tr><td>0</td>
+<td>5</td>
+<td>0</td></tr><tr><td>5</td>
+<td>10</td>
+<td>10</td></tr><tr><td>10</td>
+<td>20</td>
+<td>20</td></tr><tr><td>20</td>
+<td>99</td>
+<td>30</td></tr></tbody></table><p class="">Формула будет выглядеть так:</p>
+<p class=""><font color="#0000ff">Оклад</font> <font color="#ff0000">* ?(</font><font color="#0000ff">СтажВГодах</font><font color="#ff0000">&lt;<font color="#000000">5</font>, <font color="#000000">0</font>, ?(</font><font color="#0000ff">СтажВГодах</font><font color="#ff0000">&lt;<font color="#000000">10</font>, <font color="#000000">10</font>, ?(</font><font color="#0000ff">СтажВГодах</font><font color="#ff0000">&lt;<font color="#000000">20</font>, <font color="#000000">20</font>, <font color="#000000">30</font>)))</font></p>
+<h2 class="">
+<hr></hr></h2>
+<h2 class=""><a name="_Функция">Функция ОценитьПО()</a></h2>
+<div class="V8SH_chapter">Синтаксис:<br><strong>ОценитьПО</strong>(&lt;Значение&gt;, &lt;Шкала оценки&gt;)</div>
+<div class="V8SH_chapter">Параметры:</div>
+<div class="V8SH_chapter">&lt;Значение&gt; - показатель, который оценивается по оценочной шкале</div>
+<div class="V8SH_chapter">&lt;Шкала оценки&gt; - показатель с типом шкала, по которой оцениваем значение</div>
+<div class="V8SH_chapter">Функция выполняет оценку значения по шкале оценки.</div>
+<div class="V8SH_chapter">
+<hr></hr></div>
+<div class="V8SH_chapter"><strong>Внимание! Использование данной функции снижает производительность работы программы</strong><strong>!</strong></div>
+<div class="V8SH_chapter"><strong>Функция оставлена для преемственности с предыдущими версиями.</strong></div>
+<div class="V8SH_chapter"><strong>Рекомендуется вместо этой функции использовать конструкцию условия <font color="#ff0000">?(,,)</font></strong></div>
+<div class="V8SH_chapter">
+<hr></hr></div></div></body></html>

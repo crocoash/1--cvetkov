@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>РОЗРАХУНОК СУМИ БЮДЖЕТНОГО ВІДШКОДУВАННЯ(Додаток 3 до податкової декларації з ПДВ (у редакції наказу ДПА України від 17.03.2008 № 159) )</xs:documentation>
+	</xs:annotation>
+
+ <xs:include schemaLocation="common_types.xsd" />
+
+	<xs:element name="DECLAR" type="DeclarContent"/>
+	<xs:complexType name="DeclarContent">
+		<xs:sequence>
+			<xs:element name="DECLARHEAD" type="DHead" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="DECLARBODY" type="DBody"  minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DHead">
+		<xs:sequence>
+			<xs:element name="TIN" type="DGLong" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC" type="xs:string"  minOccurs="1" maxOccurs="1" fixed="F02"/>
+			<xs:element name="C_DOC_SUB" type="xs:string" minOccurs="1" maxOccurs="1" fixed="005"/>
+			<xs:element name="C_DOC_VER" type="xs:string"  minOccurs="1" maxOccurs="1" fixed="6"/>
+			<xs:element name="C_DOC_TYPE" type="xs:nonNegativeInteger"  minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC_CNT" type="xs:nonNegativeInteger"  minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_REG" type="DGsti"  minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_RAJ" type="DGsti"  minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_MONTH" type="DGMonth"	minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_TYPE" type="DGPType"  minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_YEAR" type="DGYear"  minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC_STAN" type="DGSTAN"  minOccurs="1" maxOccurs="1"/>
+			<xs:element name="D_FILL" type="DGDate"  minOccurs="1" maxOccurs="1"/>
+			<xs:element name="SOFTWARE" type="xs:string"  nillable="true" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DBody">
+		<xs:sequence>
+			<!--HEAD-->
+			<xs:choice minOccurs="1" maxOccurs="1">
+      <xs:element name="HZ" type="DGchk" />
+      <xs:element name="HZN" type="DGchk" />
+      <xs:element name="HZU" type="DGchk" />
+			</xs:choice>
+
+			<xs:element name="HZY" type="DGYear"  minOccurs="1" maxOccurs="1"/>
+			<xs:choice minOccurs="1" maxOccurs="1">
+      <xs:element name="HZKV" type="DGKv"/>
+      <xs:element name="HZM" type="DGMonth" />
+			</xs:choice>
+
+      <xs:element name="HZYP" type="DGYear" nillable="true" minOccurs="0"/>
+			<xs:choice >
+      <xs:element name="HZKVP" type="DGKv" nillable="true" minOccurs="0" />
+      <xs:element name="HZMP" type="DGMonth" nillable="true" minOccurs="0" />
+			</xs:choice>
+
+      <xs:element name="HNAME" type="DGHNAME"	minOccurs="1" maxOccurs="1"/>
+
+			<xs:choice minOccurs="1" maxOccurs="1">
+      <xs:element name="HTINJ" type="DGHTINJ"  />
+      <xs:element name="HTINF" type="DGHTINF"	/>
+      <xs:element name="HTINSD" type="DGHTINSD"   />
+      <xs:element name="HTINNR" type="DGHTINNR"   />
+			</xs:choice>
+
+      <xs:element name="HDDGVSD" type="DGHDDGVSD"  nillable="true" minOccurs="0" />
+      <xs:element name="HNDGVSD" type="DGHNDGVSD"  nillable="true" minOccurs="0" />
+
+      <xs:element name="HNPDV" type="DGHNPDV"	minOccurs="1" maxOccurs="1"/>
+      <xs:element name="HNSPDV" type="DGHNSPDV"   minOccurs="1" maxOccurs="1"/>
+
+			<!--BODY-->
+			<xs:element name="R010G3" type="DGdecimal0"  nillable="true" minOccurs="0" />
+			<xs:element name="R020G3" type="DGdecimal0"  nillable="true" minOccurs="0" />
+			<xs:element name="R030G3" type="DGdecimal0"  nillable="true" minOccurs="0" />
+
+			<!--FOOTER-->
+			<xs:element name="HFILL" type="DGDate"	minOccurs="1" />
+			<xs:element name="HBOS" type="DGHBOS" nillable="true"	minOccurs="0" />
+			<xs:element name="HBUH" type="DGHBUH"  nillable="true"	minOccurs="0" />
+			<xs:element name="HFO" type="DGHFO" minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

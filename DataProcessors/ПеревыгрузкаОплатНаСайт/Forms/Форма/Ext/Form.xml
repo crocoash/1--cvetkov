@@ -1,0 +1,442 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.18">
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="ГруппаОтбор" id="10">
+			<Group>Horizontal</Group>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаОтборРасширеннаяПодсказка" id="11"/>
+			<ChildItems>
+				<InputField name="ДатаНачала" id="12">
+					<DataPath>ДатаНачала</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Оплаты с</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ДатаНачалаКонтекстноеМеню" id="13"/>
+					<ExtendedTooltip name="ДатаНачалаРасширеннаяПодсказка" id="14"/>
+				</InputField>
+				<InputField name="ДатаОкончания" id="15">
+					<DataPath>ДатаОкончания</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>по</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ДатаОкончанияКонтекстноеМеню" id="16"/>
+					<ExtendedTooltip name="ДатаОкончанияРасширеннаяПодсказка" id="17"/>
+				</InputField>
+				<InputField name="Контрагент" id="18">
+					<DataPath>Контрагент</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Контрагент</v8:content>
+						</v8:item>
+					</Title>
+					<ClearButton>true</ClearButton>
+					<ContextMenu name="КонтрагентКонтекстноеМеню" id="19"/>
+					<ExtendedTooltip name="КонтрагентРасширеннаяПодсказка" id="20"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<CommandBar name="ГруппаКоманды" id="70">
+			<ExtendedTooltip name="ГруппаКомандыРасширеннаяПодсказка" id="71"/>
+			<ChildItems>
+				<Button name="ФормаЗаполнить" id="72">
+					<Type>CommandBarButton</Type>
+					<DefaultButton>true</DefaultButton>
+					<CommandName>Form.Command.Заполнить</CommandName>
+					<ExtendedTooltip name="ФормаЗаполнитьРасширеннаяПодсказка" id="73"/>
+				</Button>
+				<Button name="ФормаОтметитьВсе" id="74">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.ОтметитьВсе</CommandName>
+					<ExtendedTooltip name="ФормаОтметитьВсеРасширеннаяПодсказка" id="75"/>
+				</Button>
+				<Button name="ФормаПоставитьВОчередь" id="76">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.ПоставитьВОчередь</CommandName>
+					<ExtendedTooltip name="ФормаПоставитьВОчередьРасширеннаяПодсказка" id="77"/>
+				</Button>
+				<Button name="ФормаВыгрузитьСейчас" id="78">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.ВыгрузитьСейчас</CommandName>
+					<ExtendedTooltip name="ФормаВыгрузитьСейчасРасширеннаяПодсказка" id="79"/>
+				</Button>
+				<Button name="ФормаПроверитьМусорНаFTP" id="80">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.ПроверитьМусорНаFTP</CommandName>
+					<ExtendedTooltip name="ФормаПроверитьМусорНаFTPРасширеннаяПодсказка" id="81"/>
+				</Button>
+				<Button name="ФормаУдалитьМусорНаFTP" id="82">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.УдалитьМусорНаFTP</CommandName>
+					<ExtendedTooltip name="ФормаУдалитьМусорНаFTPРасширеннаяПодсказка" id="83"/>
+				</Button>
+			</ChildItems>
+		</CommandBar>
+		<Table name="Оплаты" id="30">
+			<Representation>List</Representation>
+			<DataPath>Оплаты</DataPath>
+			<SearchStringLocation>None</SearchStringLocation>
+			<ViewStatusLocation>None</ViewStatusLocation>
+			<SearchControlLocation>None</SearchControlLocation>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="ОплатыКонтекстноеМеню" id="31"/>
+			<AutoCommandBar name="ОплатыКоманднаяПанель" id="32">
+				<Autofill>false</Autofill>
+			</AutoCommandBar>
+			<ExtendedTooltip name="ОплатыРасширеннаяПодсказка" id="33"/>
+			<SearchStringAddition name="ОплатыСтрокаПоиска" id="84">
+				<AdditionSource>
+					<Item>Оплаты</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ОплатыСтрокаПоискаКонтекстноеМеню" id="85"/>
+				<ExtendedTooltip name="ОплатыСтрокаПоискаРасширеннаяПодсказка" id="86"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ОплатыСостояниеПросмотра" id="87">
+				<AdditionSource>
+					<Item>Оплаты</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ОплатыСостояниеПросмотраКонтекстноеМеню" id="88"/>
+				<ExtendedTooltip name="ОплатыСостояниеПросмотраРасширеннаяПодсказка" id="89"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ОплатыУправлениеПоиском" id="90">
+				<AdditionSource>
+					<Item>Оплаты</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ОплатыУправлениеПоискомКонтекстноеМеню" id="91"/>
+				<ExtendedTooltip name="ОплатыУправлениеПоискомРасширеннаяПодсказка" id="92"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="Selection">ОплатыВыбор</Event>
+			</Events>
+			<ChildItems>
+				<CheckBoxField name="ОплатыПометка" id="34">
+					<DataPath>Оплаты.Пометка</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>В.</v8:content>
+						</v8:item>
+					</Title>
+					<HorizontalAlign>Center</HorizontalAlign>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ОплатыПометкаКонтекстноеМеню" id="35"/>
+					<ExtendedTooltip name="ОплатыПометкаРасширеннаяПодсказка" id="36"/>
+				</CheckBoxField>
+				<InputField name="ОплатыДокумент" id="37">
+					<DataPath>Оплаты.Документ</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<Width>50</Width>
+					<ContextMenu name="ОплатыДокументКонтекстноеМеню" id="38"/>
+					<ExtendedTooltip name="ОплатыДокументРасширеннаяПодсказка" id="39"/>
+				</InputField>
+				<InputField name="ОплатыДата" id="40">
+					<DataPath>Оплаты.Дата</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ОплатыДатаКонтекстноеМеню" id="41"/>
+					<ExtendedTooltip name="ОплатыДатаРасширеннаяПодсказка" id="42"/>
+				</InputField>
+				<InputField name="ОплатыКонтрагент" id="43">
+					<DataPath>Оплаты.Контрагент</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ОплатыКонтрагентКонтекстноеМеню" id="44"/>
+					<ExtendedTooltip name="ОплатыКонтрагентРасширеннаяПодсказка" id="45"/>
+				</InputField>
+				<InputField name="ОплатыКодКонтрагента" id="46">
+					<DataPath>Оплаты.КодКонтрагента</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ОплатыКодКонтрагентаКонтекстноеМеню" id="47"/>
+					<ExtendedTooltip name="ОплатыКодКонтрагентаРасширеннаяПодсказка" id="48"/>
+				</InputField>
+				<InputField name="ОплатыСумма" id="49">
+					<DataPath>Оплаты.Сумма</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ОплатыСуммаКонтекстноеМеню" id="50"/>
+					<ExtendedTooltip name="ОплатыСуммаРасширеннаяПодсказка" id="51"/>
+				</InputField>
+				<InputField name="ОплатыРезультат" id="52">
+					<DataPath>Оплаты.Результат</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<Width>40</Width>
+					<ContextMenu name="ОплатыРезультатКонтекстноеМеню" id="53"/>
+					<ExtendedTooltip name="ОплатыРезультатРасширеннаяПодсказка" id="54"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:DataProcessorObject.ПеревыгрузкаОплатНаСайт</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+		</Attribute>
+		<Attribute name="ДатаНачала" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Дата начала</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>Date</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ДатаОкончания" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Дата окончания</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>Date</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Контрагент" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Контрагент</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.Контрагенты</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Оплаты" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Оплаты</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Пометка" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Пометка</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Документ" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Документ</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:DocumentRef.ВозвратТоваровОтПокупателя</v8:Type>
+						<v8:Type>cfg:DocumentRef.ПриходныйКассовыйОрдер</v8:Type>
+						<v8:Type>cfg:DocumentRef.ПлатежноеПоручениеИсходящее</v8:Type>
+						<v8:Type>cfg:DocumentRef.РасходныйКассовыйОрдер</v8:Type>
+						<v8:Type>cfg:DocumentRef.ПлатежноеПоручениеВходящее</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Дата" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Дата</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:dateTime</v8:Type>
+						<v8:DateQualifiers>
+							<v8:DateFractions>DateTime</v8:DateFractions>
+						</v8:DateQualifiers>
+					</Type>
+				</Column>
+				<Column name="Контрагент" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Контрагент</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.Контрагенты</v8:Type>
+					</Type>
+				</Column>
+				<Column name="КодКонтрагента" id="5">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Код клиента</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>25</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Сумма" id="6">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сумма</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>2</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Результат" id="7">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Результат</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Заполнить" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Заполнить</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Подобрать оплаты и возвраты за период</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Заполнить</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ПоставитьВОчередь" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Поставить в очередь</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отмеченные документы будут выгружены регламентным заданием</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ПоставитьВОчередь</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ВыгрузитьСейчас" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Выгрузить сейчас</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Выгрузить отмеченные документы в историю покупок на FTP немедленно</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ВыгрузитьСейчас</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ОтметитьВсе" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отметить все</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отметить или снять отметку со всех строк</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ОтметитьВсе</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ПроверитьМусорНаFTP" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Проверить мусор на FTP</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Показать файлы, оставшиеся в корне buy-history от старого дефекта выгрузки</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ПроверитьМусорНаFTP</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="УдалитьМусорНаFTP" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Удалить мусор на FTP</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Удалить из корня buy-history файлы вида invoice__&lt;uid&gt;_00010101000000.xml</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>УдалитьМусорНаFTP</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

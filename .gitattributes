@@ -1,0 +1,28 @@
+# 1C configuration file dump (Выгрузка конфигурации в файлы)
+# Файлы выгрузки 1С — UTF-8, важно не ломать переносы строк и не пытаться мержить бинарники.
+
+# По умолчанию: текстовые файлы, нормализовать окончания строк в LF в репозитории
+* text=auto eol=lf
+
+# XML метаданных 1С — текст, но НЕ трогаем окончания строк (1С пишет CRLF/LF по-своему)
+*.xml   text eol=crlf
+*.bsl   text eol=crlf working-tree-encoding=UTF-8
+*.mdo   text
+*.os    text eol=lf
+
+# Бинарные ресурсы конфигурации — не мержить, не diff'ить
+*.bin        binary
+*.png        binary
+*.jpg        binary
+*.jpeg       binary
+*.gif        binary
+*.ico        binary
+*.epf        binary
+*.erf        binary
+*.cf         binary
+*.cfe        binary
+*.dt         binary
+*.mxl        binary
+*.st         binary
+*.geom       binary
+*.efd        binary

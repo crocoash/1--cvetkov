@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.18">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<VerticalScroll>useIfNecessary</VerticalScroll>
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<ChildItems>
+		<InputField name="Код" id="1">
+			<DataPath>Объект.Code</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ContextMenu name="КодКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="КодExtendedTooltip" id="26"/>
+		</InputField>
+		<InputField name="Наименование" id="3">
+			<DataPath>Объект.Description</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ContextMenu name="НаименованиеКонтекстноеМеню" id="4"/>
+			<ExtendedTooltip name="НаименованиеExtendedTooltip" id="27"/>
+		</InputField>
+		<InputField name="НаименованиеРусское" id="39">
+			<DataPath>Объект.НаименованиеРусское</DataPath>
+			<ContextMenu name="НаименованиеРусскоеКонтекстноеМеню" id="40"/>
+			<ExtendedTooltip name="НаименованиеРусскоеРасширеннаяПодсказка" id="41"/>
+		</InputField>
+		<InputField name="Область" id="7">
+			<DataPath>Объект.Область</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ContextMenu name="ОбластьКонтекстноеМеню" id="8"/>
+			<ExtendedTooltip name="ОбластьExtendedTooltip" id="28"/>
+		</InputField>
+		<InputField name="ГУИД" id="5">
+			<DataPath>Объект.ГУИД</DataPath>
+			<ReadOnly>true</ReadOnly>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Идентификатор</v8:content>
+				</v8:item>
+			</Title>
+			<EditMode>EnterOnInput</EditMode>
+			<ContextMenu name="ГУИДКонтекстноеМеню" id="6"/>
+			<ExtendedTooltip name="ГУИДExtendedTooltip" id="29"/>
+		</InputField>
+		<CheckBoxField name="ДопНаценкаЗаДоставку" id="24">
+			<DataPath>Объект.ДопНаценкаЗаДоставку</DataPath>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="ДопНаценкаЗаДоставкуКонтекстноеМеню" id="25"/>
+			<ExtendedTooltip name="ДопНаценкаЗаДоставкуExtendedTooltip" id="30"/>
+		</CheckBoxField>
+		<UsualGroup name="Группа1" id="23">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Доставка в</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Horizontal</Group>
+			<Representation>StrongSeparation</Representation>
+			<ExtendedTooltip name="Группа1ExtendedTooltip" id="31"/>
+			<ChildItems>
+				<CheckBoxField name="ДоставкаВПонедельник" id="9">
+					<DataPath>Объект.ДоставкаВПонедельник</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Понедельник</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ДоставкаВПонедельникКонтекстноеМеню" id="10"/>
+					<ExtendedTooltip name="ДоставкаВПонедельникExtendedTooltip" id="32"/>
+				</CheckBoxField>
+				<CheckBoxField name="ДоставкаВоВторник" id="11">
+					<DataPath>Объект.ДоставкаВоВторник</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Вторник</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ДоставкаВоВторникКонтекстноеМеню" id="12"/>
+					<ExtendedTooltip name="ДоставкаВоВторникExtendedTooltip" id="33"/>
+				</CheckBoxField>
+				<CheckBoxField name="ДоставкаВСреду" id="13">
+					<DataPath>Объект.ДоставкаВСреду</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Среда</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ДоставкаВСредуКонтекстноеМеню" id="14"/>
+					<ExtendedTooltip name="ДоставкаВСредуExtendedTooltip" id="34"/>
+				</CheckBoxField>
+				<CheckBoxField name="ДоставкаВЧетверг" id="15">
+					<DataPath>Объект.ДоставкаВЧетверг</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Четверг</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ДоставкаВЧетвергКонтекстноеМеню" id="16"/>
+					<ExtendedTooltip name="ДоставкаВЧетвергExtendedTooltip" id="35"/>
+				</CheckBoxField>
+				<CheckBoxField name="ДоставкаВПятницу" id="17">
+					<DataPath>Объект.ДоставкаВПятницу</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Пятница</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ДоставкаВПятницуКонтекстноеМеню" id="18"/>
+					<ExtendedTooltip name="ДоставкаВПятницуExtendedTooltip" id="36"/>
+				</CheckBoxField>
+				<CheckBoxField name="ДоставкаВСубботу" id="19">
+					<DataPath>Объект.ДоставкаВСубботу</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ссуббота</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ДоставкаВСубботуКонтекстноеМеню" id="20"/>
+					<ExtendedTooltip name="ДоставкаВСубботуExtendedTooltip" id="37"/>
+				</CheckBoxField>
+				<CheckBoxField name="ДоставкаВВоскресенье" id="21">
+					<DataPath>Объект.ДоставкаВВоскресенье</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Воскреснье</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ДоставкаВВоскресеньеКонтекстноеМеню" id="22"/>
+					<ExtendedTooltip name="ДоставкаВВоскресеньеExtendedTooltip" id="38"/>
+				</CheckBoxField>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:CatalogObject.ЛМ_Города</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+	</Attributes>
+</Form>

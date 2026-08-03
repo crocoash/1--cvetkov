@@ -1,0 +1,1221 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcscom="http://v8.1c.ru/8.1/data-composition-system/common" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataSource>
+		<name>ИсточникДанных1</name>
+		<dataSourceType>Local</dataSourceType>
+	</dataSource>
+	<dataSet xsi:type="DataSetQuery">
+		<name>НаборДанных1</name>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Номенклатура</dataPath>
+			<field>Номенклатура</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Сумма</dataPath>
+			<field>Сумма</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ДокументОприходования</dataPath>
+			<field>ДокументОприходования</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ЗаказПокупателя</dataPath>
+			<field>ЗаказПокупателя</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Подразделение</dataPath>
+			<field>Подразделение</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Проект</dataPath>
+			<field>Проект</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ХарактеристикаНоменклатуры</dataPath>
+			<field>ХарактеристикаНоменклатуры</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Дата</dataPath>
+			<field>Дата</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Заказ</dataPath>
+			<field>Заказ</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Количество</dataPath>
+			<field>Количество</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>КоличествоСписания</dataPath>
+			<field>КоличествоСписания</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Контрагент</dataPath>
+			<field>Контрагент</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Себестоимость</dataPath>
+			<field>Себестоимость</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>СтатусЗаказа</dataPath>
+			<field>СтатусЗаказа</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>СтоимостьОтправки</dataPath>
+			<field>СтоимостьОтправки</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>КоличествоДляСравнения</dataPath>
+			<field>КоличествоДляСравнения</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>КоличествоСписанияДляСравнения</dataPath>
+			<field>КоличествоСписанияДляСравнения</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>СебестоимостьДляСравнения</dataPath>
+			<field>СебестоимостьДляСравнения</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>СтоимостьОтправкиДляСравнения</dataPath>
+			<field>СтоимостьОтправкиДляСравнения</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>СуммаДляСравнения</dataPath>
+			<field>СуммаДляСравнения</field>
+		</field>
+		<dataSource>ИсточникДанных1</dataSource>
+		<query>ВЫБРАТЬ
+	ЗаказПокупателяТовары.Номенклатура,
+	СУММА(ЗаказПокупателяТовары.Сумма) КАК Сумма,
+	СУММА(ЗаказПокупателяТовары.СтоимостьОтправки) КАК СтоимостьОтправки,
+	СУММА(ЗаказПокупателяТовары.Количество) КАК Количество,
+	ЗаказПокупателяТовары.Ссылка
+ПОМЕСТИТЬ Заказы
+ИЗ
+	Документ.ЗаказПокупателя.Товары КАК ЗаказПокупателяТовары
+ГДЕ
+	ЗаказПокупателяТовары.Ссылка.НеУчитыватьВОтчете = ЛОЖЬ
+	И ЗаказПокупателяТовары.Ссылка.СтатусЗаказа.Наименование &lt;&gt; "Не удачные"
+	И ЗаказПокупателяТовары.Ссылка.Дата &gt;= &amp;НачалоПериода
+	И ЗаказПокупателяТовары.Ссылка.Дата &lt;= &amp;КонецПериода
+
+СГРУППИРОВАТЬ ПО
+	ЗаказПокупателяТовары.Номенклатура,
+	ЗаказПокупателяТовары.Ссылка
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ПродажиСебестоимостьОбороты.СтоимостьОборот * КурсыВалютСрезПоследних.Курс КАК Себестоимость,
+	Заказы.Ссылка,
+	Заказы.Номенклатура,
+	ПродажиСебестоимостьОбороты.КоличествоОборот КАК КоличествоСписания
+ПОМЕСТИТЬ Себестоимость
+ИЗ
+	РегистрНакопления.ПродажиСебестоимость.Обороты(&amp;НачалоПериода {(&amp;НачалоПериода)}, &amp;КонецПериода {(&amp;КонецПериода)}, , ) КАК ПродажиСебестоимостьОбороты
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ Заказы КАК Заказы
+		ПО ПродажиСебестоимостьОбороты.Номенклатура = Заказы.Номенклатура
+			И ПродажиСебестоимостьОбороты.ЗаказПокупателя = Заказы.Ссылка
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.КурсыВалют.СрезПоследних(&amp;КонецПериода {(&amp;КонецПериода)}, ) КАК КурсыВалютСрезПоследних
+			ВНУТРЕННЕЕ СОЕДИНЕНИЕ Константы КАК Константы
+			ПО КурсыВалютСрезПоследних.Валюта = Константы.ВалютаУправленческогоУчета
+		ПО (ИСТИНА)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЗаказПокупателяТовары.Номенклатура,
+	СУММА(ЗаказПокупателяТовары.Сумма) КАК Сумма,
+	СУММА(ЗаказПокупателяТовары.СтоимостьОтправки) КАК СтоимостьОтправки,
+	СУММА(ЗаказПокупателяТовары.Количество) КАК Количество,
+	ЗаказПокупателяТовары.Ссылка
+ПОМЕСТИТЬ Заказы2
+ИЗ
+	Документ.ЗаказПокупателя.Товары КАК ЗаказПокупателяТовары
+ГДЕ
+	ЗаказПокупателяТовары.Ссылка.НеУчитыватьВОтчете = ЛОЖЬ
+	И ЗаказПокупателяТовары.Ссылка.СтатусЗаказа.Наименование &lt;&gt; "Не удачные"
+{ГДЕ
+	(ЗаказПокупателяТовары.Ссылка.Дата &gt;= &amp;НачалоПериодаДляСравнения),
+	(ЗаказПокупателяТовары.Ссылка.Дата &lt;= &amp;КонецПериодаДляСравнения)}
+
+СГРУППИРОВАТЬ ПО
+	ЗаказПокупателяТовары.Номенклатура,
+	ЗаказПокупателяТовары.Ссылка
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ПродажиСебестоимостьОбороты.СтоимостьОборот * КурсыВалютСрезПоследних.Курс КАК Себестоимость,
+	Заказы.Ссылка,
+	Заказы.Номенклатура,
+	ПродажиСебестоимостьОбороты.КоличествоОборот КАК КоличествоСписания
+ПОМЕСТИТЬ Себестоимость2
+ИЗ
+	РегистрНакопления.ПродажиСебестоимость.Обороты(&amp;НачалоПериодаДляСравнения {(&amp;НачалоПериодаДляСравнения)}, &amp;КонецПериодаДляСравнения {(&amp;КонецПериодаДляСравнения)}, , ) КАК ПродажиСебестоимостьОбороты
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ Заказы2 КАК Заказы
+		ПО ПродажиСебестоимостьОбороты.Номенклатура = Заказы.Номенклатура
+			И ПродажиСебестоимостьОбороты.ЗаказПокупателя = Заказы.Ссылка
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.КурсыВалют.СрезПоследних(&amp;КонецПериодаДляСравнения {(&amp;КонецПериодаДляСравнения)}, ) КАК КурсыВалютСрезПоследних
+			ВНУТРЕННЕЕ СОЕДИНЕНИЕ Константы КАК Константы
+			ПО КурсыВалютСрезПоследних.Валюта = Константы.ВалютаУправленческогоУчета
+		ПО (ИСТИНА)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Заказы.Номенклатура,
+	Заказы.Сумма,
+	Заказы.СтоимостьОтправки,
+	Заказы.Количество,
+	Себестоимость_.КоличествоСписания,
+	ЕСТЬNULL(ВЫБОР
+			КОГДА ЕСТЬNULL(Себестоимость_.Себестоимость, 0) = 0
+				ТОГДА 0
+			ИНАЧЕ ВЫБОР
+					КОГДА ЕСТЬNULL(Себестоимость_.КоличествоСписания, 0) = 0
+						ТОГДА Себестоимость_.Себестоимость
+					ИНАЧЕ Себестоимость_.Себестоимость / Себестоимость_.КоличествоСписания * Заказы.Количество
+				КОНЕЦ
+		КОНЕЦ, 0) КАК Себестоимость,
+	Заказы.Ссылка КАК Заказ,
+	Заказы.Ссылка.Контрагент КАК Контрагент,
+	НАЧАЛОПЕРИОДА(Заказы.Ссылка.Дата, ДЕНЬ) КАК Дата,
+	Заказы.Ссылка.СтатусЗаказа КАК СтатусЗаказа,
+	0 КАК СуммаДляСравнения,
+	0 КАК СтоимостьОтправкиДляСравнения,
+	0 КАК СебестоимостьДляСравнения,
+	0 КАК КоличествоДляСравнения,
+	0 КАК КоличествоСписанияДляСравнения
+ИЗ
+	Заказы КАК Заказы
+		ЛЕВОЕ СОЕДИНЕНИЕ Себестоимость КАК Себестоимость_
+		ПО Заказы.Номенклатура = Себестоимость_.Номенклатура
+			И Заказы.Ссылка = Себестоимость_.Ссылка
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ПрочиеЗатратыЗатраты.СтатьяЗатрат,
+	-СУММА(ПрочиеЗатратыЗатраты.Сумма),
+	0,
+	0,
+	0,
+	0,
+	"Затраты",
+	ЗНАЧЕНИЕ(Справочник.Контрагенты.ПустаяСсылка),
+	НАЧАЛОПЕРИОДА(ПрочиеЗатратыЗатраты.Ссылка.Дата, ДЕНЬ),
+	ЗНАЧЕНИЕ(Справочник.СтатусыЗаказов.ПустаяСсылка),
+	0,
+	0,
+	0,
+	0,
+	0
+ИЗ
+	Документ.ПрочиеЗатраты.Затраты КАК ПрочиеЗатратыЗатраты
+ГДЕ
+	ПрочиеЗатратыЗатраты.Ссылка.Проведен
+	И ПрочиеЗатратыЗатраты.Ссылка.Дата &gt;= &amp;НачалоПериода
+	И ПрочиеЗатратыЗатраты.Ссылка.Дата &lt;= &amp;КонецПериода
+
+СГРУППИРОВАТЬ ПО
+	ПрочиеЗатратыЗатраты.СтатьяЗатрат,
+	НАЧАЛОПЕРИОДА(ПрочиеЗатратыЗатраты.Ссылка.Дата, ДЕНЬ)
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	Заказы.Номенклатура,
+	0,
+	0,
+	0,
+	0,
+	0,
+	Заказы.Ссылка,
+	Заказы.Ссылка.Контрагент,
+	НАЧАЛОПЕРИОДА(Заказы.Ссылка.Дата, ДЕНЬ),
+	Заказы.Ссылка.СтатусЗаказа,
+	Заказы.Сумма,
+	Заказы.СтоимостьОтправки,
+	ЕСТЬNULL(ВЫБОР
+			КОГДА ЕСТЬNULL(Себестоимость_.Себестоимость, 0) = 0
+				ТОГДА 0
+			ИНАЧЕ ВЫБОР
+					КОГДА ЕСТЬNULL(Себестоимость_.КоличествоСписания, 0) = 0
+						ТОГДА Себестоимость_.Себестоимость
+					ИНАЧЕ Себестоимость_.Себестоимость / Себестоимость_.КоличествоСписания * Заказы.Количество
+				КОНЕЦ
+		КОНЕЦ, 0),
+	Заказы.Количество,
+	Себестоимость_.КоличествоСписания
+ИЗ
+	Заказы2 КАК Заказы
+		ЛЕВОЕ СОЕДИНЕНИЕ Себестоимость2 КАК Себестоимость_
+		ПО Заказы.Номенклатура = Себестоимость_.Номенклатура
+			И Заказы.Ссылка = Себестоимость_.Ссылка
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ПрочиеЗатратыЗатраты.СтатьяЗатрат,
+	NULL,
+	0,
+	0,
+	0,
+	0,
+	"Затраты",
+	ЗНАЧЕНИЕ(Справочник.Контрагенты.ПустаяСсылка),
+	НАЧАЛОПЕРИОДА(ПрочиеЗатратыЗатраты.Ссылка.Дата, ДЕНЬ),
+	ЗНАЧЕНИЕ(Справочник.СтатусыЗаказов.ПустаяСсылка),
+	-СУММА(ПрочиеЗатратыЗатраты.Сумма),
+	0,
+	0,
+	0,
+	0
+ИЗ
+	Документ.ПрочиеЗатраты.Затраты КАК ПрочиеЗатратыЗатраты
+ГДЕ
+	ПрочиеЗатратыЗатраты.Ссылка.Проведен
+	И ПрочиеЗатратыЗатраты.Ссылка.Дата &gt;= &amp;НачалоПериодаДляСравнения
+	И ПрочиеЗатратыЗатраты.Ссылка.Дата &lt;= &amp;КонецПериодаДляСравнения
+
+СГРУППИРОВАТЬ ПО
+	ПрочиеЗатратыЗатраты.СтатьяЗатрат,
+	НАЧАЛОПЕРИОДА(ПрочиеЗатратыЗатраты.Ссылка.Дата, ДЕНЬ)</query>
+	</dataSet>
+	<calculatedField>
+		<dataPath>СебестоимостьЕдиницы</dataPath>
+		<expression>ISNULL(ВЫБОР КОГДА ЕСТЬNULL(КоличествоСписания,0) = 0 ТОГДА 0 ИНАЧЕ Себестоимость / КоличествоСписания КОНЕЦ,0)</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Себестоимость единицы</v8:content>
+			</v8:item>
+		</title>
+		<appearance>
+			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+				<dcscor:parameter>Формат</dcscor:parameter>
+				<dcscor:value xsi:type="xs:string">ЧДЦ=2</dcscor:value>
+			</dcscor:item>
+		</appearance>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>Прибыль</dataPath>
+		<expression>ISNULL(ВЫБОР КОГДА ЕСТЬNULL(СЕБЕСТОимость,0) = 0 и НЕ Заказ = "Затраты" тогда 0 ИНАЧЕ ISNULL(Сумма,0) - ISNULL(СтоимостьОтправки,0) - ISNULL(Себестоимость,0)  конец,0)</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Прибыль</v8:content>
+			</v8:item>
+		</title>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>ПрибыльДляСравнения</dataPath>
+		<expression>ISNULL(ВЫБОР КОГДА ЕСТЬNULL(СЕБЕСТОимостьДляСравнения,0) = 0  и НЕ Заказ = "Затраты" тогда 0 ИНАЧЕ ISNULL(СуммаДляСравнения,0) -  ISNULL(СтоимостьОтправкиДляСравнения,0) - ISNULL(СебестоимостьДляСравнения,0)  конец,0)</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Прибыль для сравнения</v8:content>
+			</v8:item>
+		</title>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>СуммаРазница</dataPath>
+		<expression>ЕСТЬNULL(Сумма,0) - ЕСТЬNULL(СуммаДляСравнения,0)</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Сумма разница</v8:content>
+			</v8:item>
+		</title>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>КоличествоРазница</dataPath>
+		<expression>ЕСТЬNULL(Количество,0) - ЕСТЬNULL(КоличествоДляСравнения,0)</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Количество разница</v8:content>
+			</v8:item>
+		</title>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>ПрибыльРазница</dataPath>
+		<expression>ВЫБОР КОГДА ЕСТЬNULL(СЕБЕСТОимость,0) = 0  и НЕ Заказ = "Затраты" тогда 0 ИНАЧЕ ISNULL(Сумма,0) - ISNULL(СтоимостьОтправки,0) - ISNULL(Себестоимость,0)  конец - ВЫБОР КОГДА ЕСТЬNULL(СЕБЕСТОимостьДляСравнения,0) = 0  и НЕ Заказ = "Затраты" тогда 0 ИНАЧЕ ISNULL(СуммаДляСравнения,0) - ISNULL(СтоимостьОтправкиДляСравнения,0) - ISNULL(СебестоимостьДляСравнения,0)  конец</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Прибыль разница</v8:content>
+			</v8:item>
+		</title>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>СуммаРазницаПроцент</dataPath>
+		<expression>ВЫБОР КОГДА ЕСТЬNULL(СуммаДляСравнения,0) = 0 ТОГДА 0 ИНАЧЕ (ЕСТЬNULL(Сумма,0) - ЕСТЬNULL(СуммаДляСравнения,0)) /ЕСТЬNULL(СуммаДляСравнения,0) * 100 КОНЕЦ</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Сумма разница, %</v8:content>
+			</v8:item>
+		</title>
+		<appearance>
+			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+				<dcscor:parameter>Формат</dcscor:parameter>
+				<dcscor:value xsi:type="xs:string">ЧДЦ=2</dcscor:value>
+			</dcscor:item>
+		</appearance>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>КоличествоРазницаПроцент</dataPath>
+		<expression>ВЫБОР КОГДА ЕСТЬNULL(КоличествоДляСравнения,0) = 0 ТОГДА 0 ИНАЧЕ (ЕСТЬNULL(Количество,0) - ЕСТЬNULL(КоличествоДляСравнения,0)) / ЕСТЬNULL(КоличествоДляСравнения,0) КОНЕЦ</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Количество разница, %</v8:content>
+			</v8:item>
+		</title>
+		<appearance>
+			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+				<dcscor:parameter>Формат</dcscor:parameter>
+				<dcscor:value xsi:type="xs:string">ЧДЦ=2</dcscor:value>
+			</dcscor:item>
+		</appearance>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>ПрибыльРазницаПроцент</dataPath>
+		<expression>ВЫБОР КОГДА    ВЫБОР КОГДА ЕСТЬNULL(СЕБЕСТОимостьДляСравнения,0) = 0 И НЕ  Заказ = "Затраты"
+тогда 0 
+ИНАЧЕ ISNULL(СуммаДляСравнения,0) - ISNULL(СтоимостьОтправкиДляСравнения,0) - ISNULL(СебестоимостьДляСравнения,0)  
+конец = 0 ТОГДА 0 ИНАЧЕ (
+
+ВЫБОР КОГДА ЕСТЬNULL(СЕБЕСТОимость,0) = 0 
+тогда 0 
+ИНАЧЕ ISNULL(Сумма,0) - ISNULL(СтоимостьОтправки,0) - ISNULL(Себестоимость,0)  конец 
+- 
+ВЫБОР КОГДА ЕСТЬNULL(СЕБЕСТОимостьДляСравнения,0) = 0 И НЕ  Заказ = "Затраты" 
+тогда 0 
+ИНАЧЕ ISNULL(СуммаДляСравнения,0) - ISNULL(СтоимостьОтправкиДляСравнения,0) - ISNULL(СебестоимостьДляСравнения,0)  
+конец ) / ВЫБОР КОГДА ЕСТЬNULL(СЕБЕСТОимостьДляСравнения,0) = 0 
+тогда 0 
+ИНАЧЕ ISNULL(СуммаДляСравнения,0) - ISNULL(СтоимостьОтправкиДляСравнения,0) - ISNULL(СебестоимостьДляСравнения,0)  
+конец * 100 КОНЕЦ</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Прибыль разница, %</v8:content>
+			</v8:item>
+		</title>
+		<appearance>
+			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+				<dcscor:parameter>Формат</dcscor:parameter>
+				<dcscor:value xsi:type="xs:string">ЧДЦ=2</dcscor:value>
+			</dcscor:item>
+		</appearance>
+	</calculatedField>
+	<totalField>
+		<dataPath>Сумма</dataPath>
+		<expression>Сумма(Сумма)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>СебестоимостьЕдиницы</dataPath>
+		<expression>ВЫБОР КОГДА ЕСТЬNULL(Сумма(КоличествоСписания),0) = 0 ТОГДА 0 ИНАЧЕ Сумма(Себестоимость) / Сумма(КоличествоСписания) КОНЕЦ</expression>
+	</totalField>
+	<totalField>
+		<dataPath>Прибыль</dataPath>
+		<expression>Сумма(Прибыль)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>Количество</dataPath>
+		<expression>Сумма(Количество)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>КоличествоСписания</dataPath>
+		<expression>Сумма(КоличествоСписания)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>Себестоимость</dataPath>
+		<expression>Сумма(Себестоимость)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>СтоимостьОтправки</dataPath>
+		<expression>Сумма(СтоимостьОтправки)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>СуммаДляСравнения</dataPath>
+		<expression>Сумма(СуммаДляСравнения)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>СтоимостьОтправкиДляСравнения</dataPath>
+		<expression>Сумма(СтоимостьОтправкиДляСравнения)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ПрибыльДляСравнения</dataPath>
+		<expression>Сумма(ПрибыльДляСравнения)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>КоличествоДляСравнения</dataPath>
+		<expression>Сумма(КоличествоДляСравнения)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>КоличествоСписанияДляСравнения</dataPath>
+		<expression>Сумма(КоличествоСписанияДляСравнения)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>КоличествоРазница</dataPath>
+		<expression>Сумма(КоличествоРазница)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>СуммаРазница</dataPath>
+		<expression>Сумма(СуммаРазница)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ПрибыльРазница</dataPath>
+		<expression>Сумма(ПрибыльРазница)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>СуммаРазницаПроцент</dataPath>
+		<expression>ВЫБОР КОГДА ЕСТЬNULL(СУММА(СуммаДляСравнения),0) = 0 ТОГДА 0 ИНАЧЕ Сумма(СуммаРазница) / Сумма(СуммаДляСравнения) * 100 КОНЕЦ</expression>
+	</totalField>
+	<totalField>
+		<dataPath>КоличествоРазницаПроцент</dataPath>
+		<expression>ВЫБОР КОГДА ЕСТЬNULL(СУММА(КоличествоДляСравнения),0) = 0 ТОГДА 0 ИНАЧЕ Сумма(КоличествоРазница) / СУММА(КоличествоДляСравнения) * 100 КОНЕЦ</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ПрибыльРазницаПроцент</dataPath>
+		<expression>ВЫБОР КОГДА ЕСТЬNULL(СУММА(ПрибыльДляСравнения),0) = 0 ТОГДА 0 ИНАЧЕ Сумма(ПрибыльРазница) / Сумма(ПрибыльДляСравнения) * 100 КОНЕЦ</expression>
+	</totalField>
+	<parameter>
+		<name>НачалоПериода</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Начало периода</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>DateTime</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+		<useRestriction>false</useRestriction>
+		<use>Always</use>
+	</parameter>
+	<parameter>
+		<name>КонецПериода</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Конец периода</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>DateTime</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+		<useRestriction>false</useRestriction>
+		<use>Always</use>
+	</parameter>
+	<parameter>
+		<name>НачалоПериодаДляСравнения</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Начало периода для сравнения</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>DateTime</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+		<useRestriction>false</useRestriction>
+		<use>Always</use>
+	</parameter>
+	<parameter>
+		<name>КонецПериодаДляСравнения</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Конец периода для сравнения</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>DateTime</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+		<useRestriction>false</useRestriction>
+		<use>Always</use>
+	</parameter>
+	<template>
+		<name>Макет1</name>
+		<template xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:AreaTemplate">
+			<dcsat:item xsi:type="dcsat:TableRow">
+				<dcsat:tableCell>
+					<dcsat:item xsi:type="dcsat:Field">
+						<dcsat:value xsi:type="v8:LocalStringType">
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Количество</v8:content>
+							</v8:item>
+						</dcsat:value>
+					</dcsat:item>
+				</dcsat:tableCell>
+				<dcsat:tableCell>
+					<dcsat:appearance>
+						<dcscor:item>
+							<dcscor:parameter>ОбъединятьПоГоризонтали</dcscor:parameter>
+							<dcscor:value xsi:type="xs:boolean">true</dcscor:value>
+						</dcscor:item>
+					</dcsat:appearance>
+				</dcsat:tableCell>
+				<dcsat:tableCell>
+					<dcsat:appearance>
+						<dcscor:item>
+							<dcscor:parameter>ОбъединятьПоГоризонтали</dcscor:parameter>
+							<dcscor:value xsi:type="xs:boolean">true</dcscor:value>
+						</dcscor:item>
+					</dcsat:appearance>
+				</dcsat:tableCell>
+				<dcsat:tableCell>
+					<dcsat:appearance>
+						<dcscor:item>
+							<dcscor:parameter>ОбъединятьПоГоризонтали</dcscor:parameter>
+							<dcscor:value xsi:type="xs:boolean">true</dcscor:value>
+						</dcscor:item>
+					</dcsat:appearance>
+				</dcsat:tableCell>
+			</dcsat:item>
+			<dcsat:item xsi:type="dcsat:TableRow">
+				<dcsat:tableCell>
+					<dcsat:item xsi:type="dcsat:Field">
+						<dcsat:value xsi:type="dcscor:Parameter">ПериодДляСравнения</dcsat:value>
+					</dcsat:item>
+					<dcsat:appearance>
+						<dcscor:item>
+							<dcscor:parameter>Размещение</dcscor:parameter>
+							<dcscor:value xsi:type="dcscor:DataCompositionTextPlacementType">Wrap</dcscor:value>
+						</dcscor:item>
+					</dcsat:appearance>
+				</dcsat:tableCell>
+				<dcsat:tableCell>
+					<dcsat:item xsi:type="dcsat:Field">
+						<dcsat:value xsi:type="dcscor:Parameter">Период</dcsat:value>
+					</dcsat:item>
+				</dcsat:tableCell>
+				<dcsat:tableCell>
+					<dcsat:item xsi:type="dcsat:Field">
+						<dcsat:value xsi:type="v8:LocalStringType">
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Разница</v8:content>
+							</v8:item>
+						</dcsat:value>
+					</dcsat:item>
+				</dcsat:tableCell>
+				<dcsat:tableCell>
+					<dcsat:item xsi:type="dcsat:Field">
+						<dcsat:value xsi:type="v8:LocalStringType">
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Разница, %</v8:content>
+							</v8:item>
+						</dcsat:value>
+					</dcsat:item>
+				</dcsat:tableCell>
+			</dcsat:item>
+		</template>
+		<parameter xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:ExpressionAreaTemplateParameter">
+			<dcsat:name>ПериодДляСравнения</dcsat:name>
+			<dcsat:expression>Формат(ПараметрыДанных.НачалоПериодаДляСравнения,"ДФ=dd.MM.yy") + " - " + Формат(ПараметрыДанных.КонецПериодаДляСравнения,"ДФ=dd.MM.yy")</dcsat:expression>
+		</parameter>
+		<parameter xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:ExpressionAreaTemplateParameter">
+			<dcsat:name>Период</dcsat:name>
+			<dcsat:expression>Формат(ПараметрыДанных.НачалоПериода,"ДФ=dd.MM.yy") + " - " + Формат(ПараметрыДанных.КонецПериода,"ДФ=dd.MM.yy")</dcsat:expression>
+		</parameter>
+	</template>
+	<template>
+		<name>Макет2</name>
+		<template xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:AreaTemplate">
+			<dcsat:item xsi:type="dcsat:TableRow">
+				<dcsat:tableCell>
+					<dcsat:item xsi:type="dcsat:Field">
+						<dcsat:value xsi:type="v8:LocalStringType">
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Сумма</v8:content>
+							</v8:item>
+						</dcsat:value>
+					</dcsat:item>
+				</dcsat:tableCell>
+				<dcsat:tableCell>
+					<dcsat:appearance>
+						<dcscor:item>
+							<dcscor:parameter>ОбъединятьПоГоризонтали</dcscor:parameter>
+							<dcscor:value xsi:type="xs:boolean">true</dcscor:value>
+						</dcscor:item>
+					</dcsat:appearance>
+				</dcsat:tableCell>
+				<dcsat:tableCell>
+					<dcsat:appearance>
+						<dcscor:item>
+							<dcscor:parameter>ОбъединятьПоГоризонтали</dcscor:parameter>
+							<dcscor:value xsi:type="xs:boolean">true</dcscor:value>
+						</dcscor:item>
+					</dcsat:appearance>
+				</dcsat:tableCell>
+				<dcsat:tableCell>
+					<dcsat:appearance>
+						<dcscor:item>
+							<dcscor:parameter>ОбъединятьПоГоризонтали</dcscor:parameter>
+							<dcscor:value xsi:type="xs:boolean">true</dcscor:value>
+						</dcscor:item>
+					</dcsat:appearance>
+				</dcsat:tableCell>
+			</dcsat:item>
+			<dcsat:item xsi:type="dcsat:TableRow">
+				<dcsat:tableCell>
+					<dcsat:item xsi:type="dcsat:Field">
+						<dcsat:value xsi:type="dcscor:Parameter">ПериодДляСравнения</dcsat:value>
+					</dcsat:item>
+					<dcsat:appearance>
+						<dcscor:item>
+							<dcscor:parameter>Размещение</dcscor:parameter>
+							<dcscor:value xsi:type="dcscor:DataCompositionTextPlacementType">Wrap</dcscor:value>
+						</dcscor:item>
+					</dcsat:appearance>
+				</dcsat:tableCell>
+				<dcsat:tableCell>
+					<dcsat:item xsi:type="dcsat:Field">
+						<dcsat:value xsi:type="dcscor:Parameter">Период</dcsat:value>
+					</dcsat:item>
+				</dcsat:tableCell>
+				<dcsat:tableCell>
+					<dcsat:item xsi:type="dcsat:Field">
+						<dcsat:value xsi:type="v8:LocalStringType">
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Разница</v8:content>
+							</v8:item>
+						</dcsat:value>
+					</dcsat:item>
+				</dcsat:tableCell>
+				<dcsat:tableCell>
+					<dcsat:item xsi:type="dcsat:Field">
+						<dcsat:value xsi:type="v8:LocalStringType">
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Разница, %</v8:content>
+							</v8:item>
+						</dcsat:value>
+					</dcsat:item>
+				</dcsat:tableCell>
+			</dcsat:item>
+		</template>
+		<parameter xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:ExpressionAreaTemplateParameter">
+			<dcsat:name>ПериодДляСравнения</dcsat:name>
+			<dcsat:expression>Формат(ПараметрыДанных.НачалоПериодаДляСравнения,"ДФ=dd.MM.yy") + " - " + Формат(ПараметрыДанных.КонецПериодаДляСравнения,"ДФ=dd.MM.yy")</dcsat:expression>
+		</parameter>
+		<parameter xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:ExpressionAreaTemplateParameter">
+			<dcsat:name>Период</dcsat:name>
+			<dcsat:expression>Формат(ПараметрыДанных.НачалоПериода,"ДФ=dd.MM.yy") + " - " + Формат(ПараметрыДанных.КонецПериода,"ДФ=dd.MM.yy")</dcsat:expression>
+		</parameter>
+	</template>
+	<template>
+		<name>Макет3</name>
+		<template xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:AreaTemplate">
+			<dcsat:item xsi:type="dcsat:TableRow">
+				<dcsat:tableCell>
+					<dcsat:item xsi:type="dcsat:Field">
+						<dcsat:value xsi:type="v8:LocalStringType">
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Прибыль</v8:content>
+							</v8:item>
+						</dcsat:value>
+					</dcsat:item>
+				</dcsat:tableCell>
+				<dcsat:tableCell>
+					<dcsat:appearance>
+						<dcscor:item>
+							<dcscor:parameter>ОбъединятьПоГоризонтали</dcscor:parameter>
+							<dcscor:value xsi:type="xs:boolean">true</dcscor:value>
+						</dcscor:item>
+					</dcsat:appearance>
+				</dcsat:tableCell>
+				<dcsat:tableCell>
+					<dcsat:appearance>
+						<dcscor:item>
+							<dcscor:parameter>ОбъединятьПоГоризонтали</dcscor:parameter>
+							<dcscor:value xsi:type="xs:boolean">true</dcscor:value>
+						</dcscor:item>
+					</dcsat:appearance>
+				</dcsat:tableCell>
+				<dcsat:tableCell>
+					<dcsat:appearance>
+						<dcscor:item>
+							<dcscor:parameter>ОбъединятьПоГоризонтали</dcscor:parameter>
+							<dcscor:value xsi:type="xs:boolean">true</dcscor:value>
+						</dcscor:item>
+					</dcsat:appearance>
+				</dcsat:tableCell>
+			</dcsat:item>
+			<dcsat:item xsi:type="dcsat:TableRow">
+				<dcsat:tableCell>
+					<dcsat:item xsi:type="dcsat:Field">
+						<dcsat:value xsi:type="dcscor:Parameter">ПериодДляСравнения</dcsat:value>
+					</dcsat:item>
+					<dcsat:appearance>
+						<dcscor:item>
+							<dcscor:parameter>Размещение</dcscor:parameter>
+							<dcscor:value xsi:type="dcscor:DataCompositionTextPlacementType">Wrap</dcscor:value>
+						</dcscor:item>
+					</dcsat:appearance>
+				</dcsat:tableCell>
+				<dcsat:tableCell>
+					<dcsat:item xsi:type="dcsat:Field">
+						<dcsat:value xsi:type="dcscor:Parameter">Период</dcsat:value>
+					</dcsat:item>
+				</dcsat:tableCell>
+				<dcsat:tableCell>
+					<dcsat:item xsi:type="dcsat:Field">
+						<dcsat:value xsi:type="v8:LocalStringType">
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Разница</v8:content>
+							</v8:item>
+						</dcsat:value>
+					</dcsat:item>
+				</dcsat:tableCell>
+				<dcsat:tableCell>
+					<dcsat:item xsi:type="dcsat:Field">
+						<dcsat:value xsi:type="v8:LocalStringType">
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Разница, %</v8:content>
+							</v8:item>
+						</dcsat:value>
+					</dcsat:item>
+				</dcsat:tableCell>
+			</dcsat:item>
+		</template>
+		<parameter xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:ExpressionAreaTemplateParameter">
+			<dcsat:name>ПериодДляСравнения</dcsat:name>
+			<dcsat:expression>Формат(ПараметрыДанных.НачалоПериодаДляСравнения,"ДФ=dd.MM.yy") + " - " + Формат(ПараметрыДанных.КонецПериодаДляСравнения,"ДФ=dd.MM.yy")</dcsat:expression>
+		</parameter>
+		<parameter xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:ExpressionAreaTemplateParameter">
+			<dcsat:name>Период</dcsat:name>
+			<dcsat:expression>Формат(ПараметрыДанных.НачалоПериода,"ДФ=dd.MM.yy") + " - " + Формат(ПараметрыДанных.КонецПериода,"ДФ=dd.MM.yy")</dcsat:expression>
+		</parameter>
+	</template>
+	<groupHeaderTemplate>
+		<groupName>Количество</groupName>
+		<templateType>Header</templateType>
+		<template>Макет1</template>
+	</groupHeaderTemplate>
+	<groupHeaderTemplate>
+		<groupName>Сумма</groupName>
+		<templateType>Header</templateType>
+		<template>Макет2</template>
+	</groupHeaderTemplate>
+	<groupHeaderTemplate>
+		<groupName>Прибыль</groupName>
+		<templateType>Header</templateType>
+		<template>Макет3</template>
+	</groupHeaderTemplate>
+	<settingsVariant>
+		<dcsset:name>Основной</dcsset:name>
+		<dcsset:presentation xsi:type="xs:string">Основной</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:selection>
+				<dcsset:item xsi:type="dcsset:SelectedItemFolder">
+					<dcsset:lwsTitle>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Количество</v8:content>
+						</v8:item>
+					</dcsset:lwsTitle>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>КоличествоДляСравнения</dcsset:field>
+						<dcsset:lwsTitle>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Период для сравнения</v8:content>
+							</v8:item>
+						</dcsset:lwsTitle>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>Количество</dcsset:field>
+						<dcsset:lwsTitle>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Текущий период</v8:content>
+							</v8:item>
+						</dcsset:lwsTitle>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>КоличествоРазница</dcsset:field>
+						<dcsset:lwsTitle>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Разница</v8:content>
+							</v8:item>
+						</dcsset:lwsTitle>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>КоличествоРазницаПроцент</dcsset:field>
+						<dcsset:lwsTitle>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Разница, %</v8:content>
+							</v8:item>
+						</dcsset:lwsTitle>
+					</dcsset:item>
+					<dcsset:placement>Auto</dcsset:placement>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemFolder">
+					<dcsset:lwsTitle>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сумма</v8:content>
+						</v8:item>
+					</dcsset:lwsTitle>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>СуммаДляСравнения</dcsset:field>
+						<dcsset:lwsTitle>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Период для сравнения</v8:content>
+							</v8:item>
+						</dcsset:lwsTitle>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>Сумма</dcsset:field>
+						<dcsset:lwsTitle>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Текущий период</v8:content>
+							</v8:item>
+						</dcsset:lwsTitle>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>СуммаРазница</dcsset:field>
+						<dcsset:lwsTitle>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Разница</v8:content>
+							</v8:item>
+						</dcsset:lwsTitle>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>СуммаРазницаПроцент</dcsset:field>
+						<dcsset:lwsTitle>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Разница, %</v8:content>
+							</v8:item>
+						</dcsset:lwsTitle>
+					</dcsset:item>
+					<dcsset:placement>Auto</dcsset:placement>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemFolder">
+					<dcsset:lwsTitle>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Прибыль</v8:content>
+						</v8:item>
+					</dcsset:lwsTitle>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>ПрибыльДляСравнения</dcsset:field>
+						<dcsset:lwsTitle>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Период для сравнения</v8:content>
+							</v8:item>
+						</dcsset:lwsTitle>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>Прибыль</dcsset:field>
+						<dcsset:lwsTitle>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Текущий период</v8:content>
+							</v8:item>
+						</dcsset:lwsTitle>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>ПрибыльРазница</dcsset:field>
+						<dcsset:lwsTitle>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Разница</v8:content>
+							</v8:item>
+						</dcsset:lwsTitle>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>ПрибыльРазницаПроцент</dcsset:field>
+						<dcsset:lwsTitle>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Разница, %</v8:content>
+							</v8:item>
+						</dcsset:lwsTitle>
+					</dcsset:item>
+					<dcsset:placement>Auto</dcsset:placement>
+				</dcsset:item>
+			</dcsset:selection>
+			<dcsset:dataParameters>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>НачалоПериода</dcscor:parameter>
+					<dcscor:value xsi:type="v8:StandardBeginningDate">
+						<v8:variant xsi:type="v8:StandardBeginningDateVariant">BeginningOfThisWeek</v8:variant>
+					</dcscor:value>
+				</dcscor:item>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>КонецПериода</dcscor:parameter>
+					<dcscor:value xsi:type="v8:StandardBeginningDate">
+						<v8:variant xsi:type="v8:StandardBeginningDateVariant">BeginningOfNextWeek</v8:variant>
+					</dcscor:value>
+				</dcscor:item>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>НачалоПериодаДляСравнения</dcscor:parameter>
+					<dcscor:value xsi:type="v8:StandardBeginningDate">
+						<v8:variant xsi:type="v8:StandardBeginningDateVariant">BeginningOfLastWeek</v8:variant>
+					</dcscor:value>
+				</dcscor:item>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>КонецПериодаДляСравнения</dcscor:parameter>
+					<dcscor:value xsi:type="v8:StandardBeginningDate">
+						<v8:variant xsi:type="v8:StandardBeginningDateVariant">BeginningOfThisWeek</v8:variant>
+					</dcscor:value>
+				</dcscor:item>
+			</dcsset:dataParameters>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:name>Количество</dcsset:name>
+				<dcsset:filter>
+					<dcsset:item xsi:type="dcsset:FilterItemComparison">
+						<dcsset:use>false</dcsset:use>
+						<dcsset:left xsi:type="dcscor:Field">СтатусЗаказа</dcsset:left>
+						<dcsset:comparisonType>Equal</dcsset:comparisonType>
+					</dcsset:item>
+				</dcsset:filter>
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemFolder">
+						<dcsset:lwsTitle>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Количество</v8:content>
+							</v8:item>
+						</dcsset:lwsTitle>
+						<dcsset:item xsi:type="dcsset:SelectedItemField">
+							<dcsset:field>КоличествоДляСравнения</dcsset:field>
+							<dcsset:lwsTitle>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Период для сравнения</v8:content>
+								</v8:item>
+							</dcsset:lwsTitle>
+						</dcsset:item>
+						<dcsset:item xsi:type="dcsset:SelectedItemField">
+							<dcsset:field>Количество</dcsset:field>
+							<dcsset:lwsTitle>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Текущий период</v8:content>
+								</v8:item>
+							</dcsset:lwsTitle>
+						</dcsset:item>
+						<dcsset:item xsi:type="dcsset:SelectedItemField">
+							<dcsset:field>КоличествоРазница</dcsset:field>
+							<dcsset:lwsTitle>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Разница</v8:content>
+								</v8:item>
+							</dcsset:lwsTitle>
+						</dcsset:item>
+						<dcsset:item xsi:type="dcsset:SelectedItemField">
+							<dcsset:field>КоличествоРазницаПроцент</dcsset:field>
+							<dcsset:lwsTitle>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Разница, %</v8:content>
+								</v8:item>
+							</dcsset:lwsTitle>
+						</dcsset:item>
+						<dcsset:placement>Auto</dcsset:placement>
+					</dcsset:item>
+				</dcsset:selection>
+			</dcsset:item>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:name>Сумма</dcsset:name>
+				<dcsset:filter>
+					<dcsset:item xsi:type="dcsset:FilterItemComparison">
+						<dcsset:use>false</dcsset:use>
+						<dcsset:left xsi:type="dcscor:Field">СтатусЗаказа</dcsset:left>
+						<dcsset:comparisonType>Equal</dcsset:comparisonType>
+					</dcsset:item>
+				</dcsset:filter>
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemFolder">
+						<dcsset:lwsTitle>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Сумма</v8:content>
+							</v8:item>
+						</dcsset:lwsTitle>
+						<dcsset:item xsi:type="dcsset:SelectedItemField">
+							<dcsset:field>СуммаДляСравнения</dcsset:field>
+							<dcsset:lwsTitle>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Период для сравнения</v8:content>
+								</v8:item>
+							</dcsset:lwsTitle>
+						</dcsset:item>
+						<dcsset:item xsi:type="dcsset:SelectedItemField">
+							<dcsset:field>Сумма</dcsset:field>
+							<dcsset:lwsTitle>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Текущий период</v8:content>
+								</v8:item>
+							</dcsset:lwsTitle>
+						</dcsset:item>
+						<dcsset:item xsi:type="dcsset:SelectedItemField">
+							<dcsset:field>СуммаРазница</dcsset:field>
+							<dcsset:lwsTitle>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Разница</v8:content>
+								</v8:item>
+							</dcsset:lwsTitle>
+						</dcsset:item>
+						<dcsset:item xsi:type="dcsset:SelectedItemField">
+							<dcsset:field>СуммаРазницаПроцент</dcsset:field>
+							<dcsset:lwsTitle>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Разница, %</v8:content>
+								</v8:item>
+							</dcsset:lwsTitle>
+						</dcsset:item>
+						<dcsset:placement>Auto</dcsset:placement>
+					</dcsset:item>
+				</dcsset:selection>
+			</dcsset:item>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:name>Прибыль</dcsset:name>
+				<dcsset:filter>
+					<dcsset:item xsi:type="dcsset:FilterItemComparison">
+						<dcsset:use>false</dcsset:use>
+						<dcsset:left xsi:type="dcscor:Field">СтатусЗаказа</dcsset:left>
+						<dcsset:comparisonType>Equal</dcsset:comparisonType>
+					</dcsset:item>
+				</dcsset:filter>
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemFolder">
+						<dcsset:lwsTitle>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Прибыль</v8:content>
+							</v8:item>
+						</dcsset:lwsTitle>
+						<dcsset:item xsi:type="dcsset:SelectedItemField">
+							<dcsset:field>ПрибыльДляСравнения</dcsset:field>
+							<dcsset:lwsTitle>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Период для сравнения</v8:content>
+								</v8:item>
+							</dcsset:lwsTitle>
+						</dcsset:item>
+						<dcsset:item xsi:type="dcsset:SelectedItemField">
+							<dcsset:field>Прибыль</dcsset:field>
+							<dcsset:lwsTitle>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Текущий период</v8:content>
+								</v8:item>
+							</dcsset:lwsTitle>
+						</dcsset:item>
+						<dcsset:item xsi:type="dcsset:SelectedItemField">
+							<dcsset:field>ПрибыльРазница</dcsset:field>
+							<dcsset:lwsTitle>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Разница</v8:content>
+								</v8:item>
+							</dcsset:lwsTitle>
+						</dcsset:item>
+						<dcsset:item xsi:type="dcsset:SelectedItemField">
+							<dcsset:field>ПрибыльРазницаПроцент</dcsset:field>
+							<dcsset:lwsTitle>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Разница, %</v8:content>
+								</v8:item>
+							</dcsset:lwsTitle>
+						</dcsset:item>
+						<dcsset:placement>Auto</dcsset:placement>
+					</dcsset:item>
+				</dcsset:selection>
+			</dcsset:item>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:groupItems>
+					<dcsset:item xsi:type="dcsset:GroupItemField">
+						<dcsset:field>Номенклатура</dcsset:field>
+						<dcsset:groupType>Items</dcsset:groupType>
+						<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+						<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+						<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+					</dcsset:item>
+				</dcsset:groupItems>
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemField">
+						<dcsset:field>Количество</dcsset:field>
+						<dcsset:orderType>Desc</dcsset:orderType>
+					</dcsset:item>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>Номенклатура</dcsset:field>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>КоличествоДляСравнения</dcsset:field>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>Количество</dcsset:field>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>КоличествоРазница</dcsset:field>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>КоличествоРазницаПроцент</dcsset:field>
+					</dcsset:item>
+				</dcsset:selection>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+</DataCompositionSchema>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>ПОДАТКОВИЙ	РОЗРАХУНОК	КОМУНАЛЬНОГО ПОДАТКУ</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="DGMonth">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DGMonth0">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DGYear">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1991"/>
+			<xs:maxInclusive value="2099"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DGsti">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+<xs:simpleType name="DGLong">
+		<xs:restriction base="xs:unsignedLong">
+			<xs:minInclusive value="1000"/>
+			<xs:maxInclusive value="9999999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DGDate">
+		<xs:restriction base="xs:string">
+		<xs:length value="8"/>
+		<xs:pattern value="(((((0[1-9]|[1-2][0-9])(0(1|[3-9])|1[0-2]))|(30(0(1|[3-9])|1[0-2]))|(31(01|03|05|07|08|10|12)))(19|20)\d{2})|((0[1-9]|[1-2][0-9])02(19|20)[0-9](0|4))|((0[1-9]|[1-2][0-8]|19)02(19|20)[0-9](1|2|3|5|6|7|8|9)))"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:element name="DECLAR" type="DeclarContent"/>
+	<xs:complexType name="DeclarContent">
+		<xs:sequence>
+			<xs:element name="DECLARHEAD" type="DHead" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="DECLARBODY" type="DBody" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DHead">
+		<xs:sequence>
+			<xs:element name="TIN" type="DGLong" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC" type="xs:string" minOccurs="1" maxOccurs="1" fixed="J03"/>
+			<xs:element name="C_DOC_SUB" type="xs:string" minOccurs="1" maxOccurs="1" fixed="001"/>
+			<xs:element name="C_DOC_VER" type="xs:string" minOccurs="1" maxOccurs="1" fixed="3"/>
+			<xs:element name="C_DOC_TYPE" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC_CNT" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_REG" type="DGsti" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_RAJ" type="DGsti" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_MONTH" type="DGMonth" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_YEAR" type="DGYear" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="D_FILL" type="DGDate" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="SOFTWARE" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DBody">
+		<xs:sequence>
+			<!--header-->
+			<xs:element name="N1S" type="xs:int"  nillable="true" minOccurs="0" maxOccurs="1" fixed="1"/>
+			<xs:element name="N2S" type="xs:int"  nillable="true" minOccurs="0" maxOccurs="1" fixed="1"/>
+			<xs:element name="N3S" type="xs:int"  nillable="true" minOccurs="0" maxOccurs="1" fixed="1"/>
+			<xs:element name="N4S" type="xs:int"  nillable="true" minOccurs="0" maxOccurs="1" fixed="1"/>
+
+			<xs:element name="N5S" type="DGMonth0" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="N6S" type="DGYear" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="N7S" type="xs:int"  nillable="true" minOccurs="0" maxOccurs="1" fixed="1"/>
+			<xs:element name="N8S" type="xs:int"  nillable="true" minOccurs="0" maxOccurs="1" fixed="1"/>
+			<xs:element name="N9S" type="xs:int"  nillable="true" minOccurs="0" maxOccurs="1" fixed="1"/>
+
+			<xs:element name="NAME" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="EDRPOU" type="DGLong"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="KVED" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="ZIP" type="xs:int"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="ADR" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="CITYCD" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="PHON" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="EMAIL" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="FAX" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="DPA" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="SPATO" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<!--body-->
+			<xs:element name="R01G3" type="xs:decimal"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R02G3" type="xs:decimal"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R03G3" type="xs:decimal"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R04G3" type="xs:decimal"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R05G3" type="xs:decimal"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R06G3" type="xs:decimal"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R07G3" type="xs:decimal"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R08G3" type="xs:decimal"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R09G3" type="xs:decimal"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R10G3S" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R11G1S" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<!--footer-->
+			<xs:element name="REPDATE" type="DGDate"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="RUK" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="BUH" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

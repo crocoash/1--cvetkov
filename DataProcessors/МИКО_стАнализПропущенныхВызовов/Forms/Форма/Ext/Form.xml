@@ -1,0 +1,760 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.18">
+	<Width>100</Width>
+	<VerticalScroll>useIfNecessary</VerticalScroll>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="NotificationProcessing">ОбработкаОповещения</Event>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="Группа1" id="5">
+			<Group>Horizontal</Group>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="Группа1РасширеннаяПодсказка" id="40"/>
+			<ChildItems>
+				<InputField name="ДатаОтсчета" id="6">
+					<DataPath>ДатаОтсчета</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Анализировать начиная с </v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ДатаОтсчетаКонтекстноеМеню" id="7"/>
+					<ExtendedTooltip name="ДатаОтсчетаРасширеннаяПодсказка" id="41"/>
+					<Events>
+						<Event name="OnChange">ДатаОтсчетаПриИзменении</Event>
+					</Events>
+				</InputField>
+				<InputField name="НомерТелефона" id="35">
+					<DataPath>НомерТелефона</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Номер</v8:content>
+						</v8:item>
+					</Title>
+					<ClearButton>true</ClearButton>
+					<ContextMenu name="НомерТелефонаКонтекстноеМеню" id="36"/>
+					<ExtendedTooltip name="НомерТелефонаРасширеннаяПодсказка" id="42"/>
+					<Events>
+						<Event name="OnChange">ОтборПриИзменении</Event>
+					</Events>
+				</InputField>
+				<CheckBoxField name="КлиентаНетВБазе" id="20">
+					<DataPath>КлиентаНетВБазе</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Клиента нет в базе</v8:content>
+						</v8:item>
+					</Title>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="КлиентаНетВБазеКонтекстноеМеню" id="21"/>
+					<ExtendedTooltip name="КлиентаНетВБазеРасширеннаяПодсказка" id="43"/>
+					<Events>
+						<Event name="OnChange">ОтборПриИзменении</Event>
+					</Events>
+				</CheckBoxField>
+				<CheckBoxField name="БезПоследующегоКонтакта" id="22">
+					<DataPath>БезПоследующегоКонтакта</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Клиенту не перезвонили</v8:content>
+						</v8:item>
+					</Title>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="БезПоследующегоКонтактаКонтекстноеМеню" id="23"/>
+					<ExtendedTooltip name="БезПоследующегоКонтактаРасширеннаяПодсказка" id="44"/>
+					<Events>
+						<Event name="OnChange">ОтборПриИзменении</Event>
+					</Events>
+				</CheckBoxField>
+			</ChildItems>
+		</UsualGroup>
+		<CommandBar name="Группа2" id="34">
+			<ExtendedTooltip name="Группа2РасширеннаяПодсказка" id="45"/>
+			<ChildItems>
+				<Button name="ФормаСформировать" id="4">
+					<Type>CommandBarButton</Type>
+					<Representation>PictureAndText</Representation>
+					<DefaultButton>true</DefaultButton>
+					<CommandName>Form.Command.Сформировать</CommandName>
+					<Picture>
+						<xr:Ref>StdPicture.GenerateReport</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<ExtendedTooltip name="ФормаСформироватьРасширеннаяПодсказка" id="46"/>
+				</Button>
+				<Button name="Позвонить" id="38">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.Позвонить</CommandName>
+					<Picture>
+						<xr:Ref>CommonPicture.МИКО_Позвонить</xr:Ref>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</Picture>
+					<ExtendedTooltip name="ПозвонитьРасширеннаяПодсказка" id="49"/>
+				</Button>
+				<Button name="ДобавитьНомерКонтакту" id="72">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.ДобавитьНомерКонтакту</CommandName>
+					<ExtendedTooltip name="ДобавитьНомерКонтактуРасширеннаяПодсказка" id="73"/>
+				</Button>
+				<Button name="ОткрытьСобытие" id="74">
+					<Type>CommandBarButton</Type>
+					<Representation>Picture</Representation>
+					<Width>3</Width>
+					<CommandName>Form.Command.СоздатьСтикер</CommandName>
+					<Picture>
+						<xr:Abs>Picture.png</xr:Abs>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</Picture>
+					<ExtendedTooltip name="ОткрытьСобытиеРасширеннаяПодсказка" id="75"/>
+				</Button>
+				<Button name="ОткрытьКлиента" id="33">
+					<Type>CommandBarButton</Type>
+					<Representation>Picture</Representation>
+					<CommandName>Form.Command.ОткрытьКлиента</CommandName>
+					<ExtendedTooltip name="ОткрытьКлиентаРасширеннаяПодсказка" id="50"/>
+				</Button>
+				<Button name="ОткрытьПропущенный" id="31">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.ОткрытьПропущенный</CommandName>
+					<ExtendedTooltip name="ОткрытьПропущенныйРасширеннаяПодсказка" id="47"/>
+				</Button>
+				<Button name="ОткрытьОтвеченный" id="32">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.ОткрытьОтвеченный</CommandName>
+					<ExtendedTooltip name="ОткрытьОтвеченныйРасширеннаяПодсказка" id="48"/>
+				</Button>
+			</ChildItems>
+		</CommandBar>
+		<Table name="ПропущенныеВызовы" id="1">
+			<Representation>List</Representation>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>ПропущенныеВызовы</DataPath>
+			<SearchStringLocation>None</SearchStringLocation>
+			<ViewStatusLocation>None</ViewStatusLocation>
+			<SearchControlLocation>None</SearchControlLocation>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="ПропущенныеВызовыКонтекстноеМеню" id="2">
+				<Autofill>false</Autofill>
+				<ChildItems>
+					<Button name="ПропущенныеВызовыКонтекстноеМенюПозвонить" id="39">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.Позвонить</CommandName>
+						<ExtendedTooltip name="ПропущенныеВызовыКонтекстноеМенюПозвонитьРасширеннаяПодсказка" id="51"/>
+					</Button>
+					<Button name="ПропущенныеВызовыКонтекстноеМенюОткрытьКлиента" id="30">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.ОткрытьКлиента</CommandName>
+						<ExtendedTooltip name="ПропущенныеВызовыКонтекстноеМенюОткрытьКлиентаРасширеннаяПодсказка" id="52"/>
+					</Button>
+					<Button name="ПропущенныеВызовыКонтекстноеМенюОткрытьОтвеченный" id="24">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.ОткрытьОтвеченный</CommandName>
+						<ExtendedTooltip name="ПропущенныеВызовыКонтекстноеМенюОткрытьОтвеченныйРасширеннаяПодсказка" id="53"/>
+					</Button>
+					<Button name="ПропущенныеВызовыКонтекстноеМенюОткрытьПропущенный" id="25">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.ОткрытьПропущенный</CommandName>
+						<ExtendedTooltip name="ПропущенныеВызовыКонтекстноеМенюОткрытьПропущенныйРасширеннаяПодсказка" id="54"/>
+					</Button>
+					<Button name="ПропущенныеВызовыКонтекстноеМенюОтборПоНомеру" id="37">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.ОтборПоНомеру</CommandName>
+						<Picture>
+							<xr:Ref>StdPicture.FilterByCurrentValue</xr:Ref>
+							<xr:LoadTransparent>true</xr:LoadTransparent>
+						</Picture>
+						<ExtendedTooltip name="ПропущенныеВызовыКонтекстноеМенюОтборПоНомеруРасширеннаяПодсказка" id="55"/>
+					</Button>
+				</ChildItems>
+			</ContextMenu>
+			<AutoCommandBar name="ПропущенныеВызовыКоманднаяПанель" id="3">
+				<Autofill>false</Autofill>
+			</AutoCommandBar>
+			<ExtendedTooltip name="ПропущенныеВызовыРасширеннаяПодсказка" id="56"/>
+			<SearchStringAddition name="ПропущенныеВызовыСтрокаПоиска" id="57">
+				<AdditionSource>
+					<Item>ПропущенныеВызовы</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ПропущенныеВызовыСтрокаПоискаКонтекстноеМеню" id="58"/>
+				<ExtendedTooltip name="ПропущенныеВызовыСтрокаПоискаРасширеннаяПодсказка" id="59"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ПропущенныеВызовыСостояниеПросмотра" id="60">
+				<AdditionSource>
+					<Item>ПропущенныеВызовы</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ПропущенныеВызовыСостояниеПросмотраКонтекстноеМеню" id="61"/>
+				<ExtendedTooltip name="ПропущенныеВызовыСостояниеПросмотраРасширеннаяПодсказка" id="62"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ПропущенныеВызовыУправлениеПоиском" id="63">
+				<AdditionSource>
+					<Item>ПропущенныеВызовы</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ПропущенныеВызовыУправлениеПоискомКонтекстноеМеню" id="64"/>
+				<ExtendedTooltip name="ПропущенныеВызовыУправлениеПоискомРасширеннаяПодсказка" id="65"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="Selection">ПропущенныеВызовыВыбор</Event>
+				<Event name="BeforeDeleteRow">ПропущенныеВызовыПередУдалением</Event>
+				<Event name="OnActivateRow">ПропущенныеВызовыПриАктивизацииСтроки</Event>
+			</Events>
+			<ChildItems>
+				<CheckBoxField name="ПропущенныеВызовыКлиентаНетВБазе" id="26">
+					<DataPath>ПропущенныеВызовы.КлиентаНетВБазе</DataPath>
+					<Visible>false</Visible>
+					<ReadOnly>true</ReadOnly>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Е.</v8:content>
+						</v8:item>
+					</Title>
+					<HorizontalAlign>Center</HorizontalAlign>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ПропущенныеВызовыКлиентаНетВБазеКонтекстноеМеню" id="27"/>
+					<ExtendedTooltip name="ПропущенныеВызовыКлиентаНетВБазеРасширеннаяПодсказка" id="66"/>
+				</CheckBoxField>
+				<InputField name="ПропущенныеВызовыДатаПропущенного" id="18">
+					<DataPath>ПропущенныеВызовы.ДатаПропущенного</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Дата</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ПропущенныеВызовыДатаПропущенногоКонтекстноеМеню" id="19"/>
+					<ExtendedTooltip name="ПропущенныеВызовыДатаПропущенногоРасширеннаяПодсказка" id="67"/>
+					<Events>
+						<Event name="Clearing">ПредставлениеОчистка</Event>
+					</Events>
+				</InputField>
+				<InputField name="ПропущенныеВызовыКлиент" id="28">
+					<DataPath>ПропущенныеВызовы.Клиент</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<DropListButton>false</DropListButton>
+					<ChoiceButton>false</ChoiceButton>
+					<ClearButton>false</ClearButton>
+					<OpenButton>true</OpenButton>
+					<CreateButton>false</CreateButton>
+					<ChooseType>false</ChooseType>
+					<TextEdit>false</TextEdit>
+					<ChoiceListButton>false</ChoiceListButton>
+					<ContextMenu name="ПропущенныеВызовыКлиентКонтекстноеМеню" id="29"/>
+					<ExtendedTooltip name="ПропущенныеВызовыКлиентРасширеннаяПодсказка" id="68"/>
+					<Events>
+						<Event name="Opening">ПропущенныеВызовыКлиентОткрытие</Event>
+						<Event name="Clearing">ПредставлениеОчистка</Event>
+					</Events>
+				</InputField>
+				<InputField name="ПропущенныеВызовыНомерТелефона" id="8">
+					<DataPath>ПропущенныеВызовы.НомерТелефона</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<TextEdit>false</TextEdit>
+					<ContextMenu name="ПропущенныеВызовыНомерТелефонаКонтекстноеМеню" id="9"/>
+					<ExtendedTooltip name="ПропущенныеВызовыНомерТелефонаРасширеннаяПодсказка" id="69"/>
+					<Events>
+						<Event name="Clearing">ПредставлениеОчистка</Event>
+					</Events>
+				</InputField>
+				<InputField name="ПропущенныеВызовыПропущенныйПредставление" id="16">
+					<DataPath>ПропущенныеВызовы.ПропущенныйПредставление</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Информация</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>Directly</EditMode>
+					<OpenButton>true</OpenButton>
+					<TextEdit>false</TextEdit>
+					<ContextMenu name="ПропущенныеВызовыПропущенныйПредставлениеКонтекстноеМеню" id="17"/>
+					<ExtendedTooltip name="ПропущенныеВызовыПропущенныйПредставлениеРасширеннаяПодсказка" id="70"/>
+					<Events>
+						<Event name="Opening">ПропущенныеВызовыПропущенныйПредставлениеОткрытие</Event>
+						<Event name="Clearing">ПредставлениеОчистка</Event>
+					</Events>
+				</InputField>
+				<InputField name="ПропущенныеВызовыОтвеченныйПредставление" id="14">
+					<DataPath>ПропущенныеВызовы.ОтвеченныйПредставление</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Последующий контакт</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>Directly</EditMode>
+					<OpenButton>true</OpenButton>
+					<TextEdit>false</TextEdit>
+					<ContextMenu name="ПропущенныеВызовыОтвеченныйПредставлениеКонтекстноеМеню" id="15"/>
+					<ExtendedTooltip name="ПропущенныеВызовыОтвеченныйПредставлениеРасширеннаяПодсказка" id="71"/>
+					<Events>
+						<Event name="Opening">ПропущенныеВызовыОтвеченныйПредставлениеОткрытие</Event>
+						<Event name="Clearing">ПредставлениеОчистка</Event>
+					</Events>
+				</InputField>
+				<CheckBoxField name="ПропущенныеВызовыПерезвонили" id="76">
+					<DataPath>ПропущенныеВызовы.Перезвонили</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Перезвонили ли клиенту по этому звонку</v8:content>
+						</v8:item>
+					</ToolTip>
+					<EditMode>EnterOnInput</EditMode>
+					<ShowInHeader>false</ShowInHeader>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ПропущенныеВызовыПерезвонилиКонтекстноеМеню" id="77"/>
+					<ExtendedTooltip name="ПропущенныеВызовыПерезвонилиРасширеннаяПодсказка" id="78"/>
+				</CheckBoxField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:DataProcessorObject.МИКО_стАнализПропущенныхВызовов</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+		</Attribute>
+		<Attribute name="ПропущенныеВызовы" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Пропущенные вызовы</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="СсылкаНаПропущенный" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ссылка на пропущенный</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:DocumentRef.МИКО_стЗаписьИсторииЗвонков</v8:Type>
+					</Type>
+				</Column>
+				<Column name="СсылкаНаОтвеченный" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ссылка на отвеченный</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:DocumentRef.МИКО_стЗаписьИсторииЗвонков</v8:Type>
+					</Type>
+				</Column>
+				<Column name="НомерТелефона" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Номер телефона</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>15</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ПропущенныйПредставление" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Пропущенный представление</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>100</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ОтвеченныйПредставление" id="5">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Отвеченный представление</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>100</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="КоличествоПропущенных" id="6">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Количество пропущенных</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="КоличествоОтвеченных" id="7">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Количество отвеченных</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="ДатаПропущенного" id="8">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Дата пропущенного</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:dateTime</v8:Type>
+						<v8:DateQualifiers>
+							<v8:DateFractions>Date</v8:DateFractions>
+						</v8:DateQualifiers>
+					</Type>
+				</Column>
+				<Column name="КлиентаНетВБазе" id="9">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Клиента нет в базе</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Клиент" id="10">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Клиент</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:TypeSet>cfg:CatalogRef</v8:TypeSet>
+					</Type>
+				</Column>
+				<Column name="Перезвонили" id="11">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Перезвонили</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="ДатаОтсчета" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Дата отсчета</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>Date</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="КлиентаНетВБазе" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Клиента нет в базе</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="БезПоследующегоКонтакта" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Без последующего контакта</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ВерсияПлатформы" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Версия платформы</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ИспользоватьРежимМодальности" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Использовать режим модальности</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="НомерТелефона" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Номер телефона</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Клиент" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Клиент</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:TypeSet>cfg:CatalogRef</v8:TypeSet>
+			</Type>
+		</Attribute>
+		<ConditionalAppearance>
+			<dcsset:item>
+				<dcsset:selection>
+					<dcsset:item>
+						<dcsset:field>ПропущенныеВызовы</dcsset:field>
+					</dcsset:item>
+				</dcsset:selection>
+				<dcsset:filter>
+					<dcsset:item xsi:type="dcsset:FilterItemComparison">
+						<dcsset:left xsi:type="dcscor:Field">ПропущенныеВызовы.КоличествоОтвеченных</dcsset:left>
+						<dcsset:comparisonType>Equal</dcsset:comparisonType>
+						<dcsset:right xsi:type="xs:decimal">0</dcsset:right>
+					</dcsset:item>
+				</dcsset:filter>
+				<dcsset:appearance>
+					<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+						<dcscor:parameter>ЦветФона</dcscor:parameter>
+						<dcscor:value xsi:type="v8ui:Color">web:LavenderBlush</dcscor:value>
+					</dcscor:item>
+				</dcsset:appearance>
+			</dcsset:item>
+		</ConditionalAppearance>
+	</Attributes>
+	<Commands>
+		<Command name="Сформировать" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сформировать</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сформировать</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Сформировать</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ОткрытьПропущенный" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Открыть пропущенный</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Открыть пропущенный</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.ShowData</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>ОткрытьПропущенный</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ОткрытьОтвеченный" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Открыть отвеченный</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Открыть отвеченный</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.ShowData</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>ОткрытьОтвеченный</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ОткрытьКлиента" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Открыть карточку клиента</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Открыть клиента</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.User</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>ОткрытьКлиента</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ОтборПоНомеру" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отбор по номеру</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отбор по номеру</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ОтборПоНомеру</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Позвонить" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Позвонить</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Позвонить</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.МИКО_Позвонить</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>Позвонить</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ДобавитьНомерКонтакту" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Добавить номер контакту</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Добавить номер контакту</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.CreateListItem</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>ДобавитьНомерКонтакту</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="СоздатьСтикер" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Открыть / создать заявку</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Создать стикер</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>СоздатьСтикер</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

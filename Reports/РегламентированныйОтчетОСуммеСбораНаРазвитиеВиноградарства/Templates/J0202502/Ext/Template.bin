@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>ЗВІТ про суму нарахованого збору на розвиток виноградарства, садівництва і хмелярства</xs:documentation>
+	</xs:annotation>
+
+  <xs:include schemaLocation="common_types.xsd" />
+
+	<xs:element name="DECLAR" type="DeclarContent"/>
+	<xs:complexType name="DeclarContent">
+		<xs:sequence>
+			<xs:element name="DECLARHEAD" type="DHead" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="DECLARBODY" type="DBody" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DHead">
+		<xs:sequence>
+			<xs:element name="TIN" type="DGLong" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC" type="xs:string" minOccurs="1" maxOccurs="1" fixed="J02"/>
+			<xs:element name="C_DOC_SUB" type="xs:string" minOccurs="1" maxOccurs="1" fixed="025"/>
+			<xs:element name="C_DOC_VER" type="xs:string" minOccurs="1" maxOccurs="1" fixed="2"/>
+			<xs:element name="C_DOC_TYPE" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC_CNT" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_REG" type="DGsti" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_RAJ" type="DGsti" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_MONTH" type="DGMonth" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_TYPE" type="DGPType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_YEAR" type="DGYear" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC_STAN" type="DGSTAN" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="D_FILL" type="DGDate" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="SOFTWARE" type="xs:string"  nillable="true" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DBody">
+		<xs:sequence>
+			<!--header-->
+			<xs:element name="DPAS" type="DGHSTI"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="NAMES" type="DGHNAME"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="ADRES" type="DGHLOC"	nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="TELS" type="DGHTEL"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R002G00S" type="DGHTINJ"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:choice>
+			<xs:element name="FIRSTS" type="DGchk" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="NFIRSTS" type="DGchk" nillable="true" minOccurs="0" maxOccurs="1"/>
+			</xs:choice>
+
+			<xs:element name="HZP" type="DGMonth"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HZY" type="DGYear"  nillable="true" minOccurs="0" maxOccurs="1" />
+			<!--body-->
+			<xs:element name="R01G01" type="DGdecimal0"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="R02G01" type="DGdecimal0"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<!--footer-->
+			<xs:element name="DATA1D" type="DGDate"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="DIRS" type="DGHBOS"  nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="BUHS" type="DGHBUH"  nillable="true" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

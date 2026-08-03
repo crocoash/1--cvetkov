@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<!-- For all browsers -->
+	<link rel="stylesheet" href="css/reset.css?v=1">
+	<link rel="stylesheet" href="css/style.css?v=1">
+	
+	<link rel="stylesheet" href="css/style_miko.css?v=1">
+
+	
+	<link rel="stylesheet" href="css/colors.css?v=1">
+	<link rel="stylesheet" media="print" href="css/print.css?v=1">
+	<link rel="stylesheet" href="css/styles/table.css?v=1">
+	<link rel="stylesheet" href="css/styles/form.css?v=1">
+	<!-- DataTables -->
+	<link rel="stylesheet" href="js/libs/DataTables/jquery.dataTables.css">
+	
+	<!-- For progressively larger displays -->
+	<link rel="stylesheet" media="only all and (min-width: 480px)" href="css/480.css?v=1">
+	<link rel="stylesheet" media="only all and (min-width: 768px)" href="css/768.css?v=1">
+	<link rel="stylesheet" media="only all and (min-width: 992px)" href="css/992.css?v=1">
+	<link rel="stylesheet" media="only all and (min-width: 1200px)" href="css/1200.css?v=1">
+		
+	<!-- For Retina displays -->
+	<link rel="stylesheet" media="only all and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5)" href="css/2x.css?v=1">
+
+	<!-- Webfonts 
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+	-->
+	
+	<!-- JavaScript at bottom except for Modernizr -->
+	<script src="js/libs/modernizr.custom.js"></script>
+</head>
+
+<body style="background-color: rgba(255,247,232,0)" class="menu-hidden">
+
+	<!-- End sidebar/drop-down menu -->
+	<!-- JavaScript at the bottom for fast page loading -->
+	<!-- Scripts -->
+	<script src="js/libs/jquery-1.11.1.min.js"></script>
+	<script src="js/libs/jquery-ui.min.js"></script>
+
+	<script src="js/setup.js"></script>
+	<script src="js/developr.notify.js"></script>
+	<script src="js/libs/DataTables/jquery.dataTables.js"></script>
+	
+	<script src="js/libs/miko/users_list.js"></script>
+	<script src="js/libs/miko/active_lines.js"></script>
+	<script src="js/libs/miko/park_list.js"></script>
+	<script src="js/libs/miko/dialform.js"></script>
+    
+	<div class="columns">
+	
+		<div class="new-row-mobile three-columns">
+			<div id="div_park_lots" class="four-columns" style='position:absolute; bottom:10px; left:20px;'>
+				<!-- тут будет таблица парковки-->
+			</div>
+			<!-- <a href="#" onclick="set_status_user('104', '2');" class="button orange-gradient tiny">На линии</a> -->
+		</div>
+		<div class="new-row-tablet new-row-mobile five-columns large-margin-top">
+			<div id="div_users_list">
+			<!-- тут будет таблица сотрудников-->
+			</div>
+			
+			<miko_tamplate id='miko_row_table' class='hidden'>
+				<miko_tr class="row-drop miko_m_sub_row m_num">
+					<miko_td colspan="4">
+						<h5>miko_interlocutor</h5>
+						<div class="float-right" id='m_num'>
+							<button type="submit" onclick='supervisor_func("listen", _number);' class="button tiny mid-margin-left glossy">
+								<span class="button-icon tiny green-gradient"><span class="icon-up"></span></span>
+								Подслушать
+							</button>
+							<button type="submit" onclick='supervisor_func("join", _number);' class="button tiny mid-margin-left glossy">
+								<span class="button-icon orange-gradient"><span class="icon-up"></span></span>
+								Присоединиться
+							</button>
+							<button type="submit" onclick='supervisor_func("wisper", _number);' class="button tiny mid-margin-left glossy">
+								<span class="button-icon red-gradient"><span class="icon-up"></span></span>
+								Шепнуть
+							</button>
+						</div>
+					</miko_td>
+				</miko_tr>
+			</miko_tamplate>
+					
+		</div>
+		<div class="new-row-mobile three-columns" >
+			
+			<div id="div_active_lines" class="four-columns" style='position:absolute; bottom:10px; right:40px;'>
+				<!-- активные линии-->				
+			</div>
+			
+			<div id="div_dialform" class="large-margin-top">
+				<!-- Форма ввода номера-->
+			</div>
+		</div>
+	</div>
+	
+	<div id='miko_tooltip' style='position:absolute; bottom:1in; right:3px;'> 
+		<ul class="list">
+			<li>
+				<a href="#" class="button compact icon-phone icon-green icon-size" onclick="show_dialform()"></a>
+			</li>
+			<li>
+				<a href="#" class="button compact icon-users icon-blue icon-size" onclick="show_hide_userlist()"></a>
+			</li>
+			<li>
+				<a href="#" class="button compact icon-bullet-list icon-orange icon-size" onclick="show_parklist()"></a>
+			</li>  
+			<!-- -->
+		</ul>
+	</div>
+		
+	<script>		
+		$(document).ready(function() {
+			// инициализация
+			miko_init_userlist('div_users_list');
+			miko_init_activelines('div_active_lines');
+			miko_init_parklist("div_park_lots");
+			miko_init_dialform("div_dialform");
+								
+		} );
+    </script>
+    
+	<!-- Libs go here -->
+</body>
+</html>

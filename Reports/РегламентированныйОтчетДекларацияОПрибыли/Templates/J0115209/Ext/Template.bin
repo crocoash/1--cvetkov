@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>Додаток К1/2 до рядків 04.10 та 07 декларації З ПОДАТКУ НА ПРИБУТОК(ЗАТВЕРДЖЕНО наказом ДПАУ від 29 березня 2003 р. N 143)</xs:documentation>
+	</xs:annotation>
+
+<xs:include schemaLocation="common_types.xsd" />
+
+	<xs:element name="DECLAR" type="DeclarContent"/>
+	<xs:complexType name="DeclarContent">
+		<xs:sequence>
+			<xs:element name="DECLARHEAD" type="DHead" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="DECLARBODY" type="DBody" minOccurs="1" maxOccurs="1">
+				<xs:unique name="UK12T1RXXXXG2S"><xs:selector xpath="K12T1RXXXXG2S"/><xs:field xpath="@ROWNUM"/></xs:unique>
+				<xs:unique name="UK12T1RXXXXG3"><xs:selector xpath="K12T1RXXXXG3"/><xs:field xpath="@ROWNUM"/></xs:unique>
+				<xs:unique name="UK12T1RXXXXG4"><xs:selector xpath="K12T1RXXXXG4"/><xs:field xpath="@ROWNUM"/></xs:unique>
+				<xs:unique name="UK12T2RXXXXG2S"><xs:selector xpath="K12T2RXXXXG2S"/><xs:field xpath="@ROWNUM"/></xs:unique>
+				<xs:unique name="UK12T2RXXXXG3"><xs:selector xpath="K12T2RXXXXG3"/><xs:field xpath="@ROWNUM"/></xs:unique>
+				<xs:unique name="UK12T2RXXXXG4"><xs:selector xpath="K12T2RXXXXG4"/><xs:field xpath="@ROWNUM"/></xs:unique>
+				<xs:unique name="UK12T2RXXXXG5"><xs:selector xpath="K12T2RXXXXG5"/><xs:field xpath="@ROWNUM"/></xs:unique>
+				<xs:unique name="UK12T2RXXXXG6"><xs:selector xpath="K12T2RXXXXG6"/><xs:field xpath="@ROWNUM"/></xs:unique>
+				<xs:unique name="UK12T2RXXXXG7"><xs:selector xpath="K12T2RXXXXG7"/><xs:field xpath="@ROWNUM"/></xs:unique>
+				<xs:unique name="UK12T3RXXXXG2S"><xs:selector xpath="K12T3RXXXXG2S"/><xs:field xpath="@ROWNUM"/></xs:unique>
+				<xs:unique name="UK12T3RXXXXG3"><xs:selector xpath="K12T3RXXXXG3"/><xs:field xpath="@ROWNUM"/></xs:unique>
+				<xs:unique name="UK12T3RXXXXG4"><xs:selector xpath="K12T3RXXXXG4"/><xs:field xpath="@ROWNUM"/></xs:unique>
+				<xs:unique name="UK12T3RXXXXG5"><xs:selector xpath="K12T3RXXXXG5"/><xs:field xpath="@ROWNUM"/></xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DHead">
+		<xs:sequence>
+			<xs:element name="TIN" type="DGLong" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC" type="xs:string" minOccurs="1" maxOccurs="1" fixed="J01"/>
+			<xs:element name="C_DOC_SUB" type="xs:string" minOccurs="1" maxOccurs="1" fixed="152"/>
+			<xs:element name="C_DOC_VER" type="xs:string" minOccurs="1" maxOccurs="1" fixed="9"/>
+			<xs:element name="C_DOC_TYPE" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC_CNT" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_REG" type="DGsti" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_RAJ" type="DGsti" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_MONTH" type="DGMonth" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_TYPE" type="DGPType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_YEAR" type="DGYear" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC_STAN" type="DGSTAN" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="D_FILL" type="DGDate" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="SOFTWARE" type="xs:string" nillable="true" minOccurs="0"  />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DBody">
+		<xs:sequence>
+			<!--header-->
+			<xs:element name="HZY" type="DGYear" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="HTIN" type="DGHTINJ" minOccurs="1" maxOccurs="1"/>
+			<xs:choice minOccurs="1" maxOccurs="1">
+			<xs:element name="H1KV" type="DGchk" />
+			<xs:element name="HHY" type="DGchk" />
+			<xs:element name="H3KV" type="DGchk" />
+			<xs:element name="HY" type="DGchk" />
+			</xs:choice>
+			<!--body-->
+			<!--TABLE №1-->
+			<xs:element name="K12R1G4" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K12R2G4" type="DGdecimal0" nillable="true" minOccurs="0"  />
+
+
+			<xs:element name="K12T1RXXXXG2S" type="StrColumn" nillable="true" minOccurs="0" maxOccurs="999"/>
+			<xs:element name="K12T1RXXXXG3" type="Decimal0Column" nillable="true" minOccurs="0" maxOccurs="999"/>
+			<xs:element name="K12T1RXXXXG4" type="Decimal0Column" nillable="true" minOccurs="0" maxOccurs="999"/>
+
+
+	<xs:element name="K12R7G4" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<!--/Table №1-->
+			<!--Table2 №2-->
+
+			<xs:element name="K12T2RXXXXG2S" type="StrColumn" nillable="true" minOccurs="0" maxOccurs="999"/>
+			<xs:element name="K12T2RXXXXG3" type="Decimal0Column" nillable="true" minOccurs="0" maxOccurs="999"/>
+			<xs:element name="K12T2RXXXXG4" type="Decimal0Column" nillable="true" minOccurs="0" maxOccurs="999"/>
+			<xs:element name="K12T2RXXXXG5" type="Decimal0Column" nillable="true" minOccurs="0" maxOccurs="999"/>
+			<xs:element name="K12T2RXXXXG6" type="Decimal0Column" nillable="true" minOccurs="0" maxOccurs="999"/>
+			<xs:element name="K12T2RXXXXG7" type="Decimal0Column" nillable="true" minOccurs="0" maxOccurs="999"/>
+
+			<xs:element name="K12R410G4" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K12R410G5" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K12R410G6" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K12R410G7" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<!--/Table №2-->
+			<!--Table №3-->
+
+			<xs:element name="K12T3RXXXXG2S" type="StrColumn" nillable="true" minOccurs="0" maxOccurs="999"/>
+			<xs:element name="K12T3RXXXXG3" type="Decimal0Column" nillable="true" minOccurs="0" maxOccurs="999"/>
+			<xs:element name="K12T3RXXXXG4" type="Decimal0Column" nillable="true" minOccurs="0" maxOccurs="999"/>
+			<xs:element name="K12T3RXXXXG5" type="Decimal0Column" nillable="true" minOccurs="0" maxOccurs="999"/>
+
+			<!--/Table №3-->
+			<!--footer-->
+			<xs:element name="HBOS" type="DGHBOS" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="HBUH" type="DGHBUH" nillable="true" minOccurs="0"  />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

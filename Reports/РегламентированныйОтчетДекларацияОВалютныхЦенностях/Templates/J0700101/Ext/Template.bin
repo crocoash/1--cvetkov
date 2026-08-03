@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+    <xs:documentation> ДОВІДКА про проведення декларування валютних цінностей, доходів та майна, що належать резиденту України і знаходяться за її межами ( Додаток до наказу МінфінУ від 25 грудня 1995 р. № 207 )</xs:documentation>
+  </xs:annotation>
+
+<xs:include schemaLocation="common_types.xsd" />
+
+	<xs:element name="DECLAR" type="DeclarContent"/>
+  <xs:complexType name="DeclarContent">
+    <xs:sequence>
+      <xs:element name="DECLARHEAD" type="DHead"/>
+      <xs:element name="DECLARBODY" type="DBody"/>
+    </xs:sequence>
+  </xs:complexType>
+
+	<xs:complexType name="DHead">
+    <xs:sequence>
+      <xs:element name="TIN" type="DGLong" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="C_DOC" type="xs:string" minOccurs="1" maxOccurs="1" fixed="J07"/>
+      <xs:element name="C_DOC_SUB" type="xs:string" minOccurs="1" maxOccurs="1" fixed="001"/>
+      <xs:element name="C_DOC_VER" type="xs:string" minOccurs="1" maxOccurs="1" fixed="1"/>
+      <xs:element name="C_DOC_TYPE" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="C_DOC_CNT" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="C_REG" type="DGsti" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="C_RAJ" type="DGsti" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="PERIOD_MONTH" type="DGMonth" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="PERIOD_TYPE" type="DGPType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="PERIOD_YEAR" type="DGYear" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="C_DOC_STAN" type="DGSTAN" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="D_FILL" type="DGDate" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="SOFTWARE" type="xs:string"  nillable="true" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+
+	<xs:complexType name="DBody">
+    <xs:sequence>
+  <!--header-->
+	<!---body-->
+			<xs:element name="R00G1S" type="DGHNAME"  minOccurs="1" maxOccurs="1"/>
+			<xs:element name="R01G1I" type="DGHTINJ"  minOccurs="1" maxOccurs="1"/>
+			<xs:element name="R02G1S" type="DGHLOC"  minOccurs="1" maxOccurs="1"/>
+			<xs:element name="R03G1I" type="xs:string"  nillable="true" minOccurs="0" />
+			<xs:element name="R03G1S" type="xs:string"  nillable="true" minOccurs="0" />
+			<xs:element name="R04G1S" type="xs:string"  nillable="true" minOccurs="0" />
+			<xs:element name="R05G1D" type="DGDate"  nillable="true" minOccurs="0" />
+			<xs:element name="R06G1D" type="DGDate"  nillable="true" minOccurs="0" />
+			<xs:element name="R07G1D" type="DGDate"  nillable="true" minOccurs="0" />
+  <!---footer-->
+      <xs:element name="R08G1S" type="xs:string"  nillable="true" minOccurs="0" />
+      <xs:element name="R09G1S" type="xs:string"  nillable="true" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

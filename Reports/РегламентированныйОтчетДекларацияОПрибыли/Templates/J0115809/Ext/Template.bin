@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>Додаток К7 до рядка 19.1 декларації З ПОДАТКУ НА ПРИБУТОК
+ЗАТВЕРДЖЕНО наказом ДПАУ від 29 березня 2003 р. N 143
+(із змінами згідно наказу ДПА України від 12.10.05 N 448)</xs:documentation>
+	</xs:annotation>
+
+<xs:include schemaLocation="common_types.xsd" />
+
+	<xs:element name="DECLAR" type="DeclarContent"/>
+	<xs:complexType name="DeclarContent">
+		<xs:sequence>
+			<xs:element name="DECLARHEAD" type="DHead" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="DECLARBODY" type="DBody" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DHead">
+		<xs:sequence>
+			<xs:element name="TIN" type="DGLong" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC" type="xs:string" minOccurs="1" maxOccurs="1" fixed="J01"/>
+			<xs:element name="C_DOC_SUB" type="xs:string" minOccurs="1" maxOccurs="1" fixed="158"/>
+			<xs:element name="C_DOC_VER" type="xs:string" minOccurs="1" maxOccurs="1" fixed="9"/>
+			<xs:element name="C_DOC_TYPE" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC_CNT" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_REG" type="DGsti" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_RAJ" type="DGsti" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_MONTH" type="DGMonth" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_TYPE" type="DGPType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_YEAR" type="DGYear" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC_STAN" type="DGSTAN" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="D_FILL" type="DGDate" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="SOFTWARE" type="xs:string" nillable="true" minOccurs="0"  />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DBody">
+		<xs:sequence>
+			<!--header-->
+			<xs:element name="HZY" type="DGYear" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="HTIN" type="DGHTINJ" minOccurs="1" maxOccurs="1"/>
+			<xs:choice minOccurs="1" maxOccurs="1">
+			<xs:element name="H1KV" type="DGchk" />
+			<xs:element name="HHY" type="DGchk" />
+			<xs:element name="H3KV" type="DGchk" />
+			<xs:element name="HY" type="DGchk" />
+			</xs:choice>
+			<!--body-->
+			<xs:element name="K7R194G1" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K7R194G3" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K7RG1G3" type="DGdecimal0" nillable="true" minOccurs="0"  />
+
+			<xs:element name="K7R030G3" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K7R031G3" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K7R032G3" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K7R033G3" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<!--footer-->
+			<xs:element name="HBOS" type="DGHBOS" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="HBUH" type="DGHBUH" nillable="true" minOccurs="0"  />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

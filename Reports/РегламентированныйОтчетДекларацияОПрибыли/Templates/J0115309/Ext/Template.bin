@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>Додаток К2 до рядків 01.3 та 04.7 декларації З ПОДАТКУ НА ПРИБУТОК(ЗАТВЕРДЖЕНО наказом ДПАУ від 29 березня 2003 р. N 143)</xs:documentation>
+	</xs:annotation>
+
+<xs:include schemaLocation="common_types.xsd" />
+
+	<xs:element name="DECLAR" type="DeclarContent"/>
+	<xs:complexType name="DeclarContent">
+		<xs:sequence>
+			<xs:element name="DECLARHEAD" type="DHead" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="DECLARBODY" type="DBody" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DHead">
+		<xs:sequence>
+			<xs:element name="TIN" type="DGLong" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC" type="xs:string" minOccurs="1" maxOccurs="1" fixed="J01"/>
+			<xs:element name="C_DOC_SUB" type="xs:string" minOccurs="1" maxOccurs="1" fixed="153"/>
+			<xs:element name="C_DOC_VER" type="xs:string" minOccurs="1" maxOccurs="1" fixed="9"/>
+			<xs:element name="C_DOC_TYPE" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC_CNT" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_REG" type="DGsti" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_RAJ" type="DGsti" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_MONTH" type="DGMonth" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_TYPE" type="DGPType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_YEAR" type="DGYear" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC_STAN" type="DGSTAN" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="D_FILL" type="DGDate" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="SOFTWARE" type="xs:string" nillable="true" minOccurs="0"  />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DBody">
+		<xs:sequence>
+			<!--header-->
+			<xs:element name="HZY" type="DGYear" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="HTIN" type="DGHTINJ" minOccurs="1" maxOccurs="1"/>
+			<xs:choice minOccurs="1" maxOccurs="1">
+			<xs:element name="H1KV" type="DGchk" />
+			<xs:element name="HHY" type="DGchk" />
+			<xs:element name="H3KV" type="DGchk" />
+			<xs:element name="HY" type="DGchk" />
+			</xs:choice>
+			<!--body-->
+			<xs:element name="K2R1G3" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R1G4" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R1G5" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R1G6" type="DGdecimal0" nillable="true" minOccurs="0"  />
+
+			<xs:element name="K2R2G3" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R2G4" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R2G5" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R2G6" type="DGdecimal0" nillable="true" minOccurs="0"  />
+
+			<xs:element name="K2R3G3" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R3G4" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R3G5" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R3G6" type="DGdecimal0" nillable="true" minOccurs="0"  />
+
+			<xs:element name="K2R4G3" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R4G4" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R4G5" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R4G6" type="DGdecimal0" nillable="true" minOccurs="0"  />
+
+			<xs:element name="K2R5G3" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R5G4" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R5G5" type="DGdecimal0" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R5G6" type="DGdecimal0" nillable="true" minOccurs="0"  />
+
+			<xs:element name="K2R6G3" type="xs:nonNegativeInteger" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R6G4" type="xs:nonNegativeInteger" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R6G5" type="xs:nonNegativeInteger" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R6G6" type="xs:nonNegativeInteger" nillable="true" minOccurs="0"  />
+
+			<xs:element name="K2R7G3" type="xs:nonNegativeInteger" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R7G4" type="xs:nonNegativeInteger" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R7G5" type="xs:nonNegativeInteger" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R7G6" type="xs:nonNegativeInteger" nillable="true" minOccurs="0"  />
+
+			<xs:element name="K2R8G3" type="xs:nonNegativeInteger" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R8G4" type="xs:nonNegativeInteger" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R8G5" type="xs:nonNegativeInteger" nillable="true" minOccurs="0"  />
+			<xs:element name="K2R8G6" type="xs:nonNegativeInteger" nillable="true" minOccurs="0"  />
+			<!--footer-->
+			<xs:element name="HBOS" type="DGHBOS" />
+			<xs:element name="HBUH" type="DGHBUH" nillable="true" minOccurs="0"  />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

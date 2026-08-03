@@ -1,0 +1,712 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.18">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<VerticalScroll>useIfNecessary</VerticalScroll>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="ChoiceProcessing">ОбработкаВыбора</Event>
+		<Event name="OnOpen">ПриОткрытии</Event>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+		<Event name="ActivationProcessing">ОбработкаАктивизации</Event>
+		<Event name="OnClose">ПриЗакрытии</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="Диапазон" id="65">
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Диапазон</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Group>Horizontal</Group>
+			<Representation>StrongSeparation</Representation>
+			<ExtendedTooltip name="ДиапазонРасширеннаяПодсказка" id="66"/>
+			<ChildItems>
+				<InputField name="ТочностьСуммы" id="59">
+					<DataPath>ТочностьСуммы</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Диапазон сумм (+/-)</v8:content>
+						</v8:item>
+					</Title>
+					<SpinButton>true</SpinButton>
+					<MinValue xsi:type="xs:decimal">0</MinValue>
+					<ContextMenu name="ТочностьСуммыКонтекстноеМеню" id="60"/>
+					<ExtendedTooltip name="ТочностьСуммыРасширеннаяПодсказка" id="61"/>
+					<Events>
+						<Event name="OnChange">ТочностьСуммыПриИзменении</Event>
+					</Events>
+				</InputField>
+				<InputField name="ТочностьПроцент" id="62">
+					<DataPath>ТочностьПроцент</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>грн. или</v8:content>
+						</v8:item>
+					</Title>
+					<GroupHorizontalAlign>Right</GroupHorizontalAlign>
+					<GroupVerticalAlign>Center</GroupVerticalAlign>
+					<SpinButton>true</SpinButton>
+					<MinValue xsi:type="xs:decimal">0</MinValue>
+					<MaxValue xsi:type="xs:decimal">100</MaxValue>
+					<ContextMenu name="ТочностьПроцентКонтекстноеМеню" id="63"/>
+					<ExtendedTooltip name="ТочностьПроцентРасширеннаяПодсказка" id="64"/>
+					<Events>
+						<Event name="OnChange">ТочностьПроцентПриИзменении</Event>
+					</Events>
+				</InputField>
+				<LabelDecoration name="ДекорацияСуммОтИДо" id="67">
+					<Shortcut>Ctrl+R</Shortcut>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content> %</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ДекорацияСуммОтИДоКонтекстноеМеню" id="68"/>
+					<ExtendedTooltip name="ДекорацияСуммОтИДоРасширеннаяПодсказка" id="69"/>
+				</LabelDecoration>
+			</ChildItems>
+		</UsualGroup>
+		<Table name="Список" id="1">
+			<Representation>List</Representation>
+			<CommandBarLocation>None</CommandBarLocation>
+			<SkipOnInput>false</SkipOnInput>
+			<DefaultItem>true</DefaultItem>
+			<ChangeRowSet>false</ChangeRowSet>
+			<ChoiceMode>true</ChoiceMode>
+			<UseAlternationRowColor>true</UseAlternationRowColor>
+			<InitialTreeView>ExpandTopLevel</InitialTreeView>
+			<EnableStartDrag>true</EnableStartDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>Список</DataPath>
+			<RowPictureDataPath>Список.DefaultPicture</RowPictureDataPath>
+			<AutoRefresh>false</AutoRefresh>
+			<AutoRefreshPeriod>60</AutoRefreshPeriod>
+			<Period>
+				<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+				<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+				<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+			</Period>
+			<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+			<RestoreCurrentRow>false</RestoreCurrentRow>
+			<TopLevelParent xsi:nil="true"/>
+			<ShowRoot>true</ShowRoot>
+			<AllowRootChoice>false</AllowRootChoice>
+			<UpdateOnDataChange>Auto</UpdateOnDataChange>
+			<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+			<ContextMenu name="СписокКонтекстноеМеню" id="2"/>
+			<AutoCommandBar name="СписокКоманднаяПанель" id="3">
+				<Autofill>false</Autofill>
+			</AutoCommandBar>
+			<ExtendedTooltip name="СписокРасширеннаяПодсказка" id="20"/>
+			<SearchStringAddition name="СписокСтрокаПоиска" id="21">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокСтрокаПоискаКонтекстноеМеню" id="22"/>
+				<ExtendedTooltip name="СписокСтрокаПоискаРасширеннаяПодсказка" id="23"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="СписокСостояниеПросмотра" id="24">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокСостояниеПросмотраКонтекстноеМеню" id="25"/>
+				<ExtendedTooltip name="СписокСостояниеПросмотраРасширеннаяПодсказка" id="26"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="СписокУправлениеПоиском" id="27">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокУправлениеПоискомКонтекстноеМеню" id="28"/>
+				<ExtendedTooltip name="СписокУправлениеПоискомРасширеннаяПодсказка" id="29"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="ValueChoice">СписокВыборЗначения</Event>
+				<Event name="Selection">СписокВыбор</Event>
+			</Events>
+			<ChildItems>
+				<LabelField name="Дата" id="4">
+					<DataPath>Список.Дата</DataPath>
+					<DefaultItem>true</DefaultItem>
+					<ContextMenu name="ДатаКонтекстноеМеню" id="5"/>
+					<ExtendedTooltip name="ДатаРасширеннаяПодсказка" id="30"/>
+				</LabelField>
+				<LabelField name="Номер" id="6">
+					<DataPath>Список.Номер</DataPath>
+					<ContextMenu name="НомерКонтекстноеМеню" id="7"/>
+					<ExtendedTooltip name="НомерРасширеннаяПодсказка" id="31"/>
+				</LabelField>
+				<InputField name="НомерЗаказа2ССайта" id="38">
+					<DataPath>Список.НомерЗаказа2ССайта</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Номер2 с сайта</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="НомерЗаказа2ССайтаКонтекстноеМеню" id="39"/>
+					<ExtendedTooltip name="НомерЗаказа2ССайтаРасширеннаяПодсказка" id="40"/>
+				</InputField>
+				<LabelField name="СуммаДокумента" id="18">
+					<DataPath>Список.СуммаДокумента</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сумма</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="СуммаДокументаКонтекстноеМеню" id="19"/>
+					<ExtendedTooltip name="СуммаДокументаРасширеннаяПодсказка" id="34"/>
+				</LabelField>
+				<LabelField name="Контрагент" id="12">
+					<DataPath>Список.Контрагент</DataPath>
+					<ContextMenu name="КонтрагентКонтекстноеМеню" id="13"/>
+					<ExtendedTooltip name="КонтрагентРасширеннаяПодсказка" id="32"/>
+				</LabelField>
+				<LabelField name="Получатель" id="76">
+					<DataPath>Список.Получатель</DataPath>
+					<ContextMenu name="ПолучательКонтекстноеМеню" id="77"/>
+					<ExtendedTooltip name="ПолучательРасширеннаяПодсказка" id="78"/>
+				</LabelField>
+				<LabelField name="ТелефонКонтрагента" id="79">
+					<DataPath>Список.ТелефонКонтрагента</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Номер получателя</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ТелефонКонтрагентаКонтекстноеМеню" id="80"/>
+					<ExtendedTooltip name="ТелефонКонтрагентаРасширеннаяПодсказка" id="81"/>
+				</LabelField>
+				<LabelField name="ВидОплатыЗаказа" id="82">
+					<DataPath>Список.ВидОплатыЗаказа</DataPath>
+					<ContextMenu name="ВидОплатыЗаказаКонтекстноеМеню" id="83"/>
+					<ExtendedTooltip name="ВидОплатыЗаказаРасширеннаяПодсказка" id="84"/>
+				</LabelField>
+				<LabelField name="СтатусЗаказа" id="10">
+					<DataPath>Список.СтатусЗаказа</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Статус заказа</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="СтатусЗаказаКонтекстноеМеню" id="11"/>
+					<ExtendedTooltip name="СтатусЗаказаРасширеннаяПодсказка" id="33"/>
+				</LabelField>
+				<LabelField name="ДатаОплаты" id="73">
+					<DataPath>Список.ДатаОплаты</DataPath>
+					<ContextMenu name="ДатаОплатыКонтекстноеМеню" id="74"/>
+					<ExtendedTooltip name="ДатаОплатыРасширеннаяПодсказка" id="75"/>
+				</LabelField>
+				<LabelField name="ВалютаДокумента" id="8">
+					<DataPath>Список.ВалютаДокумента</DataPath>
+					<Visible>false</Visible>
+					<Enabled>false</Enabled>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Валюта</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ВалютаДокументаКонтекстноеМеню" id="9"/>
+					<ExtendedTooltip name="ВалютаДокументаРасширеннаяПодсказка" id="35"/>
+				</LabelField>
+				<InputField name="Комментарий" id="41">
+					<DataPath>Список.Комментарий</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Комментарий</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="КомментарийКонтекстноеМеню" id="42"/>
+					<ExtendedTooltip name="КомментарийРасширеннаяПодсказка" id="43"/>
+				</InputField>
+				<LabelField name="Ответственный" id="16">
+					<DataPath>Список.Ответственный</DataPath>
+					<ContextMenu name="ОтветственныйКонтекстноеМеню" id="17"/>
+					<ExtendedTooltip name="ОтветственныйРасширеннаяПодсказка" id="37"/>
+				</LabelField>
+				<CheckBoxField name="Окрашена" id="70">
+					<DataPath>Список.Окрашена</DataPath>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ОкрашенаКонтекстноеМеню" id="71"/>
+					<ExtendedTooltip name="ОкрашенаРасширеннаяПодсказка" id="72"/>
+				</CheckBoxField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Список" id="1">
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<UseAlways>
+				<Field>~Список.Ref</Field>
+				<Field>Список.Ссылка</Field>
+			</UseAlways>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>true</DynamicDataRead>
+				<QueryText>ВЫБРАТЬ РАЗРЕШЕННЫЕ
+	ДокументЗаказПокупателя.Ссылка КАК Ссылка,
+	ДокументЗаказПокупателя.ПометкаУдаления КАК ПометкаУдаления,
+	ДокументЗаказПокупателя.Номер КАК Номер,
+	ДокументЗаказПокупателя.Дата КАК Дата,
+	ДокументЗаказПокупателя.Проведен КАК Проведен,
+	ДокументЗаказПокупателя.АдресДоставки КАК АдресДоставки,
+	ДокументЗаказПокупателя.ВалютаДокумента КАК ВалютаДокумента,
+	ДокументЗаказПокупателя.УдалитьВремяНапоминания КАК УдалитьВремяНапоминания,
+	ДокументЗаказПокупателя.ДатаОплаты КАК ДатаОплаты,
+	ДокументЗаказПокупателя.ДатаОтгрузки КАК ДатаОтгрузки,
+	ДокументЗаказПокупателя.ДисконтнаяКарта КАК ДисконтнаяКарта,
+	ДокументЗаказПокупателя.ДоговорКонтрагента КАК ДоговорКонтрагента,
+	ДокументЗаказПокупателя.ИспользоватьПлановуюСебестоимость КАК ИспользоватьПлановуюСебестоимость,
+	ДокументЗаказПокупателя.ИтогПлановаяСебестоимость КАК ИтогПлановаяСебестоимость,
+	ДокументЗаказПокупателя.Комментарий КАК Комментарий,
+	ДокументЗаказПокупателя.Контрагент КАК Контрагент,
+	ДокументЗаказПокупателя.КратностьВзаиморасчетов КАК КратностьВзаиморасчетов,
+	ДокументЗаказПокупателя.КурсВзаиморасчетов КАК КурсВзаиморасчетов,
+	ДокументЗаказПокупателя.УдалитьНапомнитьОСобытии КАК УдалитьНапомнитьОСобытии,
+	ДокументЗаказПокупателя.Организация КАК Организация,
+	ДокументЗаказПокупателя.Ответственный КАК Ответственный,
+	ДокументЗаказПокупателя.Подразделение КАК Подразделение,
+	ДокументЗаказПокупателя.СтруктурнаяЕдиница КАК СтруктурнаяЕдиница,
+	ДокументЗаказПокупателя.СкладГруппа КАК СкладГруппа,
+	ДокументЗаказПокупателя.СуммаВключаетНДС КАК СуммаВключаетНДС,
+	ДокументЗаказПокупателя.СуммаДокумента КАК СуммаДокумента,
+	ДокументЗаказПокупателя.ТипЦен КАК ТипЦен,
+	ДокументЗаказПокупателя.УдалитьКонтактноеЛицо КАК УдалитьКонтактноеЛицо,
+	ДокументЗаказПокупателя.УчитыватьНДС КАК УчитыватьНДС,
+	ДокументЗаказПокупателя.АвторасчетНДС КАК АвторасчетНДС,
+	ДокументЗаказПокупателя.Грузополучатель КАК Грузополучатель,
+	ДокументЗаказПокупателя.КонтактноеЛицоКонтрагента КАК КонтактноеЛицоКонтрагента,
+	ДокументЗаказПокупателя.УсловиеПродаж КАК УсловиеПродаж,
+	ДокументЗаказПокупателя.ДополнениеКАдресуДоставки КАК ДополнениеКАдресуДоставки,
+	ДокументЗаказПокупателя.ДокументОснование КАК ДокументОснование,
+	ДокументЗаказПокупателя.Грузоотправитель КАК Грузоотправитель,
+	ДокументЗаказПокупателя.НомерВходящегоДокументаЭлектронногоОбмена КАК НомерВходящегоДокументаЭлектронногоОбмена,
+	ДокументЗаказПокупателя.ДатаВходящегоДокументаЭлектронногоОбмена КАК ДатаВходящегоДокументаЭлектронногоОбмена,
+	ДокументЗаказПокупателя.СтатусЗаказа КАК СтатусЗаказа,
+	ДокументЗаказПокупателя.ГородНовойПочтыПредставление КАК ГородНовойПочтыПредставление,
+	ДокументЗаказПокупателя.ГородНовойПочтыЗначение КАК ГородНовойПочтыЗначение,
+	ДокументЗаказПокупателя.СкладНовойПочтыПредставление КАК СкладНовойПочтыПредставление,
+	ДокументЗаказПокупателя.СкладНовойПочтыЗначение КАК СкладНовойПочтыЗначение,
+	ДокументЗаказПокупателя.СпособОтправки КАК СпособОтправки,
+	ДокументЗаказПокупателя.ТипОбратнойДоставки КАК ТипОбратнойДоставки,
+	ДокументЗаказПокупателя.Получатель КАК Получатель,
+	ДокументЗаказПокупателя.ТелефонКонтрагента КАК ТелефонКонтрагента,
+	ДокументЗаказПокупателя.НомерТТН КАК НомерТТН,
+	ДокументЗаказПокупателя.ВидРасчетов КАК ВидРасчетов,
+	ДокументЗаказПокупателя.Плательщик КАК Плательщик,
+	ДокументЗаказПокупателя.ПлательщикОбратнойДоставки КАК ПлательщикОбратнойДоставки,
+	ДокументЗаказПокупателя.СтатусОтправки КАК СтатусОтправки,
+	ДокументЗаказПокупателя.КонтрагентДоставки КАК КонтрагентДоставки,
+	ДокументЗаказПокупателя.КонтактноеЛицоДоставки КАК КонтактноеЛицоДоставки,
+	ДокументЗаказПокупателя.ДатаДоставки КАК ДатаДоставки,
+	ДокументЗаказПокупателя.ТоварныйСостав КАК ТоварныйСостав,
+	ДокументЗаказПокупателя.КонтрольОплаты КАК КонтрольОплаты,
+	ДокументЗаказПокупателя.Распечатан КАК Распечатан,
+	ДокументЗаказПокупателя.НеУчитыватьВОтчете КАК НеУчитыватьВОтчете,
+	ДокументЗаказПокупателя.Страховка200 КАК Страховка200,
+	ДокументЗаказПокупателя.ВидГруза КАК ВидГруза,
+	ДокументЗаказПокупателя.АдресЭлектроннойПочтыКонтрагента КАК АдресЭлектроннойПочтыКонтрагента,
+	ДокументЗаказПокупателя.АльфаИмя КАК АльфаИмя,
+	ДокументЗаказПокупателя.НомерТТНОбратнойДоставки КАК НомерТТНОбратнойДоставки,
+	ДокументЗаказПокупателя.СтатусОбратнойДоставки КАК СтатусОбратнойДоставки,
+	ДокументЗаказПокупателя.АдресДоставкиНП КАК АдресДоставкиНП,
+	ДокументЗаказПокупателя.ТехнологияДоставки КАК ТехнологияДоставки,
+	ДокументЗаказПокупателя.ТаблицаОтделений КАК ТаблицаОтделений,
+	ДокументЗаказПокупателя.Вес КАК Вес,
+	ДокументЗаказПокупателя.ОбъемныйВес КАК ОбъемныйВес,
+	ДокументЗаказПокупателя.Мест КАК Мест,
+	ДокументЗаказПокупателя.Длина КАК Длина,
+	ДокументЗаказПокупателя.Ширина КАК Ширина,
+	ДокументЗаказПокупателя.Высота КАК Высота,
+	ДокументЗаказПокупателя.СуммаНоваяПочта КАК СуммаНоваяПочта,
+	ДокументЗаказПокупателя.РазницаСумма КАК РазницаСумма,
+	ДокументЗаказПокупателя.НомерЗаказа2ССайта КАК НомерЗаказа2ССайта,
+	ДокументЗаказПокупателя.ИдентификацияЗаказа КАК ИдентификацияЗаказа,
+	ДокументЗаказПокупателя.ТочностьСуммы КАК ТочностьСуммы,
+	ДокументЗаказПокупателя.НомерСПочты КАК НомерСПочты,
+	ДокументЗаказПокупателя.Источник КАК Источник,
+	ДокументЗаказПокупателя.Логин КАК Логин,
+	ДокументЗаказПокупателя.Имейл КАК Имейл,
+	ДокументЗаказПокупателя.Товары.(
+		Ссылка КАК Ссылка,
+		НомерСтроки КАК НомерСтроки,
+		ЕдиницаИзмерения КАК ЕдиницаИзмерения,
+		ЕдиницаИзмеренияМест КАК ЕдиницаИзмеренияМест,
+		Количество КАК Количество,
+		КоличествоМест КАК КоличествоМест,
+		Коэффициент КАК Коэффициент,
+		Номенклатура КАК Номенклатура,
+		ПлановаяСебестоимость КАК ПлановаяСебестоимость,
+		ПроцентСкидкиНаценки КАК ПроцентСкидкиНаценки,
+		Размещение КАК Размещение,
+		СтавкаНДС КАК СтавкаНДС,
+		Сумма КАК Сумма,
+		СуммаНДС КАК СуммаНДС,
+		ХарактеристикаНоменклатуры КАК ХарактеристикаНоменклатуры,
+		Цена КАК Цена,
+		ПроцентАвтоматическихСкидок КАК ПроцентАвтоматическихСкидок,
+		УсловиеАвтоматическойСкидки КАК УсловиеАвтоматическойСкидки,
+		ЗначениеУсловияАвтоматическойСкидки КАК ЗначениеУсловияАвтоматическойСкидки,
+		Спецификация КАК Спецификация,
+		КлючСтроки КАК КлючСтроки,
+		СерияНоменклатуры КАК СерияНоменклатуры,
+		СтоимостьОтправки КАК СтоимостьОтправки,
+		Длина КАК Длина,
+		Ширина КАК Ширина,
+		Высота КАК Высота,
+		Вес КАК Вес,
+		ОбъемныйВес КАК ОбъемныйВес,
+		Сортировка КАК Сортировка,
+		КоличествоНК КАК КоличествоНК
+	) КАК Товары,
+	ДокументЗаказПокупателя.ВозвратнаяТара.(
+		Ссылка КАК Ссылка,
+		НомерСтроки КАК НомерСтроки,
+		Номенклатура КАК Номенклатура,
+		Количество КАК Количество,
+		Цена КАК Цена,
+		Сумма КАК Сумма,
+		Размещение КАК Размещение
+	) КАК ВозвратнаяТара,
+	ДокументЗаказПокупателя.Услуги.(
+		Ссылка КАК Ссылка,
+		НомерСтроки КАК НомерСтроки,
+		Содержание КАК Содержание,
+		Количество КАК Количество,
+		Цена КАК Цена,
+		Сумма КАК Сумма,
+		СтавкаНДС КАК СтавкаНДС,
+		СуммаНДС КАК СуммаНДС,
+		Номенклатура КАК Номенклатура,
+		ПроцентСкидкиНаценки КАК ПроцентСкидкиНаценки,
+		ПроцентАвтоматическихСкидок КАК ПроцентАвтоматическихСкидок,
+		УсловиеАвтоматическойСкидки КАК УсловиеАвтоматическойСкидки,
+		ЗначениеУсловияАвтоматическойСкидки КАК ЗначениеУсловияАвтоматическойСкидки
+	) КАК Услуги,
+	ДокументЗаказПокупателя.СоставНабора.(
+		Ссылка КАК Ссылка,
+		НомерСтроки КАК НомерСтроки,
+		Номенклатура КАК Номенклатура,
+		ХарактеристикаНоменклатуры КАК ХарактеристикаНоменклатуры,
+		Количество КАК Количество,
+		ЕдиницаИзмерения КАК ЕдиницаИзмерения,
+		КлючСтроки КАК КлючСтроки,
+		Цена КАК Цена,
+		СерияНоменклатуры КАК СерияНоменклатуры
+	) КАК СоставНабора,
+	ДокументЗаказПокупателя.МоментВремени КАК МоментВремени,
+	ВЫБОР
+		КОГДА ЕСТЬNULL(ДокументЗаказПокупателя.СуммаДокумента, 0) &gt;= &amp;СуммаЗаказаОт
+				И ЕСТЬNULL(ДокументЗаказПокупателя.СуммаДокумента, 0) &lt;= &amp;СуммаЗаказаДо
+			ТОГДА 1
+		ИНАЧЕ 0
+	КОНЕЦ КАК Окрашена,
+	ДокументЗаказПокупателя.ВидОплатыЗаказа КАК ВидОплатыЗаказа
+ИЗ
+	Документ.ЗаказПокупателя КАК ДокументЗаказПокупателя
+ГДЕ
+	ДокументЗаказПокупателя.СтатусЗаказа = &amp;СтатусЗаказаОжидаетОплаты</QueryText>
+				<MainTable>Document.ЗаказПокупателя</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:item xsi:type="dcsset:OrderItemField">
+							<dcsset:field>Окрашена</dcsset:field>
+							<dcsset:orderType>Desc</dcsset:orderType>
+						</dcsset:item>
+						<dcsset:item xsi:type="dcsset:OrderItemField">
+							<dcsset:field>Дата</dcsset:field>
+							<dcsset:orderType>Asc</dcsset:orderType>
+						</dcsset:item>
+						<dcsset:item xsi:type="dcsset:OrderItemField">
+							<dcsset:field>Номер</dcsset:field>
+							<dcsset:orderType>Asc</dcsset:orderType>
+						</dcsset:item>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:item>
+							<dcsset:selection>
+								<dcsset:item>
+									<dcsset:field>Номер</dcsset:field>
+								</dcsset:item>
+								<dcsset:item>
+									<dcsset:field>НомерЗаказа2ССайта</dcsset:field>
+								</dcsset:item>
+								<dcsset:item>
+									<dcsset:field>СуммаДокумента</dcsset:field>
+								</dcsset:item>
+								<dcsset:item>
+									<dcsset:field>Дата</dcsset:field>
+								</dcsset:item>
+								<dcsset:item>
+									<dcsset:field>Контрагент</dcsset:field>
+								</dcsset:item>
+								<dcsset:item>
+									<dcsset:field>СтатусЗаказа</dcsset:field>
+								</dcsset:item>
+								<dcsset:item>
+									<dcsset:field>Комментарий</dcsset:field>
+								</dcsset:item>
+								<dcsset:item>
+									<dcsset:field>Ответственный</dcsset:field>
+								</dcsset:item>
+								<dcsset:item>
+									<dcsset:field>ДатаОплаты</dcsset:field>
+								</dcsset:item>
+							</dcsset:selection>
+							<dcsset:filter>
+								<dcsset:item xsi:type="dcsset:FilterItemComparison">
+									<dcsset:left xsi:type="dcscor:Field">Окрашена</dcsset:left>
+									<dcsset:comparisonType>Equal</dcsset:comparisonType>
+									<dcsset:right xsi:type="xs:decimal">1</dcsset:right>
+								</dcsset:item>
+							</dcsset:filter>
+							<dcsset:appearance>
+								<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+									<dcscor:parameter>ЦветФона</dcscor:parameter>
+									<dcscor:value xsi:type="v8ui:Color">web:Lime</dcscor:value>
+								</dcscor:item>
+							</dcsset:appearance>
+						</dcsset:item>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+		<Attribute name="ТочностьСуммы" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Точность суммы</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>2</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ТочностьПроцент" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Точность процент</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>2</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="СуммаПоступилоПоЗаказу" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сумма поступило по заказу</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>2</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Ном" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Ном</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>11</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Parameters>
+		<Parameter name="КонтрагентЗаказа">
+			<Type>
+				<v8:Type>cfg:CatalogRef.Контрагенты</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="СуммаПоступилоПоЗаказу">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>2</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Parameter>
+		<Parameter name="ТочностьПроцент">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>2</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Parameter>
+		<Parameter name="ТочностьСуммы">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>2</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Parameter>
+	</Parameters>
+	<CommandInterface>
+		<CommandBar>
+			<Item>
+				<Command>2:a62dfa73-f9b7-4adf-bf88-0bfcd2bf6f72</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormCommandBarCreateBasedOn</CommandGroup>
+				<Index>1</Index>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>2:2d4cb33f-aa69-4b81-a58f-9554a89a9fde</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormCommandBarCreateBasedOn</CommandGroup>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>2:56917e12-a053-40fd-b393-e5e76aa53a5f</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormCommandBarCreateBasedOn</CommandGroup>
+				<Index>3</Index>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>2:80f35ebc-7f1e-4c61-aaa3-f01b66ca7565</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormCommandBarCreateBasedOn</CommandGroup>
+				<Index>2</Index>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>2:2c1ca1de-5109-40b3-96f7-11230653d9d8</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormCommandBarCreateBasedOn</CommandGroup>
+				<Index>4</Index>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>2:984a04a5-9f07-412b-b569-07e244bd87af</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormCommandBarCreateBasedOn</CommandGroup>
+				<Index>10</Index>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>2:d596410b-7a5e-4837-9352-3ec77aaa621e</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormCommandBarCreateBasedOn</CommandGroup>
+				<Index>8</Index>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>2:03163c44-545d-4d91-8301-3d5e1c764e89</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormCommandBarCreateBasedOn</CommandGroup>
+				<Index>7</Index>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>2:08e09167-e34c-4537-85e7-7e0e258d4525</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormCommandBarCreateBasedOn</CommandGroup>
+				<Index>6</Index>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>2:edb966e9-53c0-445d-a912-fd374ec8f17c</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormCommandBarCreateBasedOn</CommandGroup>
+				<Index>5</Index>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>2:a5959806-3dc6-4d85-8473-6673eea24e86</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormCommandBarCreateBasedOn</CommandGroup>
+				<Index>9</Index>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+		</CommandBar>
+	</CommandInterface>
+</Form>

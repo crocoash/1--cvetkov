@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>Додаток 4 до рядка 06.2 декларації
+(ЗАТВЕРДЖЕНО Наказ ДПА України 28.02.2011 № 114) </xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="common_types.xsd"/>
+	<xs:element name="DECLAR" type="DeclarContent"/>
+	<xs:complexType name="DeclarContent">
+		<xs:sequence>
+			<xs:element name="DECLARHEAD" type="DHead"/>
+			<xs:element name="DECLARBODY" type="DBody"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DHead">
+		<xs:sequence>
+			<xs:element name="TIN" type="DGLong"/>
+			<xs:element name="C_DOC" type="xs:string" fixed="J01"/>
+			<xs:element name="C_DOC_SUB" type="xs:string" fixed="109"/>
+			<xs:element name="C_DOC_VER" type="xs:string" fixed="1"/>
+			<xs:element name="C_DOC_TYPE" type="xs:nonNegativeInteger"/>
+			<xs:element name="C_DOC_CNT" type="xs:nonNegativeInteger"/>
+			<xs:element name="C_REG" type="DGsti"/>
+			<xs:element name="C_RAJ" type="DGsti"/>
+			<xs:element name="PERIOD_MONTH" type="DGMonth"/>
+			<xs:element name="PERIOD_TYPE" type="DGPType"/>
+			<xs:element name="PERIOD_YEAR" type="DGYear"/>
+			<xs:element name="C_STI_ORIG" type="DGc_dpi"/>
+			<xs:element name="C_DOC_STAN" type="DGSTAN"/>
+			<xs:element name="LINKED_DOCS" nillable="true" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="DOC" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="C_DOC" type="DGC_DOC"/>
+									<xs:element name="C_DOC_SUB" type="DGC_DOC_SUB"/>
+									<xs:element name="C_DOC_VER" type="DGC_DOC_VER"/>
+									<xs:element name="C_DOC_TYPE" type="xs:nonNegativeInteger"/>
+									<xs:element name="C_DOC_CNT" type="xs:nonNegativeInteger"/>
+									<xs:element name="C_DOC_STAN" type="DGSTAN"/>
+									<xs:element name="FILENAME" type="DGFilename"/>
+								</xs:sequence>
+								<xs:attribute name="NUM" type="xs:nonNegativeInteger"/>
+								<xs:attribute name="TYPE" type="DGTypeLinkDoc"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:unique name="UH_DOC_NUM">
+					<xs:selector xpath="DOC"/>
+					<xs:field xpath="@NUM"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="D_FILL" type="DGDate"/>
+			<xs:element name="SOFTWARE" type="xs:string" nillable="true" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DBody">
+		<xs:sequence>
+			<!--HEAD-->
+			<xs:choice>
+				<xs:element name="HZ" type="DGchk"/>
+				<xs:element name="HZN" type="DGchk"/>
+				<xs:element name="HZU" type="DGchk"/>
+			</xs:choice>
+
+			<xs:element name="HZK" type="DGchk" nillable="true" minOccurs="0"/>
+
+			<xs:element name="HTIN" type="DGHTINJ"/>
+
+			<xs:element name="HZY" type="DGYear"/>
+			<xs:choice>
+				<xs:element name="H1KV" type="DGchk"/>
+				<xs:element name="HHY" type="DGchk"/>
+				<xs:element name="H3KV" type="DGchk"/>
+				<xs:element name="HY" type="DGchk"/>
+				<xs:element name="H2KV" type="DGchk"  />
+				<xs:element name="H23KV" type="DGchk"  />
+				<xs:element name="H24KV" type="DGchk"  />
+			</xs:choice>
+
+			<!--BODY-->
+			<xs:element name="R062G3" type="DGdecimal0" nillable="true" minOccurs="0"/>
+
+			<xs:element name="R06201G3" type="DGdecimal0" nillable="true" minOccurs="0"/>
+			<xs:element name="R06202G3" type="DGdecimal0" nillable="true" minOccurs="0"/>
+
+			<xs:element name="R06203G3" type="DGdecimal0" nillable="true" minOccurs="0"/>
+			<xs:element name="R062031G3" type="DGdecimal0" nillable="true" minOccurs="0"/>
+			<xs:element name="R062032G3" type="DGdecimal0" nillable="true" minOccurs="0"/>
+
+			<xs:element name="R06204G3" type="DGdecimal0" nillable="true" minOccurs="0"/>
+			<xs:element name="R06205G3" type="DGdecimal0" nillable="true" minOccurs="0"/>
+			<xs:element name="R06206G3" type="DGdecimal0" nillable="true" minOccurs="0"/>
+			<xs:element name="R06207G3" type="DGdecimal0" nillable="true" minOccurs="0"/>
+			<xs:element name="R06208G3" type="DGdecimal0" nillable="true" minOccurs="0"/>
+			<xs:element name="R06209G3" type="DGdecimal0" nillable="true" minOccurs="0"/>
+			<xs:element name="R06210G3" type="DGdecimal0" nillable="true" minOccurs="0"/>
+			<xs:element name="R06211G3" type="DGdecimal0" nillable="true" minOccurs="0"/>
+			<xs:element name="R06212G3" type="DGdecimal0" nillable="true" minOccurs="0"/>
+
+			<!--FOOTER-->
+			<xs:element name="HBOS" type="DGHBOS"/>
+			<xs:element name="HBUH" type="DGHBUH" nillable="true" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

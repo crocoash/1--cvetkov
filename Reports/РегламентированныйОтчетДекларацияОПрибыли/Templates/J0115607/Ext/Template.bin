@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:annotation>
+		<xs:documentation>Додаток К5 до рядка 10 декларації про прибуток(ЗАТВЕРДЖЕНО наказом ДПАУ від 29 березня 2003 р. N 143)</xs:documentation>
+	</xs:annotation>
+
+	<xs:simpleType name="DGMonth">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DGYear">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1991"/>
+			<xs:maxInclusive value="2099"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DGsti">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+<xs:simpleType name="DGLong">
+		<xs:restriction base="xs:unsignedLong">
+			<xs:minInclusive value="1000"/>
+			<xs:maxInclusive value="9999999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DGDate">
+		<xs:restriction base="xs:string">
+			<xs:length value="8"/>
+			<xs:pattern value="(((((0[1-9]|[1-2][0-9])(0(1|[3-9])|1[0-2]))|(30(0(1|[3-9])|1[0-2]))|(31(01|03|05|07|08|10|12)))(19|20)\d{2})|((0[1-9]|[1-2][0-9])02(19|20)[0-9](0|4))|((0[1-9]|[1-2][0-8]|19)02(19|20)[0-9](1|2|3|5|6|7|8|9)))"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="rowInt">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="32"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:element name="DECLAR" type="DeclarContent"/>
+	<xs:complexType name="DeclarContent">
+		<xs:sequence>
+			<xs:element name="DECLARHEAD" type="DHead" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="DECLARBODY" type="DBody" minOccurs="1" maxOccurs="1">
+				<xs:unique name="UK5T2RXXXXG2S"><xs:selector xpath="K5T2RXXXXG2S"/><xs:field xpath="@ROWNUM"/></xs:unique>
+				<xs:unique name="UK5T2RXXXXG3S"><xs:selector xpath="K5T2RXXXXG3S"/><xs:field xpath="@ROWNUM"/></xs:unique>
+				<xs:unique name="UK5T2RXXXXG4S"><xs:selector xpath="K5T2RXXXXG4S"/><xs:field xpath="@ROWNUM"/></xs:unique>
+				<xs:unique name="UK5T2RXXXXG5S"><xs:selector xpath="K5T2RXXXXG5S"/><xs:field xpath="@ROWNUM"/></xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DecimalColumn">
+		<xs:simpleContent>
+			<xs:extension base="xs:decimal">
+				<xs:attribute name="ROWNUM" type="rowInt" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="StrColumn">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="ROWNUM" type="rowInt" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="DHead">
+		<xs:sequence>
+			<xs:element name="TIN" type="DGLong" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC" type="xs:string" minOccurs="1" maxOccurs="1" fixed="J01"/>
+			<xs:element name="C_DOC_SUB" type="xs:string" minOccurs="1" maxOccurs="1" fixed="156"/>
+			<xs:element name="C_DOC_VER" type="xs:string" minOccurs="1" maxOccurs="1" fixed="7"/>
+			<xs:element name="C_DOC_TYPE" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_DOC_CNT" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_REG" type="DGsti" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="C_RAJ" type="DGsti" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_MONTH" type="DGMonth" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PERIOD_YEAR" type="DGYear" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="D_FILL" type="DGDate" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="SOFTWARE" type="xs:string" nillable="true" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DBody">
+		<xs:sequence>
+			<!--HEAD-->
+      <xs:element name="HZY" type="DGYear" nillable="true" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="HTIN" type="DGLong" nillable="true" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="H1KV" type="xs:int" nillable="true" minOccurs="0" maxOccurs="1" fixed="1"/>
+      <xs:element name="HHY" type="xs:int" nillable="true" minOccurs="0" maxOccurs="1" fixed="1"/>
+      <xs:element name="H3KV" type="xs:int" nillable="true" minOccurs="0" maxOccurs="1" fixed="1"/>
+      <xs:element name="HY" type="xs:int" nillable="true" minOccurs="0" maxOccurs="1" fixed="1"/>
+			<!--BODY-->
+			<!--TABLE №1-->
+			<xs:element name="K5R1000G3" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G31" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G31" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G31" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G31" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G31" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G31" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G32" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G32" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G32" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G32" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G32" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G32" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G33" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G33" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G33" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G33" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G33" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G33" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G34" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G34" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G34" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G34" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G34" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G34" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G35" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G35" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G35" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G35" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G35" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G35" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G36" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G36" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G36" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G36" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G36" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G36" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G37" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G37" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G37" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G37" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G37" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G37" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G38" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G38" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G38" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G38" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G38" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G38" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G39" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G39" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G39" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G39" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G39" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G39" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G310" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G310" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G310" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G310" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G310" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G310" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G311" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G311" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G311" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G311" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G311" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G311" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G312" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G312" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G312" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G312" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G312" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G312" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G313" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G313" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G313" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G313" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G313" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G313" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G314" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G314" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G314" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G314" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G314" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G314" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G315" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G315" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G315" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G315" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G315" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G315" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G316" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G316" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G316" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G316" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G316" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G316" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G317" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G317" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G317" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G317" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G317" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G317" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G318" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G318" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G318" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G318" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G318" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G318" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G319" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G319" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G319" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G319" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G319" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G319" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G320" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G320" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G320" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G320" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G320" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G320" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G321" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G321" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G321" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G321" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G321" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G321" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G322" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G322" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G322" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G322" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G322" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G322" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G323" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G323" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G323" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G323" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G323" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G323" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G324" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G324" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G324" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G324" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G324" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G324" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G325" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G325" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G325" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G325" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G325" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G325" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G326" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G326" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G326" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G326" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G326" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G326" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G327" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G327" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G327" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G327" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G327" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G327" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G328" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G328" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G328" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G328" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G328" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G328" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G329" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G329" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G329" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G329" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G329" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G329" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G330" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G330" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G330" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G330" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G330" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G330" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G331" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G331" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G331" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G331" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G331" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G331" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+
+			<xs:element name="K5T1R1G332" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R2G332" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R3G332" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R4G332" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R5G332" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T1R6G332" type="xs:decimal" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<!--/TABLE №1-->
+
+			<!--TABLE №2-->
+    	<xs:sequence minOccurs="0" maxOccurs="32">
+			<xs:element name="K5T2RXXXXG2S" type="StrColumn" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T2RXXXXG3S" type="StrColumn" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T2RXXXXG4S" type="StrColumn" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="K5T2RXXXXG5S" type="StrColumn" nillable="true" minOccurs="0" maxOccurs="1"/>
+    	</xs:sequence>
+			<!--TABLE №2-->
+			<!--FOOTER-->
+			<xs:element name="HBOS" type="xs:string" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="HBUH" type="xs:string" nillable="true" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
