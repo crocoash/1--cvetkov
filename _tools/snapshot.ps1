@@ -54,3 +54,15 @@ Write-Host $stat
 Write-Host ""
 Write-Host "Что изменилось:" -ForegroundColor Cyan
 & $git show --stat --oneline HEAD | Select-Object -First 40
+
+# Перенос на машину с 1С идёт через GitHub: без push снимок туда не попадёт.
+Write-Host ""
+$ветка = (& $git rev-parse --abbrev-ref HEAD).Trim()
+& $git push origin $ветка 2>&1 | Write-Host
+if ($LASTEXITCODE -eq 0) {
+    Write-Host "Отправлено на origin/$ветка — можно делать pull на машине с 1С." -ForegroundColor Green
+} else {
+    Write-Host "PUSH НЕ ПРОШЁЛ. Снимок есть только локально, на машину с 1С он не попадёт." -ForegroundColor Red
+    Write-Host "Разобраться и отправить вручную: git push origin $ветка" -ForegroundColor Red
+    exit 1
+}
