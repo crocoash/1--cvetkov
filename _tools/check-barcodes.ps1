@@ -26,7 +26,7 @@ $всего = 0
 
 foreach ($файл in Get-ChildItem $root -Recurse -Filter Template.xml -File) {
     $текст = [IO.File]::ReadAllText($файл.FullName)
-    $путь = $файл.FullName.Substring($root.Length + 1)
+    $путь = $файл.FullName.Substring($root.Length + 1).Replace([IO.Path]::DirectorySeparatorChar, '\')
 
     $рисунки = [regex]::Matches($текст, '(?s)<drawing>\s*<drawingType>Object</drawingType>(.*?)</drawing>')
     foreach ($р in $рисунки) {

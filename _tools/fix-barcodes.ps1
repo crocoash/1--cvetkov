@@ -47,7 +47,7 @@ $ИменаОбъектов = @{
 
 foreach ($файл in Get-ChildItem $root -Recurse -Filter Template.xml -File) {
     $текст = [IO.File]::ReadAllText($файл.FullName)
-    $путь = $файл.FullName.Substring($root.Length + 1)
+    $путь = $файл.FullName.Substring($root.Length + 1).Replace([IO.Path]::DirectorySeparatorChar, '\')
     $изменён = $false
 
     # Рисунки типа "Объект" без блоба: дописываем эталон после <zOrder>.
