@@ -2,15 +2,15 @@
 <MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.18">
 	<ScheduledJob uuid="88f72bf4-047f-4629-9781-d064e11e97ea">
 		<Properties>
-			<Name>ТелеграмОтветы</Name>
+			<Name>ТелеграмОбмен</Name>
 			<Synonym>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
-					<v8:content>Телеграм: ответы менеджера</v8:content>
+					<v8:content>Телеграм: очередь и ответы менеджера</v8:content>
 				</v8:item>
 			</Synonym>
-			<Comment>Забирает из Telegram нажатия кнопки "Обработан" под уведомлениями о заказах и проставляет отметку в задаче и в регистре ТелеграмУведомления. Расписание задаётся в базе (в метаданных оно не хранится): раз в 1-2 минуты.</Comment>
-			<MethodName>CommonModule.ТелеграмБот.ПолучитьОтветы</MethodName>
+			<Comment>Две вещи за один заход: 1) разбирает очередь ТелеграмОчередь - уведомления о смене статуса заказа (из транзакции записи их слать нельзя); 2) забирает нажатия кнопки "Обработан" под уже отправленными сообщениями. Расписание задаётся в базе (в метаданных оно не хранится): раз в 1-2 минуты.</Comment>
+			<MethodName>CommonModule.ТелеграмБот.ОбменСБотом</MethodName>
 			<Description/>
 			<Key/>
 			<Use>true</Use>
