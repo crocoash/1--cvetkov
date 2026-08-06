@@ -1433,14 +1433,14 @@
 					<Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Телеграм: чат получателя</v8:content>
+							<v8:content>Телеграм: чаты (через запятую)</v8:content>
 						</v8:item>
 					</Synonym>
-					<Comment>chat_id получателя уведомления. Узнаётся один раз: получатель нажимает Start у бота, затем ТелеграмБот.ПоказатьНовыеЧаты().</Comment>
+					<Comment>Кому слать уведомление о просрочке этого статуса. Один или несколько chat_id через запятую - уйдёт каждому. Заполнено - шлём (галка "Отправлять в Telegram" при этом не обязательна); пусто и галка стоит - берём чат от статуса, где он заполнен. chat_id узнаётся один раз: получатель нажимает Start у бота, затем chat_id виден в журнале регистрации, событие "Телеграм.Чаты".</Comment>
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
-							<v8:Length>32</v8:Length>
+							<v8:Length>200</v8:Length>
 							<v8:AllowedLength>Variable</v8:AllowedLength>
 						</v8:StringQualifiers>
 					</Type>
