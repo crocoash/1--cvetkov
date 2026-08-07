@@ -112,8 +112,17 @@ foreach ($l in ([regex]::Replace($xml, '(?i)Pwd=[^;"]*', 'Pwd=***') -split "`r?`
 # отвечает 500 «Ошибка при разборе дескриптора виртуальных ресурсов ...
 # default.vrd: 5(0x00000005): Отказано в доступе» - поймано на живой машине
 # 07.08.2026. Учётка пула в IIS_IUSRS входит, но оставляем её явно.
+#
+# SYSTEM и администраторам даём Modify, а не Read: файл после этого шага не
+# читается на запись даже из окна «Администратор», и повторный запуск скрипта
+# падал бы на своей же строке WriteAllText ещё до ACL-блока. Проверено на
+# машине 07.08.2026. Веб-процессу (IIS_IUSRS, IUSR, пул) хватает чтения.
 $rules = @()
-foreach ($sid in @('S-1-5-18', 'S-1-5-32-544', 'S-1-5-32-568', 'S-1-5-17')) {
+foreach ($sid in @('S-1-5-18', 'S-1-5-32-544')) {
+  $rules += New-Object System.Security.AccessControl.FileSystemAccessRule(
+    (New-Object System.Security.Principal.SecurityIdentifier($sid)), 'Modify', 'Allow')
+}
+foreach ($sid in @('S-1-5-32-568', 'S-1-5-17')) {
   $rules += New-Object System.Security.AccessControl.FileSystemAccessRule(
     (New-Object System.Security.Principal.SecurityIdentifier($sid)), 'ReadAndExecute', 'Allow')
 }
