@@ -102,15 +102,15 @@ Get-Website | ForEach-Object {
   $b = ($_.bindings.Collection | ForEach-Object { $_.protocol + ' ' + $_.bindingInformation }) -join ' | '
   W ("  " + $_.Name + " [" + $_.State + "] " + $_.PhysicalPath + " :: " + $b)
 }
+# Проверяем через curl.exe, а не Invoke-WebRequest: .NET Framework под PowerShell 5.1
+# запрещает пересогласование TLS и падает с «Базовое соединение закрыто» там,
+# где на самом деле всё исправно. 403 на пустом сайте - правильный ответ.
 W "--- local probe ---"
-try {
-  [System.Net.ServicePointManager]::ServerCertificateValidationCallback = { $true }
-  [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
-  $res = Invoke-WebRequest "https://localhost:$Port/" -UseBasicParsing -TimeoutSec 10
-  W ("  status " + $res.StatusCode)
-} catch {
-  W ("  " + $_.Exception.Message)
-} finally {
-  [System.Net.ServicePointManager]::ServerCertificateValidationCallback = $null
-}
+$code = & curl.exe -k -s -o NUL -w "%{http_code}" --max-time 15 "https://localhost:$Port/" 2>&1
+W ("  http_code " + $code + "  (403 на пустом сайте - норма)")
+
+W "--- ssl binding ---"
+& netsh http show sslcert ipport=0.0.0.0:$Port 2>&1 |
+  Where-Object { $_ -match 'Certificate Hash|Negotiate Client Certificate|Disable TLS' } |
+  ForEach-Object { W ("  " + $_.Trim()) }
 W "=== done ==="
