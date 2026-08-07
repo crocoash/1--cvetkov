@@ -43,44 +43,92 @@ function XmlEsc([string]$s) {
   $s.Replace('&','&amp;').Replace('<','&lt;').Replace('>','&gt;').Replace('"','&quot;').Replace("'",'&apos;')
 }
 
+# ';' и кавычки разделяют части строки соединения - пароль с ними не доедет
+# до 1С целым, а ошибка будет выглядеть как обычный 401.
+if ($Пароль -match '[;"'']') {
+  W "FATAL: пароль содержит ; или кавычку"
+  Write-Host "  В пароле есть ; или кавычка - в строке соединения такой пароль не живёт." -ForegroundColor Red
+  Write-Host "  Задайте пользователю пароль из латиницы, цифр и - _ и запустите скрипт снова." -ForegroundColor Red
+  exit 1
+}
+
 $m = [regex]::Match($xml, 'ib="([^"]*)"')
 if (-not $m.Success) { W "FATAL: не найден атрибут ib"; exit 1 }
 
+# Сначала нормализуем хвост, потом вырезаем старые Usr/Pwd: шаблон ищет их
+# вместе с ';', и без этого порядка последний в строке Pwd (у него ';' нет)
+# не удалялся бы, а новый дописывался вторым - в vrd оставалось два пароля.
 $ib = $m.Groups[1].Value
+if (-not $ib.EndsWith(';')) { $ib += ';' }
 $ib = [regex]::Replace($ib, '(?i)Usr=[^;]*;', '')
 $ib = [regex]::Replace($ib, '(?i)Pwd=[^;]*;', '')
-if (-not $ib.EndsWith(';')) { $ib += ';' }
 $ib = $ib + 'Usr=' + (XmlEsc $Пользователь) + ';Pwd=' + (XmlEsc $Пароль) + ';'
 $xml = $xml.Remove($m.Groups[1].Index, $m.Groups[1].Length).Insert($m.Groups[1].Index, $ib)
 W "ib: дописаны Usr и Pwd (пароль в лог не пишется)"
 
 # --- 3. публикация HTTP-сервиса ---------------------------------------------
 # Ставим и общий флаг, и явную запись о сервисе: если один из вариантов схемы
-# окажется неверным, второй должен отработать.
-$xml = [regex]::Replace($xml, '(?s)\s*<httpServices.*?(?:/>|</httpServices>)', '')
+# окажется неверным, второй должен отработать. Решает здесь именно <service>;
+# publishByDefault - тот же атрибут, который пишет в свой запасной vrd
+# publish-tgbot.ps1 (pointEnableCommon из первой версии относится к <ws>).
+#
+# Два отдельных шаблона, а не один с '(?:/>|</httpServices>)': ленивый .*?
+# в парном блоке останавливался на '/>' вложенного <service .../> и оставлял
+# в файле висячий </httpServices>. На первом запуске это незаметно (блока ещё
+# нет), а на втором - когда меняют пароль - vrd становился невалидным XML.
+$xml = [regex]::Replace($xml, '(?s)\s*<httpServices\b[^>]*>.*?</httpServices>', '')
+$xml = [regex]::Replace($xml, '\s*<httpServices\b[^>]*/>', '')
 
 $block = @"
 
-	<httpServices pointEnableCommon="true">
+	<httpServices publishByDefault="true">
 		<service name="$Service" rootUrl="$RootUrl" enable="true"/>
 	</httpServices>
 "@
+if ($xml -notmatch '</point>') {
+  W "FATAL: в vrd нет </point> - вставлять блок некуда"
+  Write-Host "  В default.vrd нет закрывающего </point>. Файл не тронут, смотрите $Vrd." -ForegroundColor Red
+  exit 1
+}
 $xml = $xml.Replace('</point>', $block + "`r`n</point>")
 W "httpServices: добавлен блок для $Service (rootUrl=$RootUrl)"
 
 [System.IO.File]::WriteAllText($Vrd, $xml, (New-Object System.Text.UTF8Encoding $false))
 
+# Копия vrd в лог с замазанным паролем: задание просит прислать этот файл,
+# а отдавать его как есть нельзя - пароль в нём открытым текстом.
+W "--- default.vrd (пароль скрыт) ---"
+foreach ($l in ([regex]::Replace($xml, '(?i)Pwd=[^;"]*', 'Pwd=***') -split "`r?`n")) { W ("  " + $l) }
+
 # --- 4. права на файл с паролем ---------------------------------------------
-$acl = Get-Acl $Vrd
-$acl.SetAccessRuleProtection($true, $false)   # снять наследование, копии не делать
-foreach ($id in @('NT AUTHORITY\SYSTEM', 'BUILTIN\Администраторы', "IIS AppPool\$Site")) {
-  try {
-    $acl.AddAccessRule((New-Object System.Security.AccessControl.FileSystemAccessRule(
-      $id, 'ReadAndExecute', 'Allow')))
-  } catch { W ("ACL: не удалось добавить $id - " + $_.Exception.Message) }
+# SYSTEM и «Администраторы» задаём известными SID, а не именами: на английской
+# ОС группы 'BUILTIN\Администраторы' не существует, правило не создавалось бы,
+# а наследование при этом уже снято - файл остался бы без доступа вообще.
+$rules = @()
+foreach ($sid in @('S-1-5-18', 'S-1-5-32-544')) {
+  $rules += New-Object System.Security.AccessControl.FileSystemAccessRule(
+    (New-Object System.Security.Principal.SecurityIdentifier($sid)), 'ReadAndExecute', 'Allow')
 }
-Set-Acl -Path $Vrd -AclObject $acl
-W "ACL: наследование снято, доступ - SYSTEM, администраторы, пул $Site"
+
+# Пул читает vrd сам - без его правила публикация встанет. Если учётки пула нет
+# (сайт называется иначе), наследование НЕ трогаем: пусть пароль лучше будет
+# читаем, чем публикация ляжет.
+$poolRule = $null
+try {
+  $poolRule = New-Object System.Security.AccessControl.FileSystemAccessRule(
+    "IIS AppPool\$Site", 'ReadAndExecute', 'Allow')
+} catch { W ("ACL: не удалось создать правило для пула $Site - " + $_.Exception.Message) }
+
+if ($poolRule) {
+  $acl = Get-Acl $Vrd
+  $acl.SetAccessRuleProtection($true, $false)   # снять наследование, копии не делать
+  foreach ($r in ($rules + $poolRule)) { $acl.AddAccessRule($r) }
+  Set-Acl -Path $Vrd -AclObject $acl
+  W "ACL: наследование снято, доступ - SYSTEM, администраторы, пул $Site"
+} else {
+  W "ACL: пропущен, права файла остались наследованными - пароль читается всеми"
+  Write-Host "  Права на default.vrd не сужены - пароль в нём читает любой пользователь сервера." -ForegroundColor Yellow
+}
 
 # --- 5. перезапуск пула и проверка ------------------------------------------
 Import-Module WebAdministration -ErrorAction Stop
