@@ -67,10 +67,12 @@ $xml = $xml.Remove($m.Groups[1].Index, $m.Groups[1].Length).Insert($m.Groups[1].
 W "ib: дописаны Usr и Pwd (пароль в лог не пишется)"
 
 # --- 3. публикация HTTP-сервиса ---------------------------------------------
-# Ставим и общий флаг, и явную запись о сервисе: если один из вариантов схемы
-# окажется неверным, второй должен отработать. Решает здесь именно <service>;
-# publishByDefault - тот же атрибут, который пишет в свой запасной vrd
-# publish-tgbot.ps1 (pointEnableCommon из первой версии относится к <ws>).
+# Атрибутов у <httpServices> не пишем вовсе - только явную запись <service>.
+# Проверено на машине 07.08.2026: с pointEnableCommon 1С отвечает 500
+# «Ошибка при разборе дескриптора виртуальных ресурсов. НачалоСвойства:
+# pointEnableCommon Форма: Атрибут» - схема этот атрибут у httpServices не
+# принимает (у <ws> он валиден, там его пишет сам webinst). publishByDefault
+# так же не проверен, поэтому не рискуем: публикацию делает <service>.
 #
 # Два отдельных шаблона, а не один с '(?:/>|</httpServices>)': ленивый .*?
 # в парном блоке останавливался на '/>' вложенного <service .../> и оставлял
@@ -81,7 +83,7 @@ $xml = [regex]::Replace($xml, '\s*<httpServices\b[^>]*/>', '')
 
 $block = @"
 
-	<httpServices publishByDefault="true">
+	<httpServices>
 		<service name="$Service" rootUrl="$RootUrl" enable="true"/>
 	</httpServices>
 "@
