@@ -1,4 +1,4 @@
-$ErrorActionPreference = 'Continue'
+﻿$ErrorActionPreference = 'Continue'
 $log = Join-Path $PSScriptRoot 'setup-tgsite.log'
 function W([string]$m) { Add-Content -Path $log -Value $m -Encoding UTF8 }
 Set-Content -Path $log -Value "=== setup-tgsite start ===" -Encoding UTF8
@@ -17,7 +17,19 @@ $Host1    = 'tg.cvetkovtm.com'
 $Ip       = '5.255.168.246'
 $CertOut  = Join-Path $PSScriptRoot 'telegram-webhook.crt'
 
-W ("elevated: " + ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))
+$isAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+W ("elevated: " + $isAdmin)
+if (-not $isAdmin) {
+  W "FATAL: not elevated, nothing done"
+  Write-Host ""
+  Write-Host "  Скрипт запущен БЕЗ прав администратора - ничего не сделано." -ForegroundColor Red
+  Write-Host "  Нужно окно PowerShell с заголовком 'Администратор:'." -ForegroundColor Red
+  Write-Host ""
+  Write-Host "  Пуск -> набрать 'PowerShell' -> правой кнопкой ->" -ForegroundColor Yellow
+  Write-Host "  'Запуск от имени администратора', и повторить ту же команду." -ForegroundColor Yellow
+  Write-Host ""
+  exit 1
+}
 
 # --- 1. folders -------------------------------------------------------------
 if (-not (Test-Path $Root))            { New-Item -ItemType Directory -Path $Root            | Out-Null }
