@@ -34,6 +34,18 @@ if (Test-Path $проверка) {
     Write-Host ""
 }
 
+# Структурная проверка изменённых модулей .bsl. Конфигуратора здесь нет, и
+# ошибка компиляции иначе выясняется только после круга push -> pull -> загрузка
+# конфигурации. Снимок при ошибке всё равно создаём (он страховка), но push
+# не делаем: пусть сломанный модуль не уезжает на машину с 1С.
+$бсл = Join-Path $PSScriptRoot "check-bsl.ps1"
+$бслСломан = $false
+if (Test-Path $бсл) {
+    & $шелл -NoProfile -ExecutionPolicy Bypass -File $бсл
+    if ($LASTEXITCODE -ne 0) { $бслСломан = $true }
+    Write-Host ""
+}
+
 & $git add -A 2>&1 | Out-Null
 
 $dirty = & $git status --porcelain
@@ -58,6 +70,13 @@ Write-Host "Что изменилось:" -ForegroundColor Cyan
 # Перенос на машину с 1С идёт через GitHub: без push снимок туда не попадёт.
 Write-Host ""
 $ветка = (& $git rev-parse --abbrev-ref HEAD).Trim()
+
+if ($бслСломан) {
+    Write-Host "PUSH ПРОПУЩЕН: в модулях .bsl ошибки (см. выше)." -ForegroundColor Red
+    Write-Host "Снимок создан локально. Почините модуль и повторите снимок." -ForegroundColor Red
+    exit 1
+}
+
 & $git push origin $ветка 2>&1 | Write-Host
 if ($LASTEXITCODE -eq 0) {
     Write-Host "Отправлено на origin/$ветка — можно делать pull на машине с 1С." -ForegroundColor Green
