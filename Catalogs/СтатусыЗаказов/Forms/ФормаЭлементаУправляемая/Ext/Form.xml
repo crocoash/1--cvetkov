@@ -39,9 +39,9 @@
 				</InputField>
 			</ChildItems>
 		</UsualGroup>
-		<Pages name="Страницы" id="159">
+		<Pages name="Страницы" id="210">
 			<PagesRepresentation>TabsOnTop</PagesRepresentation>
-			<ExtendedTooltip name="СтраницыРасширеннаяПодсказка" id="160"/>
+			<ExtendedTooltip name="СтраницыРасширеннаяПодсказка" id="211"/>
 			<ChildItems>
 				<Page name="СтраницаОсновное" id="29">
 					<Title>
@@ -295,238 +295,461 @@
 						</UsualGroup>
 					</ChildItems>
 				</Page>
-				<Page name="СтраницаТелеграм" id="106">
+				<Page name="СтраницаТелеграм" id="127">
 					<Title>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
 							<v8:content>Телеграм</v8:content>
 						</v8:item>
 					</Title>
-					<ExtendedTooltip name="СтраницаТелеграмРасширеннаяПодсказка" id="107"/>
+					<ExtendedTooltip name="СтраницаТелеграмРасширеннаяПодсказка" id="128"/>
 					<ChildItems>
-						<CheckBoxField name="ОтправлятьВТелеграм" id="90">
-							<DataPath>Объект.ОтправлятьВТелеграм</DataPath>
-							<Title>
-								<v8:item>
-									<v8:lang>ru</v8:lang>
-									<v8:content>Уведомлять менеджера в Telegram</v8:content>
-								</v8:item>
-							</Title>
-							<CheckBoxType>Auto</CheckBoxType>
-							<ContextMenu name="ОтправлятьВТелеграмКонтекстноеМеню" id="91"/>
-							<ExtendedTooltip name="ОтправлятьВТелеграмРасширеннаяПодсказка" id="92"/>
-						</CheckBoxField>
-						<InputField name="ТелеграмЧат" id="93">
-							<DataPath>Объект.ТелеграмЧат</DataPath>
-							<Title>
-								<v8:item>
-									<v8:lang>ru</v8:lang>
-									<v8:content>Чаты</v8:content>
-								</v8:item>
-							</Title>
-							<EditMode>EnterOnInput</EditMode>
-							<Width>60</Width>
-							<ContextMenu name="ТелеграмЧатКонтекстноеМеню" id="94"/>
-							<ExtendedTooltip name="ТелеграмЧатРасширеннаяПодсказка" id="95"/>
-						</InputField>
-						<InputField name="ТелеграмЧатСмены" id="96">
-							<DataPath>Объект.ТелеграмЧатСмены</DataPath>
-							<Title>
-								<v8:item>
-									<v8:lang>ru</v8:lang>
-									<v8:content>Чаты при смене статуса</v8:content>
-								</v8:item>
-							</Title>
-							<EditMode>EnterOnInput</EditMode>
-							<Width>60</Width>
-							<ContextMenu name="ТелеграмЧатСменыКонтекстноеМеню" id="97"/>
-							<ExtendedTooltip name="ТелеграмЧатСменыРасширеннаяПодсказка" id="98"/>
-						</InputField>
-						<LabelDecoration name="НадписьТелеграм" id="99">
+						<Pages name="СтраницыТелеграм" id="118">
+							<PagesRepresentation>TabsOnTop</PagesRepresentation>
+							<ExtendedTooltip name="СтраницыТелеграмРасширеннаяПодсказка" id="119"/>
+							<ChildItems>
+								<Page name="СтраницаТелеграмРозница" id="102">
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Розница</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="СтраницаТелеграмРозницаРасширеннаяПодсказка" id="103"/>
+									<ChildItems>
+										<CheckBoxField name="ОтправлятьВТелеграм" id="90">
+											<DataPath>Объект.ОтправлятьВТелеграм</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Уведомлять менеджера в Telegram</v8:content>
+												</v8:item>
+											</Title>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="ОтправлятьВТелеграмКонтекстноеМеню" id="91"/>
+											<ExtendedTooltip name="ОтправлятьВТелеграмРасширеннаяПодсказка" id="92"/>
+										</CheckBoxField>
+										<InputField name="ТелеграмЧат" id="93">
+											<DataPath>Объект.ТелеграмЧат</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Чаты</v8:content>
+												</v8:item>
+											</Title>
+											<EditMode>EnterOnInput</EditMode>
+											<Width>60</Width>
+											<ContextMenu name="ТелеграмЧатКонтекстноеМеню" id="94"/>
+											<ExtendedTooltip name="ТелеграмЧатРасширеннаяПодсказка" id="95"/>
+										</InputField>
+										<InputField name="ТелеграмЧатСмены" id="96">
+											<DataPath>Объект.ТелеграмЧатСмены</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Чаты при смене статуса</v8:content>
+												</v8:item>
+											</Title>
+											<EditMode>EnterOnInput</EditMode>
+											<Width>60</Width>
+											<ContextMenu name="ТелеграмЧатСменыКонтекстноеМеню" id="97"/>
+											<ExtendedTooltip name="ТелеграмЧатСменыРасширеннаяПодсказка" id="98"/>
+										</InputField>
+										<LabelDecoration name="НадписьТелеграмРозница" id="99">
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Пусто в «Чаты» при поставленной галке — получателей берём у статуса, где они заполнены.</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="НадписьТелеграмРозницаКонтекстноеМеню" id="100"/>
+											<ExtendedTooltip name="НадписьТелеграмРозницаРасширеннаяПодсказка" id="101"/>
+										</LabelDecoration>
+									</ChildItems>
+								</Page>
+								<Page name="СтраницаТелеграмОстальные" id="116">
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Остальные</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="СтраницаТелеграмОстальныеРасширеннаяПодсказка" id="117"/>
+									<ChildItems>
+										<CheckBoxField name="ОтправлятьВТелеграмОстальные" id="104">
+											<DataPath>Объект.ОтправлятьВТелеграмОстальные</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Уведомлять менеджера в Telegram</v8:content>
+												</v8:item>
+											</Title>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="ОтправлятьВТелеграмОстальныеКонтекстноеМеню" id="105"/>
+											<ExtendedTooltip name="ОтправлятьВТелеграмОстальныеРасширеннаяПодсказка" id="106"/>
+										</CheckBoxField>
+										<InputField name="ТелеграмЧатОстальные" id="107">
+											<DataPath>Объект.ТелеграмЧатОстальные</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Чаты</v8:content>
+												</v8:item>
+											</Title>
+											<EditMode>EnterOnInput</EditMode>
+											<Width>60</Width>
+											<ContextMenu name="ТелеграмЧатОстальныеКонтекстноеМеню" id="108"/>
+											<ExtendedTooltip name="ТелеграмЧатОстальныеРасширеннаяПодсказка" id="109"/>
+										</InputField>
+										<InputField name="ТелеграмЧатСменыОстальные" id="110">
+											<DataPath>Объект.ТелеграмЧатСменыОстальные</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Чаты при смене статуса</v8:content>
+												</v8:item>
+											</Title>
+											<EditMode>EnterOnInput</EditMode>
+											<Width>60</Width>
+											<ContextMenu name="ТелеграмЧатСменыОстальныеКонтекстноеМеню" id="111"/>
+											<ExtendedTooltip name="ТелеграмЧатСменыОстальныеРасширеннаяПодсказка" id="112"/>
+										</InputField>
+										<LabelDecoration name="НадписьТелеграмОстальные" id="113">
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Опт, СП, дропшиппинг, представники. Пусто — по этим заказам не пишем; отката на розничный чат тут нет намеренно.</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="НадписьТелеграмОстальныеКонтекстноеМеню" id="114"/>
+											<ExtendedTooltip name="НадписьТелеграмОстальныеРасширеннаяПодсказка" id="115"/>
+										</LabelDecoration>
+									</ChildItems>
+								</Page>
+							</ChildItems>
+						</Pages>
+						<LabelDecoration name="НадписьТелеграм" id="120">
 							<Title formatted="false">
 								<v8:item>
 									<v8:lang>ru</v8:lang>
-									<v8:content>ID чатов через запятую. Пусто в «Чаты» — получателей берём у статуса, где они заполнены. Кнопка ниже показывает чаты, которые уже написали боту.</v8:content>
+									<v8:content>Розница определяется по типу цен заказа (ТелеграмБот.ЭтоРозничныйЗаказ). ID чатов — через запятую. Кнопка показывает чаты, которые уже написали боту.</v8:content>
 								</v8:item>
 							</Title>
-							<ContextMenu name="НадписьТелеграмКонтекстноеМеню" id="100"/>
-							<ExtendedTooltip name="НадписьТелеграмРасширеннаяПодсказка" id="101"/>
+							<ContextMenu name="НадписьТелеграмКонтекстноеМеню" id="121"/>
+							<ExtendedTooltip name="НадписьТелеграмРасширеннаяПодсказка" id="122"/>
 						</LabelDecoration>
-						<CommandBar name="КоманднаяПанельТелеграм" id="102">
-							<ExtendedTooltip name="КоманднаяПанельТелеграмРасширеннаяПодсказка" id="103"/>
+						<CommandBar name="КоманднаяПанельТелеграм" id="123">
+							<ExtendedTooltip name="КоманднаяПанельТелеграмРасширеннаяПодсказка" id="124"/>
 							<ChildItems>
-								<Button name="КнопкаПоказатьНовыеЧаты" id="104">
+								<Button name="КнопкаПоказатьНовыеЧаты" id="125">
 									<Type>CommandBarButton</Type>
 									<CommandName>Form.Command.ПоказатьНовыеЧаты</CommandName>
-									<ExtendedTooltip name="КнопкаПоказатьНовыеЧатыРасширеннаяПодсказка" id="105"/>
+									<ExtendedTooltip name="КнопкаПоказатьНовыеЧатыРасширеннаяПодсказка" id="126"/>
 								</Button>
 							</ChildItems>
 						</CommandBar>
 					</ChildItems>
 				</Page>
-				<Page name="СтраницаЗадачи" id="157">
+				<Page name="СтраницаЗадачи" id="208">
 					<Title>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
 							<v8:content>Задачи</v8:content>
 						</v8:item>
 					</Title>
-					<ExtendedTooltip name="СтраницаЗадачиРасширеннаяПодсказка" id="158"/>
+					<ExtendedTooltip name="СтраницаЗадачиРасширеннаяПодсказка" id="209"/>
 					<ChildItems>
-						<UsualGroup name="ГруппаЗадачаПриСмене" id="117">
-							<Title>
-								<v8:item>
-									<v8:lang>ru</v8:lang>
-									<v8:content>При смене статуса</v8:content>
-								</v8:item>
-							</Title>
-							<Group>Vertical</Group>
-							<Representation>StrongSeparation</Representation>
-							<ExtendedTooltip name="ГруппаЗадачаПриСменеРасширеннаяПодсказка" id="118"/>
+						<Pages name="СтраницыЗадачи" id="190">
+							<PagesRepresentation>TabsOnTop</PagesRepresentation>
+							<ExtendedTooltip name="СтраницыЗадачиРасширеннаяПодсказка" id="191"/>
 							<ChildItems>
-								<CheckBoxField name="ФормироватьЗадачу" id="108">
-									<DataPath>Объект.ФормироватьЗадачу</DataPath>
+								<Page name="СтраницаЗадачиОстальные" id="165">
 									<Title>
 										<v8:item>
 											<v8:lang>ru</v8:lang>
-											<v8:content>Формировать задачу при смене статуса</v8:content>
+											<v8:content>Остальные</v8:content>
 										</v8:item>
 									</Title>
-									<CheckBoxType>Auto</CheckBoxType>
-									<ContextMenu name="ФормироватьЗадачуКонтекстноеМеню" id="109"/>
-									<ExtendedTooltip name="ФормироватьЗадачуРасширеннаяПодсказка" id="110"/>
-								</CheckBoxField>
-								<InputField name="Пользователь" id="111">
-									<DataPath>Объект.Пользователь</DataPath>
-									<Title>
-										<v8:item>
-											<v8:lang>ru</v8:lang>
-											<v8:content>Исполнитель</v8:content>
-										</v8:item>
-									</Title>
-									<EditMode>EnterOnInput</EditMode>
-									<ClearButton>true</ClearButton>
-									<Width>30</Width>
-									<ContextMenu name="ПользовательКонтекстноеМеню" id="112"/>
-									<ExtendedTooltip name="ПользовательРасширеннаяПодсказка" id="113"/>
-								</InputField>
-								<InputField name="ПользовательГруппа" id="114">
-									<DataPath>Объект.ПользовательГруппа</DataPath>
-									<Title>
-										<v8:item>
-											<v8:lang>ru</v8:lang>
-											<v8:content>Исполнитель, если первый не задан</v8:content>
-										</v8:item>
-									</Title>
-									<EditMode>EnterOnInput</EditMode>
-									<ClearButton>true</ClearButton>
-									<Width>30</Width>
-									<ContextMenu name="ПользовательГруппаКонтекстноеМеню" id="115"/>
-									<ExtendedTooltip name="ПользовательГруппаРасширеннаяПодсказка" id="116"/>
-								</InputField>
-							</ChildItems>
-						</UsualGroup>
-						<UsualGroup name="ГруппаЗадачаПросрочка" id="139">
-							<Title>
-								<v8:item>
-									<v8:lang>ru</v8:lang>
-									<v8:content>При просрочке статуса</v8:content>
-								</v8:item>
-							</Title>
-							<Group>Vertical</Group>
-							<Representation>StrongSeparation</Representation>
-							<ExtendedTooltip name="ГруппаЗадачаПросрочкаРасширеннаяПодсказка" id="140"/>
-							<ChildItems>
-								<UsualGroup name="ГруппаДнейВСтатусе" id="125">
-									<Group>Horizontal</Group>
-									<Representation>None</Representation>
-									<ShowTitle>false</ShowTitle>
-									<ExtendedTooltip name="ГруппаДнейВСтатусеРасширеннаяПодсказка" id="126"/>
+									<ExtendedTooltip name="СтраницаЗадачиОстальныеРасширеннаяПодсказка" id="166"/>
 									<ChildItems>
-										<InputField name="ДнейВСтатусе" id="119">
-											<DataPath>Объект.ДнейВСтатусе</DataPath>
-											<EditMode>EnterOnInput</EditMode>
-											<Width>6</Width>
-											<HorizontalStretch>false</HorizontalStretch>
-											<ContextMenu name="ДнейВСтатусеКонтекстноеМеню" id="120"/>
-											<ExtendedTooltip name="ДнейВСтатусеРасширеннаяПодсказка" id="121"/>
-										</InputField>
-										<LabelDecoration name="НадписьДнейВСтатусе" id="122">
-											<GroupVerticalAlign>Bottom</GroupVerticalAlign>
+										<UsualGroup name="ГруппаЗадачаПриСмене" id="138">
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>При смене статуса</v8:content>
+												</v8:item>
+											</Title>
+											<Group>Vertical</Group>
+											<Representation>StrongSeparation</Representation>
+											<ExtendedTooltip name="ГруппаЗадачаПриСменеРасширеннаяПодсказка" id="139"/>
+											<ChildItems>
+												<CheckBoxField name="ФормироватьЗадачу" id="129">
+													<DataPath>Объект.ФормироватьЗадачу</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Формировать задачу при смене статуса</v8:content>
+														</v8:item>
+													</Title>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="ФормироватьЗадачуКонтекстноеМеню" id="130"/>
+													<ExtendedTooltip name="ФормироватьЗадачуРасширеннаяПодсказка" id="131"/>
+												</CheckBoxField>
+												<InputField name="Пользователь" id="132">
+													<DataPath>Объект.Пользователь</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Исполнитель</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>EnterOnInput</EditMode>
+													<ClearButton>true</ClearButton>
+													<Width>30</Width>
+													<ContextMenu name="ПользовательКонтекстноеМеню" id="133"/>
+													<ExtendedTooltip name="ПользовательРасширеннаяПодсказка" id="134"/>
+												</InputField>
+												<InputField name="ПользовательГруппа" id="135">
+													<DataPath>Объект.ПользовательГруппа</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Исполнитель, если первый не задан</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>EnterOnInput</EditMode>
+													<ClearButton>true</ClearButton>
+													<Width>30</Width>
+													<ContextMenu name="ПользовательГруппаКонтекстноеМеню" id="136"/>
+													<ExtendedTooltip name="ПользовательГруппаРасширеннаяПодсказка" id="137"/>
+												</InputField>
+											</ChildItems>
+										</UsualGroup>
+										<UsualGroup name="ГруппаЗадачаПросрочка" id="160">
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>При просрочке статуса</v8:content>
+												</v8:item>
+											</Title>
+											<Group>Vertical</Group>
+											<Representation>StrongSeparation</Representation>
+											<ExtendedTooltip name="ГруппаЗадачаПросрочкаРасширеннаяПодсказка" id="161"/>
+											<ChildItems>
+												<UsualGroup name="ГруппаДнейВСтатусе" id="146">
+													<Group>Horizontal</Group>
+													<Representation>None</Representation>
+													<ShowTitle>false</ShowTitle>
+													<ExtendedTooltip name="ГруппаДнейВСтатусеРасширеннаяПодсказка" id="147"/>
+													<ChildItems>
+														<InputField name="ДнейВСтатусе" id="140">
+															<DataPath>Объект.ДнейВСтатусе</DataPath>
+															<EditMode>EnterOnInput</EditMode>
+															<Width>6</Width>
+															<HorizontalStretch>false</HorizontalStretch>
+															<ContextMenu name="ДнейВСтатусеКонтекстноеМеню" id="141"/>
+															<ExtendedTooltip name="ДнейВСтатусеРасширеннаяПодсказка" id="142"/>
+														</InputField>
+														<LabelDecoration name="НадписьДнейВСтатусе" id="143">
+															<GroupVerticalAlign>Bottom</GroupVerticalAlign>
+															<Title formatted="false">
+																<v8:item>
+																	<v8:lang>ru</v8:lang>
+																	<v8:content>0 — задачу не формируем</v8:content>
+																</v8:item>
+															</Title>
+															<ContextMenu name="НадписьДнейВСтатусеКонтекстноеМеню" id="144"/>
+															<ExtendedTooltip name="НадписьДнейВСтатусеРасширеннаяПодсказка" id="145"/>
+														</LabelDecoration>
+													</ChildItems>
+												</UsualGroup>
+												<InputField name="Пользователь1" id="148">
+													<DataPath>Объект.Пользователь1</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Задача пользователю</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>EnterOnInput</EditMode>
+													<ClearButton>true</ClearButton>
+													<Width>30</Width>
+													<ContextMenu name="Пользователь1КонтекстноеМеню" id="149"/>
+													<ExtendedTooltip name="Пользователь1РасширеннаяПодсказка" id="150"/>
+													<Events>
+														<Event name="OnChange">ИсполнительПросрочкиПриИзменении</Event>
+													</Events>
+												</InputField>
+												<InputField name="ЗадачаГруппеПользователей" id="151">
+													<DataPath>Объект.ЗадачаГруппеПользователей</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Задача группе пользователей</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>EnterOnInput</EditMode>
+													<ChoiceFoldersAndItems>Folders</ChoiceFoldersAndItems>
+													<ClearButton>true</ClearButton>
+													<Width>30</Width>
+													<ContextMenu name="ЗадачаГруппеПользователейКонтекстноеМеню" id="152"/>
+													<ExtendedTooltip name="ЗадачаГруппеПользователейРасширеннаяПодсказка" id="153"/>
+													<Events>
+														<Event name="OnChange">ИсполнительПросрочкиПриИзменении</Event>
+													</Events>
+												</InputField>
+												<CheckBoxField name="ФормироватьЗадачуНаОтветственного" id="154">
+													<DataPath>Объект.ФормироватьЗадачуНаОтветственного</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Задача ответственному за заказ</v8:content>
+														</v8:item>
+													</Title>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="ФормироватьЗадачуНаОтветственногоКонтекстноеМеню" id="155"/>
+													<ExtendedTooltip name="ФормироватьЗадачуНаОтветственногоРасширеннаяПодсказка" id="156"/>
+													<Events>
+														<Event name="OnChange">ИсполнительПросрочкиПриИзменении</Event>
+													</Events>
+												</CheckBoxField>
+												<LabelDecoration name="НадписьИсполнительПросрочки" id="157">
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Способ один: пользователь, группа или ответственный за заказ. Заполненный вариант блокирует остальные.</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="НадписьИсполнительПросрочкиКонтекстноеМеню" id="158"/>
+													<ExtendedTooltip name="НадписьИсполнительПросрочкиРасширеннаяПодсказка" id="159"/>
+												</LabelDecoration>
+											</ChildItems>
+										</UsualGroup>
+										<LabelDecoration name="НадписьЗадачиОстальные" id="162">
 											<Title formatted="false">
 												<v8:item>
 													<v8:lang>ru</v8:lang>
-													<v8:content>0 — задачу не формируем</v8:content>
+													<v8:content>Эти правила действуют по всем заказам. По розничным их перебивают заполненные поля на закладке «Розница».</v8:content>
 												</v8:item>
 											</Title>
-											<ContextMenu name="НадписьДнейВСтатусеКонтекстноеМеню" id="123"/>
-											<ExtendedTooltip name="НадписьДнейВСтатусеРасширеннаяПодсказка" id="124"/>
+											<ContextMenu name="НадписьЗадачиОстальныеКонтекстноеМеню" id="163"/>
+											<ExtendedTooltip name="НадписьЗадачиОстальныеРасширеннаяПодсказка" id="164"/>
 										</LabelDecoration>
 									</ChildItems>
-								</UsualGroup>
-								<InputField name="Пользователь1" id="127">
-									<DataPath>Объект.Пользователь1</DataPath>
+								</Page>
+								<Page name="СтраницаЗадачиРозница" id="188">
 									<Title>
 										<v8:item>
 											<v8:lang>ru</v8:lang>
-											<v8:content>Задача пользователю</v8:content>
+											<v8:content>Розница</v8:content>
 										</v8:item>
 									</Title>
-									<EditMode>EnterOnInput</EditMode>
-									<ClearButton>true</ClearButton>
-									<Width>30</Width>
-									<ContextMenu name="Пользователь1КонтекстноеМеню" id="128"/>
-									<ExtendedTooltip name="Пользователь1РасширеннаяПодсказка" id="129"/>
-									<Events>
-										<Event name="OnChange">ИсполнительПросрочкиПриИзменении</Event>
-									</Events>
-								</InputField>
-								<InputField name="ЗадачаГруппеПользователей" id="130">
-									<DataPath>Объект.ЗадачаГруппеПользователей</DataPath>
-									<Title>
-										<v8:item>
-											<v8:lang>ru</v8:lang>
-											<v8:content>Задача группе пользователей</v8:content>
-										</v8:item>
-									</Title>
-									<EditMode>EnterOnInput</EditMode>
-									<ChoiceFoldersAndItems>Folders</ChoiceFoldersAndItems>
-									<ClearButton>true</ClearButton>
-									<Width>30</Width>
-									<ContextMenu name="ЗадачаГруппеПользователейКонтекстноеМеню" id="131"/>
-									<ExtendedTooltip name="ЗадачаГруппеПользователейРасширеннаяПодсказка" id="132"/>
-									<Events>
-										<Event name="OnChange">ИсполнительПросрочкиПриИзменении</Event>
-									</Events>
-								</InputField>
-								<CheckBoxField name="ФормироватьЗадачуНаОтветственного" id="133">
-									<DataPath>Объект.ФормироватьЗадачуНаОтветственного</DataPath>
-									<Title>
-										<v8:item>
-											<v8:lang>ru</v8:lang>
-											<v8:content>Задача ответственному за заказ</v8:content>
-										</v8:item>
-									</Title>
-									<CheckBoxType>Auto</CheckBoxType>
-									<ContextMenu name="ФормироватьЗадачуНаОтветственногоКонтекстноеМеню" id="134"/>
-									<ExtendedTooltip name="ФормироватьЗадачуНаОтветственногоРасширеннаяПодсказка" id="135"/>
-									<Events>
-										<Event name="OnChange">ИсполнительПросрочкиПриИзменении</Event>
-									</Events>
-								</CheckBoxField>
-								<LabelDecoration name="НадписьИсполнительПросрочки" id="136">
-									<Title formatted="false">
-										<v8:item>
-											<v8:lang>ru</v8:lang>
-											<v8:content>Способ один: пользователь, группа или ответственный за заказ. Заполненный вариант блокирует остальные.</v8:content>
-										</v8:item>
-									</Title>
-									<ContextMenu name="НадписьИсполнительПросрочкиКонтекстноеМеню" id="137"/>
-									<ExtendedTooltip name="НадписьИсполнительПросрочкиРасширеннаяПодсказка" id="138"/>
-								</LabelDecoration>
+									<ExtendedTooltip name="СтраницаЗадачиРозницаРасширеннаяПодсказка" id="189"/>
+									<ChildItems>
+										<UsualGroup name="ГруппаЗадачаПриСменеРозница" id="170">
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>При смене статуса</v8:content>
+												</v8:item>
+											</Title>
+											<Group>Vertical</Group>
+											<Representation>StrongSeparation</Representation>
+											<ExtendedTooltip name="ГруппаЗадачаПриСменеРозницаРасширеннаяПодсказка" id="171"/>
+											<ChildItems>
+												<InputField name="ПользовательРозница" id="167">
+													<DataPath>Объект.ПользовательРозница</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Исполнитель</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>EnterOnInput</EditMode>
+													<ChoiceFoldersAndItems>FoldersAndItems</ChoiceFoldersAndItems>
+													<ClearButton>true</ClearButton>
+													<Width>30</Width>
+													<ContextMenu name="ПользовательРозницаКонтекстноеМеню" id="168"/>
+													<ExtendedTooltip name="ПользовательРозницаРасширеннаяПодсказка" id="169"/>
+												</InputField>
+											</ChildItems>
+										</UsualGroup>
+										<UsualGroup name="ГруппаЗадачаПросрочкаРозница" id="183">
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>При просрочке статуса</v8:content>
+												</v8:item>
+											</Title>
+											<Group>Vertical</Group>
+											<Representation>StrongSeparation</Representation>
+											<ExtendedTooltip name="ГруппаЗадачаПросрочкаРозницаРасширеннаяПодсказка" id="184"/>
+											<ChildItems>
+												<UsualGroup name="ГруппаДнейВСтатусеРозница" id="178">
+													<Group>Horizontal</Group>
+													<Representation>None</Representation>
+													<ShowTitle>false</ShowTitle>
+													<ExtendedTooltip name="ГруппаДнейВСтатусеРозницаРасширеннаяПодсказка" id="179"/>
+													<ChildItems>
+														<InputField name="ДнейВСтатусеРозница" id="172">
+															<DataPath>Объект.ДнейВСтатусеРозница</DataPath>
+															<Title>
+																<v8:item>
+																	<v8:lang>ru</v8:lang>
+																	<v8:content>Дней в статусе</v8:content>
+																</v8:item>
+															</Title>
+															<EditMode>EnterOnInput</EditMode>
+															<Width>6</Width>
+															<HorizontalStretch>false</HorizontalStretch>
+															<ContextMenu name="ДнейВСтатусеРозницаКонтекстноеМеню" id="173"/>
+															<ExtendedTooltip name="ДнейВСтатусеРозницаРасширеннаяПодсказка" id="174"/>
+														</InputField>
+														<LabelDecoration name="НадписьДнейВСтатусеРозница" id="175">
+															<GroupVerticalAlign>Bottom</GroupVerticalAlign>
+															<Title formatted="false">
+																<v8:item>
+																	<v8:lang>ru</v8:lang>
+																	<v8:content>0 — как у остальных заказов</v8:content>
+																</v8:item>
+															</Title>
+															<ContextMenu name="НадписьДнейВСтатусеРозницаКонтекстноеМеню" id="176"/>
+															<ExtendedTooltip name="НадписьДнейВСтатусеРозницаРасширеннаяПодсказка" id="177"/>
+														</LabelDecoration>
+													</ChildItems>
+												</UsualGroup>
+												<InputField name="ПользовательПросрочкиРозница" id="180">
+													<DataPath>Объект.ПользовательПросрочкиРозница</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Исполнитель</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>EnterOnInput</EditMode>
+													<ChoiceFoldersAndItems>FoldersAndItems</ChoiceFoldersAndItems>
+													<ClearButton>true</ClearButton>
+													<Width>30</Width>
+													<ContextMenu name="ПользовательПросрочкиРозницаКонтекстноеМеню" id="181"/>
+													<ExtendedTooltip name="ПользовательПросрочкиРозницаРасширеннаяПодсказка" id="182"/>
+												</InputField>
+											</ChildItems>
+										</UsualGroup>
+										<LabelDecoration name="НадписьЗадачиРозница" id="185">
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Пусто (0) — по розничным заказам работает то же правило, что и по остальным. Розница определяется по типу цен заказа.</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="НадписьЗадачиРозницаКонтекстноеМеню" id="186"/>
+											<ExtendedTooltip name="НадписьЗадачиРозницаРасширеннаяПодсказка" id="187"/>
+										</LabelDecoration>
+									</ChildItems>
+								</Page>
 							</ChildItems>
-						</UsualGroup>
-						<UsualGroup name="ГруппаСрокХранения" id="155">
+						</Pages>
+						<UsualGroup name="ГруппаСрокХранения" id="206">
 							<Title>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
@@ -535,9 +758,9 @@
 							</Title>
 							<Group>Vertical</Group>
 							<Representation>StrongSeparation</Representation>
-							<ExtendedTooltip name="ГруппаСрокХраненияРасширеннаяПодсказка" id="156"/>
+							<ExtendedTooltip name="ГруппаСрокХраненияРасширеннаяПодсказка" id="207"/>
 							<ChildItems>
-								<CheckBoxField name="ФормироватьЗадачуСрокХранения" id="141">
+								<CheckBoxField name="ФормироватьЗадачуСрокХранения" id="192">
 									<DataPath>Объект.ФормироватьЗадачуСрокХранения</DataPath>
 									<Title>
 										<v8:item>
@@ -546,16 +769,16 @@
 										</v8:item>
 									</Title>
 									<CheckBoxType>Auto</CheckBoxType>
-									<ContextMenu name="ФормироватьЗадачуСрокХраненияКонтекстноеМеню" id="142"/>
-									<ExtendedTooltip name="ФормироватьЗадачуСрокХраненияРасширеннаяПодсказка" id="143"/>
+									<ContextMenu name="ФормироватьЗадачуСрокХраненияКонтекстноеМеню" id="193"/>
+									<ExtendedTooltip name="ФормироватьЗадачуСрокХраненияРасширеннаяПодсказка" id="194"/>
 								</CheckBoxField>
-								<UsualGroup name="ГруппаДнейХранения" id="147">
+								<UsualGroup name="ГруппаДнейХранения" id="198">
 									<Group>Horizontal</Group>
 									<Representation>None</Representation>
 									<ShowTitle>false</ShowTitle>
-									<ExtendedTooltip name="ГруппаДнейХраненияРасширеннаяПодсказка" id="148"/>
+									<ExtendedTooltip name="ГруппаДнейХраненияРасширеннаяПодсказка" id="199"/>
 									<ChildItems>
-										<InputField name="СрокХранения" id="144">
+										<InputField name="СрокХранения" id="195">
 											<DataPath>Объект.СрокХранения</DataPath>
 											<Title>
 												<v8:item>
@@ -566,12 +789,12 @@
 											<EditMode>EnterOnInput</EditMode>
 											<Width>6</Width>
 											<HorizontalStretch>false</HorizontalStretch>
-											<ContextMenu name="СрокХраненияКонтекстноеМеню" id="145"/>
-											<ExtendedTooltip name="СрокХраненияРасширеннаяПодсказка" id="146"/>
+											<ContextMenu name="СрокХраненияКонтекстноеМеню" id="196"/>
+											<ExtendedTooltip name="СрокХраненияРасширеннаяПодсказка" id="197"/>
 										</InputField>
 									</ChildItems>
 								</UsualGroup>
-								<InputField name="ПользовательСрокХранения" id="149">
+								<InputField name="ПользовательСрокХранения" id="200">
 									<DataPath>Объект.ПользовательСрокХранения</DataPath>
 									<Title>
 										<v8:item>
@@ -582,18 +805,18 @@
 									<EditMode>EnterOnInput</EditMode>
 									<ClearButton>true</ClearButton>
 									<Width>30</Width>
-									<ContextMenu name="ПользовательСрокХраненияКонтекстноеМеню" id="150"/>
-									<ExtendedTooltip name="ПользовательСрокХраненияРасширеннаяПодсказка" id="151"/>
+									<ContextMenu name="ПользовательСрокХраненияКонтекстноеМеню" id="201"/>
+									<ExtendedTooltip name="ПользовательСрокХраненияРасширеннаяПодсказка" id="202"/>
 								</InputField>
-								<LabelDecoration name="НадписьСрокХранения" id="152">
+								<LabelDecoration name="НадписьСрокХранения" id="203">
 									<Title formatted="false">
 										<v8:item>
 											<v8:lang>ru</v8:lang>
 											<v8:content>Задача создаётся, пока заполнен исполнитель: галка «Формировать задачу» регламентом не читается (МодульРегламентныхЗаданий).</v8:content>
 										</v8:item>
 									</Title>
-									<ContextMenu name="НадписьСрокХраненияКонтекстноеМеню" id="153"/>
-									<ExtendedTooltip name="НадписьСрокХраненияРасширеннаяПодсказка" id="154"/>
+									<ContextMenu name="НадписьСрокХраненияКонтекстноеМеню" id="204"/>
+									<ExtendedTooltip name="НадписьСрокХраненияРасширеннаяПодсказка" id="205"/>
 								</LabelDecoration>
 							</ChildItems>
 						</UsualGroup>
