@@ -39,7 +39,7 @@
 					<v8:content>Телеграм: отправленные уведомления</v8:content>
 				</v8:item>
 			</Synonym>
-			<Comment>История уведомлений менеджеру в Telegram: что, когда, по какому заказу и в какой чат ушло, и нажал ли менеджер кнопку "Обработан". Пишется из ТелеграмБот.ОтправитьСообщение, отметка обработки - из ТелеграмБот.ПолучитьОтветы (регламент ТелеграмОтветы). Ключ записи - чат + номер сообщения в этом чате.</Comment>
+			<Comment>История уведомлений менеджеру в Telegram: что, когда, по какому заказу и в какой чат ушло, нажал ли менеджер кнопку "Обработан" (Обработан) и висит ли сообщение ещё в чате (Убрано). Пишется из ТелеграмБот.ОтправитьСообщение, отметка обработки - из разбора нажатий, признак уборки - из ТелеграмБот.УбратьКарточкиЗаказа. Ключ записи - чат + номер сообщения в этом чате.</Comment>
 			<UseStandardCommands>true</UseStandardCommands>
 			<EditType>InDialog</EditType>
 			<DefaultRecordForm/>
@@ -328,6 +328,45 @@
 							<v8:Length>100</v8:Length>
 							<v8:AllowedLength>Variable</v8:AllowedLength>
 						</v8:StringQualifiers>
+					</Type>
+					<PasswordMode>false</PasswordMode>
+					<Format/>
+					<EditFormat/>
+					<ToolTip/>
+					<MarkNegatives>false</MarkNegatives>
+					<Mask/>
+					<MultiLine>false</MultiLine>
+					<ExtendedEdit>false</ExtendedEdit>
+					<MinValue xsi:nil="true"/>
+					<MaxValue xsi:nil="true"/>
+					<FillFromFillingValue>false</FillFromFillingValue>
+					<FillValue xsi:nil="true"/>
+					<FillChecking>DontCheck</FillChecking>
+					<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+					<ChoiceParameterLinks/>
+					<ChoiceParameters/>
+					<QuickChoice>Auto</QuickChoice>
+					<CreateOnInput>Auto</CreateOnInput>
+					<ChoiceForm/>
+					<LinkByType/>
+					<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
+					<Indexing>DontIndex</Indexing>
+					<FullTextSearch>DontUse</FullTextSearch>
+					<DataHistory>DontUse</DataHistory>
+				</Properties>
+			</Resource>
+			<Resource uuid="46a64f9a-7567-4662-8a77-a1ae7f763bda">
+				<Properties>
+					<Name>Убрано</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Убрано</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment>Сообщение удалено из чата (заказ вышел из работы или карточку заменили новой). Отдельно от "Обработан": отметка менеджера сообщение из чата больше не убирает, и по этому признаку регламент отличает живую карточку от убранной.</Comment>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
 					</Type>
 					<PasswordMode>false</PasswordMode>
 					<Format/>
