@@ -154,12 +154,21 @@ function Запустить1С([string[]]$Аргументы, [string]$Что) {
     $лог = Join-Path $env:TEMP ("1c-apply-" + [guid]::NewGuid().ToString("N").Substring(0, 8) + ".log")
     $всё = $общие + $Аргументы + @("/Out", $лог)
     $p = Start-Process -FilePath $exe -ArgumentList $всё -Wait -PassThru -WindowStyle Hidden
+    $текст = ""
     if (Test-Path $лог) {
         $текст = (Get-Content $лог -Raw -Encoding UTF8)
         if ($текст) { Write-Host $текст.Trim() }
     }
     if ($p.ExitCode -ne 0) {
         Write-Host "ОШИБКА: «$Что» завершилось с кодом $($p.ExitCode). Лог: $лог" -ForegroundColor Red
+        # Самая частая помеха — забытый открытый Конфигуратор, часто на другом компьютере:
+        # платформа пишет в лог, где именно он висит. Подсказываем, что читать.
+        if ($текст -match "блокировк") {
+            Write-Host ""
+            Write-Host "База занята. Выше указано, на каком компьютере и под кем висит сеанс —" -ForegroundColor Yellow
+            Write-Host "закройте там Конфигуратор (или завершите сеанс в консоли администрирования" -ForegroundColor Yellow
+            Write-Host "кластера) и запустите скрипт снова." -ForegroundColor Yellow
+        }
         exit $p.ExitCode
     }
 }
