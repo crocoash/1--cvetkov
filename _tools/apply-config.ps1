@@ -2,8 +2,9 @@
 # Заменяет ручные шаги: git pull -> Конфигуратор -> «Загрузить конфигурацию из файлов» -> F7.
 #
 # Использование (Windows):
-#   powershell -File _tools\apply-config.ps1                # pull + резервная копия + загрузка + обновление БД
-#   powershell -File _tools\apply-config.ps1 -БезРезервной   # без .dt (быстрее, но без страховки)
+#   powershell -File _tools\apply-config.ps1                # pull + загрузка + обновление БД
+#   powershell -File _tools\apply-config.ps1 -СРезервной     # плюс выгрузка базы в .dt перед загрузкой
+#   powershell -File _tools\apply-config.ps1 -БезРезервной   # запретить .dt даже для файловой базы
 #   powershell -File _tools\apply-config.ps1 -БезPull        # загрузить то, что уже лежит в папке
 #   powershell -File _tools\apply-config.ps1 -Выгрузить      # обратное направление: БД -> файлы -> снимок
 #
@@ -16,6 +17,7 @@
 param(
     [switch]$БезPull,
     [switch]$БезРезервной,
+    [switch]$СРезервной,
     [switch]$Выгрузить,
     [string]$Ветка = "main"
 )
@@ -124,7 +126,19 @@ if (-not $БезPull) {
     }
 }
 
-if (-not $БезРезервной) {
+# На серверной базе (SQL) выгрузка в .dt идёт десятки минут и страховкой не является —
+# её роль играет бэкап самого SQL Server. Поэтому для серверной базы .dt по умолчанию
+# пропускаем; если он всё-таки нужен — явный флаг -СРезервной.
+$делатьРезервную = -not $БезРезервной
+if ($нст.СервернаяБаза -and -not $СРезервной) {
+    if ($делатьРезервную) {
+        Write-Host "== Резервная копия .dt пропущена: база серверная (страховка — бэкап SQL)." -ForegroundColor DarkGray
+        Write-Host "   Нужна выгрузка в .dt — запустить с флагом -СРезервной." -ForegroundColor DarkGray
+    }
+    $делатьРезервную = $false
+}
+
+if ($делатьРезервную) {
     $папка = $нст.ПапкаРезервных
     if ($папка) {
         if (-not (Test-Path $папка)) { New-Item -ItemType Directory -Path $папка -Force | Out-Null }
