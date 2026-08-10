@@ -2,6 +2,7 @@
 # Заменяет ручные шаги: git pull -> Конфигуратор -> «Загрузить конфигурацию из файлов» -> F7.
 #
 # Использование (Windows):
+#   powershell -File _tools\apply-config.ps1 -Настроить      # выбрать базу из списка и сохранить настройки
 #   powershell -File _tools\apply-config.ps1                # pull + загрузка + обновление БД
 #   powershell -File _tools\apply-config.ps1 -СРезервной     # плюс выгрузка базы в .dt перед загрузкой
 #   powershell -File _tools\apply-config.ps1 -БезРезервной   # запретить .dt даже для файловой базы
@@ -9,12 +10,13 @@
 #   powershell -File _tools\apply-config.ps1 -Выгрузить      # обратное направление: БД -> файлы -> снимок
 #
 # Параметры подключения берутся из _tools\1c-local.json (файл машинный, в git не уезжает).
-# При первом запуске скрипт создаст шаблон и остановится.
+# Если файла нет — скрипт сам предложит выбрать базу из зарегистрированных на машине.
 #
 # Важно: обновление конфигурации БД требует, чтобы в базе не было других сеансов
 # (включая открытый Конфигуратор). Иначе платформа вернёт ошибку блокировки.
 
 param(
+    [switch]$Настроить,
     [switch]$БезPull,
     [switch]$БезРезервной,
     [switch]$СРезервной,
@@ -33,21 +35,79 @@ if (-not (Test-Path $git)) { $git = "git" }
 # --- Настройки машины --------------------------------------------------------
 
 $файлНастроек = Join-Path $PSScriptRoot "1c-local.json"
-if (-not (Test-Path $файлНастроек)) {
-    $шаблон = @{
-        # Заполнить ОДНО из двух: путь к каталогу файловой базы либо "сервер\имя_базы".
-        ФайловаяБаза   = "C:\Базы\cvetkov"
-        СервернаяБаза  = ""
-        Пользователь   = "Администратор"
-        Пароль         = ""
-        ПапкаРезервных = "C:\Базы\backup"
-        # Путь к 1cv8.exe. Пусто — искать самую свежую установленную версию.
+
+# Диалог настройки: список баз берём из ibases.v8i (то же, что видно в окне запуска 1С),
+# спрашиваем номер и учётную запись, пишем json сами. Руками json править не нужно —
+# при ручной правке легко забыть сохранить или ошибиться в двойных слэшах.
+function Настроить {
+    $v8i = Join-Path $env:APPDATA "1C\1CEStart\ibases.v8i"
+    $базы = @()
+    if (Test-Path $v8i) {
+        $имя = ""
+        foreach ($строка in (Get-Content $v8i -Encoding UTF8)) {
+            $t = $строка.Trim()
+            if ($t -match '^\[(.+)\]$') { $имя = $matches[1]; continue }
+            if ($t -match '^Connect=(.+)$') {
+                $c = $matches[1]
+                $файл = ""; $сервер = ""
+                if ($c -match 'File\s*=\s*"([^"]+)"') { $файл = $matches[1] }
+                if ($c -match 'Srvr\s*=\s*"([^"]+)"' ) { $сервер = $matches[1] }
+                $ref = ""
+                if ($c -match 'Ref\s*=\s*"([^"]+)"'  ) { $ref = $matches[1] }
+                $базы += [pscustomobject]@{
+                    Имя           = $имя
+                    ФайловаяБаза  = $файл
+                    СервернаяБаза = if ($сервер) { "$сервер\$ref" } else { "" }
+                }
+            }
+        }
+    }
+
+    if ($базы.Count -eq 0) {
+        Write-Host "Не удалось прочитать список баз ($v8i)." -ForegroundColor Red
+        Write-Host "Заполните $файлНастроек вручную." -ForegroundColor Red
+        exit 1
+    }
+
+    Write-Host "Базы, зарегистрированные на этой машине:" -ForegroundColor Cyan
+    for ($i = 0; $i -lt $базы.Count; $i++) {
+        $где = $базы[$i].ФайловаяБаза
+        if (-not $где) { $где = $базы[$i].СервернаяБаза + "  (серверная)" }
+        Write-Host ("  [{0}] {1}  ->  {2}" -f ($i + 1), $базы[$i].Имя, $где)
+    }
+    Write-Host ""
+
+    $номер = 0
+    while ($номер -lt 1 -or $номер -gt $базы.Count) {
+        $ответ = Read-Host "Номер базы, которую обновлять"
+        [int]::TryParse($ответ, [ref]$номер) | Out-Null
+    }
+    $выбор = $базы[$номер - 1]
+
+    $пользователь = Read-Host "Пользователь Конфигуратора (Enter = Администратор)"
+    if (-not $пользователь) { $пользователь = "Администратор" }
+    $секрет = Read-Host "Пароль (Enter, если пароля нет)" -AsSecureString
+    $пароль = [Runtime.InteropServices.Marshal]::PtrToStringAuto(
+        [Runtime.InteropServices.Marshal]::SecureStringToBSTR($секрет))
+
+    $данные = @{
+        ФайловаяБаза   = $выбор.ФайловаяБаза
+        СервернаяБаза  = $выбор.СервернаяБаза
+        Пользователь   = $пользователь
+        Пароль         = $пароль
+        # .dt нужен только для файловой базы; на серверной страховка — бэкап SQL.
+        ПапкаРезервных = if ($выбор.ФайловаяБаза) { Join-Path $env:USERPROFILE "1c-backup" } else { "" }
         Платформа      = ""
     } | ConvertTo-Json
-    [System.IO.File]::WriteAllText($файлНастроек, $шаблон, (New-Object System.Text.UTF8Encoding $true))
-    Write-Host "Создан шаблон настроек: $файлНастроек" -ForegroundColor Yellow
-    Write-Host "Заполните базу и пользователя, затем запустите скрипт снова." -ForegroundColor Yellow
-    exit 2
+    [System.IO.File]::WriteAllText($файлНастроек, $данные, (New-Object System.Text.UTF8Encoding $true))
+    Write-Host ""
+    Write-Host "Настройки сохранены: $файлНастроек" -ForegroundColor Green
+}
+
+if ($Настроить -or -not (Test-Path $файлНастроек)) {
+    Настроить
+    if ($Настроить) { exit 0 }
+    Write-Host ""
 }
 $нст = Get-Content $файлНастроек -Raw -Encoding UTF8 | ConvertFrom-Json
 
