@@ -317,54 +317,90 @@
 									</Title>
 									<ExtendedTooltip name="СтраницаТелеграмРозницаРасширеннаяПодсказка" id="103"/>
 									<ChildItems>
-										<CheckBoxField name="ОтправлятьВТелеграм" id="90">
-											<DataPath>Объект.ОтправлятьВТелеграм</DataPath>
+										<UsualGroup name="ГруппаТелеграмПросрочкаРозница" id="212">
 											<Title>
 												<v8:item>
 													<v8:lang>ru</v8:lang>
-													<v8:content>Уведомлять менеджера в Telegram</v8:content>
+													<v8:content>1. Заказ завис в этом статусе — напоминание менеджеру</v8:content>
 												</v8:item>
 											</Title>
-											<CheckBoxType>Auto</CheckBoxType>
-											<ContextMenu name="ОтправлятьВТелеграмКонтекстноеМеню" id="91"/>
-											<ExtendedTooltip name="ОтправлятьВТелеграмРасширеннаяПодсказка" id="92"/>
-										</CheckBoxField>
-										<InputField name="ТелеграмЧат" id="93">
-											<DataPath>Объект.ТелеграмЧат</DataPath>
+											<Group>Vertical</Group>
+											<Representation>StrongSeparation</Representation>
+											<ExtendedTooltip name="ГруппаТелеграмПросрочкаРозницаРасширеннаяПодсказка" id="213"/>
+											<ChildItems>
+												<CheckBoxField name="ОтправлятьВТелеграм" id="90">
+													<DataPath>Объект.ОтправлятьВТелеграм</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Напоминать менеджеру в Telegram</v8:content>
+														</v8:item>
+													</Title>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="ОтправлятьВТелеграмКонтекстноеМеню" id="91"/>
+													<ExtendedTooltip name="ОтправлятьВТелеграмРасширеннаяПодсказка" id="92"/>
+												</CheckBoxField>
+												<InputField name="ТелеграмЧат" id="93">
+													<DataPath>Объект.ТелеграмЧат</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Чаты напоминаний</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>EnterOnInput</EditMode>
+													<Width>60</Width>
+													<ContextMenu name="ТелеграмЧатКонтекстноеМеню" id="94"/>
+													<ExtendedTooltip name="ТелеграмЧатРасширеннаяПодсказка" id="95"/>
+												</InputField>
+												<LabelDecoration name="НадписьТелеграмРозница" id="99">
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Работает от галки ИЛИ от заполненных чатов — достаточно одного. Галка без чатов: получателей берём у статуса, где чаты заполнены.</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="НадписьТелеграмРозницаКонтекстноеМеню" id="100"/>
+													<ExtendedTooltip name="НадписьТелеграмРозницаРасширеннаяПодсказка" id="101"/>
+												</LabelDecoration>
+											</ChildItems>
+										</UsualGroup>
+										<UsualGroup name="ГруппаТелеграмСменаРозница" id="214">
 											<Title>
 												<v8:item>
 													<v8:lang>ru</v8:lang>
-													<v8:content>Чаты</v8:content>
+													<v8:content>2. Заказ перевели в этот статус — карточка сразу</v8:content>
 												</v8:item>
 											</Title>
-											<EditMode>EnterOnInput</EditMode>
-											<Width>60</Width>
-											<ContextMenu name="ТелеграмЧатКонтекстноеМеню" id="94"/>
-											<ExtendedTooltip name="ТелеграмЧатРасширеннаяПодсказка" id="95"/>
-										</InputField>
-										<InputField name="ТелеграмЧатСмены" id="96">
-											<DataPath>Объект.ТелеграмЧатСмены</DataPath>
-											<Title>
-												<v8:item>
-													<v8:lang>ru</v8:lang>
-													<v8:content>Чаты при смене статуса</v8:content>
-												</v8:item>
-											</Title>
-											<EditMode>EnterOnInput</EditMode>
-											<Width>60</Width>
-											<ContextMenu name="ТелеграмЧатСменыКонтекстноеМеню" id="97"/>
-											<ExtendedTooltip name="ТелеграмЧатСменыРасширеннаяПодсказка" id="98"/>
-										</InputField>
-										<LabelDecoration name="НадписьТелеграмРозница" id="99">
-											<Title formatted="false">
-												<v8:item>
-													<v8:lang>ru</v8:lang>
-													<v8:content>Пусто в «Чаты» при поставленной галке — получателей берём у статуса, где они заполнены.</v8:content>
-												</v8:item>
-											</Title>
-											<ContextMenu name="НадписьТелеграмРозницаКонтекстноеМеню" id="100"/>
-											<ExtendedTooltip name="НадписьТелеграмРозницаРасширеннаяПодсказка" id="101"/>
-										</LabelDecoration>
+											<Group>Vertical</Group>
+											<Representation>StrongSeparation</Representation>
+											<ExtendedTooltip name="ГруппаТелеграмСменаРозницаРасширеннаяПодсказка" id="215"/>
+											<ChildItems>
+												<InputField name="ТелеграмЧатСмены" id="96">
+													<DataPath>Объект.ТелеграмЧатСмены</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Чаты карточки</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>EnterOnInput</EditMode>
+													<Width>60</Width>
+													<ContextMenu name="ТелеграмЧатСменыКонтекстноеМеню" id="97"/>
+													<ExtendedTooltip name="ТелеграмЧатСменыРасширеннаяПодсказка" id="98"/>
+												</InputField>
+												<LabelDecoration name="НадписьТелеграмСменаРозница" id="216">
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Галка из пункта 1 сюда не относится: заполнены чаты — карточка уходит, пусто — молчим.</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="НадписьТелеграмСменаРозницаКонтекстноеМеню" id="217"/>
+													<ExtendedTooltip name="НадписьТелеграмСменаРозницаРасширеннаяПодсказка" id="218"/>
+												</LabelDecoration>
+											</ChildItems>
+										</UsualGroup>
 									</ChildItems>
 								</Page>
 								<Page name="СтраницаТелеграмОстальные" id="116">
@@ -376,54 +412,78 @@
 									</Title>
 									<ExtendedTooltip name="СтраницаТелеграмОстальныеРасширеннаяПодсказка" id="117"/>
 									<ChildItems>
-										<CheckBoxField name="ОтправлятьВТелеграмОстальные" id="104">
-											<DataPath>Объект.ОтправлятьВТелеграмОстальные</DataPath>
+										<UsualGroup name="ГруппаТелеграмПросрочкаОстальные" id="219">
 											<Title>
 												<v8:item>
 													<v8:lang>ru</v8:lang>
-													<v8:content>Уведомлять менеджера в Telegram</v8:content>
+													<v8:content>1. Заказ завис в этом статусе — напоминание менеджеру</v8:content>
 												</v8:item>
 											</Title>
-											<CheckBoxType>Auto</CheckBoxType>
-											<ContextMenu name="ОтправлятьВТелеграмОстальныеКонтекстноеМеню" id="105"/>
-											<ExtendedTooltip name="ОтправлятьВТелеграмОстальныеРасширеннаяПодсказка" id="106"/>
-										</CheckBoxField>
-										<InputField name="ТелеграмЧатОстальные" id="107">
-											<DataPath>Объект.ТелеграмЧатОстальные</DataPath>
+											<Group>Vertical</Group>
+											<Representation>StrongSeparation</Representation>
+											<ExtendedTooltip name="ГруппаТелеграмПросрочкаОстальныеРасширеннаяПодсказка" id="220"/>
+											<ChildItems>
+												<InputField name="ТелеграмЧатОстальные" id="107">
+													<DataPath>Объект.ТелеграмЧатОстальные</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Чаты напоминаний</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>EnterOnInput</EditMode>
+													<Width>60</Width>
+													<ContextMenu name="ТелеграмЧатОстальныеКонтекстноеМеню" id="108"/>
+													<ExtendedTooltip name="ТелеграмЧатОстальныеРасширеннаяПодсказка" id="109"/>
+												</InputField>
+												<LabelDecoration name="НадписьТелеграмОстальные" id="113">
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Опт, СП, дропшиппинг, представники. Решают только эти чаты: пусто — не пишем. Отката на розничный чат тут нет намеренно, поэтому и галки, как в рознице, здесь нет.</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="НадписьТелеграмОстальныеКонтекстноеМеню" id="114"/>
+													<ExtendedTooltip name="НадписьТелеграмОстальныеРасширеннаяПодсказка" id="115"/>
+												</LabelDecoration>
+											</ChildItems>
+										</UsualGroup>
+										<UsualGroup name="ГруппаТелеграмСменаОстальные" id="221">
 											<Title>
 												<v8:item>
 													<v8:lang>ru</v8:lang>
-													<v8:content>Чаты</v8:content>
+													<v8:content>2. Заказ перевели в этот статус — карточка сразу</v8:content>
 												</v8:item>
 											</Title>
-											<EditMode>EnterOnInput</EditMode>
-											<Width>60</Width>
-											<ContextMenu name="ТелеграмЧатОстальныеКонтекстноеМеню" id="108"/>
-											<ExtendedTooltip name="ТелеграмЧатОстальныеРасширеннаяПодсказка" id="109"/>
-										</InputField>
-										<InputField name="ТелеграмЧатСменыОстальные" id="110">
-											<DataPath>Объект.ТелеграмЧатСменыОстальные</DataPath>
-											<Title>
-												<v8:item>
-													<v8:lang>ru</v8:lang>
-													<v8:content>Чаты при смене статуса</v8:content>
-												</v8:item>
-											</Title>
-											<EditMode>EnterOnInput</EditMode>
-											<Width>60</Width>
-											<ContextMenu name="ТелеграмЧатСменыОстальныеКонтекстноеМеню" id="111"/>
-											<ExtendedTooltip name="ТелеграмЧатСменыОстальныеРасширеннаяПодсказка" id="112"/>
-										</InputField>
-										<LabelDecoration name="НадписьТелеграмОстальные" id="113">
-											<Title formatted="false">
-												<v8:item>
-													<v8:lang>ru</v8:lang>
-													<v8:content>Опт, СП, дропшиппинг, представники. Пусто — по этим заказам не пишем; отката на розничный чат тут нет намеренно.</v8:content>
-												</v8:item>
-											</Title>
-											<ContextMenu name="НадписьТелеграмОстальныеКонтекстноеМеню" id="114"/>
-											<ExtendedTooltip name="НадписьТелеграмОстальныеРасширеннаяПодсказка" id="115"/>
-										</LabelDecoration>
+											<Group>Vertical</Group>
+											<Representation>StrongSeparation</Representation>
+											<ExtendedTooltip name="ГруппаТелеграмСменаОстальныеРасширеннаяПодсказка" id="222"/>
+											<ChildItems>
+												<InputField name="ТелеграмЧатСменыОстальные" id="110">
+													<DataPath>Объект.ТелеграмЧатСменыОстальные</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Чаты карточки</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>EnterOnInput</EditMode>
+													<Width>60</Width>
+													<ContextMenu name="ТелеграмЧатСменыОстальныеКонтекстноеМеню" id="111"/>
+													<ExtendedTooltip name="ТелеграмЧатСменыОстальныеРасширеннаяПодсказка" id="112"/>
+												</InputField>
+												<LabelDecoration name="НадписьТелеграмСменаОстальные" id="223">
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Заполнены чаты — карточка уходит, пусто — молчим. От пункта 1 не зависит.</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="НадписьТелеграмСменаОстальныеКонтекстноеМеню" id="224"/>
+													<ExtendedTooltip name="НадписьТелеграмСменаОстальныеРасширеннаяПодсказка" id="225"/>
+												</LabelDecoration>
+											</ChildItems>
+										</UsualGroup>
 									</ChildItems>
 								</Page>
 							</ChildItems>
@@ -432,7 +492,7 @@
 							<Title formatted="false">
 								<v8:item>
 									<v8:lang>ru</v8:lang>
-									<v8:content>Розница определяется по типу цен заказа (ТелеграмБот.ЭтоРозничныйЗаказ). ID чатов — через запятую. Кнопка показывает чаты, которые уже написали боту.</v8:content>
+									<v8:content>Розница определяется по типу цен заказа (ТелеграмБот.ЭтоРозничныйЗаказ), остальное — закладка «Остальные». ID чатов — через запятую. Кнопка показывает чаты, которые уже написали боту.</v8:content>
 								</v8:item>
 							</Title>
 							<ContextMenu name="НадписьТелеграмКонтекстноеМеню" id="121"/>
