@@ -1,6 +1,18 @@
 @echo off
 title Конфигурация 1С
+
+rem Скрипт ищем сначала рядом с этим файлом, затем по обычному пути репозитория -
+rem чтобы .cmd работал и как ярлык, и просто скопированным на рабочий стол.
 set PS=%~dp0apply-config.ps1
+if not exist "%PS%" set PS=%USERPROFILE%\Documents\fork\1--cvetkov\_tools\apply-config.ps1
+if not exist "%PS%" (
+  echo Не найден apply-config.ps1 ни рядом с этим файлом, ни в
+  echo %USERPROFILE%\Documents\fork\1--cvetkov\_tools
+  echo Проверьте, что репозиторий на месте, и сделайте git pull.
+  pause
+  exit /b 1
+)
+
 :menu
 cls
 echo ==========================================
