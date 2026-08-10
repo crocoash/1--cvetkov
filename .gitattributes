@@ -10,6 +10,10 @@
 *.mdo   text
 *.os    text eol=lf
 
+# Пусковой .cmd: cmd.exe требует CRLF (на LF ломаются метки goto), а текст внутри —
+# в кодировке CP866, иначе меню выводится крякозябрами в консоли Windows.
+*.cmd   text eol=crlf
+
 # Бинарные ресурсы конфигурации — не мержить, не diff'ить
 *.bin        binary
 *.png        binary
