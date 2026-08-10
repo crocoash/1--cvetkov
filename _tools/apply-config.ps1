@@ -128,7 +128,13 @@ if (-not $БезРезервной) {
     $папка = $нст.ПапкаРезервных
     if ($папка) {
         if (-not (Test-Path $папка)) { New-Item -ItemType Directory -Path $папка -Force | Out-Null }
-        $dt = Join-Path $папка ("cvetkov-" + (Get-Date -Format "yyyyMMdd-HHmmss") + ".dt")
+        # Имя файла — от имени базы, а не захардкоженное: чтобы бэкапы разных баз не путались.
+        if ($нст.ФайловаяБаза) {
+            $имяБазы = Split-Path $нст.ФайловаяБаза -Leaf
+        } else {
+            $имяБазы = ($нст.СервернаяБаза -split '\\')[-1]
+        }
+        $dt = Join-Path $папка ($имяБазы + "-" + (Get-Date -Format "yyyyMMdd-HHmmss") + ".dt")
         Запустить1С @("/DumpIB", $dt) "Резервная копия базы -> $dt"
     }
 }
