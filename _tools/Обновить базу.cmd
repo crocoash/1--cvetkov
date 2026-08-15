@@ -26,6 +26,7 @@ echo   4  - Только обновить конфигурацию БД
 echo   5  - То же, динамически
 echo   6  - Выгрузить конфигурацию из базы в файлы + снимок
 echo   7  - Настроить базу и пользователя
+echo   8  - Обновить БД, завершив чужие сеансы (людей выгоняем)
 echo.
 echo   0  - Выход
 echo.
@@ -38,6 +39,7 @@ if "%OPT%"=="4" set ARGS=-updateonly& goto run
 if "%OPT%"=="5" set ARGS=-updateonly -dyn& goto run
 if "%OPT%"=="6" set ARGS=-dump& goto run
 if "%OPT%"=="7" set ARGS=-setup& goto run
+if "%OPT%"=="8" set ARGS=-updateonly -kickall& goto run
 if "%OPT%"=="0" exit /b
 goto menu
 
