@@ -398,6 +398,26 @@ $script:блокировкиПоставлены = $false
 $script:былиЗаданияЗапрещены = $false
 $script:кодРазрешения        = "applycfg"
 
+# Вызов метода COM-объекта 1С через позднее связывание.
+#
+# ЗАЧЕМ. 16.08.2026 обновление БД встало на ровном месте: "Сбой вызова метода
+# из-за отсутствия в [System.__ComObject] метода с именем AddAuthentication".
+# ConnectAgent, GetClusters и Authenticate до этого отработали — то есть COM живой,
+# просто адаптер PowerShell не увидел ОДИН метод: объекты 1С отдают IDispatch без
+# полного описания типов, и что именно попадёт в список членов, зависит от версии
+# платформы и разрядности. Итог был хуже самой ошибки: подключение к агенту
+# считалось неудачным целиком, скрипт оставался без блокировок и без выгона
+# сеансов, а обновление падало на "Ошибка исключительной блокировки".
+#
+# InvokeMember зовёт метод напрямую через IDispatch, минуя список членов, и потому
+# работает независимо от того, что там увидел PowerShell.
+function ВызовCOM($Объект, [string]$Метод, [object[]]$Аргументы = @()) {
+    return $Объект.GetType().InvokeMember(
+        $Метод,
+        [System.Reflection.BindingFlags]::InvokeMethod,
+        $null, $Объект, $Аргументы)
+}
+
 function ПодключитьсяККластеру {
     if ($script:агентКластера) { return $true }
     if (-not $нст.СервернаяБаза) { return $false }
@@ -432,11 +452,21 @@ function ПодключитьсяККластеру {
 
     try {
         $агент = $соединитель.ConnectAgent($сервер)
-        foreach ($кластер in $агент.GetClusters()) {
-            $агент.Authenticate($кластер, $админ, $парольАдмина)
-            # Аутентификация администратора ИБ нужна, чтобы видеть сеансы и менять свойства базы.
-            $агент.AddAuthentication($пользовательБазы, $парольБазы)
-            foreach ($иб in $агент.GetInfoBases($кластер)) {
+        foreach ($кластер in @(ВызовCOM $агент "GetClusters")) {
+            ВызовCOM $агент "Authenticate" @($кластер, $админ, $парольАдмина) | Out-Null
+
+            # Аутентификация администратора ИБ нужна, чтобы видеть сеансы и менять
+            # свойства базы. Отдельный try: если у баз кластера админа нет вовсе,
+            # метод может отказать — но это не повод бросать уже поднятое
+            # подключение, сеансы читаются и так. Именно на этом месте скрипт
+            # разваливался целиком 16.08.2026.
+            try {
+                ВызовCOM $агент "AddAuthentication" @($пользовательБазы, $парольБазы) | Out-Null
+            } catch {
+                Write-Host ("   аутентификация администратора ИБ не прошла ({0}) — продолжаю без неё" -f $_.Exception.Message) -ForegroundColor DarkGray
+            }
+
+            foreach ($иб in @(ВызовCOM $агент "GetInfoBases" @($кластер))) {
                 if ($иб.Name -eq $имяБазы) {
                     $script:агентКластера = $агент
                     $script:кластерБазы   = $кластер
@@ -506,7 +536,7 @@ function ВыгнатьВсехИзБазы {
         $иб.DeniedMessage       = "База закрыта на обновление конфигурации. Зайдите через несколько минут."
         $иб.DeniedFrom          = (Get-Date).AddMinutes(-1)
         $иб.DeniedTo            = (Get-Date).AddMinutes(30)
-        $агент.UpdateInfoBase($кластер, $иб)
+        ВызовCOM $агент "UpdateInfoBase" @($кластер, $иб) | Out-Null
         $script:блокировкиПоставлены = $true
         ДобавитьКодРазрешения
     } catch {
@@ -518,19 +548,19 @@ function ВыгнатьВсехИзБазы {
     # Пара заходов: платформа завершает сеанс не мгновенно, а какой-нибудь фоновый
     # мог стартовать между запретом и завершением.
     for ($заход = 1; $заход -le 3; $заход++) {
-        $сеансы = @($агент.GetInfoBaseSessions($кластер, $иб))
+        $сеансы = @(ВызовCOM $агент "GetInfoBaseSessions" @($кластер, $иб))
         if ($сеансы.Count -eq 0) { break }
         Write-Host ("   завершаю сеансы ({0}):" -f $сеансы.Count) -ForegroundColor DarkGray
         ПоказатьСеансы $сеансы
         foreach ($с in $сеансы) {
-            try { $агент.TerminateSession($кластер, $с) } catch {
+            try { ВызовCOM $агент "TerminateSession" @($кластер, $с) | Out-Null } catch {
                 Write-Host ("      сеанс {0} завершить не удалось: {1}" -f $с.SessionID, $_.Exception.Message) -ForegroundColor Yellow
             }
         }
         Start-Sleep -Seconds 5
     }
 
-    $осталось = @($агент.GetInfoBaseSessions($кластер, $иб))
+    $осталось = @(ВызовCOM $агент "GetInfoBaseSessions" @($кластер, $иб))
     if ($осталось.Count -gt 0) {
         Write-Host "   часть сеансов завершить не удалось:" -ForegroundColor Yellow
         ПоказатьСеансы $осталось
@@ -558,7 +588,7 @@ function ОсвободитьБазуДляПовтора {
 
     $сеансы = @()
     try {
-        $сеансы = @($script:агентКластера.GetInfoBaseSessions($script:кластерБазы, $script:описаниеБазы))
+        $сеансы = @(ВызовCOM $script:агентКластера "GetInfoBaseSessions" @($script:кластерБазы, $script:описаниеБазы))
     } catch {
         Write-Host ("Не удалось получить список сеансов: {0}" -f $_.Exception.Message) -ForegroundColor Yellow
         return $false
@@ -623,7 +653,7 @@ function ОсвободитьБазу {
             $иб.DeniedTo        = (Get-Date).AddMinutes(30)
             ДобавитьКодРазрешения
         }
-        $агент.UpdateInfoBase($кластер, $иб)
+        ВызовCOM $агент "UpdateInfoBase" @($кластер, $иб) | Out-Null
         $script:блокировкиПоставлены = $true
     } catch {
         Write-Host ("   не удалось поставить блокировку: {0}" -f $_.Exception.Message) -ForegroundColor Yellow
@@ -640,14 +670,14 @@ function ОсвободитьБазу {
     # Блокировка не останавливает уже запущенные задания — даём им доработать.
     $срок = 90
     while ($срок -gt 0) {
-        $сеансы = @($агент.GetInfoBaseSessions($кластер, $иб))
+        $сеансы = @(ВызовCOM $агент "GetInfoBaseSessions" @($кластер, $иб))
         if ($сеансы.Count -eq 0) { break }
         Write-Host ("   в базе ещё {0} сеанс(ов), жду до {1} с..." -f $сеансы.Count, $срок) -ForegroundColor DarkGray
         Start-Sleep -Seconds 5
         $срок = $срок - 5
     }
 
-    $сеансы = @($агент.GetInfoBaseSessions($кластер, $иб))
+    $сеансы = @(ВызовCOM $агент "GetInfoBaseSessions" @($кластер, $иб))
     if ($сеансы.Count -eq 0) {
         Write-Host "   база пуста" -ForegroundColor DarkGray
         Write-Host ""
@@ -663,7 +693,7 @@ function ОсвободитьБазу {
         Write-Host "   завершаю сеансы фоновых заданий:" -ForegroundColor DarkGray
         ПоказатьСеансы $задания
         foreach ($с in $задания) {
-            try { $агент.TerminateSession($кластер, $с) } catch {
+            try { ВызовCOM $агент "TerminateSession" @($кластер, $с) | Out-Null } catch {
                 Write-Host ("      сеанс {0} завершить не удалось: {1}" -f $с.SessionID, $_.Exception.Message) -ForegroundColor Yellow
             }
         }
@@ -697,7 +727,7 @@ function ВернутьБлокировки {
     try {
         $script:описаниеБазы.ScheduledJobsDenied = $script:былиЗаданияЗапрещены
         $script:описаниеБазы.SessionsDenied      = $false
-        $script:агентКластера.UpdateInfoBase($script:кластерБазы, $script:описаниеБазы)
+        ВызовCOM $script:агентКластера "UpdateInfoBase" @($script:кластерБазы, $script:описаниеБазы) | Out-Null
         if ($script:былиЗаданияЗапрещены) {
             Write-Host "== Запрет сеансов снят; блокировку регламентных заданий оставил как было" -ForegroundColor Cyan
         } else {
