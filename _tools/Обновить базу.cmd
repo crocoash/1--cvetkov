@@ -1,13 +1,24 @@
 @echo off
 title Конфигурация 1С
 
+rem Меню живёт в репозитории и меняется вместе со скриптом, а копия на рабочем столе
+rem не обновляется никогда: git pull правит файл в _tools, а двойным кликом запускают копию.
+rem Поэтому копия сразу же передаёт управление файлу из репозитория и больше ничего не делает -
+rem сколько бы она ни пролежала на столе, меню будет показано свежее.
+set REPO=%USERPROFILE%\Documents\fork\1--cvetkov\_tools
+if /I "%~dp0"=="%REPO%\" goto own
+if not exist "%REPO%\Обновить базу.cmd" goto own
+call "%REPO%\Обновить базу.cmd"
+exit /b
+
+:own
 rem Скрипт ищем сначала рядом с этим файлом, затем по обычному пути репозитория -
 rem чтобы .cmd работал и как ярлык, и просто скопированным на рабочий стол.
 set PS=%~dp0apply-config.ps1
-if not exist "%PS%" set PS=%USERPROFILE%\Documents\fork\1--cvetkov\_tools\apply-config.ps1
+if not exist "%PS%" set PS=%REPO%\apply-config.ps1
 if not exist "%PS%" (
   echo Не найден apply-config.ps1 ни рядом с этим файлом, ни в
-  echo %USERPROFILE%\Documents\fork\1--cvetkov\_tools
+  echo %REPO%
   echo Проверьте, что репозиторий на месте, и сделайте git pull.
   pause
   exit /b 1

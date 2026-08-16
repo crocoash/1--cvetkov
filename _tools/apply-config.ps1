@@ -692,6 +692,64 @@ if (-not $БезPull) {
     }
 }
 
+# Копия «Обновить базу.cmd» на рабочем столе живёт своей жизнью: git pull правит файл
+# в _tools, а двойным кликом запускают копию — и меню в ней остаётся старым, хотя сам
+# скрипт уже новый (он берётся из репозитория). Внешне это выглядит как «залил, а пункты
+# те же». Свежая копия — тонкий запускатель, она сразу передаёт управление в _tools,
+# так что достаточно один раз её обновить.
+#
+# Перезаписать копию, которой запущены прямо сейчас, нельзя: cmd.exe читает .bat по мере
+# выполнения и после подмены файла продолжит с прежнего смещения — остаток разберётся
+# в мусор. Поэтому: если запущены не ею — обновляем молча, если ею — просим сделать руками.
+function ПроверитьКопииЗапускателя {
+    $эталон = Join-Path $PSScriptRoot "Обновить базу.cmd"
+    if (-not (Test-Path $эталон)) { return }
+
+    $строкиЗапуска = ""
+    $ид = $PID
+    for ($шаг = 0; $шаг -lt 5 -and $ид; $шаг++) {
+        $проц = $null
+        try { $проц = Get-CimInstance Win32_Process -Filter "ProcessId = $ид" -ErrorAction Stop } catch { }
+        if (-not $проц) { break }
+        if ($проц.CommandLine) { $строкиЗапуска += $проц.CommandLine + "`n" }
+        $ид = $проц.ParentProcessId
+    }
+
+    $папки = @()
+    foreach ($имя in @("Desktop", "CommonDesktopDirectory")) {
+        try { $папки += [Environment]::GetFolderPath($имя) } catch { }
+    }
+    $папки += (Join-Path $env:USERPROFILE "Desktop")
+
+    $хэш = (Get-FileHash $эталон -Algorithm SHA256).Hash
+    foreach ($папка in ($папки | Where-Object { $_ } | Select-Object -Unique)) {
+        $копия = Join-Path $папка "Обновить базу.cmd"
+        if (-not (Test-Path $копия)) { continue }
+        if ((Get-FileHash $копия -Algorithm SHA256).Hash -eq $хэш) { continue }
+
+        $этойИЗапущены = $строкиЗапуска.IndexOf($копия, [System.StringComparison]::OrdinalIgnoreCase) -ge 0
+        if (-not $этойИЗапущены) {
+            try {
+                Copy-Item $эталон $копия -Force
+                Write-Host "== Обновил запускатель на рабочем столе: $копия" -ForegroundColor Cyan
+                Write-Host ""
+                continue
+            } catch {
+                Write-Host ("Не удалось обновить {0}: {1}" -f $копия, $_.Exception.Message) -ForegroundColor Yellow
+            }
+        }
+        Write-Host ""
+        Write-Host "ВНИМАНИЕ: меню, из которого запущено, — старая копия:" -ForegroundColor Yellow
+        Write-Host "   $копия" -ForegroundColor Yellow
+        Write-Host "Скрипт при этом новый, но пункты меню в копии остались прежними." -ForegroundColor Yellow
+        Write-Host "Обновить её (один раз, дальше она будет открывать меню из _tools):" -ForegroundColor Yellow
+        Write-Host "   закрыть это окно и выполнить в командной строке" -ForegroundColor Yellow
+        Write-Host ("   copy /y ""{0}"" ""{1}""" -f $эталон, $копия) -ForegroundColor Yellow
+        Write-Host ""
+    }
+}
+ПроверитьКопииЗапускателя
+
 # Клиент 1С мешает только обновлению конфигурации БД (нужен монопольный режим);
 # для одной загрузки из файлов достаточно, чтобы не был занят Конфигуратор. При
 # -Динамически монополия не нужна, но свой клиент всё равно закрываем: иначе он
