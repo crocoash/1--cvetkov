@@ -232,7 +232,7 @@ function Запустить1С([string[]]$Аргументы, [string]$Что, [
 
             if (-not $ТолькоОбновить) {
                 Write-Host "Загрузка из файлов уже прошла — повторять её не нужно. Когда база освободится:" -ForegroundColor Yellow
-                Write-Host "  apply-config.ps1 -ТолькоОбновить" -ForegroundColor Yellow
+                Write-Host "  пункт 3 в меню («доделать обновление БД») или apply-config.ps1 -ТолькоОбновить" -ForegroundColor Yellow
             }
             # Если в списке выше одни «Фоновое задание» — ждать бесполезно, они
             # перезапускаются по расписанию; помогает запрет заданий и завершение сеансов.
@@ -393,7 +393,9 @@ function Закрыть1С([bool]$ТолькоКонфигуратор) {
 
 $script:агентКластера        = $null
 $script:кластерБазы          = $null
-$script:описаниеБазы         = $null
+$script:описаниеБазы         = $null   # IInfoBaseShort с агента: годится только для сеансов
+$script:соединениеРП         = $null   # соединение с рабочим процессом: свойства базы
+$script:имяБазыКластера      = ""
 $script:блокировкиПоставлены = $false
 $script:былиЗаданияЗапрещены = $false
 $script:кодРазрешения        = "applycfg"
@@ -416,6 +418,92 @@ function ВызовCOM($Объект, [string]$Метод, [object[]]$Аргум
         $Метод,
         [System.Reflection.BindingFlags]::InvokeMethod,
         $null, $Объект, $Аргументы)
+}
+
+# Чтение и запись свойств COM-объектов 1С — тем же способом и по той же причине.
+function СвойствоCOM($Объект, [string]$Имя) {
+    return $Объект.GetType().InvokeMember(
+        $Имя,
+        [System.Reflection.BindingFlags]::GetProperty,
+        $null, $Объект, @())
+}
+
+function ЗадатьCOM($Объект, [string]$Имя, $Значение) {
+    $Объект.GetType().InvokeMember(
+        $Имя,
+        [System.Reflection.BindingFlags]::SetProperty,
+        $null, $Объект, @($Значение)) | Out-Null
+}
+
+# ЗАЧЕМ ОТДЕЛЬНОЕ СОЕДИНЕНИЕ С РАБОЧИМ ПРОЦЕССОМ. 17.08.2026 обновление снова не прошло:
+# «отсутствует метод AddAuthentication» и следом «не удается найти свойство
+# ScheduledJobsDenied». InvokeMember тут ни при чём — этих членов у объектов и правда нет.
+# В COM-модели кластера обязанности разделены:
+#   агент (порт 1540)          — кластеры, список баз (IInfoBaseShort: только имя и описание),
+#                                сеансы, завершение сеансов;
+#   рабочий процесс (rphost)   — полные свойства базы (IInfoBaseInfo): блокировка регламентных
+#                                заданий, запрет начала сеансов, код разрешения, UpdateInfoBase.
+# Аутентификация администратора ИБ (AddAuthentication) — тоже свойство соединения с рабочим
+# процессом. Поэтому агент оставляем для сеансов, а за блокировками идём в рабочий процесс.
+function ПодключитьсяКРабочемуПроцессу($Соединитель, $Агент, $Кластер, [string]$ИмяБазы, [string]$Пользователь, [string]$Пароль) {
+    $процессы = @()
+    try {
+        $процессы = @(ВызовCOM $Агент "GetWorkingProcesses" @($Кластер))
+    } catch {
+        Write-Host ("   список рабочих процессов не получен: {0}" -f $_.Exception.Message) -ForegroundColor DarkGray
+        return $null
+    }
+    foreach ($рп in $процессы) {
+        $хост = ""; $порт = 0; $работает = $true
+        try { $хост     = [string](СвойствоCOM $рп "HostName") } catch { }
+        try { $порт     = [int](СвойствоCOM $рп "MainPort") }    catch { }
+        try { $работает = [int](СвойствоCOM $рп "Running") -ne 0 } catch { }
+        if (-not $хост -or $порт -le 0 -or -not $работает) { continue }
+        $адрес = "tcp://{0}:{1}" -f $хост, $порт
+        try {
+            $соединение = ВызовCOM $Соединитель "ConnectWorkingProcess" @($адрес)
+            # Пользователь/пароль — администратора информационной базы (те же, что для Конфигуратора).
+            ВызовCOM $соединение "AddAuthentication" @($Пользователь, $Пароль) | Out-Null
+            foreach ($иб in @(ВызовCOM $соединение "GetInfoBases")) {
+                if ((СвойствоCOM $иб "Name") -eq $ИмяБазы) { return $соединение }
+            }
+        } catch {
+            Write-Host ("   рабочий процесс {0} не подошёл: {1}" -f $адрес, $_.Exception.Message) -ForegroundColor DarkGray
+        }
+    }
+    return $null
+}
+
+# Свежая копия свойств базы. Платформа отдаёт снимок, и писать нужно в тот объект,
+# который только что прочитан: иначе UpdateInfoBase затрёт чужие изменения старыми
+# значениями (например, чей-то ручной запрет сеансов в консоли кластера).
+function СвойстваБазы {
+    if (-not $script:соединениеРП) { return $null }
+    try {
+        foreach ($иб in @(ВызовCOM $script:соединениеРП "GetInfoBases")) {
+            if ((СвойствоCOM $иб "Name") -eq $script:имяБазыКластера) { return $иб }
+        }
+    } catch {
+        Write-Host ("   свойства базы прочитать не удалось: {0}" -f $_.Exception.Message) -ForegroundColor Yellow
+    }
+    return $null
+}
+
+# $Флаги — [ordered]@{ ИмяСвойства = значение }. Возвращает $true, если платформа приняла запись.
+function ЗаписатьСвойстваБазы($Флаги) {
+    $иб = СвойстваБазы
+    if (-not $иб) {
+        Write-Host "   свойства базы недоступны (нет соединения с рабочим процессом кластера)." -ForegroundColor Yellow
+        return $false
+    }
+    try {
+        foreach ($имя in $Флаги.Keys) { ЗадатьCOM $иб $имя $Флаги[$имя] }
+        ВызовCOM $script:соединениеРП "UpdateInfoBase" @($иб) | Out-Null
+        return $true
+    } catch {
+        Write-Host ("   свойства базы записать не удалось: {0}" -f $_.Exception.Message) -ForegroundColor Yellow
+        return $false
+    }
 }
 
 function ПодключитьсяККластеру {
@@ -455,25 +543,25 @@ function ПодключитьсяККластеру {
         foreach ($кластер in @(ВызовCOM $агент "GetClusters")) {
             ВызовCOM $агент "Authenticate" @($кластер, $админ, $парольАдмина) | Out-Null
 
-            # Аутентификация администратора ИБ нужна, чтобы видеть сеансы и менять
-            # свойства базы. Отдельный try: если у баз кластера админа нет вовсе,
-            # метод может отказать — но это не повод бросать уже поднятое
-            # подключение, сеансы читаются и так. Именно на этом месте скрипт
-            # разваливался целиком 16.08.2026.
-            try {
-                ВызовCOM $агент "AddAuthentication" @($пользовательБазы, $парольБазы) | Out-Null
-            } catch {
-                Write-Host ("   аутентификация администратора ИБ не прошла ({0}) — продолжаю без неё" -f $_.Exception.Message) -ForegroundColor DarkGray
-            }
-
+            $найдена = $null
             foreach ($иб in @(ВызовCOM $агент "GetInfoBases" @($кластер))) {
-                if ($иб.Name -eq $имяБазы) {
-                    $script:агентКластера = $агент
-                    $script:кластерБазы   = $кластер
-                    $script:описаниеБазы  = $иб
-                    return $true
-                }
+                if ((СвойствоCOM $иб "Name") -eq $имяБазы) { $найдена = $иб; break }
             }
+            if (-not $найдена) { continue }
+
+            $script:агентКластера   = $агент
+            $script:кластерБазы     = $кластер
+            $script:описаниеБазы    = $найдена
+            $script:имяБазыКластера = $имяБазы
+
+            # Сеансы уже доступны; за блокировками — в рабочий процесс. Не вышло —
+            # не бросаем всё подключение: выгнать сеансы можно и без запрета новых.
+            $script:соединениеРП = ПодключитьсяКРабочемуПроцессу $соединитель $агент $кластер $имяБазы $пользовательБазы $парольБазы
+            if (-not $script:соединениеРП) {
+                Write-Host "   к рабочему процессу кластера не подключиться: блокировать регламентные" -ForegroundColor Yellow
+                Write-Host "   задания и запрещать новые сеансы не смогу, завершать текущие — смогу." -ForegroundColor Yellow
+            }
+            return $true
         }
         Write-Host "База «$имяБазы» не найдена в кластерах сервера $сервер." -ForegroundColor Yellow
     } catch {
@@ -524,26 +612,35 @@ function ВыгнатьВсехИзБазы {
     $иб      = $script:описаниеБазы
 
     Write-Host "== Выгоняю всех из базы" -ForegroundColor Cyan
-    try {
-        # Запрет ставим ДО завершения сеансов, иначе выгнанные тут же зайдут обратно
-        # (клиент 1С переподключается сам) и монопольный режим снова не наступит.
+
+    # Запрет ставим ДО завершения сеансов, иначе выгнанные тут же зайдут обратно
+    # (клиент 1С переподключается сам) и монопольный режим снова не наступит.
+    $свойства = СвойстваБазы
+    $запретПоставлен = $false
+    if ($свойства) {
         if (-not $script:блокировкиПоставлены) {
-            $script:былиЗаданияЗапрещены = [bool]$иб.ScheduledJobsDenied
+            try { $script:былиЗаданияЗапрещены = [bool](СвойствоCOM $свойства "ScheduledJobsDenied") } catch { }
         }
-        $иб.ScheduledJobsDenied = $true
-        $иб.SessionsDenied      = $true
-        $иб.PermissionCode      = $script:кодРазрешения
-        $иб.DeniedMessage       = "База закрыта на обновление конфигурации. Зайдите через несколько минут."
-        $иб.DeniedFrom          = (Get-Date).AddMinutes(-1)
-        $иб.DeniedTo            = (Get-Date).AddMinutes(30)
-        ВызовCOM $агент "UpdateInfoBase" @($кластер, $иб) | Out-Null
+        $запретПоставлен = ЗаписатьСвойстваБазы ([ordered]@{
+            ScheduledJobsDenied = $true
+            SessionsDenied      = $true
+            PermissionCode      = $script:кодРазрешения
+            DeniedMessage       = "База закрыта на обновление конфигурации. Зайдите через несколько минут."
+            DeniedFrom          = (Get-Date).AddMinutes(-1)
+            DeniedTo            = (Get-Date).AddMinutes(30)
+        })
+    }
+    if ($запретПоставлен) {
         $script:блокировкиПоставлены = $true
         ДобавитьКодРазрешения
-    } catch {
-        Write-Host ("   не удалось запретить начало сеансов: {0}" -f $_.Exception.Message) -ForegroundColor Yellow
-        return $false
+        Write-Host "   начало сеансов запрещено, код разрешения: $($script:кодРазрешения)" -ForegroundColor DarkGray
+    } else {
+        # Раньше на этом месте функция сдавалась целиком и обновление не доделывалось,
+        # хотя мешал один живой сеанс. Завершение сеансов идёт через агент и работает
+        # само по себе: без запрета есть только риск, что кто-то успеет зайти обратно.
+        Write-Host "   запретить новые сеансы не вышло — завершаю текущие и сразу обновляю." -ForegroundColor Yellow
+        Write-Host "   если в этот промежуток стартует фоновое задание, попытка сорвётся; тогда повторить." -ForegroundColor Yellow
     }
-    Write-Host "   начало сеансов запрещено, код разрешения: $($script:кодРазрешения)" -ForegroundColor DarkGray
 
     # Пара заходов: платформа завершает сеанс не мгновенно, а какой-нибудь фоновый
     # мог стартовать между запретом и завершением.
@@ -636,36 +733,41 @@ function ОсвободитьБазу {
     $иб      = $script:описаниеБазы
 
     Write-Host "== Освобождаю базу перед монопольным обновлением" -ForegroundColor Cyan
-    try {
+
+    $свойства = СвойстваБазы
+    $блокировкаСтоит = $false
+    if ($свойства) {
         # Запомним исходное состояние: если задания были заблокированы до нас
         # (кем-то намеренно или упавшим прошлым запуском) — вернём как было.
-        $script:былиЗаданияЗапрещены = [bool]$иб.ScheduledJobsDenied
+        try { $script:былиЗаданияЗапрещены = [bool](СвойствоCOM $свойства "ScheduledJobsDenied") } catch { }
         if ($script:былиЗаданияЗапрещены) {
             Write-Host "   регламентные задания были заблокированы ещё до запуска — так и оставлю после" -ForegroundColor Yellow
         }
-        $иб.ScheduledJobsDenied = $true
+        $флаги = [ordered]@{ ScheduledJobsDenied = $true }
         if ($ВыгнатьВсех) {
-            $иб.SessionsDenied  = $true
-            $иб.PermissionCode  = $script:кодРазрешения
-            $иб.DeniedMessage   = "База закрыта на обновление конфигурации. Зайдите через несколько минут."
+            $флаги["SessionsDenied"] = $true
+            $флаги["PermissionCode"] = $script:кодРазрешения
+            $флаги["DeniedMessage"]  = "База закрыта на обновление конфигурации. Зайдите через несколько минут."
             # Срок с запасом: если скрипт прервать, запрет сеансов истечёт сам.
-            $иб.DeniedFrom      = (Get-Date).AddMinutes(-1)
-            $иб.DeniedTo        = (Get-Date).AddMinutes(30)
-            ДобавитьКодРазрешения
+            $флаги["DeniedFrom"]     = (Get-Date).AddMinutes(-1)
+            $флаги["DeniedTo"]       = (Get-Date).AddMinutes(30)
         }
-        ВызовCOM $агент "UpdateInfoBase" @($кластер, $иб) | Out-Null
-        $script:блокировкиПоставлены = $true
-    } catch {
-        Write-Host ("   не удалось поставить блокировку: {0}" -f $_.Exception.Message) -ForegroundColor Yellow
-        Write-Host ""
-        return
+        $блокировкаСтоит = ЗаписатьСвойстваБазы $флаги
     }
 
-    Write-Host "   регламентные задания заблокированы (новые фоновые не стартуют)" -ForegroundColor DarkGray
-    if ($ВыгнатьВсех) {
-        Write-Host "   начало сеансов запрещено, код разрешения: $($script:кодРазрешения)" -ForegroundColor DarkGray
+    if ($блокировкаСтоит) {
+        $script:блокировкиПоставлены = $true
+        Write-Host "   регламентные задания заблокированы (новые фоновые не стартуют)" -ForegroundColor DarkGray
+        if ($ВыгнатьВсех) {
+            ДобавитьКодРазрешения
+            Write-Host "   начало сеансов запрещено, код разрешения: $($script:кодРазрешения)" -ForegroundColor DarkGray
+        }
+        Write-Host "   если прервать скрипт сейчас — снять блокировку в консоли кластера!" -ForegroundColor DarkGray
+    } else {
+        # Не повод останавливаться: сеансы завершаются через агент и без блокировки.
+        Write-Host "   заблокировать регламентные задания не удалось — иду дальше без блокировки." -ForegroundColor Yellow
+        Write-Host "   фоновые задания могут стартовать по расписанию и сорвать монопольный режим." -ForegroundColor Yellow
     }
-    Write-Host "   если прервать скрипт сейчас — снять блокировку в консоли кластера!" -ForegroundColor DarkGray
 
     # Блокировка не останавливает уже запущенные задания — даём им доработать.
     $срок = 90
@@ -724,17 +826,18 @@ function ОсвободитьБазу {
 function ВернутьБлокировки {
     if (-not $script:блокировкиПоставлены) { return }
     $script:блокировкиПоставлены = $false
-    try {
-        $script:описаниеБазы.ScheduledJobsDenied = $script:былиЗаданияЗапрещены
-        $script:описаниеБазы.SessionsDenied      = $false
-        ВызовCOM $script:агентКластера "UpdateInfoBase" @($script:кластерБазы, $script:описаниеБазы) | Out-Null
+    $снято = ЗаписатьСвойстваБазы ([ordered]@{
+        ScheduledJobsDenied = $script:былиЗаданияЗапрещены
+        SessionsDenied      = $false
+    })
+    if ($снято) {
         if ($script:былиЗаданияЗапрещены) {
             Write-Host "== Запрет сеансов снят; блокировку регламентных заданий оставил как было" -ForegroundColor Cyan
         } else {
             Write-Host "== Блокировки сняты: регламентные задания снова работают" -ForegroundColor Cyan
         }
-    } catch {
-        Write-Host ("ВНИМАНИЕ: не удалось снять блокировку: {0}" -f $_.Exception.Message) -ForegroundColor Red
+    } else {
+        Write-Host "ВНИМАНИЕ: не удалось снять блокировку — причина выше." -ForegroundColor Red
         Write-Host "Снимите её в консоли кластера: свойства ИБ -> блокировка регламентных заданий" -ForegroundColor Red
         Write-Host "и блокировка начала сеансов. Иначе регламентные задания стоят молча." -ForegroundColor Red
     }
@@ -757,12 +860,40 @@ if ($Выгрузить) {
 # --- Прямое направление: git -> файлы -> БД ---------------------------------
 
 if (-not $БезPull) {
+    $хешДоPull = ""
+    try { $хешДоPull = (Get-FileHash $PSCommandPath -Algorithm SHA256).Hash } catch { }
+
     Write-Host "== git pull --ff-only origin $Ветка" -ForegroundColor Cyan
     & $git pull --ff-only origin $Ветка
     if ($LASTEXITCODE -ne 0) {
         Write-Host "git pull не прошёл. Вероятно, в папке есть локальные изменения" -ForegroundColor Red
         Write-Host "(выгрузка из Конфигуратора поверх папки?). Разобраться вручную." -ForegroundColor Red
         exit 1
+    }
+
+    # Скрипт лежит в том же репозитории, который сам же и подтягивает: pull может
+    # переписать его прямо во время работы. PowerShell читает файл целиком при старте,
+    # поэтому дальше продолжит выполняться СТАРАЯ версия — залитое исправление
+    # применится только со следующего запуска. Именно так 17.08.2026 два запуска подряд
+    # упали по-разному, хотя правка уже лежала в папке. Перезапускаем себя новым файлом.
+    $хешПослеPull = ""
+    try { $хешПослеPull = (Get-FileHash $PSCommandPath -Algorithm SHA256).Hash } catch { }
+    if ($хешДоPull -and $хешПослеPull -and $хешДоPull -ne $хешПослеPull) {
+        Write-Host "== pull обновил сам скрипт — перезапускаюсь новой версией" -ForegroundColor Cyan
+        $свои = @()
+        foreach ($ключ in $PSBoundParameters.Keys) {
+            $значение = $PSBoundParameters[$ключ]
+            if ($значение -is [switch]) {
+                if ($значение.IsPresent) { $свои += "-$ключ" }
+            } else {
+                $свои += @("-$ключ", [string]$значение)
+            }
+        }
+        $свои += "-БезPull"   # pull уже прошёл, и заодно защита от бесконечного круга
+        $шелл = (Get-Process -Id $PID).Path
+        if (-not $шелл) { $шелл = "powershell" }
+        & $шелл -NoProfile -ExecutionPolicy Bypass -File $PSCommandPath @свои
+        exit $LASTEXITCODE
     }
 }
 
@@ -805,7 +936,7 @@ function ПроверитьКопииЗапускателя {
         try {
             $текстКопии = [System.Text.Encoding]::ASCII.GetString([System.IO.File]::ReadAllBytes($копия))
         } catch { continue }
-        if ($текстКопии.Contains('call "%REPO%\')) { continue }
+        if ($текстКопии.Contains('call "%REPO%\') -or $текстКопии.Contains('__run')) { continue }
 
         $этойИЗапущены = $строкиЗапуска.IndexOf($копия, [System.StringComparison]::OrdinalIgnoreCase) -ge 0
         if (-not $этойИЗапущены) {
