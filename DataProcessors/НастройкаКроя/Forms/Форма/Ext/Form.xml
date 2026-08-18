@@ -6,15 +6,14 @@
 	</Events>
 	<ChildItems>
 		<UsualGroup name="ГруппаТкани" id="10">
-			<Group>Vertical</Group>
-			<Representation>NormalSeparation</Representation>
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>Ткани</v8:content>
 				</v8:item>
 			</Title>
-			<ShowTitle>true</ShowTitle>
+			<Group>Vertical</Group>
+			<Representation>NormalSeparation</Representation>
 			<ExtendedTooltip name="ГруппаТканиРасширеннаяПодсказка" id="11"/>
 			<ChildItems>
 				<UsualGroup name="ГруппаВводТкани" id="12">
@@ -84,18 +83,42 @@
 				</CommandBar>
 				<Table name="Ткани" id="29">
 					<Representation>List</Representation>
+					<ReadOnly>true</ReadOnly>
+					<Height>6</Height>
 					<DataPath>Ткани</DataPath>
 					<SearchStringLocation>None</SearchStringLocation>
 					<ViewStatusLocation>None</ViewStatusLocation>
 					<SearchControlLocation>None</SearchControlLocation>
 					<RowFilter xsi:nil="true"/>
-					<ReadOnly>true</ReadOnly>
-					<Height>6</Height>
 					<ContextMenu name="ТканиКонтекстноеМеню" id="30"/>
 					<AutoCommandBar name="ТканиКоманднаяПанель" id="31">
 						<Autofill>false</Autofill>
 					</AutoCommandBar>
 					<ExtendedTooltip name="ТканиРасширеннаяПодсказка" id="32"/>
+					<SearchStringAddition name="ТканиСтрокаПоиска" id="93">
+						<AdditionSource>
+							<Item>Ткани</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ТканиСтрокаПоискаКонтекстноеМеню" id="94"/>
+						<ExtendedTooltip name="ТканиСтрокаПоискаРасширеннаяПодсказка" id="95"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="ТканиСостояниеПросмотра" id="96">
+						<AdditionSource>
+							<Item>Ткани</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ТканиСостояниеПросмотраКонтекстноеМеню" id="97"/>
+						<ExtendedTooltip name="ТканиСостояниеПросмотраРасширеннаяПодсказка" id="98"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="ТканиУправлениеПоиском" id="99">
+						<AdditionSource>
+							<Item>Ткани</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="ТканиУправлениеПоискомКонтекстноеМеню" id="100"/>
+						<ExtendedTooltip name="ТканиУправлениеПоискомРасширеннаяПодсказка" id="101"/>
+					</SearchControlAddition>
 					<ChildItems>
 						<InputField name="ТканиТкань" id="33">
 							<DataPath>Ткани.Ткань</DataPath>
@@ -116,15 +139,14 @@
 			</ChildItems>
 		</UsualGroup>
 		<UsualGroup name="ГруппаРасценки" id="50">
-			<Group>Vertical</Group>
-			<Representation>NormalSeparation</Representation>
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>Расценки кроя</v8:content>
 				</v8:item>
 			</Title>
-			<ShowTitle>true</ShowTitle>
+			<Group>Vertical</Group>
+			<Representation>NormalSeparation</Representation>
 			<ExtendedTooltip name="ГруппаРасценкиРасширеннаяПодсказка" id="51"/>
 			<ChildItems>
 				<UsualGroup name="ГруппаПериод" id="52">
@@ -185,6 +207,30 @@
 						<Autofill>false</Autofill>
 					</AutoCommandBar>
 					<ExtendedTooltip name="РасценкиРасширеннаяПодсказка" id="69"/>
+					<SearchStringAddition name="РасценкиСтрокаПоиска" id="102">
+						<AdditionSource>
+							<Item>Расценки</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="РасценкиСтрокаПоискаКонтекстноеМеню" id="103"/>
+						<ExtendedTooltip name="РасценкиСтрокаПоискаРасширеннаяПодсказка" id="104"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="РасценкиСостояниеПросмотра" id="105">
+						<AdditionSource>
+							<Item>Расценки</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="РасценкиСостояниеПросмотраКонтекстноеМеню" id="106"/>
+						<ExtendedTooltip name="РасценкиСостояниеПросмотраРасширеннаяПодсказка" id="107"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="РасценкиУправлениеПоиском" id="108">
+						<AdditionSource>
+							<Item>Расценки</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="РасценкиУправлениеПоискомКонтекстноеМеню" id="109"/>
+						<ExtendedTooltip name="РасценкиУправлениеПоискомРасширеннаяПодсказка" id="110"/>
+					</SearchControlAddition>
 					<ChildItems>
 						<InputField name="РасценкиДокумент" id="79">
 							<DataPath>Расценки.Документ</DataPath>
@@ -233,13 +279,13 @@
 		</UsualGroup>
 		<InputField name="Сообщение" id="90">
 			<DataPath>Сообщение</DataPath>
+			<ReadOnly>true</ReadOnly>
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>Результат</v8:content>
 				</v8:item>
 			</Title>
-			<ReadOnly>true</ReadOnly>
 			<Width>110</Width>
 			<ContextMenu name="СообщениеКонтекстноеМеню" id="91"/>
 			<ExtendedTooltip name="СообщениеРасширеннаяПодсказка" id="92"/>

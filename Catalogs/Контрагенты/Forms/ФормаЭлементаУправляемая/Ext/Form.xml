@@ -27,13 +27,13 @@
 		</ChildItems>
 	</AutoCommandBar>
 	<Events>
-		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+		<Event name="AfterWrite">ПослеЗаписи</Event>
+		<Event name="AfterWriteAtServer">ПослеЗаписиНаСервере</Event>
 		<Event name="OnReadAtServer">ПриЧтенииНаСервере</Event>
 		<Event name="OnOpen">ПриОткрытии</Event>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
 		<Event name="BeforeWriteAtServer">ПередЗаписьюНаСервере</Event>
 		<Event name="OnWriteAtServer">ПриЗаписиНаСервере</Event>
-		<Event name="AfterWriteAtServer">ПослеЗаписиНаСервере</Event>
-		<Event name="AfterWrite">ПослеЗаписи</Event>
 	</Events>
 	<ChildItems>
 		<UsualGroup name="ГруппаШапка" id="9">
@@ -44,13 +44,13 @@
 			<ChildItems>
 				<InputField name="Код" id="11">
 					<DataPath>Объект.Code</DataPath>
+					<ReadOnly>true</ReadOnly>
 					<Title>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
 							<v8:content>Код</v8:content>
 						</v8:item>
 					</Title>
-					<ReadOnly>true</ReadOnly>
 					<EditMode>EnterOnInput</EditMode>
 					<Width>12</Width>
 					<ContextMenu name="КодКонтекстноеМеню" id="12"/>
@@ -94,7 +94,7 @@
 			<ExtendedTooltip name="ГруппаШапкаИнфоРасширеннаяПодсказка" id="21"/>
 			<ChildItems>
 				<LabelDecoration name="НадписьДолг" id="22">
-					<Title>
+					<Title formatted="false">
 						<v8:item>
 							<v8:lang>ru</v8:lang>
 							<v8:content>Долг:</v8:content>
@@ -104,7 +104,7 @@
 					<ExtendedTooltip name="НадписьДолгРасширеннаяПодсказка" id="24"/>
 				</LabelDecoration>
 				<LabelDecoration name="НадписьРассылкаТГ" id="25">
-					<Title>
+					<Title formatted="false">
 						<v8:item>
 							<v8:lang>ru</v8:lang>
 							<v8:content>Рассылка ТГ</v8:content>
@@ -215,7 +215,6 @@
 							</Title>
 							<Group>Vertical</Group>
 							<Representation>StrongSeparation</Representation>
-							<ShowTitle>true</ShowTitle>
 							<ExtendedTooltip name="ГруппаКлассификацияРасширеннаяПодсказка" id="50"/>
 							<ChildItems>
 								<InputField name="ЮрФизЛицо" id="51">
@@ -334,7 +333,6 @@
 							</Title>
 							<Group>Vertical</Group>
 							<Representation>StrongSeparation</Representation>
-							<ShowTitle>true</ShowTitle>
 							<ExtendedTooltip name="ГруппаЮрЛицоРасширеннаяПодсказка" id="76"/>
 							<ChildItems>
 								<InputField name="КодПоЕДРПОУ" id="77">
@@ -387,7 +385,6 @@
 							</Title>
 							<Group>Vertical</Group>
 							<Representation>StrongSeparation</Representation>
-							<ShowTitle>true</ShowTitle>
 							<ExtendedTooltip name="ГруппаФизЛицоРасширеннаяПодсказка" id="87"/>
 							<ChildItems>
 								<InputField name="КодПоДРФО" id="88">
@@ -427,7 +424,6 @@
 							</Title>
 							<Group>Vertical</Group>
 							<Representation>StrongSeparation</Representation>
-							<ShowTitle>true</ShowTitle>
 							<ExtendedTooltip name="ГруппаХолдингРасширеннаяПодсказка" id="95"/>
 							<ChildItems>
 								<CheckBoxField name="ВходитВХолдинг" id="96">
@@ -485,7 +481,6 @@
 							</Title>
 							<Group>Vertical</Group>
 							<Representation>StrongSeparation</Representation>
-							<ShowTitle>true</ShowTitle>
 							<ExtendedTooltip name="ГруппаОписаниеРасширеннаяПодсказка" id="106"/>
 							<ChildItems>
 								<InputField name="РасписаниеРаботыСтрокой" id="107">
@@ -542,18 +537,17 @@
 							</Title>
 							<Group>Vertical</Group>
 							<Representation>StrongSeparation</Representation>
-							<ShowTitle>true</ShowTitle>
 							<ExtendedTooltip name="ГруппаПоказателиРасширеннаяПодсказка" id="117"/>
 							<ChildItems>
 								<InputField name="СтадияВзаимоотношений" id="118">
 									<DataPath>СтадияВзаимоотношений</DataPath>
+									<ReadOnly>true</ReadOnly>
 									<Title>
 										<v8:item>
 											<v8:lang>ru</v8:lang>
 											<v8:content>Стадия взаимоотношений</v8:content>
 										</v8:item>
 									</Title>
-									<ReadOnly>true</ReadOnly>
 									<EditMode>EnterOnInput</EditMode>
 									<Width>35</Width>
 									<ContextMenu name="СтадияВзаимоотношенийКонтекстноеМеню" id="119"/>
@@ -561,13 +555,13 @@
 								</InputField>
 								<InputField name="ABCКлассПокупателя" id="121">
 									<DataPath>ABCКлассПокупателя</DataPath>
+									<ReadOnly>true</ReadOnly>
 									<Title>
 										<v8:item>
 											<v8:lang>ru</v8:lang>
 											<v8:content>ABC-класс покупателя</v8:content>
 										</v8:item>
 									</Title>
-									<ReadOnly>true</ReadOnly>
 									<EditMode>EnterOnInput</EditMode>
 									<Width>35</Width>
 									<ContextMenu name="ABCКлассПокупателяКонтекстноеМеню" id="122"/>
@@ -575,13 +569,13 @@
 								</InputField>
 								<InputField name="НадежностьПоставщика" id="124">
 									<DataPath>НадежностьПоставщика</DataPath>
+									<ReadOnly>true</ReadOnly>
 									<Title>
 										<v8:item>
 											<v8:lang>ru</v8:lang>
 											<v8:content>Надёжность поставщика</v8:content>
 										</v8:item>
 									</Title>
-									<ReadOnly>true</ReadOnly>
 									<EditMode>EnterOnInput</EditMode>
 									<Width>35</Width>
 									<ContextMenu name="НадежностьПоставщикаКонтекстноеМеню" id="125"/>
@@ -601,17 +595,17 @@
 					<ExtendedTooltip name="СтраницаКонтактыРасширеннаяПодсказка" id="128"/>
 					<ChildItems>
 						<Table name="КонтактнаяИнформация" id="129">
+							<Representation>List</Representation>
+							<ChangeRowSet>false</ChangeRowSet>
+							<ChangeRowOrder>false</ChangeRowOrder>
+							<Height>8</Height>
+							<DataPath>КонтактнаяИнформация</DataPath>
 							<Title>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content>Адреса и телефоны</v8:content>
 								</v8:item>
 							</Title>
-							<Representation>List</Representation>
-							<ChangeRowSet>false</ChangeRowSet>
-							<ChangeRowOrder>false</ChangeRowOrder>
-							<DataPath>КонтактнаяИнформация</DataPath>
-							<Height>8</Height>
 							<SearchStringLocation>None</SearchStringLocation>
 							<ViewStatusLocation>None</ViewStatusLocation>
 							<SearchControlLocation>None</SearchControlLocation>
@@ -720,7 +714,6 @@
 							</Title>
 							<Group>Vertical</Group>
 							<Representation>StrongSeparation</Representation>
-							<ShowTitle>true</ShowTitle>
 							<ExtendedTooltip name="ГруппаРассылкиРасширеннаяПодсказка" id="158"/>
 							<ChildItems>
 								<InputField name="ОсновнойКонтакт" id="159">
@@ -799,7 +792,6 @@
 							</Title>
 							<Group>Vertical</Group>
 							<Representation>StrongSeparation</Representation>
-							<ShowTitle>true</ShowTitle>
 							<ExtendedTooltip name="ГруппаКонтактныеЛицаРасширеннаяПодсказка" id="175"/>
 							<ChildItems>
 								<CommandBar name="КоманднаяПанельКонтактныеЛица" id="176">
@@ -814,13 +806,13 @@
 								</CommandBar>
 								<InputField name="ОсновноеКонтактноеЛицо" id="180">
 									<DataPath>Объект.ОсновноеКонтактноеЛицо</DataPath>
+									<ReadOnly>true</ReadOnly>
 									<Title>
 										<v8:item>
 											<v8:lang>ru</v8:lang>
 											<v8:content>Основное контактное лицо</v8:content>
 										</v8:item>
 									</Title>
-									<ReadOnly>true</ReadOnly>
 									<EditMode>EnterOnInput</EditMode>
 									<Width>40</Width>
 									<ContextMenu name="ОсновноеКонтактноеЛицоКонтекстноеМеню" id="181"/>
@@ -828,19 +820,25 @@
 								</InputField>
 								<Table name="КонтактныеЛица" id="183">
 									<Representation>List</Representation>
-									<DataPath>КонтактныеЛица</DataPath>
 									<Height>8</Height>
+									<DataPath>КонтактныеЛица</DataPath>
 									<SearchStringLocation>None</SearchStringLocation>
 									<ViewStatusLocation>None</ViewStatusLocation>
 									<SearchControlLocation>None</SearchControlLocation>
 									<AutoRefresh>false</AutoRefresh>
 									<AutoRefreshPeriod>60</AutoRefreshPeriod>
+									<Period>
+										<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+										<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+										<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+									</Period>
 									<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
 									<RestoreCurrentRow>false</RestoreCurrentRow>
 									<TopLevelParent xsi:nil="true"/>
 									<ShowRoot>true</ShowRoot>
 									<AllowRootChoice>false</AllowRootChoice>
 									<UpdateOnDataChange>Auto</UpdateOnDataChange>
+									<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
 									<ContextMenu name="КонтактныеЛицаКонтекстноеМеню" id="184"/>
 									<AutoCommandBar name="КонтактныеЛицаКоманднаяПанель" id="185"/>
 									<ExtendedTooltip name="КонтактныеЛицаРасширеннаяПодсказка" id="186"/>
@@ -1000,8 +998,8 @@
 							<Representation>List</Representation>
 							<ChangeRowSet>false</ChangeRowSet>
 							<ChangeRowOrder>false</ChangeRowOrder>
-							<DataPath>ТабСобытия</DataPath>
 							<Height>14</Height>
+							<DataPath>ТабСобытия</DataPath>
 							<SearchStringLocation>None</SearchStringLocation>
 							<ViewStatusLocation>None</ViewStatusLocation>
 							<SearchControlLocation>None</SearchControlLocation>
@@ -1155,7 +1153,6 @@
 							</Title>
 							<Group>Vertical</Group>
 							<Representation>StrongSeparation</Representation>
-							<ShowTitle>true</ShowTitle>
 							<ExtendedTooltip name="ГруппаЗвонкиРасширеннаяПодсказка" id="270"/>
 							<ChildItems>
 								<CommandBar name="КоманднаяПанельЗвонки" id="271">
@@ -1169,7 +1166,7 @@
 									</ChildItems>
 								</CommandBar>
 								<LabelDecoration name="НадписьЗвонки" id="275">
-									<Title>
+									<Title formatted="false">
 										<v8:item>
 											<v8:lang>ru</v8:lang>
 											<v8:content>Журнал звонков открывается формой МИКО, отфильтрованной по этому контрагенту: там есть прослушивание записей, фильтры по направлению и разбор пропущенных.</v8:content>
@@ -1200,7 +1197,6 @@
 							</Title>
 							<Group>Vertical</Group>
 							<Representation>StrongSeparation</Representation>
-							<ShowTitle>true</ShowTitle>
 							<ExtendedTooltip name="ГруппаДоговорыРасширеннаяПодсказка" id="281"/>
 							<ChildItems>
 								<CommandBar name="КоманднаяПанельДоговоры" id="282">
@@ -1215,13 +1211,13 @@
 								</CommandBar>
 								<InputField name="ОсновнойДоговорКонтрагента" id="286">
 									<DataPath>Объект.ОсновнойДоговорКонтрагента</DataPath>
+									<ReadOnly>true</ReadOnly>
 									<Title>
 										<v8:item>
 											<v8:lang>ru</v8:lang>
 											<v8:content>Основной договор</v8:content>
 										</v8:item>
 									</Title>
-									<ReadOnly>true</ReadOnly>
 									<EditMode>EnterOnInput</EditMode>
 									<Width>40</Width>
 									<ContextMenu name="ОсновнойДоговорКонтрагентаКонтекстноеМеню" id="287"/>
@@ -1229,19 +1225,25 @@
 								</InputField>
 								<Table name="Договоры" id="289">
 									<Representation>List</Representation>
-									<DataPath>Договоры</DataPath>
 									<Height>8</Height>
+									<DataPath>Договоры</DataPath>
 									<SearchStringLocation>None</SearchStringLocation>
 									<ViewStatusLocation>None</ViewStatusLocation>
 									<SearchControlLocation>None</SearchControlLocation>
 									<AutoRefresh>false</AutoRefresh>
 									<AutoRefreshPeriod>60</AutoRefreshPeriod>
+									<Period>
+										<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+										<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+										<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+									</Period>
 									<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
 									<RestoreCurrentRow>false</RestoreCurrentRow>
 									<TopLevelParent xsi:nil="true"/>
 									<ShowRoot>true</ShowRoot>
 									<AllowRootChoice>false</AllowRootChoice>
 									<UpdateOnDataChange>Auto</UpdateOnDataChange>
+									<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
 									<ContextMenu name="ДоговорыКонтекстноеМеню" id="290"/>
 									<AutoCommandBar name="ДоговорыКоманднаяПанель" id="291"/>
 									<ExtendedTooltip name="ДоговорыРасширеннаяПодсказка" id="292"/>
@@ -1343,7 +1345,6 @@
 							</Title>
 							<Group>Vertical</Group>
 							<Representation>StrongSeparation</Representation>
-							<ShowTitle>true</ShowTitle>
 							<ExtendedTooltip name="ГруппаБанковскиеСчетаРасширеннаяПодсказка" id="318"/>
 							<ChildItems>
 								<CommandBar name="КоманднаяПанельБанковскиеСчета" id="319">
@@ -1358,13 +1359,13 @@
 								</CommandBar>
 								<InputField name="ОсновнойБанковскийСчет" id="323">
 									<DataPath>Объект.ОсновнойБанковскийСчет</DataPath>
+									<ReadOnly>true</ReadOnly>
 									<Title>
 										<v8:item>
 											<v8:lang>ru</v8:lang>
 											<v8:content>Основной банковский счёт</v8:content>
 										</v8:item>
 									</Title>
-									<ReadOnly>true</ReadOnly>
 									<EditMode>EnterOnInput</EditMode>
 									<Width>40</Width>
 									<ContextMenu name="ОсновнойБанковскийСчетКонтекстноеМеню" id="324"/>
@@ -1372,19 +1373,25 @@
 								</InputField>
 								<Table name="БанковскиеСчета" id="326">
 									<Representation>List</Representation>
-									<DataPath>БанковскиеСчета</DataPath>
 									<Height>6</Height>
+									<DataPath>БанковскиеСчета</DataPath>
 									<SearchStringLocation>None</SearchStringLocation>
 									<ViewStatusLocation>None</ViewStatusLocation>
 									<SearchControlLocation>None</SearchControlLocation>
 									<AutoRefresh>false</AutoRefresh>
 									<AutoRefreshPeriod>60</AutoRefreshPeriod>
+									<Period>
+										<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+										<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+										<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+									</Period>
 									<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
 									<RestoreCurrentRow>false</RestoreCurrentRow>
 									<TopLevelParent xsi:nil="true"/>
 									<ShowRoot>true</ShowRoot>
 									<AllowRootChoice>false</AllowRootChoice>
 									<UpdateOnDataChange>Auto</UpdateOnDataChange>
+									<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
 									<ContextMenu name="БанковскиеСчетаКонтекстноеМеню" id="327"/>
 									<AutoCommandBar name="БанковскиеСчетаКоманднаяПанель" id="328"/>
 									<ExtendedTooltip name="БанковскиеСчетаРасширеннаяПодсказка" id="329"/>
@@ -1485,7 +1492,6 @@
 							</Title>
 							<Group>Vertical</Group>
 							<Representation>StrongSeparation</Representation>
-							<ShowTitle>true</ShowTitle>
 							<ExtendedTooltip name="ГруппаЦеныШапкаРасширеннаяПодсказка" id="354"/>
 							<ChildItems>
 								<InputField name="ТипЦеныГруппы" id="355">
@@ -1543,15 +1549,15 @@
 							</ChildItems>
 						</UsualGroup>
 						<Table name="Скидки" id="367">
+							<Representation>List</Representation>
+							<Height>10</Height>
+							<DataPath>Объект.Скидки</DataPath>
 							<Title>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content>Скидки по номенклатуре</v8:content>
 								</v8:item>
 							</Title>
-							<Representation>List</Representation>
-							<DataPath>Объект.Скидки</DataPath>
-							<Height>10</Height>
 							<SearchStringLocation>None</SearchStringLocation>
 							<ViewStatusLocation>None</ViewStatusLocation>
 							<SearchControlLocation>None</SearchControlLocation>
@@ -1626,17 +1632,17 @@
 							</ChildItems>
 						</Table>
 						<Table name="ЦеновыеГруппы" id="389">
+							<Representation>List</Representation>
+							<ChangeRowSet>false</ChangeRowSet>
+							<ChangeRowOrder>false</ChangeRowOrder>
+							<Height>8</Height>
+							<DataPath>ЦеновыеГруппы</DataPath>
 							<Title>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content>Контроль продажи ценовых групп</v8:content>
 								</v8:item>
 							</Title>
-							<Representation>List</Representation>
-							<ChangeRowSet>false</ChangeRowSet>
-							<ChangeRowOrder>false</ChangeRowOrder>
-							<DataPath>ЦеновыеГруппы</DataPath>
-							<Height>8</Height>
 							<SearchStringLocation>None</SearchStringLocation>
 							<ViewStatusLocation>None</ViewStatusLocation>
 							<SearchControlLocation>None</SearchControlLocation>
@@ -1718,7 +1724,6 @@
 							</Title>
 							<Group>Vertical</Group>
 							<Representation>StrongSeparation</Representation>
-							<ShowTitle>true</ShowTitle>
 							<ExtendedTooltip name="ГруппаДоставкаШапкаРасширеннаяПодсказка" id="411"/>
 							<ChildItems>
 								<InputField name="Регион" id="412">
@@ -1825,15 +1830,15 @@
 							</ChildItems>
 						</UsualGroup>
 						<Table name="НоваяПочта" id="436">
+							<Representation>List</Representation>
+							<Height>6</Height>
+							<DataPath>Объект.НоваяПочта</DataPath>
 							<Title>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content>Новая почта</v8:content>
 								</v8:item>
 							</Title>
-							<Representation>List</Representation>
-							<DataPath>Объект.НоваяПочта</DataPath>
-							<Height>6</Height>
 							<SearchStringLocation>None</SearchStringLocation>
 							<ViewStatusLocation>None</ViewStatusLocation>
 							<SearchControlLocation>None</SearchControlLocation>
@@ -1903,11 +1908,10 @@
 							</Title>
 							<Group>Vertical</Group>
 							<Representation>StrongSeparation</Representation>
-							<ShowTitle>true</ShowTitle>
 							<ExtendedTooltip name="ГруппаТорговыеТочкиРасширеннаяПодсказка" id="456"/>
 							<ChildItems>
 								<LabelDecoration name="НадписьКоличествоТТ" id="457">
-									<Title>
+									<Title formatted="false">
 										<v8:item>
 											<v8:lang>ru</v8:lang>
 											<v8:content>0 ТТ</v8:content>
@@ -1918,8 +1922,8 @@
 								</LabelDecoration>
 								<Table name="ТорговыеТочки" id="460">
 									<Representation>List</Representation>
-									<DataPath>Объект.ТорговыеТочки</DataPath>
 									<Height>6</Height>
+									<DataPath>Объект.ТорговыеТочки</DataPath>
 									<SearchStringLocation>None</SearchStringLocation>
 									<ViewStatusLocation>None</ViewStatusLocation>
 									<SearchControlLocation>None</SearchControlLocation>
@@ -1992,7 +1996,6 @@
 							</Title>
 							<Group>Vertical</Group>
 							<Representation>StrongSeparation</Representation>
-							<ShowTitle>true</ShowTitle>
 							<ExtendedTooltip name="ГруппаМенеджерыРасширеннаяПодсказка" id="479"/>
 							<ChildItems>
 								<CommandBar name="КоманднаяПанельМенеджеры" id="480">
@@ -2007,13 +2010,13 @@
 								</CommandBar>
 								<InputField name="ОсновнойМенеджерПокупателя" id="484">
 									<DataPath>Объект.ОсновнойМенеджерПокупателя</DataPath>
+									<ReadOnly>true</ReadOnly>
 									<Title>
 										<v8:item>
 											<v8:lang>ru</v8:lang>
 											<v8:content>Основной менеджер покупателя</v8:content>
 										</v8:item>
 									</Title>
-									<ReadOnly>true</ReadOnly>
 									<EditMode>EnterOnInput</EditMode>
 									<Width>40</Width>
 									<ContextMenu name="ОсновнойМенеджерПокупателяКонтекстноеМеню" id="485"/>
@@ -2021,8 +2024,8 @@
 								</InputField>
 								<Table name="МенеджерыПокупателя" id="487">
 									<Representation>List</Representation>
-									<DataPath>Объект.МенеджерыПокупателя</DataPath>
 									<Height>6</Height>
+									<DataPath>Объект.МенеджерыПокупателя</DataPath>
 									<SearchStringLocation>None</SearchStringLocation>
 									<ViewStatusLocation>None</ViewStatusLocation>
 									<SearchControlLocation>None</SearchControlLocation>
@@ -2100,7 +2103,6 @@
 							</Title>
 							<Group>Vertical</Group>
 							<Representation>StrongSeparation</Representation>
-							<ShowTitle>true</ShowTitle>
 							<ExtendedTooltip name="ГруппаВидыДеятельностиРасширеннаяПодсказка" id="507"/>
 							<ChildItems>
 								<CommandBar name="КоманднаяПанельВидыДеятельности" id="508">
@@ -2115,13 +2117,13 @@
 								</CommandBar>
 								<InputField name="ОсновнойВидДеятельности" id="512">
 									<DataPath>Объект.ОсновнойВидДеятельности</DataPath>
+									<ReadOnly>true</ReadOnly>
 									<Title>
 										<v8:item>
 											<v8:lang>ru</v8:lang>
 											<v8:content>Основной вид деятельности</v8:content>
 										</v8:item>
 									</Title>
-									<ReadOnly>true</ReadOnly>
 									<EditMode>EnterOnInput</EditMode>
 									<Width>40</Width>
 									<ContextMenu name="ОсновнойВидДеятельностиКонтекстноеМеню" id="513"/>
@@ -2129,8 +2131,8 @@
 								</InputField>
 								<Table name="ВидыДеятельности" id="515">
 									<Representation>List</Representation>
-									<DataPath>Объект.ВидыДеятельности</DataPath>
 									<Height>6</Height>
+									<DataPath>Объект.ВидыДеятельности</DataPath>
 									<SearchStringLocation>None</SearchStringLocation>
 									<ViewStatusLocation>None</ViewStatusLocation>
 									<SearchControlLocation>None</SearchControlLocation>
@@ -2195,7 +2197,7 @@
 											<ChoiceParameterLinks>
 												<xr:Link>
 													<xr:Name>Отбор.Владелец</xr:Name>
-													<xr:DataPath xsi:type="xs:string">Объект.Ссылка</xr:DataPath>
+													<xr:DataPath xsi:type="xs:string">Объект.Ref</xr:DataPath>
 													<xr:ValueChange>Clear</xr:ValueChange>
 												</xr:Link>
 											</ChoiceParameterLinks>
@@ -2215,7 +2217,6 @@
 							</Title>
 							<Group>Vertical</Group>
 							<Representation>StrongSeparation</Representation>
-							<ShowTitle>true</ShowTitle>
 							<ExtendedTooltip name="ГруппаПоставщикРасширеннаяПодсказка" id="535"/>
 							<ChildItems>
 								<InputField name="СрокВыполненияЗаказаПоставщиком" id="536">
@@ -2258,17 +2259,17 @@
 					<ExtendedTooltip name="СтраницаСвойстваРасширеннаяПодсказка" id="543"/>
 					<ChildItems>
 						<Table name="Свойства" id="544">
+							<Representation>List</Representation>
+							<ChangeRowSet>false</ChangeRowSet>
+							<ChangeRowOrder>false</ChangeRowOrder>
+							<Height>10</Height>
+							<DataPath>Свойства</DataPath>
 							<Title>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content>Свойства</v8:content>
 								</v8:item>
 							</Title>
-							<Representation>List</Representation>
-							<ChangeRowSet>false</ChangeRowSet>
-							<ChangeRowOrder>false</ChangeRowOrder>
-							<DataPath>Свойства</DataPath>
-							<Height>10</Height>
 							<SearchStringLocation>None</SearchStringLocation>
 							<ViewStatusLocation>None</ViewStatusLocation>
 							<SearchControlLocation>None</SearchControlLocation>
@@ -2329,17 +2330,17 @@
 							</ChildItems>
 						</Table>
 						<Table name="Категории" id="563">
+							<Representation>List</Representation>
+							<ChangeRowSet>false</ChangeRowSet>
+							<ChangeRowOrder>false</ChangeRowOrder>
+							<Height>8</Height>
+							<DataPath>Категории</DataPath>
 							<Title>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content>Категории</v8:content>
 								</v8:item>
 							</Title>
-							<Representation>List</Representation>
-							<ChangeRowSet>false</ChangeRowSet>
-							<ChangeRowOrder>false</ChangeRowOrder>
-							<DataPath>Категории</DataPath>
-							<Height>8</Height>
 							<SearchStringLocation>None</SearchStringLocation>
 							<ViewStatusLocation>None</ViewStatusLocation>
 							<SearchControlLocation>None</SearchControlLocation>
@@ -2410,26 +2411,32 @@
 					<ExtendedTooltip name="СтраницаНалогообложениеРасширеннаяПодсказка" id="583"/>
 					<ChildItems>
 						<Table name="СхемыНалогообложения" id="584">
+							<Representation>List</Representation>
+							<Height>10</Height>
+							<DataPath>СхемыНалогообложения</DataPath>
 							<Title>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content>Схемы налогообложения контрагента</v8:content>
 								</v8:item>
 							</Title>
-							<Representation>List</Representation>
-							<DataPath>СхемыНалогообложения</DataPath>
-							<Height>10</Height>
 							<SearchStringLocation>None</SearchStringLocation>
 							<ViewStatusLocation>None</ViewStatusLocation>
 							<SearchControlLocation>None</SearchControlLocation>
 							<AutoRefresh>false</AutoRefresh>
 							<AutoRefreshPeriod>60</AutoRefreshPeriod>
+							<Period>
+								<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+								<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+								<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+							</Period>
 							<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
 							<RestoreCurrentRow>false</RestoreCurrentRow>
 							<TopLevelParent xsi:nil="true"/>
 							<ShowRoot>true</ShowRoot>
 							<AllowRootChoice>false</AllowRootChoice>
 							<UpdateOnDataChange>Auto</UpdateOnDataChange>
+							<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
 							<ContextMenu name="СхемыНалогообложенияКонтекстноеМеню" id="585"/>
 							<AutoCommandBar name="СхемыНалогообложенияКоманднаяПанель" id="586"/>
 							<ExtendedTooltip name="СхемыНалогообложенияРасширеннаяПодсказка" id="587"/>
@@ -2504,7 +2511,6 @@
 							</Title>
 							<Group>Vertical</Group>
 							<Representation>StrongSeparation</Representation>
-							<ShowTitle>true</ShowTitle>
 							<ExtendedTooltip name="ГруппаWEBРасширеннаяПодсказка" id="606"/>
 							<ChildItems>
 								<CheckBoxField name="РазрешенДоступКWEBЗаказам" id="607">
@@ -2580,7 +2586,6 @@
 							</Title>
 							<Group>Vertical</Group>
 							<Representation>StrongSeparation</Representation>
-							<ShowTitle>true</ShowTitle>
 							<ExtendedTooltip name="ГруппаСайтРасширеннаяПодсказка" id="623"/>
 							<ChildItems>
 								<InputField name="IDСайта" id="624">
@@ -2633,7 +2638,6 @@
 							</Title>
 							<Group>Vertical</Group>
 							<Representation>StrongSeparation</Representation>
-							<ShowTitle>true</ShowTitle>
 							<ExtendedTooltip name="ГруппаФлагиРасширеннаяПодсказка" id="634"/>
 							<ChildItems>
 								<CheckBoxField name="ВыводитьВРНПодробноеОписание" id="635">
@@ -3383,18 +3387,18 @@
 				<ListSettings>
 					<dcsset:filter>
 						<dcsset:viewMode>Normal</dcsset:viewMode>
-						<dcsset:userSettingID>f2c1ba61-1c4c-4a4e-8ff5-2c9d0a6b1a01</dcsset:userSettingID>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
 					</dcsset:filter>
 					<dcsset:order>
 						<dcsset:viewMode>Normal</dcsset:viewMode>
-						<dcsset:userSettingID>0a1f3c7d-46a2-4c1e-9d0b-7b1c2d3e4f01</dcsset:userSettingID>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
 					</dcsset:order>
 					<dcsset:conditionalAppearance>
 						<dcsset:viewMode>Normal</dcsset:viewMode>
-						<dcsset:userSettingID>3d5a7c91-0b2e-4f6a-8c1d-9e0f1a2b3c01</dcsset:userSettingID>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
 					</dcsset:conditionalAppearance>
 					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
-					<dcsset:itemsUserSettingID>6b8d0f23-4a5c-4e7b-9d1f-2a3b4c5d6e01</dcsset:itemsUserSettingID>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
 				</ListSettings>
 			</Settings>
 		</Attribute>
@@ -3415,18 +3419,18 @@
 				<ListSettings>
 					<dcsset:filter>
 						<dcsset:viewMode>Normal</dcsset:viewMode>
-						<dcsset:userSettingID>f2c1ba61-1c4c-4a4e-8ff5-2c9d0a6b1a02</dcsset:userSettingID>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
 					</dcsset:filter>
 					<dcsset:order>
 						<dcsset:viewMode>Normal</dcsset:viewMode>
-						<dcsset:userSettingID>0a1f3c7d-46a2-4c1e-9d0b-7b1c2d3e4f02</dcsset:userSettingID>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
 					</dcsset:order>
 					<dcsset:conditionalAppearance>
 						<dcsset:viewMode>Normal</dcsset:viewMode>
-						<dcsset:userSettingID>3d5a7c91-0b2e-4f6a-8c1d-9e0f1a2b3c02</dcsset:userSettingID>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
 					</dcsset:conditionalAppearance>
 					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
-					<dcsset:itemsUserSettingID>6b8d0f23-4a5c-4e7b-9d1f-2a3b4c5d6e02</dcsset:itemsUserSettingID>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
 				</ListSettings>
 			</Settings>
 		</Attribute>
@@ -3447,18 +3451,18 @@
 				<ListSettings>
 					<dcsset:filter>
 						<dcsset:viewMode>Normal</dcsset:viewMode>
-						<dcsset:userSettingID>f2c1ba61-1c4c-4a4e-8ff5-2c9d0a6b1a03</dcsset:userSettingID>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
 					</dcsset:filter>
 					<dcsset:order>
 						<dcsset:viewMode>Normal</dcsset:viewMode>
-						<dcsset:userSettingID>0a1f3c7d-46a2-4c1e-9d0b-7b1c2d3e4f03</dcsset:userSettingID>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
 					</dcsset:order>
 					<dcsset:conditionalAppearance>
 						<dcsset:viewMode>Normal</dcsset:viewMode>
-						<dcsset:userSettingID>3d5a7c91-0b2e-4f6a-8c1d-9e0f1a2b3c03</dcsset:userSettingID>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
 					</dcsset:conditionalAppearance>
 					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
-					<dcsset:itemsUserSettingID>6b8d0f23-4a5c-4e7b-9d1f-2a3b4c5d6e03</dcsset:itemsUserSettingID>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
 				</ListSettings>
 			</Settings>
 		</Attribute>
@@ -3479,18 +3483,18 @@
 				<ListSettings>
 					<dcsset:filter>
 						<dcsset:viewMode>Normal</dcsset:viewMode>
-						<dcsset:userSettingID>f2c1ba61-1c4c-4a4e-8ff5-2c9d0a6b1a04</dcsset:userSettingID>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
 					</dcsset:filter>
 					<dcsset:order>
 						<dcsset:viewMode>Normal</dcsset:viewMode>
-						<dcsset:userSettingID>0a1f3c7d-46a2-4c1e-9d0b-7b1c2d3e4f04</dcsset:userSettingID>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
 					</dcsset:order>
 					<dcsset:conditionalAppearance>
 						<dcsset:viewMode>Normal</dcsset:viewMode>
-						<dcsset:userSettingID>3d5a7c91-0b2e-4f6a-8c1d-9e0f1a2b3c04</dcsset:userSettingID>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
 					</dcsset:conditionalAppearance>
 					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
-					<dcsset:itemsUserSettingID>6b8d0f23-4a5c-4e7b-9d1f-2a3b4c5d6e04</dcsset:itemsUserSettingID>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
 				</ListSettings>
 			</Settings>
 		</Attribute>

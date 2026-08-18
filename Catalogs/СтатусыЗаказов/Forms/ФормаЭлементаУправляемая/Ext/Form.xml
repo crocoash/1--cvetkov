@@ -4,10 +4,10 @@
 	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
 	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
 	<Events>
-		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+		<Event name="AfterWriteAtServer">ПослеЗаписиНаСервере</Event>
 		<Event name="OnReadAtServer">ПриЧтенииНаСервере</Event>
 		<Event name="OnOpen">ПриОткрытии</Event>
-		<Event name="AfterWriteAtServer">ПослеЗаписиНаСервере</Event>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
 	</Events>
 	<ChildItems>
 		<UsualGroup name="ГруппаШапка" id="10">
@@ -90,8 +90,8 @@
 								<InputField name="СхемаРезервирования" id="24">
 									<DataPath>Объект.СхемаРезервирования</DataPath>
 									<EditMode>EnterOnInput</EditMode>
-									<ClearButton>true</ClearButton>
 									<Width>30</Width>
+									<ClearButton>true</ClearButton>
 									<ContextMenu name="СхемаРезервированияКонтекстноеМеню" id="25"/>
 									<ExtendedTooltip name="СхемаРезервированияРасширеннаяПодсказка" id="26"/>
 								</InputField>
@@ -146,8 +146,8 @@
 								<InputField name="Касса" id="43">
 									<DataPath>Объект.Касса</DataPath>
 									<EditMode>EnterOnInput</EditMode>
-									<ClearButton>true</ClearButton>
 									<Width>30</Width>
+									<ClearButton>true</ClearButton>
 									<ContextMenu name="КассаКонтекстноеМеню" id="44"/>
 									<ExtendedTooltip name="КассаРасширеннаяПодсказка" id="45"/>
 								</InputField>
@@ -179,8 +179,8 @@
 										</v8:item>
 									</Title>
 									<EditMode>EnterOnInput</EditMode>
-									<ClearButton>true</ClearButton>
 									<Width>30</Width>
+									<ClearButton>true</ClearButton>
 									<ContextMenu name="КассаВнПеремещенияКонтекстноеМеню" id="52"/>
 									<ExtendedTooltip name="КассаВнПеремещенияРасширеннаяПодсказка" id="53"/>
 								</InputField>
@@ -226,8 +226,8 @@
 								<InputField name="ШаблонСМС" id="64">
 									<DataPath>Объект.ШаблонСМС</DataPath>
 									<EditMode>EnterOnInput</EditMode>
-									<ClearButton>true</ClearButton>
 									<Width>40</Width>
+									<ClearButton>true</ClearButton>
 									<ContextMenu name="ШаблонСМСКонтекстноеМеню" id="65"/>
 									<ExtendedTooltip name="ШаблонСМСРасширеннаяПодсказка" id="66"/>
 								</InputField>
@@ -564,8 +564,8 @@
 														</v8:item>
 													</Title>
 													<EditMode>EnterOnInput</EditMode>
-													<ClearButton>true</ClearButton>
 													<Width>30</Width>
+													<ClearButton>true</ClearButton>
 													<ContextMenu name="ПользовательКонтекстноеМеню" id="133"/>
 													<ExtendedTooltip name="ПользовательРасширеннаяПодсказка" id="134"/>
 												</InputField>
@@ -578,8 +578,8 @@
 														</v8:item>
 													</Title>
 													<EditMode>EnterOnInput</EditMode>
-													<ClearButton>true</ClearButton>
 													<Width>30</Width>
+													<ClearButton>true</ClearButton>
 													<ContextMenu name="ПользовательГруппаКонтекстноеМеню" id="136"/>
 													<ExtendedTooltip name="ПользовательГруппаРасширеннаяПодсказка" id="137"/>
 												</InputField>
@@ -611,13 +611,13 @@
 															<ExtendedTooltip name="ДнейВСтатусеРасширеннаяПодсказка" id="142"/>
 														</InputField>
 														<LabelDecoration name="НадписьДнейВСтатусе" id="143">
-															<GroupVerticalAlign>Bottom</GroupVerticalAlign>
 															<Title formatted="false">
 																<v8:item>
 																	<v8:lang>ru</v8:lang>
 																	<v8:content>0 — задачу не формируем</v8:content>
 																</v8:item>
 															</Title>
+															<GroupVerticalAlign>Bottom</GroupVerticalAlign>
 															<ContextMenu name="НадписьДнейВСтатусеКонтекстноеМеню" id="144"/>
 															<ExtendedTooltip name="НадписьДнейВСтатусеРасширеннаяПодсказка" id="145"/>
 														</LabelDecoration>
@@ -632,8 +632,8 @@
 														</v8:item>
 													</Title>
 													<EditMode>EnterOnInput</EditMode>
-													<ClearButton>true</ClearButton>
 													<Width>30</Width>
+													<ClearButton>true</ClearButton>
 													<ContextMenu name="Пользователь1КонтекстноеМеню" id="149"/>
 													<ExtendedTooltip name="Пользователь1РасширеннаяПодсказка" id="150"/>
 													<Events>
@@ -649,9 +649,9 @@
 														</v8:item>
 													</Title>
 													<EditMode>EnterOnInput</EditMode>
-													<ChoiceFoldersAndItems>Folders</ChoiceFoldersAndItems>
-													<ClearButton>true</ClearButton>
 													<Width>30</Width>
+													<ClearButton>true</ClearButton>
+													<ChoiceFoldersAndItems>Folders</ChoiceFoldersAndItems>
 													<ContextMenu name="ЗадачаГруппеПользователейКонтекстноеМеню" id="152"/>
 													<ExtendedTooltip name="ЗадачаГруппеПользователейРасширеннаяПодсказка" id="153"/>
 													<Events>
@@ -726,9 +726,9 @@
 														</v8:item>
 													</Title>
 													<EditMode>EnterOnInput</EditMode>
-													<ChoiceFoldersAndItems>FoldersAndItems</ChoiceFoldersAndItems>
-													<ClearButton>true</ClearButton>
 													<Width>30</Width>
+													<ClearButton>true</ClearButton>
+													<ChoiceFoldersAndItems>FoldersAndItems</ChoiceFoldersAndItems>
 													<ContextMenu name="ПользовательРозницаКонтекстноеМеню" id="168"/>
 													<ExtendedTooltip name="ПользовательРозницаРасширеннаяПодсказка" id="169"/>
 												</InputField>
@@ -766,13 +766,13 @@
 															<ExtendedTooltip name="ДнейВСтатусеРозницаРасширеннаяПодсказка" id="174"/>
 														</InputField>
 														<LabelDecoration name="НадписьДнейВСтатусеРозница" id="175">
-															<GroupVerticalAlign>Bottom</GroupVerticalAlign>
 															<Title formatted="false">
 																<v8:item>
 																	<v8:lang>ru</v8:lang>
 																	<v8:content>0 — как у остальных заказов</v8:content>
 																</v8:item>
 															</Title>
+															<GroupVerticalAlign>Bottom</GroupVerticalAlign>
 															<ContextMenu name="НадписьДнейВСтатусеРозницаКонтекстноеМеню" id="176"/>
 															<ExtendedTooltip name="НадписьДнейВСтатусеРозницаРасширеннаяПодсказка" id="177"/>
 														</LabelDecoration>
@@ -787,9 +787,9 @@
 														</v8:item>
 													</Title>
 													<EditMode>EnterOnInput</EditMode>
-													<ChoiceFoldersAndItems>FoldersAndItems</ChoiceFoldersAndItems>
-													<ClearButton>true</ClearButton>
 													<Width>30</Width>
+													<ClearButton>true</ClearButton>
+													<ChoiceFoldersAndItems>FoldersAndItems</ChoiceFoldersAndItems>
 													<ContextMenu name="ПользовательПросрочкиРозницаКонтекстноеМеню" id="181"/>
 													<ExtendedTooltip name="ПользовательПросрочкиРозницаРасширеннаяПодсказка" id="182"/>
 												</InputField>
@@ -863,8 +863,8 @@
 										</v8:item>
 									</Title>
 									<EditMode>EnterOnInput</EditMode>
-									<ClearButton>true</ClearButton>
 									<Width>30</Width>
+									<ClearButton>true</ClearButton>
 									<ContextMenu name="ПользовательСрокХраненияКонтекстноеМеню" id="201"/>
 									<ExtendedTooltip name="ПользовательСрокХраненияРасширеннаяПодсказка" id="202"/>
 								</InputField>

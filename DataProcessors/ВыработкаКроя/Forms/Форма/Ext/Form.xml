@@ -66,30 +66,54 @@
 		</CommandBar>
 		<InputField name="Итого" id="35">
 			<DataPath>Итого</DataPath>
+			<ReadOnly>true</ReadOnly>
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>Итого</v8:content>
 				</v8:item>
 			</Title>
-			<ReadOnly>true</ReadOnly>
 			<Width>110</Width>
 			<ContextMenu name="ИтогоКонтекстноеМеню" id="36"/>
 			<ExtendedTooltip name="ИтогоРасширеннаяПодсказка" id="37"/>
 		</InputField>
 		<Table name="Строки" id="40">
 			<Representation>List</Representation>
+			<ReadOnly>true</ReadOnly>
 			<DataPath>Строки</DataPath>
 			<SearchStringLocation>None</SearchStringLocation>
 			<ViewStatusLocation>None</ViewStatusLocation>
 			<SearchControlLocation>None</SearchControlLocation>
 			<RowFilter xsi:nil="true"/>
-			<ReadOnly>true</ReadOnly>
 			<ContextMenu name="СтрокиКонтекстноеМеню" id="41"/>
 			<AutoCommandBar name="СтрокиКоманднаяПанель" id="42">
 				<Autofill>false</Autofill>
 			</AutoCommandBar>
 			<ExtendedTooltip name="СтрокиРасширеннаяПодсказка" id="43"/>
+			<SearchStringAddition name="СтрокиСтрокаПоиска" id="74">
+				<AdditionSource>
+					<Item>Строки</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СтрокиСтрокаПоискаКонтекстноеМеню" id="75"/>
+				<ExtendedTooltip name="СтрокиСтрокаПоискаРасширеннаяПодсказка" id="76"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="СтрокиСостояниеПросмотра" id="77">
+				<AdditionSource>
+					<Item>Строки</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СтрокиСостояниеПросмотраКонтекстноеМеню" id="78"/>
+				<ExtendedTooltip name="СтрокиСостояниеПросмотраРасширеннаяПодсказка" id="79"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="СтрокиУправлениеПоиском" id="80">
+				<AdditionSource>
+					<Item>Строки</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="СтрокиУправлениеПоискомКонтекстноеМеню" id="81"/>
+				<ExtendedTooltip name="СтрокиУправлениеПоискомРасширеннаяПодсказка" id="82"/>
+			</SearchControlAddition>
 			<ChildItems>
 				<InputField name="СтрокиДата" id="44">
 					<DataPath>Строки.Дата</DataPath>
