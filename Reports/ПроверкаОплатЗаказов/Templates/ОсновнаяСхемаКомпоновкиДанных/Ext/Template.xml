@@ -173,11 +173,7 @@
 ИЗ
 	ВсеОстаткиПоЗаказам КАК ВсеОстаткиПоЗаказам
 ГДЕ
-	ВсеОстаткиПоЗаказам.Заказ.Дата &gt;= ВЫБОР
-			КОГДА &amp;ЗаказыС = ДАТАВРЕМЯ(1, 1, 1)
-				ТОГДА НАЧАЛОПЕРИОДА(&amp;ТекущаяДата, ГОД)
-			ИНАЧЕ &amp;ЗаказыС
-		КОНЕЦ
+	ВсеОстаткиПоЗаказам.Заказ.Дата &gt;= ДОБАВИТЬКДАТЕ(НАЧАЛОПЕРИОДА(&amp;ТекущаяДата, ГОД), ГОД, -3)
 
 СГРУППИРОВАТЬ ПО
 	ВсеОстаткиПоЗаказам.Заказ
@@ -278,23 +274,6 @@
 		<expression>Сумма(НеОплаченоОтСуммыЗаказа)</expression>
 	</totalField>
 	<parameter>
-		<name>ЗаказыС</name>
-		<title xsi:type="v8:LocalStringType">
-			<v8:item>
-				<v8:lang>ru</v8:lang>
-				<v8:content>Заказы с даты</v8:content>
-			</v8:item>
-		</title>
-		<valueType>
-			<v8:Type>xs:dateTime</v8:Type>
-			<v8:DateQualifiers>
-				<v8:DateFractions>Date</v8:DateFractions>
-			</v8:DateQualifiers>
-		</valueType>
-		<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
-		<useRestriction>false</useRestriction>
-	</parameter>
-	<parameter>
 		<name>ТекущаяДата</name>
 		<title xsi:type="v8:LocalStringType">
 			<v8:item>
@@ -376,6 +355,12 @@
 						<dcsset:left xsi:type="dcscor:Field">ОстатокПоМодулю</dcsset:left>
 						<dcsset:comparisonType>Greater</dcsset:comparisonType>
 						<dcsset:right xsi:type="xs:decimal">1</dcsset:right>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:FilterItemComparison">
+						<dcsset:use>true</dcsset:use>
+						<dcsset:left xsi:type="dcscor:Field">Дата</dcsset:left>
+						<dcsset:comparisonType>GreaterOrEqual</dcsset:comparisonType>
+						<dcsset:right xsi:type="xs:dateTime">2026-01-01T00:00:00</dcsset:right>
 					</dcsset:item>
 				</dcsset:filter>
 				<dcsset:order>
