@@ -90,13 +90,13 @@
 				</Button>
 			</ChildItems>
 		</CommandBar>
-		<UsualGroup name="ГруппаРабочая" id="144">
+		<UsualGroup name="ГруппаРабочая" id="150">
 			<Group>Horizontal</Group>
 			<Representation>None</Representation>
 			<ShowTitle>false</ShowTitle>
 			<HorizontalStretch>true</HorizontalStretch>
 			<VerticalStretch>true</VerticalStretch>
-			<ExtendedTooltip name="ГруппаРабочаяРасширеннаяПодсказка" id="145"/>
+			<ExtendedTooltip name="ГруппаРабочаяРасширеннаяПодсказка" id="151"/>
 			<ChildItems>
 				<Table name="ТаблицаХарактеристикНоменклатуры" id="49">
 					<Representation>List</Representation>
@@ -182,7 +182,7 @@
 								</v8:item>
 							</Title>
 							<EditMode>EnterOnInput</EditMode>
-							<Width>26</Width>
+							<Width>22</Width>
 							<ContextMenu name="ХарактеристикиХарактеристикаКонтекстноеМеню" id="38"/>
 							<ExtendedTooltip name="ХарактеристикиХарактеристикаРасширеннаяПодсказка" id="39"/>
 						</InputField>
@@ -234,192 +234,223 @@
 						</InputField>
 					</ChildItems>
 				</Table>
-				<UsualGroup name="ГруппаПравая" id="142">
+				<UsualGroup name="ГруппаПравая" id="148">
 					<Group>Vertical</Group>
 					<Representation>None</Representation>
 					<ShowTitle>false</ShowTitle>
-					<HorizontalStretch>true</HorizontalStretch>
+					<HorizontalStretch>false</HorizontalStretch>
 					<VerticalStretch>true</VerticalStretch>
-					<ExtendedTooltip name="ГруппаПраваяРасширеннаяПодсказка" id="143"/>
+					<ExtendedTooltip name="ГруппаПраваяРасширеннаяПодсказка" id="149"/>
 					<ChildItems>
-						<UsualGroup name="ГруппаСпискиОтбора" id="83">
-							<Group>Horizontal</Group>
-							<Representation>None</Representation>
-							<ShowTitle>false</ShowTitle>
-							<HorizontalStretch>true</HorizontalStretch>
+						<Pages name="ГруппаСтраницыОтбора" id="89">
+							<PagesRepresentation>TabsOnTop</PagesRepresentation>
+							<HorizontalStretch>false</HorizontalStretch>
 							<VerticalStretch>true</VerticalStretch>
-							<ExtendedTooltip name="ГруппаСпискиОтбораРасширеннаяПодсказка" id="84"/>
+							<ExtendedTooltip name="ГруппаСтраницыОтбораРасширеннаяПодсказка" id="90"/>
 							<ChildItems>
-								<Table name="ЦветСписок" id="59">
-									<Representation>List</Representation>
-									<ChangeRowSet>false</ChangeRowSet>
-									<ChangeRowOrder>false</ChangeRowOrder>
-									<TitleLocation>None</TitleLocation>
-									<DataPath>ЦветСписок</DataPath>
-									<SearchStringLocation>None</SearchStringLocation>
-									<ViewStatusLocation>None</ViewStatusLocation>
-									<SearchControlLocation>None</SearchControlLocation>
-									<Height>10</Height>
-									<Width>11</Width>
-									<HorizontalStretch>true</HorizontalStretch>
-									<VerticalStretch>true</VerticalStretch>
-									<RowFilter xsi:nil="true"/>
-									<ContextMenu name="ЦветСписокКонтекстноеМеню" id="60"/>
-									<AutoCommandBar name="ЦветСписокКоманднаяПанель" id="61">
-										<Autofill>false</Autofill>
-									</AutoCommandBar>
-									<ExtendedTooltip name="ЦветСписокРасширеннаяПодсказка" id="62"/>
+								<Page name="СтраницаЦвет" id="63">
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Цвет</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="СтраницаЦветРасширеннаяПодсказка" id="64"/>
 									<ChildItems>
-										<CheckBoxField name="ЦветСписокПометка" id="53">
-											<DataPath>ЦветСписок.Пометка</DataPath>
-											<Title>
-												<v8:item>
-													<v8:lang>ru</v8:lang>
-													<v8:content> </v8:content>
-												</v8:item>
-											</Title>
-											<HorizontalAlign>Center</HorizontalAlign>
-											<EditMode>EnterOnInput</EditMode>
-											<CheckBoxType>Auto</CheckBoxType>
-											<ContextMenu name="ЦветСписокПометкаКонтекстноеМеню" id="54"/>
-											<ExtendedTooltip name="ЦветСписокПометкаРасширеннаяПодсказка" id="55"/>
-											<Events>
-												<Event name="OnChange">ЦветСписокПометкаПриИзменении</Event>
-											</Events>
-										</CheckBoxField>
-										<InputField name="ЦветСписокЗначение" id="56">
-											<DataPath>ЦветСписок.Значение</DataPath>
-											<ReadOnly>true</ReadOnly>
-											<Title>
-												<v8:item>
-													<v8:lang>ru</v8:lang>
-													<v8:content>Цвет</v8:content>
-												</v8:item>
-											</Title>
-											<EditMode>EnterOnInput</EditMode>
-											<Width>10</Width>
-											<ContextMenu name="ЦветСписокЗначениеКонтекстноеМеню" id="57"/>
-											<ExtendedTooltip name="ЦветСписокЗначениеРасширеннаяПодсказка" id="58"/>
-										</InputField>
+										<Table name="ЦветСписок" id="59">
+											<Representation>List</Representation>
+											<ChangeRowSet>false</ChangeRowSet>
+											<ChangeRowOrder>false</ChangeRowOrder>
+											<TitleLocation>None</TitleLocation>
+											<DataPath>ЦветСписок</DataPath>
+											<SearchStringLocation>None</SearchStringLocation>
+											<ViewStatusLocation>None</ViewStatusLocation>
+											<SearchControlLocation>None</SearchControlLocation>
+											<Height>10</Height>
+											<Width>17</Width>
+											<HorizontalStretch>true</HorizontalStretch>
+											<VerticalStretch>true</VerticalStretch>
+											<RowFilter xsi:nil="true"/>
+											<ContextMenu name="ЦветСписокКонтекстноеМеню" id="60"/>
+											<AutoCommandBar name="ЦветСписокКоманднаяПанель" id="61">
+												<Autofill>false</Autofill>
+											</AutoCommandBar>
+											<ExtendedTooltip name="ЦветСписокРасширеннаяПодсказка" id="62"/>
+											<ChildItems>
+												<CheckBoxField name="ЦветСписокПометка" id="53">
+													<DataPath>ЦветСписок.Пометка</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content> </v8:content>
+														</v8:item>
+													</Title>
+													<HorizontalAlign>Center</HorizontalAlign>
+													<EditMode>EnterOnInput</EditMode>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="ЦветСписокПометкаКонтекстноеМеню" id="54"/>
+													<ExtendedTooltip name="ЦветСписокПометкаРасширеннаяПодсказка" id="55"/>
+													<Events>
+														<Event name="OnChange">ЦветСписокПометкаПриИзменении</Event>
+													</Events>
+												</CheckBoxField>
+												<InputField name="ЦветСписокЗначение" id="56">
+													<DataPath>ЦветСписок.Значение</DataPath>
+													<ReadOnly>true</ReadOnly>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Цвет</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>EnterOnInput</EditMode>
+													<Width>14</Width>
+													<ContextMenu name="ЦветСписокЗначениеКонтекстноеМеню" id="57"/>
+													<ExtendedTooltip name="ЦветСписокЗначениеРасширеннаяПодсказка" id="58"/>
+												</InputField>
+											</ChildItems>
+										</Table>
 									</ChildItems>
-								</Table>
-								<Table name="РазмерСписок" id="69">
-									<Representation>List</Representation>
-									<ChangeRowSet>false</ChangeRowSet>
-									<ChangeRowOrder>false</ChangeRowOrder>
-									<TitleLocation>None</TitleLocation>
-									<DataPath>РазмерСписок</DataPath>
-									<SearchStringLocation>None</SearchStringLocation>
-									<ViewStatusLocation>None</ViewStatusLocation>
-									<SearchControlLocation>None</SearchControlLocation>
-									<Height>10</Height>
-									<Width>11</Width>
-									<HorizontalStretch>true</HorizontalStretch>
-									<VerticalStretch>true</VerticalStretch>
-									<RowFilter xsi:nil="true"/>
-									<ContextMenu name="РазмерСписокКонтекстноеМеню" id="70"/>
-									<AutoCommandBar name="РазмерСписокКоманднаяПанель" id="71">
-										<Autofill>false</Autofill>
-									</AutoCommandBar>
-									<ExtendedTooltip name="РазмерСписокРасширеннаяПодсказка" id="72"/>
+								</Page>
+								<Page name="СтраницаРазмер" id="75">
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Размер</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="СтраницаРазмерРасширеннаяПодсказка" id="76"/>
 									<ChildItems>
-										<CheckBoxField name="РазмерСписокПометка" id="63">
-											<DataPath>РазмерСписок.Пометка</DataPath>
-											<Title>
-												<v8:item>
-													<v8:lang>ru</v8:lang>
-													<v8:content> </v8:content>
-												</v8:item>
-											</Title>
-											<HorizontalAlign>Center</HorizontalAlign>
-											<EditMode>EnterOnInput</EditMode>
-											<CheckBoxType>Auto</CheckBoxType>
-											<ContextMenu name="РазмерСписокПометкаКонтекстноеМеню" id="64"/>
-											<ExtendedTooltip name="РазмерСписокПометкаРасширеннаяПодсказка" id="65"/>
-											<Events>
-												<Event name="OnChange">РазмерСписокПометкаПриИзменении</Event>
-											</Events>
-										</CheckBoxField>
-										<InputField name="РазмерСписокЗначение" id="66">
-											<DataPath>РазмерСписок.Значение</DataPath>
-											<ReadOnly>true</ReadOnly>
-											<Title>
-												<v8:item>
-													<v8:lang>ru</v8:lang>
-													<v8:content>Размер</v8:content>
-												</v8:item>
-											</Title>
-											<EditMode>EnterOnInput</EditMode>
-											<Width>10</Width>
-											<ContextMenu name="РазмерСписокЗначениеКонтекстноеМеню" id="67"/>
-											<ExtendedTooltip name="РазмерСписокЗначениеРасширеннаяПодсказка" id="68"/>
-										</InputField>
+										<Table name="РазмерСписок" id="71">
+											<Representation>List</Representation>
+											<ChangeRowSet>false</ChangeRowSet>
+											<ChangeRowOrder>false</ChangeRowOrder>
+											<TitleLocation>None</TitleLocation>
+											<DataPath>РазмерСписок</DataPath>
+											<SearchStringLocation>None</SearchStringLocation>
+											<ViewStatusLocation>None</ViewStatusLocation>
+											<SearchControlLocation>None</SearchControlLocation>
+											<Height>10</Height>
+											<Width>17</Width>
+											<HorizontalStretch>true</HorizontalStretch>
+											<VerticalStretch>true</VerticalStretch>
+											<RowFilter xsi:nil="true"/>
+											<ContextMenu name="РазмерСписокКонтекстноеМеню" id="72"/>
+											<AutoCommandBar name="РазмерСписокКоманднаяПанель" id="73">
+												<Autofill>false</Autofill>
+											</AutoCommandBar>
+											<ExtendedTooltip name="РазмерСписокРасширеннаяПодсказка" id="74"/>
+											<ChildItems>
+												<CheckBoxField name="РазмерСписокПометка" id="65">
+													<DataPath>РазмерСписок.Пометка</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content> </v8:content>
+														</v8:item>
+													</Title>
+													<HorizontalAlign>Center</HorizontalAlign>
+													<EditMode>EnterOnInput</EditMode>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="РазмерСписокПометкаКонтекстноеМеню" id="66"/>
+													<ExtendedTooltip name="РазмерСписокПометкаРасширеннаяПодсказка" id="67"/>
+													<Events>
+														<Event name="OnChange">РазмерСписокПометкаПриИзменении</Event>
+													</Events>
+												</CheckBoxField>
+												<InputField name="РазмерСписокЗначение" id="68">
+													<DataPath>РазмерСписок.Значение</DataPath>
+													<ReadOnly>true</ReadOnly>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Размер</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>EnterOnInput</EditMode>
+													<Width>14</Width>
+													<ContextMenu name="РазмерСписокЗначениеКонтекстноеМеню" id="69"/>
+													<ExtendedTooltip name="РазмерСписокЗначениеРасширеннаяПодсказка" id="70"/>
+												</InputField>
+											</ChildItems>
+										</Table>
 									</ChildItems>
-								</Table>
-								<Table name="ТканьСписок" id="79">
-									<Representation>List</Representation>
-									<ChangeRowSet>false</ChangeRowSet>
-									<ChangeRowOrder>false</ChangeRowOrder>
-									<TitleLocation>None</TitleLocation>
-									<DataPath>ТканьСписок</DataPath>
-									<SearchStringLocation>None</SearchStringLocation>
-									<ViewStatusLocation>None</ViewStatusLocation>
-									<SearchControlLocation>None</SearchControlLocation>
-									<Height>10</Height>
-									<Width>11</Width>
-									<HorizontalStretch>true</HorizontalStretch>
-									<VerticalStretch>true</VerticalStretch>
-									<RowFilter xsi:nil="true"/>
-									<ContextMenu name="ТканьСписокКонтекстноеМеню" id="80"/>
-									<AutoCommandBar name="ТканьСписокКоманднаяПанель" id="81">
-										<Autofill>false</Autofill>
-									</AutoCommandBar>
-									<ExtendedTooltip name="ТканьСписокРасширеннаяПодсказка" id="82"/>
+								</Page>
+								<Page name="СтраницаТкань" id="87">
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Ткань</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="СтраницаТканьРасширеннаяПодсказка" id="88"/>
 									<ChildItems>
-										<CheckBoxField name="ТканьСписокПометка" id="73">
-											<DataPath>ТканьСписок.Пометка</DataPath>
-											<Title>
-												<v8:item>
-													<v8:lang>ru</v8:lang>
-													<v8:content> </v8:content>
-												</v8:item>
-											</Title>
-											<HorizontalAlign>Center</HorizontalAlign>
-											<EditMode>EnterOnInput</EditMode>
-											<CheckBoxType>Auto</CheckBoxType>
-											<ContextMenu name="ТканьСписокПометкаКонтекстноеМеню" id="74"/>
-											<ExtendedTooltip name="ТканьСписокПометкаРасширеннаяПодсказка" id="75"/>
-											<Events>
-												<Event name="OnChange">ТканьСписокПометкаПриИзменении</Event>
-											</Events>
-										</CheckBoxField>
-										<InputField name="ТканьСписокЗначение" id="76">
-											<DataPath>ТканьСписок.Значение</DataPath>
-											<ReadOnly>true</ReadOnly>
-											<Title>
-												<v8:item>
-													<v8:lang>ru</v8:lang>
-													<v8:content>Ткань</v8:content>
-												</v8:item>
-											</Title>
-											<EditMode>EnterOnInput</EditMode>
-											<Width>10</Width>
-											<ContextMenu name="ТканьСписокЗначениеКонтекстноеМеню" id="77"/>
-											<ExtendedTooltip name="ТканьСписокЗначениеРасширеннаяПодсказка" id="78"/>
-										</InputField>
+										<Table name="ТканьСписок" id="83">
+											<Representation>List</Representation>
+											<ChangeRowSet>false</ChangeRowSet>
+											<ChangeRowOrder>false</ChangeRowOrder>
+											<TitleLocation>None</TitleLocation>
+											<DataPath>ТканьСписок</DataPath>
+											<SearchStringLocation>None</SearchStringLocation>
+											<ViewStatusLocation>None</ViewStatusLocation>
+											<SearchControlLocation>None</SearchControlLocation>
+											<Height>10</Height>
+											<Width>17</Width>
+											<HorizontalStretch>true</HorizontalStretch>
+											<VerticalStretch>true</VerticalStretch>
+											<RowFilter xsi:nil="true"/>
+											<ContextMenu name="ТканьСписокКонтекстноеМеню" id="84"/>
+											<AutoCommandBar name="ТканьСписокКоманднаяПанель" id="85">
+												<Autofill>false</Autofill>
+											</AutoCommandBar>
+											<ExtendedTooltip name="ТканьСписокРасширеннаяПодсказка" id="86"/>
+											<ChildItems>
+												<CheckBoxField name="ТканьСписокПометка" id="77">
+													<DataPath>ТканьСписок.Пометка</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content> </v8:content>
+														</v8:item>
+													</Title>
+													<HorizontalAlign>Center</HorizontalAlign>
+													<EditMode>EnterOnInput</EditMode>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="ТканьСписокПометкаКонтекстноеМеню" id="78"/>
+													<ExtendedTooltip name="ТканьСписокПометкаРасширеннаяПодсказка" id="79"/>
+													<Events>
+														<Event name="OnChange">ТканьСписокПометкаПриИзменении</Event>
+													</Events>
+												</CheckBoxField>
+												<InputField name="ТканьСписокЗначение" id="80">
+													<DataPath>ТканьСписок.Значение</DataPath>
+													<ReadOnly>true</ReadOnly>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Ткань</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>EnterOnInput</EditMode>
+													<Width>14</Width>
+													<ContextMenu name="ТканьСписокЗначениеКонтекстноеМеню" id="81"/>
+													<ExtendedTooltip name="ТканьСписокЗначениеРасширеннаяПодсказка" id="82"/>
+												</InputField>
+											</ChildItems>
+										</Table>
 									</ChildItems>
-								</Table>
+								</Page>
 							</ChildItems>
-						</UsualGroup>
-						<UsualGroup name="ГруппаПанельГруппСкладов" id="138">
+						</Pages>
+						<UsualGroup name="ГруппаПанельГруппСкладов" id="144">
 							<Group>Vertical</Group>
 							<Representation>None</Representation>
 							<ShowTitle>false</ShowTitle>
-							<HorizontalStretch>true</HorizontalStretch>
+							<HorizontalStretch>false</HorizontalStretch>
 							<VerticalStretch>true</VerticalStretch>
-							<ExtendedTooltip name="ГруппаПанельГруппСкладовРасширеннаяПодсказка" id="139"/>
+							<ExtendedTooltip name="ГруппаПанельГруппСкладовРасширеннаяПодсказка" id="145"/>
 							<ChildItems>
-								<Table name="ТабГруппСкладов" id="97">
+								<Table name="ТабГруппСкладов" id="103">
 									<Representation>List</Representation>
 									<ChangeRowSet>false</ChangeRowSet>
 									<ChangeRowOrder>false</ChangeRowOrder>
@@ -428,20 +459,20 @@
 									<ViewStatusLocation>None</ViewStatusLocation>
 									<SearchControlLocation>None</SearchControlLocation>
 									<Height>8</Height>
-									<Width>28</Width>
-									<HorizontalStretch>true</HorizontalStretch>
+									<Width>22</Width>
+									<HorizontalStretch>false</HorizontalStretch>
 									<VerticalStretch>true</VerticalStretch>
 									<RowFilter xsi:nil="true"/>
-									<ContextMenu name="ТабГруппСкладовКонтекстноеМеню" id="98"/>
-									<AutoCommandBar name="ТабГруппСкладовКоманднаяПанель" id="99">
+									<ContextMenu name="ТабГруппСкладовКонтекстноеМеню" id="104"/>
+									<AutoCommandBar name="ТабГруппСкладовКоманднаяПанель" id="105">
 										<Autofill>false</Autofill>
 									</AutoCommandBar>
-									<ExtendedTooltip name="ТабГруппСкладовРасширеннаяПодсказка" id="100"/>
+									<ExtendedTooltip name="ТабГруппСкладовРасширеннаяПодсказка" id="106"/>
 									<Events>
 										<Event name="Selection">ТабГруппСкладовВыбор</Event>
 									</Events>
 									<ChildItems>
-										<CheckBoxField name="ТабГруппСкладовОтметка1" id="85">
+										<CheckBoxField name="ТабГруппСкладовОтметка1" id="91">
 											<DataPath>ТабГруппСкладов.Отметка1</DataPath>
 											<Title>
 												<v8:item>
@@ -458,13 +489,13 @@
 											<HorizontalAlign>Center</HorizontalAlign>
 											<EditMode>EnterOnInput</EditMode>
 											<CheckBoxType>Auto</CheckBoxType>
-											<ContextMenu name="ТабГруппСкладовОтметка1КонтекстноеМеню" id="86"/>
-											<ExtendedTooltip name="ТабГруппСкладовОтметка1РасширеннаяПодсказка" id="87"/>
+											<ContextMenu name="ТабГруппСкладовОтметка1КонтекстноеМеню" id="92"/>
+											<ExtendedTooltip name="ТабГруппСкладовОтметка1РасширеннаяПодсказка" id="93"/>
 											<Events>
 												<Event name="OnChange">ТабГруппСкладовОтметка1ПриИзменении</Event>
 											</Events>
 										</CheckBoxField>
-										<CheckBoxField name="ТабГруппСкладовОтметка" id="88">
+										<CheckBoxField name="ТабГруппСкладовОтметка" id="94">
 											<DataPath>ТабГруппСкладов.Отметка</DataPath>
 											<Title>
 												<v8:item>
@@ -481,13 +512,13 @@
 											<HorizontalAlign>Center</HorizontalAlign>
 											<EditMode>EnterOnInput</EditMode>
 											<CheckBoxType>Auto</CheckBoxType>
-											<ContextMenu name="ТабГруппСкладовОтметкаКонтекстноеМеню" id="89"/>
-											<ExtendedTooltip name="ТабГруппСкладовОтметкаРасширеннаяПодсказка" id="90"/>
+											<ContextMenu name="ТабГруппСкладовОтметкаКонтекстноеМеню" id="95"/>
+											<ExtendedTooltip name="ТабГруппСкладовОтметкаРасширеннаяПодсказка" id="96"/>
 											<Events>
 												<Event name="OnChange">ТабГруппСкладовОтметкаПриИзменении</Event>
 											</Events>
 										</CheckBoxField>
-										<InputField name="ТабГруппСкладовСклад" id="91">
+										<InputField name="ТабГруппСкладовСклад" id="97">
 											<DataPath>ТабГруппСкладов.Склад</DataPath>
 											<ReadOnly>true</ReadOnly>
 											<Title>
@@ -497,11 +528,11 @@
 												</v8:item>
 											</Title>
 											<EditMode>EnterOnInput</EditMode>
-											<Width>16</Width>
-											<ContextMenu name="ТабГруппСкладовСкладКонтекстноеМеню" id="92"/>
-											<ExtendedTooltip name="ТабГруппСкладовСкладРасширеннаяПодсказка" id="93"/>
+											<Width>13</Width>
+											<ContextMenu name="ТабГруппСкладовСкладКонтекстноеМеню" id="98"/>
+											<ExtendedTooltip name="ТабГруппСкладовСкладРасширеннаяПодсказка" id="99"/>
 										</InputField>
-										<InputField name="ТабГруппСкладовКоличество" id="94">
+										<InputField name="ТабГруппСкладовКоличество" id="100">
 											<DataPath>ТабГруппСкладов.Количество</DataPath>
 											<ReadOnly>true</ReadOnly>
 											<Title>
@@ -512,22 +543,22 @@
 											</Title>
 											<EditMode>EnterOnInput</EditMode>
 											<Width>7</Width>
-											<ContextMenu name="ТабГруппСкладовКоличествоКонтекстноеМеню" id="95"/>
-											<ExtendedTooltip name="ТабГруппСкладовКоличествоРасширеннаяПодсказка" id="96"/>
+											<ContextMenu name="ТабГруппСкладовКоличествоКонтекстноеМеню" id="101"/>
+											<ExtendedTooltip name="ТабГруппСкладовКоличествоРасширеннаяПодсказка" id="102"/>
 										</InputField>
 									</ChildItems>
 								</Table>
 							</ChildItems>
 						</UsualGroup>
-						<UsualGroup name="ГруппаФлажков" id="123">
+						<UsualGroup name="ГруппаФлажков" id="129">
 							<Group>Horizontal</Group>
 							<Representation>None</Representation>
 							<ShowTitle>false</ShowTitle>
-							<HorizontalStretch>true</HorizontalStretch>
+							<HorizontalStretch>false</HorizontalStretch>
 							<VerticalStretch>false</VerticalStretch>
-							<ExtendedTooltip name="ГруппаФлажковРасширеннаяПодсказка" id="124"/>
+							<ExtendedTooltip name="ГруппаФлажковРасширеннаяПодсказка" id="130"/>
 							<ChildItems>
-								<Button name="КнопкаИнвертировать" id="101">
+								<Button name="КнопкаИнвертировать" id="107">
 									<Type>UsualButton</Type>
 									<CommandName>Form.Command.ИнвертироватьСклады</CommandName>
 									<Title>
@@ -542,9 +573,9 @@
 											<v8:content>инвертировать отметки складов</v8:content>
 										</v8:item>
 									</ToolTip>
-									<ExtendedTooltip name="КнопкаИнвертироватьРасширеннаяПодсказка" id="102"/>
+									<ExtendedTooltip name="КнопкаИнвертироватьРасширеннаяПодсказка" id="108"/>
 								</Button>
-								<Button name="КнопкаСнятьВсеФлажки" id="103">
+								<Button name="КнопкаСнятьВсеФлажки" id="109">
 									<Type>UsualButton</Type>
 									<CommandName>Form.Command.СнятьВсеФлажки</CommandName>
 									<Title>
@@ -559,9 +590,9 @@
 											<v8:content>снять все отметки складов</v8:content>
 										</v8:item>
 									</ToolTip>
-									<ExtendedTooltip name="КнопкаСнятьВсеФлажкиРасширеннаяПодсказка" id="104"/>
+									<ExtendedTooltip name="КнопкаСнятьВсеФлажкиРасширеннаяПодсказка" id="110"/>
 								</Button>
-								<CheckBoxField name="ФлажокРезерв" id="105">
+								<CheckBoxField name="ФлажокРезерв" id="111">
 									<DataPath>Резерв</DataPath>
 									<Title>
 										<v8:item>
@@ -578,13 +609,13 @@
 									<HorizontalAlign>Center</HorizontalAlign>
 									<EditMode>EnterOnInput</EditMode>
 									<CheckBoxType>Auto</CheckBoxType>
-									<ContextMenu name="ФлажокРезервКонтекстноеМеню" id="106"/>
-									<ExtendedTooltip name="ФлажокРезервРасширеннаяПодсказка" id="107"/>
+									<ContextMenu name="ФлажокРезервКонтекстноеМеню" id="112"/>
+									<ExtendedTooltip name="ФлажокРезервРасширеннаяПодсказка" id="113"/>
 									<Events>
 										<Event name="OnChange">РезервПриИзменении</Event>
 									</Events>
 								</CheckBoxField>
-								<CheckBoxField name="ФлажокРазделитель" id="108">
+								<CheckBoxField name="ФлажокРазделитель" id="114">
 									<DataPath>Разделитель</DataPath>
 									<Title>
 										<v8:item>
@@ -601,13 +632,13 @@
 									<HorizontalAlign>Center</HorizontalAlign>
 									<EditMode>EnterOnInput</EditMode>
 									<CheckBoxType>Auto</CheckBoxType>
-									<ContextMenu name="ФлажокРазделительКонтекстноеМеню" id="109"/>
-									<ExtendedTooltip name="ФлажокРазделительРасширеннаяПодсказка" id="110"/>
+									<ContextMenu name="ФлажокРазделительКонтекстноеМеню" id="115"/>
+									<ExtendedTooltip name="ФлажокРазделительРасширеннаяПодсказка" id="116"/>
 									<Events>
 										<Event name="OnChange">РазделительПриИзменении</Event>
 									</Events>
 								</CheckBoxField>
-								<CheckBoxField name="ФлажокВыгрузка" id="111">
+								<CheckBoxField name="ФлажокВыгрузка" id="117">
 									<DataPath>Выгрузка</DataPath>
 									<Title>
 										<v8:item>
@@ -624,13 +655,13 @@
 									<HorizontalAlign>Center</HorizontalAlign>
 									<EditMode>EnterOnInput</EditMode>
 									<CheckBoxType>Auto</CheckBoxType>
-									<ContextMenu name="ФлажокВыгрузкаКонтекстноеМеню" id="112"/>
-									<ExtendedTooltip name="ФлажокВыгрузкаРасширеннаяПодсказка" id="113"/>
+									<ContextMenu name="ФлажокВыгрузкаКонтекстноеМеню" id="118"/>
+									<ExtendedTooltip name="ФлажокВыгрузкаРасширеннаяПодсказка" id="119"/>
 									<Events>
 										<Event name="OnChange">ВыгрузкаПриИзменении</Event>
 									</Events>
 								</CheckBoxField>
-								<CheckBoxField name="ФлажокУбиратьНолевые" id="114">
+								<CheckBoxField name="ФлажокУбиратьНолевые" id="120">
 									<DataPath>УбиратьНолевые</DataPath>
 									<Title>
 										<v8:item>
@@ -647,13 +678,13 @@
 									<HorizontalAlign>Center</HorizontalAlign>
 									<EditMode>EnterOnInput</EditMode>
 									<CheckBoxType>Auto</CheckBoxType>
-									<ContextMenu name="ФлажокУбиратьНолевыеКонтекстноеМеню" id="115"/>
-									<ExtendedTooltip name="ФлажокУбиратьНолевыеРасширеннаяПодсказка" id="116"/>
+									<ContextMenu name="ФлажокУбиратьНолевыеКонтекстноеМеню" id="121"/>
+									<ExtendedTooltip name="ФлажокУбиратьНолевыеРасширеннаяПодсказка" id="122"/>
 									<Events>
 										<Event name="OnChange">УбиратьНолевыеПриИзменении</Event>
 									</Events>
 								</CheckBoxField>
-								<CheckBoxField name="ФлажокУбиратьНеДоступные" id="117">
+								<CheckBoxField name="ФлажокУбиратьНеДоступные" id="123">
 									<DataPath>УбиратьНеДоступные</DataPath>
 									<Title>
 										<v8:item>
@@ -670,13 +701,13 @@
 									<HorizontalAlign>Center</HorizontalAlign>
 									<EditMode>EnterOnInput</EditMode>
 									<CheckBoxType>Auto</CheckBoxType>
-									<ContextMenu name="ФлажокУбиратьНеДоступныеКонтекстноеМеню" id="118"/>
-									<ExtendedTooltip name="ФлажокУбиратьНеДоступныеРасширеннаяПодсказка" id="119"/>
+									<ContextMenu name="ФлажокУбиратьНеДоступныеКонтекстноеМеню" id="124"/>
+									<ExtendedTooltip name="ФлажокУбиратьНеДоступныеРасширеннаяПодсказка" id="125"/>
 									<Events>
 										<Event name="OnChange">УбиратьНеДоступныеПриИзменении</Event>
 									</Events>
 								</CheckBoxField>
-								<CheckBoxField name="ФлажокИтогПоСкладах" id="120">
+								<CheckBoxField name="ФлажокИтогПоСкладах" id="126">
 									<DataPath>ИтогПоСкладах</DataPath>
 									<Title>
 										<v8:item>
@@ -693,23 +724,23 @@
 									<HorizontalAlign>Center</HorizontalAlign>
 									<EditMode>EnterOnInput</EditMode>
 									<CheckBoxType>Auto</CheckBoxType>
-									<ContextMenu name="ФлажокИтогПоСкладахКонтекстноеМеню" id="121"/>
-									<ExtendedTooltip name="ФлажокИтогПоСкладахРасширеннаяПодсказка" id="122"/>
+									<ContextMenu name="ФлажокИтогПоСкладахКонтекстноеМеню" id="127"/>
+									<ExtendedTooltip name="ФлажокИтогПоСкладахРасширеннаяПодсказка" id="128"/>
 									<Events>
 										<Event name="OnChange">ИтогПоСкладахПриИзменении</Event>
 									</Events>
 								</CheckBoxField>
 							</ChildItems>
 						</UsualGroup>
-						<UsualGroup name="ГруппаПанельСкладов" id="140">
+						<UsualGroup name="ГруппаПанельСкладов" id="146">
 							<Group>Vertical</Group>
 							<Representation>None</Representation>
 							<ShowTitle>false</ShowTitle>
-							<HorizontalStretch>true</HorizontalStretch>
+							<HorizontalStretch>false</HorizontalStretch>
 							<VerticalStretch>true</VerticalStretch>
-							<ExtendedTooltip name="ГруппаПанельСкладовРасширеннаяПодсказка" id="141"/>
+							<ExtendedTooltip name="ГруппаПанельСкладовРасширеннаяПодсказка" id="147"/>
 							<ChildItems>
-								<Table name="ТабСклады" id="134">
+								<Table name="ТабСклады" id="140">
 									<Representation>List</Representation>
 									<ChangeRowSet>false</ChangeRowSet>
 									<ChangeRowOrder>false</ChangeRowOrder>
@@ -718,20 +749,20 @@
 									<ViewStatusLocation>None</ViewStatusLocation>
 									<SearchControlLocation>None</SearchControlLocation>
 									<Height>10</Height>
-									<Width>28</Width>
-									<HorizontalStretch>true</HorizontalStretch>
+									<Width>22</Width>
+									<HorizontalStretch>false</HorizontalStretch>
 									<VerticalStretch>true</VerticalStretch>
 									<RowFilter xsi:nil="true"/>
-									<ContextMenu name="ТабСкладыКонтекстноеМеню" id="135"/>
-									<AutoCommandBar name="ТабСкладыКоманднаяПанель" id="136">
+									<ContextMenu name="ТабСкладыКонтекстноеМеню" id="141"/>
+									<AutoCommandBar name="ТабСкладыКоманднаяПанель" id="142">
 										<Autofill>false</Autofill>
 									</AutoCommandBar>
-									<ExtendedTooltip name="ТабСкладыРасширеннаяПодсказка" id="137"/>
+									<ExtendedTooltip name="ТабСкладыРасширеннаяПодсказка" id="143"/>
 									<Events>
 										<Event name="Selection">ТабСкладыВыбор</Event>
 									</Events>
 									<ChildItems>
-										<CheckBoxField name="ТабСкладыОтметка" id="125">
+										<CheckBoxField name="ТабСкладыОтметка" id="131">
 											<DataPath>ТабСклады.Отметка</DataPath>
 											<Title>
 												<v8:item>
@@ -742,13 +773,13 @@
 											<HorizontalAlign>Center</HorizontalAlign>
 											<EditMode>EnterOnInput</EditMode>
 											<CheckBoxType>Auto</CheckBoxType>
-											<ContextMenu name="ТабСкладыОтметкаКонтекстноеМеню" id="126"/>
-											<ExtendedTooltip name="ТабСкладыОтметкаРасширеннаяПодсказка" id="127"/>
+											<ContextMenu name="ТабСкладыОтметкаКонтекстноеМеню" id="132"/>
+											<ExtendedTooltip name="ТабСкладыОтметкаРасширеннаяПодсказка" id="133"/>
 											<Events>
 												<Event name="OnChange">ТабСкладыОтметкаПриИзменении</Event>
 											</Events>
 										</CheckBoxField>
-										<InputField name="ТабСкладыСклад" id="128">
+										<InputField name="ТабСкладыСклад" id="134">
 											<DataPath>ТабСклады.Склад</DataPath>
 											<ReadOnly>true</ReadOnly>
 											<Title>
@@ -758,11 +789,11 @@
 												</v8:item>
 											</Title>
 											<EditMode>EnterOnInput</EditMode>
-											<Width>16</Width>
-											<ContextMenu name="ТабСкладыСкладКонтекстноеМеню" id="129"/>
-											<ExtendedTooltip name="ТабСкладыСкладРасширеннаяПодсказка" id="130"/>
+											<Width>13</Width>
+											<ContextMenu name="ТабСкладыСкладКонтекстноеМеню" id="135"/>
+											<ExtendedTooltip name="ТабСкладыСкладРасширеннаяПодсказка" id="136"/>
 										</InputField>
-										<InputField name="ТабСкладыОстаток" id="131">
+										<InputField name="ТабСкладыОстаток" id="137">
 											<DataPath>ТабСклады.Остаток</DataPath>
 											<ReadOnly>true</ReadOnly>
 											<Title>
@@ -773,8 +804,8 @@
 											</Title>
 											<EditMode>EnterOnInput</EditMode>
 											<Width>7</Width>
-											<ContextMenu name="ТабСкладыОстатокКонтекстноеМеню" id="132"/>
-											<ExtendedTooltip name="ТабСкладыОстатокРасширеннаяПодсказка" id="133"/>
+											<ContextMenu name="ТабСкладыОстатокКонтекстноеМеню" id="138"/>
+											<ExtendedTooltip name="ТабСкладыОстатокРасширеннаяПодсказка" id="139"/>
 										</InputField>
 									</ChildItems>
 								</Table>
@@ -784,15 +815,15 @@
 				</UsualGroup>
 			</ChildItems>
 		</UsualGroup>
-		<UsualGroup name="ГруппаПодвал" id="168">
+		<UsualGroup name="ГруппаПодвал" id="174">
 			<Group>Horizontal</Group>
 			<Representation>None</Representation>
 			<ShowTitle>false</ShowTitle>
 			<HorizontalStretch>true</HorizontalStretch>
 			<VerticalStretch>false</VerticalStretch>
-			<ExtendedTooltip name="ГруппаПодвалРасширеннаяПодсказка" id="169"/>
+			<ExtendedTooltip name="ГруппаПодвалРасширеннаяПодсказка" id="175"/>
 			<ChildItems>
-				<InputField name="ПолеМР" id="146">
+				<InputField name="ПолеМР" id="152">
 					<DataPath>МР</DataPath>
 					<Title>
 						<v8:item>
@@ -808,13 +839,13 @@
 					</ToolTip>
 					<EditMode>EnterOnInput</EditMode>
 					<Width>4</Width>
-					<ContextMenu name="ПолеМРКонтекстноеМеню" id="147"/>
-					<ExtendedTooltip name="ПолеМРРасширеннаяПодсказка" id="148"/>
+					<ContextMenu name="ПолеМРКонтекстноеМеню" id="153"/>
+					<ExtendedTooltip name="ПолеМРРасширеннаяПодсказка" id="154"/>
 					<Events>
 						<Event name="OnChange">МРПриИзменении</Event>
 					</Events>
 				</InputField>
-				<InputField name="ПолеИтоговаяСумма" id="149">
+				<InputField name="ПолеИтоговаяСумма" id="155">
 					<DataPath>ИтоговаяСумма</DataPath>
 					<ReadOnly>true</ReadOnly>
 					<Title>
@@ -825,10 +856,10 @@
 					</Title>
 					<EditMode>EnterOnInput</EditMode>
 					<Width>12</Width>
-					<ContextMenu name="ПолеИтоговаяСуммаКонтекстноеМеню" id="150"/>
-					<ExtendedTooltip name="ПолеИтоговаяСуммаРасширеннаяПодсказка" id="151"/>
+					<ContextMenu name="ПолеИтоговаяСуммаКонтекстноеМеню" id="156"/>
+					<ExtendedTooltip name="ПолеИтоговаяСуммаРасширеннаяПодсказка" id="157"/>
 				</InputField>
-				<InputField name="ПолеВКрое1" id="152">
+				<InputField name="ПолеВКрое1" id="158">
 					<DataPath>ИтоговоеКолВоВКрое1</DataPath>
 					<ReadOnly>true</ReadOnly>
 					<Title>
@@ -839,10 +870,10 @@
 					</Title>
 					<EditMode>EnterOnInput</EditMode>
 					<Width>6</Width>
-					<ContextMenu name="ПолеВКрое1КонтекстноеМеню" id="153"/>
-					<ExtendedTooltip name="ПолеВКрое1РасширеннаяПодсказка" id="154"/>
+					<ContextMenu name="ПолеВКрое1КонтекстноеМеню" id="159"/>
+					<ExtendedTooltip name="ПолеВКрое1РасширеннаяПодсказка" id="160"/>
 				</InputField>
-				<InputField name="ПолеВКрое2" id="155">
+				<InputField name="ПолеВКрое2" id="161">
 					<DataPath>ИтоговоеКолВоВКрое2</DataPath>
 					<ReadOnly>true</ReadOnly>
 					<Title>
@@ -853,10 +884,10 @@
 					</Title>
 					<EditMode>EnterOnInput</EditMode>
 					<Width>6</Width>
-					<ContextMenu name="ПолеВКрое2КонтекстноеМеню" id="156"/>
-					<ExtendedTooltip name="ПолеВКрое2РасширеннаяПодсказка" id="157"/>
+					<ContextMenu name="ПолеВКрое2КонтекстноеМеню" id="162"/>
+					<ExtendedTooltip name="ПолеВКрое2РасширеннаяПодсказка" id="163"/>
 				</InputField>
-				<InputField name="ПолеГруппаСкладов" id="158">
+				<InputField name="ПолеГруппаСкладов" id="164">
 					<DataPath>ГруппаСкладов</DataPath>
 					<Title>
 						<v8:item>
@@ -867,13 +898,13 @@
 					<EditMode>EnterOnInput</EditMode>
 					<ClearButton>true</ClearButton>
 					<Width>20</Width>
-					<ContextMenu name="ПолеГруппаСкладовКонтекстноеМеню" id="159"/>
-					<ExtendedTooltip name="ПолеГруппаСкладовРасширеннаяПодсказка" id="160"/>
+					<ContextMenu name="ПолеГруппаСкладовКонтекстноеМеню" id="165"/>
+					<ExtendedTooltip name="ПолеГруппаСкладовРасширеннаяПодсказка" id="166"/>
 					<Events>
 						<Event name="OnChange">ГруппаСкладовПриИзменении</Event>
 					</Events>
 				</InputField>
-				<CheckBoxField name="ФлажокСобиратьНК" id="161">
+				<CheckBoxField name="ФлажокСобиратьНК" id="167">
 					<DataPath>СобиратьНК</DataPath>
 					<Title>
 						<v8:item>
@@ -890,13 +921,13 @@
 					<HorizontalAlign>Center</HorizontalAlign>
 					<EditMode>EnterOnInput</EditMode>
 					<CheckBoxType>Auto</CheckBoxType>
-					<ContextMenu name="ФлажокСобиратьНККонтекстноеМеню" id="162"/>
-					<ExtendedTooltip name="ФлажокСобиратьНКРасширеннаяПодсказка" id="163"/>
+					<ContextMenu name="ФлажокСобиратьНККонтекстноеМеню" id="168"/>
+					<ExtendedTooltip name="ФлажокСобиратьНКРасширеннаяПодсказка" id="169"/>
 					<Events>
 						<Event name="OnChange">СобиратьНКПриИзменении</Event>
 					</Events>
 				</CheckBoxField>
-				<Button name="КнопкаОК" id="164">
+				<Button name="КнопкаОК" id="170">
 					<Type>UsualButton</Type>
 					<DefaultButton>true</DefaultButton>
 					<CommandName>Form.Command.ОК</CommandName>
@@ -906,9 +937,9 @@
 							<v8:content>ОК</v8:content>
 						</v8:item>
 					</Title>
-					<ExtendedTooltip name="КнопкаОКРасширеннаяПодсказка" id="165"/>
+					<ExtendedTooltip name="КнопкаОКРасширеннаяПодсказка" id="171"/>
 				</Button>
-				<Button name="КнопкаЗакрыть" id="166">
+				<Button name="КнопкаЗакрыть" id="172">
 					<Type>UsualButton</Type>
 					<CommandName>Form.Command.ЗакрытьФорму</CommandName>
 					<Title>
@@ -917,7 +948,7 @@
 							<v8:content>Закрыть</v8:content>
 						</v8:item>
 					</Title>
-					<ExtendedTooltip name="КнопкаЗакрытьРасширеннаяПодсказка" id="167"/>
+					<ExtendedTooltip name="КнопкаЗакрытьРасширеннаяПодсказка" id="173"/>
 				</Button>
 			</ChildItems>
 		</UsualGroup>
