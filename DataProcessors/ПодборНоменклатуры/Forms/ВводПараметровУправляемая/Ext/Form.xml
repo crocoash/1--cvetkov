@@ -90,7 +90,7 @@
 				</Button>
 			</ChildItems>
 		</CommandBar>
-		<UsualGroup name="ГруппаРабочая" id="150">
+		<UsualGroup name="ГруппаРабочая" id="154">
 			<Group>Horizontal</Group>
 			<Representation>None</Representation>
 			<ShowTitle>false</ShowTitle>
@@ -98,7 +98,7 @@
 			<AutoMaxHeight>false</AutoMaxHeight>
 			<HorizontalStretch>true</HorizontalStretch>
 			<VerticalStretch>true</VerticalStretch>
-			<ExtendedTooltip name="ГруппаРабочаяРасширеннаяПодсказка" id="151"/>
+			<ExtendedTooltip name="ГруппаРабочаяРасширеннаяПодсказка" id="155"/>
 			<ChildItems>
 				<Table name="ТаблицаХарактеристикНоменклатуры" id="49">
 					<Representation>List</Representation>
@@ -237,14 +237,14 @@
 						</InputField>
 					</ChildItems>
 				</Table>
-				<UsualGroup name="ГруппаПравая" id="148">
+				<UsualGroup name="ГруппаПравая" id="152">
 					<Group>Vertical</Group>
 					<Representation>None</Representation>
 					<ShowTitle>false</ShowTitle>
 					<AutoMaxHeight>false</AutoMaxHeight>
 					<HorizontalStretch>false</HorizontalStretch>
 					<VerticalStretch>true</VerticalStretch>
-					<ExtendedTooltip name="ГруппаПраваяРасширеннаяПодсказка" id="149"/>
+					<ExtendedTooltip name="ГруппаПраваяРасширеннаяПодсказка" id="153"/>
 					<ChildItems>
 						<Pages name="ГруппаСтраницыОтбора" id="89">
 							<PagesRepresentation>TabsOnTop</PagesRepresentation>
@@ -452,14 +452,14 @@
 								</Page>
 							</ChildItems>
 						</Pages>
-						<UsualGroup name="ГруппаПанельГруппСкладов" id="144">
+						<UsualGroup name="ГруппаПанельГруппСкладов" id="148">
 							<Group>Vertical</Group>
 							<Representation>None</Representation>
 							<ShowTitle>false</ShowTitle>
 							<AutoMaxHeight>false</AutoMaxHeight>
 							<HorizontalStretch>false</HorizontalStretch>
 							<VerticalStretch>true</VerticalStretch>
-							<ExtendedTooltip name="ГруппаПанельГруппСкладовРасширеннаяПодсказка" id="145"/>
+							<ExtendedTooltip name="ГруппаПанельГруппСкладовРасширеннаяПодсказка" id="149"/>
 							<ChildItems>
 								<Table name="ТабГруппСкладов" id="103">
 									<Representation>List</Representation>
@@ -562,198 +562,184 @@
 								</Table>
 							</ChildItems>
 						</UsualGroup>
-						<UsualGroup name="ГруппаФлажков" id="129">
-							<Group>Horizontal</Group>
+						<UsualGroup name="ГруппаФлажков" id="133">
+							<Group>Vertical</Group>
 							<Representation>None</Representation>
 							<ShowTitle>false</ShowTitle>
 							<HorizontalStretch>false</HorizontalStretch>
 							<VerticalStretch>false</VerticalStretch>
-							<ExtendedTooltip name="ГруппаФлажковРасширеннаяПодсказка" id="130"/>
+							<ExtendedTooltip name="ГруппаФлажковРасширеннаяПодсказка" id="134"/>
 							<ChildItems>
-								<Button name="КнопкаИнвертировать" id="107">
-									<Type>UsualButton</Type>
-									<CommandName>Form.Command.ИнвертироватьСклады</CommandName>
-									<Title>
-										<v8:item>
-											<v8:lang>ru</v8:lang>
-											<v8:content>±</v8:content>
-										</v8:item>
-									</Title>
-									<ToolTip>
-										<v8:item>
-											<v8:lang>ru</v8:lang>
-											<v8:content>инвертировать отметки складов</v8:content>
-										</v8:item>
-									</ToolTip>
-									<ExtendedTooltip name="КнопкаИнвертироватьРасширеннаяПодсказка" id="108"/>
-								</Button>
-								<Button name="КнопкаСнятьВсеФлажки" id="109">
-									<Type>UsualButton</Type>
-									<CommandName>Form.Command.СнятьВсеФлажки</CommandName>
-									<Title>
-										<v8:item>
-											<v8:lang>ru</v8:lang>
-											<v8:content>Снять</v8:content>
-										</v8:item>
-									</Title>
-									<ToolTip>
-										<v8:item>
-											<v8:lang>ru</v8:lang>
-											<v8:content>снять все отметки складов</v8:content>
-										</v8:item>
-									</ToolTip>
-									<ExtendedTooltip name="КнопкаСнятьВсеФлажкиРасширеннаяПодсказка" id="110"/>
-								</Button>
-								<CheckBoxField name="ФлажокРезерв" id="111">
-									<DataPath>Резерв</DataPath>
-									<Title>
-										<v8:item>
-											<v8:lang>ru</v8:lang>
-											<v8:content>Рез</v8:content>
-										</v8:item>
-									</Title>
-									<ToolTip>
-										<v8:item>
-											<v8:lang>ru</v8:lang>
-											<v8:content>показывать резерв рядом с остатком</v8:content>
-										</v8:item>
-									</ToolTip>
-									<HorizontalAlign>Center</HorizontalAlign>
-									<EditMode>EnterOnInput</EditMode>
-									<CheckBoxType>Auto</CheckBoxType>
-									<ContextMenu name="ФлажокРезервКонтекстноеМеню" id="112"/>
-									<ExtendedTooltip name="ФлажокРезервРасширеннаяПодсказка" id="113"/>
-									<Events>
-										<Event name="OnChange">РезервПриИзменении</Event>
-									</Events>
-								</CheckBoxField>
-								<CheckBoxField name="ФлажокРазделитель" id="114">
-									<DataPath>Разделитель</DataPath>
-									<Title>
-										<v8:item>
-											<v8:lang>ru</v8:lang>
-											<v8:content>Раз</v8:content>
-										</v8:item>
-									</Title>
-									<ToolTip>
-										<v8:item>
-											<v8:lang>ru</v8:lang>
-											<v8:content>разделить резерв от остатков, для скрина наличия</v8:content>
-										</v8:item>
-									</ToolTip>
-									<HorizontalAlign>Center</HorizontalAlign>
-									<EditMode>EnterOnInput</EditMode>
-									<CheckBoxType>Auto</CheckBoxType>
-									<ContextMenu name="ФлажокРазделительКонтекстноеМеню" id="115"/>
-									<ExtendedTooltip name="ФлажокРазделительРасширеннаяПодсказка" id="116"/>
-									<Events>
-										<Event name="OnChange">РазделительПриИзменении</Event>
-									</Events>
-								</CheckBoxField>
-								<CheckBoxField name="ФлажокВыгрузка" id="117">
-									<DataPath>Выгрузка</DataPath>
-									<Title>
-										<v8:item>
-											<v8:lang>ru</v8:lang>
-											<v8:content>Выг</v8:content>
-										</v8:item>
-									</Title>
-									<ToolTip>
-										<v8:item>
-											<v8:lang>ru</v8:lang>
-											<v8:content>колонка количества к выгрузке на сайт</v8:content>
-										</v8:item>
-									</ToolTip>
-									<HorizontalAlign>Center</HorizontalAlign>
-									<EditMode>EnterOnInput</EditMode>
-									<CheckBoxType>Auto</CheckBoxType>
-									<ContextMenu name="ФлажокВыгрузкаКонтекстноеМеню" id="118"/>
-									<ExtendedTooltip name="ФлажокВыгрузкаРасширеннаяПодсказка" id="119"/>
-									<Events>
-										<Event name="OnChange">ВыгрузкаПриИзменении</Event>
-									</Events>
-								</CheckBoxField>
-								<CheckBoxField name="ФлажокУбиратьНолевые" id="120">
-									<DataPath>УбиратьНолевые</DataPath>
-									<Title>
-										<v8:item>
-											<v8:lang>ru</v8:lang>
-											<v8:content>0</v8:content>
-										</v8:item>
-									</Title>
-									<ToolTip>
-										<v8:item>
-											<v8:lang>ru</v8:lang>
-											<v8:content>убирать строки с нулевым остатком по всей ростовке</v8:content>
-										</v8:item>
-									</ToolTip>
-									<HorizontalAlign>Center</HorizontalAlign>
-									<EditMode>EnterOnInput</EditMode>
-									<CheckBoxType>Auto</CheckBoxType>
-									<ContextMenu name="ФлажокУбиратьНолевыеКонтекстноеМеню" id="121"/>
-									<ExtendedTooltip name="ФлажокУбиратьНолевыеРасширеннаяПодсказка" id="122"/>
-									<Events>
-										<Event name="OnChange">УбиратьНолевыеПриИзменении</Event>
-									</Events>
-								</CheckBoxField>
-								<CheckBoxField name="ФлажокУбиратьНеДоступные" id="123">
-									<DataPath>УбиратьНеДоступные</DataPath>
-									<Title>
-										<v8:item>
-											<v8:lang>ru</v8:lang>
-											<v8:content>Наличие</v8:content>
-										</v8:item>
-									</Title>
-									<ToolTip>
-										<v8:item>
-											<v8:lang>ru</v8:lang>
-											<v8:content>убирать строки, недоступные к продаже</v8:content>
-										</v8:item>
-									</ToolTip>
-									<HorizontalAlign>Center</HorizontalAlign>
-									<EditMode>EnterOnInput</EditMode>
-									<CheckBoxType>Auto</CheckBoxType>
-									<ContextMenu name="ФлажокУбиратьНеДоступныеКонтекстноеМеню" id="124"/>
-									<ExtendedTooltip name="ФлажокУбиратьНеДоступныеРасширеннаяПодсказка" id="125"/>
-									<Events>
-										<Event name="OnChange">УбиратьНеДоступныеПриИзменении</Event>
-									</Events>
-								</CheckBoxField>
-								<CheckBoxField name="ФлажокИтогПоСкладах" id="126">
-									<DataPath>ИтогПоСкладах</DataPath>
-									<Title>
-										<v8:item>
-											<v8:lang>ru</v8:lang>
-											<v8:content>Итог</v8:content>
-										</v8:item>
-									</Title>
-									<ToolTip>
-										<v8:item>
-											<v8:lang>ru</v8:lang>
-											<v8:content>итог по выбранным складам</v8:content>
-										</v8:item>
-									</ToolTip>
-									<HorizontalAlign>Center</HorizontalAlign>
-									<EditMode>EnterOnInput</EditMode>
-									<CheckBoxType>Auto</CheckBoxType>
-									<ContextMenu name="ФлажокИтогПоСкладахКонтекстноеМеню" id="127"/>
-									<ExtendedTooltip name="ФлажокИтогПоСкладахРасширеннаяПодсказка" id="128"/>
-									<Events>
-										<Event name="OnChange">ИтогПоСкладахПриИзменении</Event>
-									</Events>
-								</CheckBoxField>
+								<UsualGroup name="ГруппаФлажкиРяд1" id="120">
+									<Group>Horizontal</Group>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<HorizontalStretch>false</HorizontalStretch>
+									<VerticalStretch>false</VerticalStretch>
+									<ExtendedTooltip name="ГруппаФлажкиРяд1РасширеннаяПодсказка" id="121"/>
+									<ChildItems>
+										<CheckBoxField name="ФлажокРезерв" id="111">
+											<DataPath>Резерв</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Рез</v8:content>
+												</v8:item>
+											</Title>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>показывать резерв рядом с остатком</v8:content>
+												</v8:item>
+											</ToolTip>
+											<HorizontalAlign>Center</HorizontalAlign>
+											<EditMode>EnterOnInput</EditMode>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="ФлажокРезервКонтекстноеМеню" id="112"/>
+											<ExtendedTooltip name="ФлажокРезервРасширеннаяПодсказка" id="113"/>
+											<Events>
+												<Event name="OnChange">РезервПриИзменении</Event>
+											</Events>
+										</CheckBoxField>
+										<CheckBoxField name="ФлажокРазделитель" id="114">
+											<DataPath>Разделитель</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Раз</v8:content>
+												</v8:item>
+											</Title>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>разделить резерв от остатков, для скрина наличия</v8:content>
+												</v8:item>
+											</ToolTip>
+											<HorizontalAlign>Center</HorizontalAlign>
+											<EditMode>EnterOnInput</EditMode>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="ФлажокРазделительКонтекстноеМеню" id="115"/>
+											<ExtendedTooltip name="ФлажокРазделительРасширеннаяПодсказка" id="116"/>
+											<Events>
+												<Event name="OnChange">РазделительПриИзменении</Event>
+											</Events>
+										</CheckBoxField>
+										<CheckBoxField name="ФлажокИтогПоСкладах" id="117">
+											<DataPath>ИтогПоСкладах</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Итог</v8:content>
+												</v8:item>
+											</Title>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>итог по выбранным складам</v8:content>
+												</v8:item>
+											</ToolTip>
+											<HorizontalAlign>Center</HorizontalAlign>
+											<EditMode>EnterOnInput</EditMode>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="ФлажокИтогПоСкладахКонтекстноеМеню" id="118"/>
+											<ExtendedTooltip name="ФлажокИтогПоСкладахРасширеннаяПодсказка" id="119"/>
+											<Events>
+												<Event name="OnChange">ИтогПоСкладахПриИзменении</Event>
+											</Events>
+										</CheckBoxField>
+									</ChildItems>
+								</UsualGroup>
+								<UsualGroup name="ГруппаФлажкиРяд2" id="131">
+									<Group>Horizontal</Group>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<HorizontalStretch>false</HorizontalStretch>
+									<VerticalStretch>false</VerticalStretch>
+									<ExtendedTooltip name="ГруппаФлажкиРяд2РасширеннаяПодсказка" id="132"/>
+									<ChildItems>
+										<CheckBoxField name="ФлажокВыгрузка" id="122">
+											<DataPath>Выгрузка</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Выг</v8:content>
+												</v8:item>
+											</Title>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>колонка количества к выгрузке на сайт</v8:content>
+												</v8:item>
+											</ToolTip>
+											<HorizontalAlign>Center</HorizontalAlign>
+											<EditMode>EnterOnInput</EditMode>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="ФлажокВыгрузкаКонтекстноеМеню" id="123"/>
+											<ExtendedTooltip name="ФлажокВыгрузкаРасширеннаяПодсказка" id="124"/>
+											<Events>
+												<Event name="OnChange">ВыгрузкаПриИзменении</Event>
+											</Events>
+										</CheckBoxField>
+										<CheckBoxField name="ФлажокУбиратьНолевые" id="125">
+											<DataPath>УбиратьНолевые</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>0</v8:content>
+												</v8:item>
+											</Title>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>убирать строки с нулевым остатком по всей ростовке</v8:content>
+												</v8:item>
+											</ToolTip>
+											<HorizontalAlign>Center</HorizontalAlign>
+											<EditMode>EnterOnInput</EditMode>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="ФлажокУбиратьНолевыеКонтекстноеМеню" id="126"/>
+											<ExtendedTooltip name="ФлажокУбиратьНолевыеРасширеннаяПодсказка" id="127"/>
+											<Events>
+												<Event name="OnChange">УбиратьНолевыеПриИзменении</Event>
+											</Events>
+										</CheckBoxField>
+										<CheckBoxField name="ФлажокУбиратьНеДоступные" id="128">
+											<DataPath>УбиратьНеДоступные</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Наличие</v8:content>
+												</v8:item>
+											</Title>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>убирать строки, недоступные к продаже</v8:content>
+												</v8:item>
+											</ToolTip>
+											<HorizontalAlign>Center</HorizontalAlign>
+											<EditMode>EnterOnInput</EditMode>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="ФлажокУбиратьНеДоступныеКонтекстноеМеню" id="129"/>
+											<ExtendedTooltip name="ФлажокУбиратьНеДоступныеРасширеннаяПодсказка" id="130"/>
+											<Events>
+												<Event name="OnChange">УбиратьНеДоступныеПриИзменении</Event>
+											</Events>
+										</CheckBoxField>
+									</ChildItems>
+								</UsualGroup>
 							</ChildItems>
 						</UsualGroup>
-						<UsualGroup name="ГруппаПанельСкладов" id="146">
+						<UsualGroup name="ГруппаПанельСкладов" id="150">
 							<Group>Vertical</Group>
 							<Representation>None</Representation>
 							<ShowTitle>false</ShowTitle>
 							<AutoMaxHeight>false</AutoMaxHeight>
 							<HorizontalStretch>false</HorizontalStretch>
 							<VerticalStretch>true</VerticalStretch>
-							<ExtendedTooltip name="ГруппаПанельСкладовРасширеннаяПодсказка" id="147"/>
+							<ExtendedTooltip name="ГруппаПанельСкладовРасширеннаяПодсказка" id="151"/>
 							<ChildItems>
-								<Table name="ТабСклады" id="140">
+								<Table name="ТабСклады" id="144">
 									<Representation>List</Representation>
 									<ChangeRowSet>false</ChangeRowSet>
 									<ChangeRowOrder>false</ChangeRowOrder>
@@ -767,16 +753,52 @@
 									<HorizontalStretch>false</HorizontalStretch>
 									<VerticalStretch>true</VerticalStretch>
 									<RowFilter xsi:nil="true"/>
-									<ContextMenu name="ТабСкладыКонтекстноеМеню" id="141"/>
-									<AutoCommandBar name="ТабСкладыКоманднаяПанель" id="142">
+									<ContextMenu name="ТабСкладыКонтекстноеМеню" id="145"/>
+									<AutoCommandBar name="ТабСкладыКоманднаяПанель" id="146">
 										<Autofill>false</Autofill>
+										<ChildItems>
+										<Button name="КнопкаИнвертировать" id="107">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.ИнвертироватьСклады</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>±</v8:content>
+												</v8:item>
+											</Title>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>инвертировать отметки складов</v8:content>
+												</v8:item>
+											</ToolTip>
+											<ExtendedTooltip name="КнопкаИнвертироватьРасширеннаяПодсказка" id="108"/>
+										</Button>
+										<Button name="КнопкаСнятьВсеФлажки" id="109">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.СнятьВсеФлажки</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Снять</v8:content>
+												</v8:item>
+											</Title>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>снять все отметки складов</v8:content>
+												</v8:item>
+											</ToolTip>
+											<ExtendedTooltip name="КнопкаСнятьВсеФлажкиРасширеннаяПодсказка" id="110"/>
+										</Button>
+										</ChildItems>
 									</AutoCommandBar>
-									<ExtendedTooltip name="ТабСкладыРасширеннаяПодсказка" id="143"/>
+									<ExtendedTooltip name="ТабСкладыРасширеннаяПодсказка" id="147"/>
 									<Events>
 										<Event name="Selection">ТабСкладыВыбор</Event>
 									</Events>
 									<ChildItems>
-										<CheckBoxField name="ТабСкладыОтметка" id="131">
+										<CheckBoxField name="ТабСкладыОтметка" id="135">
 											<DataPath>ТабСклады.Отметка</DataPath>
 											<Title>
 												<v8:item>
@@ -787,13 +809,13 @@
 											<HorizontalAlign>Center</HorizontalAlign>
 											<EditMode>EnterOnInput</EditMode>
 											<CheckBoxType>Auto</CheckBoxType>
-											<ContextMenu name="ТабСкладыОтметкаКонтекстноеМеню" id="132"/>
-											<ExtendedTooltip name="ТабСкладыОтметкаРасширеннаяПодсказка" id="133"/>
+											<ContextMenu name="ТабСкладыОтметкаКонтекстноеМеню" id="136"/>
+											<ExtendedTooltip name="ТабСкладыОтметкаРасширеннаяПодсказка" id="137"/>
 											<Events>
 												<Event name="OnChange">ТабСкладыОтметкаПриИзменении</Event>
 											</Events>
 										</CheckBoxField>
-										<InputField name="ТабСкладыСклад" id="134">
+										<InputField name="ТабСкладыСклад" id="138">
 											<DataPath>ТабСклады.Склад</DataPath>
 											<ReadOnly>true</ReadOnly>
 											<Title>
@@ -804,10 +826,10 @@
 											</Title>
 											<EditMode>EnterOnInput</EditMode>
 											<Width>13</Width>
-											<ContextMenu name="ТабСкладыСкладКонтекстноеМеню" id="135"/>
-											<ExtendedTooltip name="ТабСкладыСкладРасширеннаяПодсказка" id="136"/>
+											<ContextMenu name="ТабСкладыСкладКонтекстноеМеню" id="139"/>
+											<ExtendedTooltip name="ТабСкладыСкладРасширеннаяПодсказка" id="140"/>
 										</InputField>
-										<InputField name="ТабСкладыОстаток" id="137">
+										<InputField name="ТабСкладыОстаток" id="141">
 											<DataPath>ТабСклады.Остаток</DataPath>
 											<ReadOnly>true</ReadOnly>
 											<Title>
@@ -818,8 +840,8 @@
 											</Title>
 											<EditMode>EnterOnInput</EditMode>
 											<Width>7</Width>
-											<ContextMenu name="ТабСкладыОстатокКонтекстноеМеню" id="138"/>
-											<ExtendedTooltip name="ТабСкладыОстатокРасширеннаяПодсказка" id="139"/>
+											<ContextMenu name="ТабСкладыОстатокКонтекстноеМеню" id="142"/>
+											<ExtendedTooltip name="ТабСкладыОстатокРасширеннаяПодсказка" id="143"/>
 										</InputField>
 									</ChildItems>
 								</Table>
@@ -829,16 +851,16 @@
 				</UsualGroup>
 			</ChildItems>
 		</UsualGroup>
-		<UsualGroup name="ГруппаПодвал" id="174">
+		<UsualGroup name="ГруппаПодвал" id="178">
 			<Group>Horizontal</Group>
 			<Representation>None</Representation>
 			<ShowTitle>false</ShowTitle>
 			<AutoMaxWidth>false</AutoMaxWidth>
 			<HorizontalStretch>true</HorizontalStretch>
 			<VerticalStretch>false</VerticalStretch>
-			<ExtendedTooltip name="ГруппаПодвалРасширеннаяПодсказка" id="175"/>
+			<ExtendedTooltip name="ГруппаПодвалРасширеннаяПодсказка" id="179"/>
 			<ChildItems>
-				<InputField name="ПолеМР" id="152">
+				<InputField name="ПолеМР" id="156">
 					<DataPath>МР</DataPath>
 					<Title>
 						<v8:item>
@@ -854,13 +876,13 @@
 					</ToolTip>
 					<EditMode>EnterOnInput</EditMode>
 					<Width>4</Width>
-					<ContextMenu name="ПолеМРКонтекстноеМеню" id="153"/>
-					<ExtendedTooltip name="ПолеМРРасширеннаяПодсказка" id="154"/>
+					<ContextMenu name="ПолеМРКонтекстноеМеню" id="157"/>
+					<ExtendedTooltip name="ПолеМРРасширеннаяПодсказка" id="158"/>
 					<Events>
 						<Event name="OnChange">МРПриИзменении</Event>
 					</Events>
 				</InputField>
-				<InputField name="ПолеИтоговаяСумма" id="155">
+				<InputField name="ПолеИтоговаяСумма" id="159">
 					<DataPath>ИтоговаяСумма</DataPath>
 					<ReadOnly>true</ReadOnly>
 					<Title>
@@ -871,10 +893,10 @@
 					</Title>
 					<EditMode>EnterOnInput</EditMode>
 					<Width>12</Width>
-					<ContextMenu name="ПолеИтоговаяСуммаКонтекстноеМеню" id="156"/>
-					<ExtendedTooltip name="ПолеИтоговаяСуммаРасширеннаяПодсказка" id="157"/>
+					<ContextMenu name="ПолеИтоговаяСуммаКонтекстноеМеню" id="160"/>
+					<ExtendedTooltip name="ПолеИтоговаяСуммаРасширеннаяПодсказка" id="161"/>
 				</InputField>
-				<InputField name="ПолеВКрое1" id="158">
+				<InputField name="ПолеВКрое1" id="162">
 					<DataPath>ИтоговоеКолВоВКрое1</DataPath>
 					<ReadOnly>true</ReadOnly>
 					<Title>
@@ -885,10 +907,10 @@
 					</Title>
 					<EditMode>EnterOnInput</EditMode>
 					<Width>6</Width>
-					<ContextMenu name="ПолеВКрое1КонтекстноеМеню" id="159"/>
-					<ExtendedTooltip name="ПолеВКрое1РасширеннаяПодсказка" id="160"/>
+					<ContextMenu name="ПолеВКрое1КонтекстноеМеню" id="163"/>
+					<ExtendedTooltip name="ПолеВКрое1РасширеннаяПодсказка" id="164"/>
 				</InputField>
-				<InputField name="ПолеВКрое2" id="161">
+				<InputField name="ПолеВКрое2" id="165">
 					<DataPath>ИтоговоеКолВоВКрое2</DataPath>
 					<ReadOnly>true</ReadOnly>
 					<Title>
@@ -899,10 +921,10 @@
 					</Title>
 					<EditMode>EnterOnInput</EditMode>
 					<Width>6</Width>
-					<ContextMenu name="ПолеВКрое2КонтекстноеМеню" id="162"/>
-					<ExtendedTooltip name="ПолеВКрое2РасширеннаяПодсказка" id="163"/>
+					<ContextMenu name="ПолеВКрое2КонтекстноеМеню" id="166"/>
+					<ExtendedTooltip name="ПолеВКрое2РасширеннаяПодсказка" id="167"/>
 				</InputField>
-				<InputField name="ПолеГруппаСкладов" id="164">
+				<InputField name="ПолеГруппаСкладов" id="168">
 					<DataPath>ГруппаСкладов</DataPath>
 					<Title>
 						<v8:item>
@@ -913,13 +935,13 @@
 					<EditMode>EnterOnInput</EditMode>
 					<ClearButton>true</ClearButton>
 					<Width>20</Width>
-					<ContextMenu name="ПолеГруппаСкладовКонтекстноеМеню" id="165"/>
-					<ExtendedTooltip name="ПолеГруппаСкладовРасширеннаяПодсказка" id="166"/>
+					<ContextMenu name="ПолеГруппаСкладовКонтекстноеМеню" id="169"/>
+					<ExtendedTooltip name="ПолеГруппаСкладовРасширеннаяПодсказка" id="170"/>
 					<Events>
 						<Event name="OnChange">ГруппаСкладовПриИзменении</Event>
 					</Events>
 				</InputField>
-				<CheckBoxField name="ФлажокСобиратьНК" id="167">
+				<CheckBoxField name="ФлажокСобиратьНК" id="171">
 					<DataPath>СобиратьНК</DataPath>
 					<Title>
 						<v8:item>
@@ -936,13 +958,13 @@
 					<HorizontalAlign>Center</HorizontalAlign>
 					<EditMode>EnterOnInput</EditMode>
 					<CheckBoxType>Auto</CheckBoxType>
-					<ContextMenu name="ФлажокСобиратьНККонтекстноеМеню" id="168"/>
-					<ExtendedTooltip name="ФлажокСобиратьНКРасширеннаяПодсказка" id="169"/>
+					<ContextMenu name="ФлажокСобиратьНККонтекстноеМеню" id="172"/>
+					<ExtendedTooltip name="ФлажокСобиратьНКРасширеннаяПодсказка" id="173"/>
 					<Events>
 						<Event name="OnChange">СобиратьНКПриИзменении</Event>
 					</Events>
 				</CheckBoxField>
-				<Button name="КнопкаОК" id="170">
+				<Button name="КнопкаОК" id="174">
 					<Type>UsualButton</Type>
 					<DefaultButton>true</DefaultButton>
 					<CommandName>Form.Command.ОК</CommandName>
@@ -952,9 +974,9 @@
 							<v8:content>ОК</v8:content>
 						</v8:item>
 					</Title>
-					<ExtendedTooltip name="КнопкаОКРасширеннаяПодсказка" id="171"/>
+					<ExtendedTooltip name="КнопкаОКРасширеннаяПодсказка" id="175"/>
 				</Button>
-				<Button name="КнопкаЗакрыть" id="172">
+				<Button name="КнопкаЗакрыть" id="176">
 					<Type>UsualButton</Type>
 					<CommandName>Form.Command.ЗакрытьФорму</CommandName>
 					<Title>
@@ -963,7 +985,7 @@
 							<v8:content>Закрыть</v8:content>
 						</v8:item>
 					</Title>
-					<ExtendedTooltip name="КнопкаЗакрытьРасширеннаяПодсказка" id="173"/>
+					<ExtendedTooltip name="КнопкаЗакрытьРасширеннаяПодсказка" id="177"/>
 				</Button>
 			</ChildItems>
 		</UsualGroup>
