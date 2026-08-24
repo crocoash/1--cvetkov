@@ -851,14 +851,14 @@
 				</UsualGroup>
 			</ChildItems>
 		</UsualGroup>
-		<UsualGroup name="ГруппаПодвал" id="178">
+		<UsualGroup name="ГруппаПодвал" id="180">
 			<Group>Horizontal</Group>
 			<Representation>None</Representation>
 			<ShowTitle>false</ShowTitle>
 			<AutoMaxWidth>false</AutoMaxWidth>
 			<HorizontalStretch>true</HorizontalStretch>
 			<VerticalStretch>false</VerticalStretch>
-			<ExtendedTooltip name="ГруппаПодвалРасширеннаяПодсказка" id="179"/>
+			<ExtendedTooltip name="ГруппаПодвалРасширеннаяПодсказка" id="181"/>
 			<ChildItems>
 				<InputField name="ПолеМР" id="156">
 					<DataPath>МР</DataPath>
@@ -964,29 +964,34 @@
 						<Event name="OnChange">СобиратьНКПриИзменении</Event>
 					</Events>
 				</CheckBoxField>
-				<Button name="КнопкаОК" id="174">
-					<Type>UsualButton</Type>
-					<DefaultButton>true</DefaultButton>
-					<CommandName>Form.Command.ОК</CommandName>
-					<Title>
-						<v8:item>
-							<v8:lang>ru</v8:lang>
-							<v8:content>ОК</v8:content>
-						</v8:item>
-					</Title>
-					<ExtendedTooltip name="КнопкаОКРасширеннаяПодсказка" id="175"/>
-				</Button>
-				<Button name="КнопкаЗакрыть" id="176">
-					<Type>UsualButton</Type>
-					<CommandName>Form.Command.ЗакрытьФорму</CommandName>
-					<Title>
-						<v8:item>
-							<v8:lang>ru</v8:lang>
-							<v8:content>Закрыть</v8:content>
-						</v8:item>
-					</Title>
-					<ExtendedTooltip name="КнопкаЗакрытьРасширеннаяПодсказка" id="177"/>
-				</Button>
+				<CommandBar name="ПанельЗавершения" id="178">
+					<ExtendedTooltip name="ПанельЗавершенияРасширеннаяПодсказка" id="179"/>
+					<ChildItems>
+						<Button name="КнопкаОК" id="174">
+							<Type>CommandBarButton</Type>
+							<DefaultButton>true</DefaultButton>
+							<CommandName>Form.Command.ОК</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>ОК</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="КнопкаОКРасширеннаяПодсказка" id="175"/>
+						</Button>
+						<Button name="КнопкаЗакрыть" id="176">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.ЗакрытьФорму</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Закрыть</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="КнопкаЗакрытьРасширеннаяПодсказка" id="177"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
 			</ChildItems>
 		</UsualGroup>
 	</ChildItems>
