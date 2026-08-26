@@ -95,13 +95,13 @@
 				</Button>
 			</ChildItems>
 		</CommandBar>
-		<UsualGroup name="ГруппаРабочая" id="156">
+		<UsualGroup name="ГруппаРабочая" id="160">
 			<Group>Horizontal</Group>
 			<Representation>None</Representation>
 			<ShowTitle>false</ShowTitle>
 			<HorizontalStretch>true</HorizontalStretch>
 			<VerticalStretch>true</VerticalStretch>
-			<ExtendedTooltip name="ГруппаРабочаяРасширеннаяПодсказка" id="157"/>
+			<ExtendedTooltip name="ГруппаРабочаяРасширеннаяПодсказка" id="161"/>
 			<ChildItems>
 				<Table name="ТаблицаХарактеристикНоменклатуры" id="51">
 					<Representation>List</Representation>
@@ -245,13 +245,13 @@
 						</InputField>
 					</ChildItems>
 				</Table>
-				<UsualGroup name="ГруппаПравая" id="154">
+				<UsualGroup name="ГруппаПравая" id="158">
 					<Group>Vertical</Group>
 					<Representation>None</Representation>
 					<ShowTitle>false</ShowTitle>
 					<HorizontalStretch>true</HorizontalStretch>
 					<VerticalStretch>true</VerticalStretch>
-					<ExtendedTooltip name="ГруппаПраваяРасширеннаяПодсказка" id="155"/>
+					<ExtendedTooltip name="ГруппаПраваяРасширеннаяПодсказка" id="159"/>
 					<ChildItems>
 						<Pages name="ГруппаСтраницыОтбора" id="91">
 							<PagesRepresentation>TabsOnTop</PagesRepresentation>
@@ -453,15 +453,15 @@
 								</Page>
 							</ChildItems>
 						</Pages>
-						<UsualGroup name="ГруппаПанельГруппСкладов" id="150">
+						<UsualGroup name="ГруппаПанельГруппСкладов" id="154">
 							<Group>Vertical</Group>
 							<Representation>None</Representation>
 							<ShowTitle>false</ShowTitle>
 							<HorizontalStretch>true</HorizontalStretch>
 							<VerticalStretch>true</VerticalStretch>
-							<ExtendedTooltip name="ГруппаПанельГруппСкладовРасширеннаяПодсказка" id="151"/>
+							<ExtendedTooltip name="ГруппаПанельГруппСкладовРасширеннаяПодсказка" id="155"/>
 							<ChildItems>
-								<Table name="ТабГруппСкладов" id="105">
+								<Table name="ТабГруппСкладов" id="109">
 									<Representation>List</Representation>
 									<ChangeRowSet>false</ChangeRowSet>
 									<ChangeRowOrder>false</ChangeRowOrder>
@@ -474,16 +474,52 @@
 									<HorizontalStretch>true</HorizontalStretch>
 									<VerticalStretch>true</VerticalStretch>
 									<RowFilter xsi:nil="true"/>
-									<ContextMenu name="ТабГруппСкладовКонтекстноеМеню" id="106"/>
-									<AutoCommandBar name="ТабГруппСкладовКоманднаяПанель" id="107">
+									<ContextMenu name="ТабГруппСкладовКонтекстноеМеню" id="110"/>
+									<AutoCommandBar name="ТабГруппСкладовКоманднаяПанель" id="111">
 										<Autofill>false</Autofill>
+										<ChildItems>
+										<Button name="КнопкаУбратьГруппу" id="93">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.УбратьГруппуСкладов</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Убрать</v8:content>
+												</v8:item>
+											</Title>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>убрать группу из списка - она больше не появится</v8:content>
+												</v8:item>
+											</ToolTip>
+											<ExtendedTooltip name="КнопкаУбратьГруппуРасширеннаяПодсказка" id="94"/>
+										</Button>
+										<Button name="КнопкаВернутьГруппы" id="95">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.ВернутьГруппыСкладов</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Вернуть все</v8:content>
+												</v8:item>
+											</Title>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>показать все группы складов заново</v8:content>
+												</v8:item>
+											</ToolTip>
+											<ExtendedTooltip name="КнопкаВернутьГруппыРасширеннаяПодсказка" id="96"/>
+										</Button>
+										</ChildItems>
 									</AutoCommandBar>
-									<ExtendedTooltip name="ТабГруппСкладовРасширеннаяПодсказка" id="108"/>
+									<ExtendedTooltip name="ТабГруппСкладовРасширеннаяПодсказка" id="112"/>
 									<Events>
 										<Event name="Selection">ТабГруппСкладовВыбор</Event>
 									</Events>
 									<ChildItems>
-										<CheckBoxField name="ТабГруппСкладовОтметка1" id="93">
+										<CheckBoxField name="ТабГруппСкладовОтметка1" id="97">
 											<DataPath>ТабГруппСкладов.Отметка1</DataPath>
 											<Title>
 												<v8:item>
@@ -500,13 +536,13 @@
 											<HorizontalAlign>Center</HorizontalAlign>
 											<EditMode>EnterOnInput</EditMode>
 											<CheckBoxType>Auto</CheckBoxType>
-											<ContextMenu name="ТабГруппСкладовОтметка1КонтекстноеМеню" id="94"/>
-											<ExtendedTooltip name="ТабГруппСкладовОтметка1РасширеннаяПодсказка" id="95"/>
+											<ContextMenu name="ТабГруппСкладовОтметка1КонтекстноеМеню" id="98"/>
+											<ExtendedTooltip name="ТабГруппСкладовОтметка1РасширеннаяПодсказка" id="99"/>
 											<Events>
 												<Event name="OnChange">ТабГруппСкладовОтметка1ПриИзменении</Event>
 											</Events>
 										</CheckBoxField>
-										<CheckBoxField name="ТабГруппСкладовОтметка" id="96">
+										<CheckBoxField name="ТабГруппСкладовОтметка" id="100">
 											<DataPath>ТабГруппСкладов.Отметка</DataPath>
 											<Title>
 												<v8:item>
@@ -523,13 +559,13 @@
 											<HorizontalAlign>Center</HorizontalAlign>
 											<EditMode>EnterOnInput</EditMode>
 											<CheckBoxType>Auto</CheckBoxType>
-											<ContextMenu name="ТабГруппСкладовОтметкаКонтекстноеМеню" id="97"/>
-											<ExtendedTooltip name="ТабГруппСкладовОтметкаРасширеннаяПодсказка" id="98"/>
+											<ContextMenu name="ТабГруппСкладовОтметкаКонтекстноеМеню" id="101"/>
+											<ExtendedTooltip name="ТабГруппСкладовОтметкаРасширеннаяПодсказка" id="102"/>
 											<Events>
 												<Event name="OnChange">ТабГруппСкладовОтметкаПриИзменении</Event>
 											</Events>
 										</CheckBoxField>
-										<InputField name="ТабГруппСкладовСклад" id="99">
+										<InputField name="ТабГруппСкладовСклад" id="103">
 											<DataPath>ТабГруппСкладов.Склад</DataPath>
 											<ReadOnly>true</ReadOnly>
 											<Title>
@@ -540,10 +576,10 @@
 											</Title>
 											<EditMode>EnterOnInput</EditMode>
 											<Width>16</Width>
-											<ContextMenu name="ТабГруппСкладовСкладКонтекстноеМеню" id="100"/>
-											<ExtendedTooltip name="ТабГруппСкладовСкладРасширеннаяПодсказка" id="101"/>
+											<ContextMenu name="ТабГруппСкладовСкладКонтекстноеМеню" id="104"/>
+											<ExtendedTooltip name="ТабГруппСкладовСкладРасширеннаяПодсказка" id="105"/>
 										</InputField>
-										<InputField name="ТабГруппСкладовКоличество" id="102">
+										<InputField name="ТабГруппСкладовКоличество" id="106">
 											<DataPath>ТабГруппСкладов.Количество</DataPath>
 											<ReadOnly>true</ReadOnly>
 											<Title>
@@ -554,30 +590,30 @@
 											</Title>
 											<EditMode>EnterOnInput</EditMode>
 											<Width>7</Width>
-											<ContextMenu name="ТабГруппСкладовКоличествоКонтекстноеМеню" id="103"/>
-											<ExtendedTooltip name="ТабГруппСкладовКоличествоРасширеннаяПодсказка" id="104"/>
+											<ContextMenu name="ТабГруппСкладовКоличествоКонтекстноеМеню" id="107"/>
+											<ExtendedTooltip name="ТабГруппСкладовКоличествоРасширеннаяПодсказка" id="108"/>
 										</InputField>
 									</ChildItems>
 								</Table>
 							</ChildItems>
 						</UsualGroup>
-						<UsualGroup name="ГруппаФлажков" id="135">
+						<UsualGroup name="ГруппаФлажков" id="139">
 							<Group>Vertical</Group>
 							<Representation>None</Representation>
 							<ShowTitle>false</ShowTitle>
 							<HorizontalStretch>true</HorizontalStretch>
 							<VerticalStretch>false</VerticalStretch>
-							<ExtendedTooltip name="ГруппаФлажковРасширеннаяПодсказка" id="136"/>
+							<ExtendedTooltip name="ГруппаФлажковРасширеннаяПодсказка" id="140"/>
 							<ChildItems>
-								<UsualGroup name="ГруппаФлажкиРяд1" id="122">
+								<UsualGroup name="ГруппаФлажкиРяд1" id="126">
 									<Group>Horizontal</Group>
 									<Representation>None</Representation>
 									<ShowTitle>false</ShowTitle>
 									<HorizontalStretch>false</HorizontalStretch>
 									<VerticalStretch>false</VerticalStretch>
-									<ExtendedTooltip name="ГруппаФлажкиРяд1РасширеннаяПодсказка" id="123"/>
+									<ExtendedTooltip name="ГруппаФлажкиРяд1РасширеннаяПодсказка" id="127"/>
 									<ChildItems>
-										<CheckBoxField name="ФлажокРезерв" id="113">
+										<CheckBoxField name="ФлажокРезерв" id="117">
 											<DataPath>Резерв</DataPath>
 											<Title>
 												<v8:item>
@@ -594,13 +630,13 @@
 											<HorizontalAlign>Center</HorizontalAlign>
 											<EditMode>EnterOnInput</EditMode>
 											<CheckBoxType>Auto</CheckBoxType>
-											<ContextMenu name="ФлажокРезервКонтекстноеМеню" id="114"/>
-											<ExtendedTooltip name="ФлажокРезервРасширеннаяПодсказка" id="115"/>
+											<ContextMenu name="ФлажокРезервКонтекстноеМеню" id="118"/>
+											<ExtendedTooltip name="ФлажокРезервРасширеннаяПодсказка" id="119"/>
 											<Events>
 												<Event name="OnChange">РезервПриИзменении</Event>
 											</Events>
 										</CheckBoxField>
-										<CheckBoxField name="ФлажокРазделитель" id="116">
+										<CheckBoxField name="ФлажокРазделитель" id="120">
 											<DataPath>Разделитель</DataPath>
 											<Title>
 												<v8:item>
@@ -617,13 +653,13 @@
 											<HorizontalAlign>Center</HorizontalAlign>
 											<EditMode>EnterOnInput</EditMode>
 											<CheckBoxType>Auto</CheckBoxType>
-											<ContextMenu name="ФлажокРазделительКонтекстноеМеню" id="117"/>
-											<ExtendedTooltip name="ФлажокРазделительРасширеннаяПодсказка" id="118"/>
+											<ContextMenu name="ФлажокРазделительКонтекстноеМеню" id="121"/>
+											<ExtendedTooltip name="ФлажокРазделительРасширеннаяПодсказка" id="122"/>
 											<Events>
 												<Event name="OnChange">РазделительПриИзменении</Event>
 											</Events>
 										</CheckBoxField>
-										<CheckBoxField name="ФлажокИтогПоСкладах" id="119">
+										<CheckBoxField name="ФлажокИтогПоСкладах" id="123">
 											<DataPath>ИтогПоСкладах</DataPath>
 											<Title>
 												<v8:item>
@@ -640,23 +676,23 @@
 											<HorizontalAlign>Center</HorizontalAlign>
 											<EditMode>EnterOnInput</EditMode>
 											<CheckBoxType>Auto</CheckBoxType>
-											<ContextMenu name="ФлажокИтогПоСкладахКонтекстноеМеню" id="120"/>
-											<ExtendedTooltip name="ФлажокИтогПоСкладахРасширеннаяПодсказка" id="121"/>
+											<ContextMenu name="ФлажокИтогПоСкладахКонтекстноеМеню" id="124"/>
+											<ExtendedTooltip name="ФлажокИтогПоСкладахРасширеннаяПодсказка" id="125"/>
 											<Events>
 												<Event name="OnChange">ИтогПоСкладахПриИзменении</Event>
 											</Events>
 										</CheckBoxField>
 									</ChildItems>
 								</UsualGroup>
-								<UsualGroup name="ГруппаФлажкиРяд2" id="133">
+								<UsualGroup name="ГруппаФлажкиРяд2" id="137">
 									<Group>Horizontal</Group>
 									<Representation>None</Representation>
 									<ShowTitle>false</ShowTitle>
 									<HorizontalStretch>false</HorizontalStretch>
 									<VerticalStretch>false</VerticalStretch>
-									<ExtendedTooltip name="ГруппаФлажкиРяд2РасширеннаяПодсказка" id="134"/>
+									<ExtendedTooltip name="ГруппаФлажкиРяд2РасширеннаяПодсказка" id="138"/>
 									<ChildItems>
-										<CheckBoxField name="ФлажокВыгрузка" id="124">
+										<CheckBoxField name="ФлажокВыгрузка" id="128">
 											<DataPath>Выгрузка</DataPath>
 											<Title>
 												<v8:item>
@@ -673,13 +709,13 @@
 											<HorizontalAlign>Center</HorizontalAlign>
 											<EditMode>EnterOnInput</EditMode>
 											<CheckBoxType>Auto</CheckBoxType>
-											<ContextMenu name="ФлажокВыгрузкаКонтекстноеМеню" id="125"/>
-											<ExtendedTooltip name="ФлажокВыгрузкаРасширеннаяПодсказка" id="126"/>
+											<ContextMenu name="ФлажокВыгрузкаКонтекстноеМеню" id="129"/>
+											<ExtendedTooltip name="ФлажокВыгрузкаРасширеннаяПодсказка" id="130"/>
 											<Events>
 												<Event name="OnChange">ВыгрузкаПриИзменении</Event>
 											</Events>
 										</CheckBoxField>
-										<CheckBoxField name="ФлажокУбиратьНолевые" id="127">
+										<CheckBoxField name="ФлажокУбиратьНолевые" id="131">
 											<DataPath>УбиратьНолевые</DataPath>
 											<Title>
 												<v8:item>
@@ -696,13 +732,13 @@
 											<HorizontalAlign>Center</HorizontalAlign>
 											<EditMode>EnterOnInput</EditMode>
 											<CheckBoxType>Auto</CheckBoxType>
-											<ContextMenu name="ФлажокУбиратьНолевыеКонтекстноеМеню" id="128"/>
-											<ExtendedTooltip name="ФлажокУбиратьНолевыеРасширеннаяПодсказка" id="129"/>
+											<ContextMenu name="ФлажокУбиратьНолевыеКонтекстноеМеню" id="132"/>
+											<ExtendedTooltip name="ФлажокУбиратьНолевыеРасширеннаяПодсказка" id="133"/>
 											<Events>
 												<Event name="OnChange">УбиратьНолевыеПриИзменении</Event>
 											</Events>
 										</CheckBoxField>
-										<CheckBoxField name="ФлажокУбиратьНеДоступные" id="130">
+										<CheckBoxField name="ФлажокУбиратьНеДоступные" id="134">
 											<DataPath>УбиратьНеДоступные</DataPath>
 											<Title>
 												<v8:item>
@@ -719,8 +755,8 @@
 											<HorizontalAlign>Center</HorizontalAlign>
 											<EditMode>EnterOnInput</EditMode>
 											<CheckBoxType>Auto</CheckBoxType>
-											<ContextMenu name="ФлажокУбиратьНеДоступныеКонтекстноеМеню" id="131"/>
-											<ExtendedTooltip name="ФлажокУбиратьНеДоступныеРасширеннаяПодсказка" id="132"/>
+											<ContextMenu name="ФлажокУбиратьНеДоступныеКонтекстноеМеню" id="135"/>
+											<ExtendedTooltip name="ФлажокУбиратьНеДоступныеРасширеннаяПодсказка" id="136"/>
 											<Events>
 												<Event name="OnChange">УбиратьНеДоступныеПриИзменении</Event>
 											</Events>
@@ -729,15 +765,15 @@
 								</UsualGroup>
 							</ChildItems>
 						</UsualGroup>
-						<UsualGroup name="ГруппаПанельСкладов" id="152">
+						<UsualGroup name="ГруппаПанельСкладов" id="156">
 							<Group>Vertical</Group>
 							<Representation>None</Representation>
 							<ShowTitle>false</ShowTitle>
 							<HorizontalStretch>true</HorizontalStretch>
 							<VerticalStretch>true</VerticalStretch>
-							<ExtendedTooltip name="ГруппаПанельСкладовРасширеннаяПодсказка" id="153"/>
+							<ExtendedTooltip name="ГруппаПанельСкладовРасширеннаяПодсказка" id="157"/>
 							<ChildItems>
-								<Table name="ТабСклады" id="146">
+								<Table name="ТабСклады" id="150">
 									<Representation>List</Representation>
 									<ChangeRowSet>false</ChangeRowSet>
 									<ChangeRowOrder>false</ChangeRowOrder>
@@ -750,11 +786,11 @@
 									<HorizontalStretch>true</HorizontalStretch>
 									<VerticalStretch>true</VerticalStretch>
 									<RowFilter xsi:nil="true"/>
-									<ContextMenu name="ТабСкладыКонтекстноеМеню" id="147"/>
-									<AutoCommandBar name="ТабСкладыКоманднаяПанель" id="148">
+									<ContextMenu name="ТабСкладыКонтекстноеМеню" id="151"/>
+									<AutoCommandBar name="ТабСкладыКоманднаяПанель" id="152">
 										<Autofill>false</Autofill>
 										<ChildItems>
-										<Button name="КнопкаИнвертировать" id="109">
+										<Button name="КнопкаИнвертировать" id="113">
 											<Type>CommandBarButton</Type>
 											<CommandName>Form.Command.ИнвертироватьСклады</CommandName>
 											<Title>
@@ -769,9 +805,9 @@
 													<v8:content>инвертировать отметки складов</v8:content>
 												</v8:item>
 											</ToolTip>
-											<ExtendedTooltip name="КнопкаИнвертироватьРасширеннаяПодсказка" id="110"/>
+											<ExtendedTooltip name="КнопкаИнвертироватьРасширеннаяПодсказка" id="114"/>
 										</Button>
-										<Button name="КнопкаСнятьВсеФлажки" id="111">
+										<Button name="КнопкаСнятьВсеФлажки" id="115">
 											<Type>CommandBarButton</Type>
 											<CommandName>Form.Command.СнятьВсеФлажки</CommandName>
 											<Title>
@@ -786,16 +822,16 @@
 													<v8:content>снять все отметки складов</v8:content>
 												</v8:item>
 											</ToolTip>
-											<ExtendedTooltip name="КнопкаСнятьВсеФлажкиРасширеннаяПодсказка" id="112"/>
+											<ExtendedTooltip name="КнопкаСнятьВсеФлажкиРасширеннаяПодсказка" id="116"/>
 										</Button>
 										</ChildItems>
 									</AutoCommandBar>
-									<ExtendedTooltip name="ТабСкладыРасширеннаяПодсказка" id="149"/>
+									<ExtendedTooltip name="ТабСкладыРасширеннаяПодсказка" id="153"/>
 									<Events>
 										<Event name="Selection">ТабСкладыВыбор</Event>
 									</Events>
 									<ChildItems>
-										<CheckBoxField name="ТабСкладыОтметка" id="137">
+										<CheckBoxField name="ТабСкладыОтметка" id="141">
 											<DataPath>ТабСклады.Отметка</DataPath>
 											<Title>
 												<v8:item>
@@ -806,13 +842,13 @@
 											<HorizontalAlign>Center</HorizontalAlign>
 											<EditMode>EnterOnInput</EditMode>
 											<CheckBoxType>Auto</CheckBoxType>
-											<ContextMenu name="ТабСкладыОтметкаКонтекстноеМеню" id="138"/>
-											<ExtendedTooltip name="ТабСкладыОтметкаРасширеннаяПодсказка" id="139"/>
+											<ContextMenu name="ТабСкладыОтметкаКонтекстноеМеню" id="142"/>
+											<ExtendedTooltip name="ТабСкладыОтметкаРасширеннаяПодсказка" id="143"/>
 											<Events>
 												<Event name="OnChange">ТабСкладыОтметкаПриИзменении</Event>
 											</Events>
 										</CheckBoxField>
-										<InputField name="ТабСкладыСклад" id="140">
+										<InputField name="ТабСкладыСклад" id="144">
 											<DataPath>ТабСклады.Склад</DataPath>
 											<ReadOnly>true</ReadOnly>
 											<Title>
@@ -823,10 +859,10 @@
 											</Title>
 											<EditMode>EnterOnInput</EditMode>
 											<Width>16</Width>
-											<ContextMenu name="ТабСкладыСкладКонтекстноеМеню" id="141"/>
-											<ExtendedTooltip name="ТабСкладыСкладРасширеннаяПодсказка" id="142"/>
+											<ContextMenu name="ТабСкладыСкладКонтекстноеМеню" id="145"/>
+											<ExtendedTooltip name="ТабСкладыСкладРасширеннаяПодсказка" id="146"/>
 										</InputField>
-										<InputField name="ТабСкладыОстаток" id="143">
+										<InputField name="ТабСкладыОстаток" id="147">
 											<DataPath>ТабСклады.Остаток</DataPath>
 											<ReadOnly>true</ReadOnly>
 											<Title>
@@ -837,8 +873,8 @@
 											</Title>
 											<EditMode>EnterOnInput</EditMode>
 											<Width>7</Width>
-											<ContextMenu name="ТабСкладыОстатокКонтекстноеМеню" id="144"/>
-											<ExtendedTooltip name="ТабСкладыОстатокРасширеннаяПодсказка" id="145"/>
+											<ContextMenu name="ТабСкладыОстатокКонтекстноеМеню" id="148"/>
+											<ExtendedTooltip name="ТабСкладыОстатокРасширеннаяПодсказка" id="149"/>
 										</InputField>
 									</ChildItems>
 								</Table>
@@ -848,15 +884,15 @@
 				</UsualGroup>
 			</ChildItems>
 		</UsualGroup>
-		<UsualGroup name="ГруппаПодвал" id="182">
+		<UsualGroup name="ГруппаПодвал" id="186">
 			<Group>Horizontal</Group>
 			<Representation>None</Representation>
 			<ShowTitle>false</ShowTitle>
 			<HorizontalStretch>true</HorizontalStretch>
 			<VerticalStretch>false</VerticalStretch>
-			<ExtendedTooltip name="ГруппаПодвалРасширеннаяПодсказка" id="183"/>
+			<ExtendedTooltip name="ГруппаПодвалРасширеннаяПодсказка" id="187"/>
 			<ChildItems>
-				<InputField name="ПолеМР" id="158">
+				<InputField name="ПолеМР" id="162">
 					<DataPath>МР</DataPath>
 					<Title>
 						<v8:item>
@@ -872,13 +908,13 @@
 					</ToolTip>
 					<EditMode>EnterOnInput</EditMode>
 					<Width>4</Width>
-					<ContextMenu name="ПолеМРКонтекстноеМеню" id="159"/>
-					<ExtendedTooltip name="ПолеМРРасширеннаяПодсказка" id="160"/>
+					<ContextMenu name="ПолеМРКонтекстноеМеню" id="163"/>
+					<ExtendedTooltip name="ПолеМРРасширеннаяПодсказка" id="164"/>
 					<Events>
 						<Event name="OnChange">МРПриИзменении</Event>
 					</Events>
 				</InputField>
-				<InputField name="ПолеИтоговаяСумма" id="161">
+				<InputField name="ПолеИтоговаяСумма" id="165">
 					<DataPath>ИтоговаяСумма</DataPath>
 					<ReadOnly>true</ReadOnly>
 					<Title>
@@ -889,10 +925,10 @@
 					</Title>
 					<EditMode>EnterOnInput</EditMode>
 					<Width>12</Width>
-					<ContextMenu name="ПолеИтоговаяСуммаКонтекстноеМеню" id="162"/>
-					<ExtendedTooltip name="ПолеИтоговаяСуммаРасширеннаяПодсказка" id="163"/>
+					<ContextMenu name="ПолеИтоговаяСуммаКонтекстноеМеню" id="166"/>
+					<ExtendedTooltip name="ПолеИтоговаяСуммаРасширеннаяПодсказка" id="167"/>
 				</InputField>
-				<InputField name="ПолеВКрое1" id="164">
+				<InputField name="ПолеВКрое1" id="168">
 					<DataPath>ИтоговоеКолВоВКрое1</DataPath>
 					<ReadOnly>true</ReadOnly>
 					<Title>
@@ -903,10 +939,10 @@
 					</Title>
 					<EditMode>EnterOnInput</EditMode>
 					<Width>6</Width>
-					<ContextMenu name="ПолеВКрое1КонтекстноеМеню" id="165"/>
-					<ExtendedTooltip name="ПолеВКрое1РасширеннаяПодсказка" id="166"/>
+					<ContextMenu name="ПолеВКрое1КонтекстноеМеню" id="169"/>
+					<ExtendedTooltip name="ПолеВКрое1РасширеннаяПодсказка" id="170"/>
 				</InputField>
-				<InputField name="ПолеВКрое2" id="167">
+				<InputField name="ПолеВКрое2" id="171">
 					<DataPath>ИтоговоеКолВоВКрое2</DataPath>
 					<ReadOnly>true</ReadOnly>
 					<Title>
@@ -917,10 +953,10 @@
 					</Title>
 					<EditMode>EnterOnInput</EditMode>
 					<Width>6</Width>
-					<ContextMenu name="ПолеВКрое2КонтекстноеМеню" id="168"/>
-					<ExtendedTooltip name="ПолеВКрое2РасширеннаяПодсказка" id="169"/>
+					<ContextMenu name="ПолеВКрое2КонтекстноеМеню" id="172"/>
+					<ExtendedTooltip name="ПолеВКрое2РасширеннаяПодсказка" id="173"/>
 				</InputField>
-				<InputField name="ПолеГруппаСкладов" id="170">
+				<InputField name="ПолеГруппаСкладов" id="174">
 					<DataPath>ГруппаСкладов</DataPath>
 					<Title>
 						<v8:item>
@@ -931,13 +967,13 @@
 					<EditMode>EnterOnInput</EditMode>
 					<ClearButton>true</ClearButton>
 					<Width>20</Width>
-					<ContextMenu name="ПолеГруппаСкладовКонтекстноеМеню" id="171"/>
-					<ExtendedTooltip name="ПолеГруппаСкладовРасширеннаяПодсказка" id="172"/>
+					<ContextMenu name="ПолеГруппаСкладовКонтекстноеМеню" id="175"/>
+					<ExtendedTooltip name="ПолеГруппаСкладовРасширеннаяПодсказка" id="176"/>
 					<Events>
 						<Event name="OnChange">ГруппаСкладовПриИзменении</Event>
 					</Events>
 				</InputField>
-				<CheckBoxField name="ФлажокСобиратьНК" id="173">
+				<CheckBoxField name="ФлажокСобиратьНК" id="177">
 					<DataPath>СобиратьНК</DataPath>
 					<Title>
 						<v8:item>
@@ -954,16 +990,16 @@
 					<HorizontalAlign>Center</HorizontalAlign>
 					<EditMode>EnterOnInput</EditMode>
 					<CheckBoxType>Auto</CheckBoxType>
-					<ContextMenu name="ФлажокСобиратьНККонтекстноеМеню" id="174"/>
-					<ExtendedTooltip name="ФлажокСобиратьНКРасширеннаяПодсказка" id="175"/>
+					<ContextMenu name="ФлажокСобиратьНККонтекстноеМеню" id="178"/>
+					<ExtendedTooltip name="ФлажокСобиратьНКРасширеннаяПодсказка" id="179"/>
 					<Events>
 						<Event name="OnChange">СобиратьНКПриИзменении</Event>
 					</Events>
 				</CheckBoxField>
-				<CommandBar name="ПанельЗавершения" id="180">
-					<ExtendedTooltip name="ПанельЗавершенияРасширеннаяПодсказка" id="181"/>
+				<CommandBar name="ПанельЗавершения" id="184">
+					<ExtendedTooltip name="ПанельЗавершенияРасширеннаяПодсказка" id="185"/>
 					<ChildItems>
-						<Button name="КнопкаОК" id="176">
+						<Button name="КнопкаОК" id="180">
 							<Type>CommandBarButton</Type>
 							<DefaultButton>true</DefaultButton>
 							<CommandName>Form.Command.ОК</CommandName>
@@ -973,9 +1009,9 @@
 									<v8:content>ОК</v8:content>
 								</v8:item>
 							</Title>
-							<ExtendedTooltip name="КнопкаОКРасширеннаяПодсказка" id="177"/>
+							<ExtendedTooltip name="КнопкаОКРасширеннаяПодсказка" id="181"/>
 						</Button>
-						<Button name="КнопкаЗакрыть" id="178">
+						<Button name="КнопкаЗакрыть" id="182">
 							<Type>CommandBarButton</Type>
 							<CommandName>Form.Command.ЗакрытьФорму</CommandName>
 							<Title>
@@ -984,7 +1020,7 @@
 									<v8:content>Закрыть</v8:content>
 								</v8:item>
 							</Title>
-							<ExtendedTooltip name="КнопкаЗакрытьРасширеннаяПодсказка" id="179"/>
+							<ExtendedTooltip name="КнопкаЗакрытьРасширеннаяПодсказка" id="183"/>
 						</Button>
 					</ChildItems>
 				</CommandBar>
@@ -2610,7 +2646,39 @@
 			<Action>КомандаПереключитьПанели</Action>
 			<CurrentRowUse>DontUse</CurrentRowUse>
 		</Command>
-		<Command name="КартинкаВБуфер" id="13">
+		<Command name="УбратьГруппуСкладов" id="13">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Убрать</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>убрать текущую группу складов из списка; выбор запоминается</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>КомандаУбратьГруппуСкладов</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ВернутьГруппыСкладов" id="14">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Вернуть все</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>вернуть в список все убранные группы складов</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>КомандаВернутьГруппыСкладов</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="КартинкаВБуфер" id="15">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -2626,7 +2694,7 @@
 			<Action>КомандаКартинкаВБуфер</Action>
 			<CurrentRowUse>DontUse</CurrentRowUse>
 		</Command>
-		<Command name="СсылкаНаСайт" id="14">
+		<Command name="СсылкаНаСайт" id="16">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -2642,7 +2710,7 @@
 			<Action>КомандаСсылкаНаСайт</Action>
 			<CurrentRowUse>DontUse</CurrentRowUse>
 		</Command>
-		<Command name="ОткрытьСайт" id="15">
+		<Command name="ОткрытьСайт" id="17">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -2658,7 +2726,7 @@
 			<Action>КомандаОткрытьСайт</Action>
 			<CurrentRowUse>DontUse</CurrentRowUse>
 		</Command>
-		<Command name="РедактироватьЦвет" id="16">
+		<Command name="РедактироватьЦвет" id="18">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -2674,7 +2742,7 @@
 			<Action>КомандаРедактироватьЦвет</Action>
 			<CurrentRowUse>DontUse</CurrentRowUse>
 		</Command>
-		<Command name="ОК" id="17">
+		<Command name="ОК" id="19">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -2684,7 +2752,7 @@
 			<Action>КомандаОК</Action>
 			<CurrentRowUse>DontUse</CurrentRowUse>
 		</Command>
-		<Command name="ЗакрытьФорму" id="18">
+		<Command name="ЗакрытьФорму" id="20">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
