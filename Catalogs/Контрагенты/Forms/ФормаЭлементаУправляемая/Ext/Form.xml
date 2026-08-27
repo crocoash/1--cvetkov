@@ -1179,6 +1179,201 @@
 						</UsualGroup>
 					</ChildItems>
 				</Page>
+				<Page name="СтраницаЗаказы" id="650">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Заказы</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="СтраницаЗаказыРасширеннаяПодсказка" id="651"/>
+					<ChildItems>
+						<UsualGroup name="ГруппаЗаказыШапка" id="652">
+							<Group>Vertical</Group>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ГруппаЗаказыШапкаРасширеннаяПодсказка" id="653"/>
+							<ChildItems>
+								<CommandBar name="КоманднаяПанельЗаказы" id="654">
+									<ExtendedTooltip name="КоманднаяПанельЗаказыРасширеннаяПодсказка" id="655"/>
+									<ChildItems>
+										<Button name="КнопкаОбновитьЗаказы" id="656">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.ОбновитьЗаказы</CommandName>
+											<ExtendedTooltip name="КнопкаОбновитьЗаказыРасширеннаяПодсказка" id="657"/>
+										</Button>
+										<Button name="КнопкаОткрытьЗаказ" id="658">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.ОткрытьЗаказ</CommandName>
+											<ExtendedTooltip name="КнопкаОткрытьЗаказРасширеннаяПодсказка" id="659"/>
+										</Button>
+									</ChildItems>
+								</CommandBar>
+								<LabelDecoration name="НадписьЗаказы" id="660">
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Заказы самого контрагента и заказы, где его телефон стоит у получателя: так видно покупки через Розетку и Касту — там заказ оформлен на маркетплейс, а человек указан получателем. Чужие заказы помечены в колонке «Чей заказ».</v8:content>
+						</v8:item>
+					</Title>
+									<ContextMenu name="НадписьЗаказыКонтекстноеМеню" id="661"/>
+									<ExtendedTooltip name="НадписьЗаказыРасширеннаяПодсказка" id="662"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+						<Table name="ТабЗаказы" id="663">
+							<Representation>List</Representation>
+							<ChangeRowSet>false</ChangeRowSet>
+							<ChangeRowOrder>false</ChangeRowOrder>
+							<Height>16</Height>
+							<DataPath>ТабЗаказы</DataPath>
+							<SearchStringLocation>None</SearchStringLocation>
+							<ViewStatusLocation>None</ViewStatusLocation>
+							<SearchControlLocation>None</SearchControlLocation>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="ТабЗаказыКонтекстноеМеню" id="664"/>
+							<AutoCommandBar name="ТабЗаказыКоманднаяПанель" id="665"/>
+							<ExtendedTooltip name="ТабЗаказыРасширеннаяПодсказка" id="666"/>
+							<SearchStringAddition name="ТабЗаказыСтрокаПоиска" id="667">
+								<AdditionSource>
+									<Item>ТабЗаказы</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ТабЗаказыСтрокаПоискаКонтекстноеМеню" id="668"/>
+								<ExtendedTooltip name="ТабЗаказыСтрокаПоискаРасширеннаяПодсказка" id="669"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ТабЗаказыСостояниеПросмотра" id="670">
+								<AdditionSource>
+									<Item>ТабЗаказы</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ТабЗаказыСостояниеПросмотраКонтекстноеМеню" id="671"/>
+								<ExtendedTooltip name="ТабЗаказыСостояниеПросмотраРасширеннаяПодсказка" id="672"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ТабЗаказыУправлениеПоиском" id="673">
+								<AdditionSource>
+									<Item>ТабЗаказы</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ТабЗаказыУправлениеПоискомКонтекстноеМеню" id="674"/>
+								<ExtendedTooltip name="ТабЗаказыУправлениеПоискомРасширеннаяПодсказка" id="675"/>
+							</SearchControlAddition>
+							<Events>
+								<Event name="Selection">ТабЗаказыВыбор</Event>
+							</Events>
+							<ChildItems>
+								<LabelField name="ЗакДата" id="676">
+									<DataPath>ТабЗаказы.Дата</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Дата</v8:content>
+										</v8:item>
+									</Title>
+									<Width>16</Width>
+									<ContextMenu name="ЗакДатаКонтекстноеМеню" id="677"/>
+									<ExtendedTooltip name="ЗакДатаРасширеннаяПодсказка" id="678"/>
+								</LabelField>
+								<LabelField name="ЗакЗаказ" id="679">
+									<DataPath>ТабЗаказы.Заказ</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Заказ</v8:content>
+										</v8:item>
+									</Title>
+									<Width>28</Width>
+									<ContextMenu name="ЗакЗаказКонтекстноеМеню" id="680"/>
+									<ExtendedTooltip name="ЗакЗаказРасширеннаяПодсказка" id="681"/>
+								</LabelField>
+								<LabelField name="ЗакСтатус" id="682">
+									<DataPath>ТабЗаказы.Статус</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Статус</v8:content>
+										</v8:item>
+									</Title>
+									<Width>18</Width>
+									<ContextMenu name="ЗакСтатусКонтекстноеМеню" id="683"/>
+									<ExtendedTooltip name="ЗакСтатусРасширеннаяПодсказка" id="684"/>
+								</LabelField>
+								<LabelField name="ЗакСумма" id="685">
+									<DataPath>ТабЗаказы.Сумма</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Сумма</v8:content>
+										</v8:item>
+									</Title>
+									<Width>10</Width>
+									<ContextMenu name="ЗакСуммаКонтекстноеМеню" id="686"/>
+									<ExtendedTooltip name="ЗакСуммаРасширеннаяПодсказка" id="687"/>
+								</LabelField>
+								<LabelField name="ЗакОплачен" id="688">
+									<DataPath>ТабЗаказы.Оплачен</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Оплачен</v8:content>
+										</v8:item>
+									</Title>
+									<Width>8</Width>
+									<ContextMenu name="ЗакОплаченКонтекстноеМеню" id="689"/>
+									<ExtendedTooltip name="ЗакОплаченРасширеннаяПодсказка" id="690"/>
+								</LabelField>
+								<LabelField name="ЗакПолучатель" id="691">
+									<DataPath>ТабЗаказы.Получатель</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Получатель</v8:content>
+										</v8:item>
+									</Title>
+									<Width>30</Width>
+									<ContextMenu name="ЗакПолучательКонтекстноеМеню" id="692"/>
+									<ExtendedTooltip name="ЗакПолучательРасширеннаяПодсказка" id="693"/>
+								</LabelField>
+								<LabelField name="ЗакТелефон" id="694">
+									<DataPath>ТабЗаказы.Телефон</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Телефон</v8:content>
+										</v8:item>
+									</Title>
+									<Width>14</Width>
+									<ContextMenu name="ЗакТелефонКонтекстноеМеню" id="695"/>
+									<ExtendedTooltip name="ЗакТелефонРасширеннаяПодсказка" id="696"/>
+								</LabelField>
+								<LabelField name="ЗакТТН" id="697">
+									<DataPath>ТабЗаказы.ТТН</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>ТТН</v8:content>
+										</v8:item>
+									</Title>
+									<Width>16</Width>
+									<ContextMenu name="ЗакТТНКонтекстноеМеню" id="698"/>
+									<ExtendedTooltip name="ЗакТТНРасширеннаяПодсказка" id="699"/>
+								</LabelField>
+								<LabelField name="ЗакИсточник" id="700">
+									<DataPath>ТабЗаказы.Источник</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Чей заказ</v8:content>
+										</v8:item>
+									</Title>
+									<Width>22</Width>
+									<ContextMenu name="ЗакИсточникКонтекстноеМеню" id="701"/>
+									<ExtendedTooltip name="ЗакИсточникРасширеннаяПодсказка" id="702"/>
+								</LabelField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
 				<Page name="СтраницаСчетаИДоговоры" id="278">
 					<Title>
 						<v8:item>
@@ -3254,6 +3449,142 @@
 				</Column>
 			</Columns>
 		</Attribute>
+		<Attribute name="ТабЗаказы" id="25">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Заказы контрагента</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Дата" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Дата</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:dateTime</v8:Type>
+						<v8:DateQualifiers>
+							<v8:DateFractions>DateTime</v8:DateFractions>
+						</v8:DateQualifiers>
+					</Type>
+				</Column>
+				<Column name="Заказ" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Заказ</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:DocumentRef.ЗаказПокупателя</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Статус" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Статус</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.СтатусыЗаказов</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Сумма" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сумма</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>2</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Оплачен" id="5">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Оплачен</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Получатель" id="6">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Получатель</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Телефон" id="7">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Телефон</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>200</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ТТН" id="8">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>ТТН</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>30</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Источник" id="9">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Чей заказ</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>150</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
 		<Attribute name="Свойства" id="18">
 			<Title>
 				<v8:item>
@@ -3754,6 +4085,38 @@
 				</v8:item>
 			</ToolTip>
 			<Action>КомандаСгенерироватьПароль</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ОбновитьЗаказы" id="17">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Обновить</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Перечитать заказы контрагента и заказы, где его телефон стоит у получателя</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>КомандаОбновитьЗаказы</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ОткрытьЗаказ" id="18">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Открыть заказ</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Открыть выделенный заказ</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>КомандаОткрытьЗаказ</Action>
 			<CurrentRowUse>DontUse</CurrentRowUse>
 		</Command>
 	</Commands>
