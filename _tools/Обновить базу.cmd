@@ -76,6 +76,7 @@ echo   1  - Выгрузить конфигурацию из базы в файлы + снимок
 echo   2  - Настроить базу и пользователя
 echo   3  - Только загрузить из файлов, базу не обновлять
 echo   4  - Только обновить конфигурацию БД (загрузку не повторять)
+echo   5  - Снять блокировки с базы (если предыдущий запуск оборвали)
 echo.
 echo   0  - Назад
 echo.
@@ -85,6 +86,7 @@ if "%OPT%"=="1" set ARGS=-dump& goto run
 if "%OPT%"=="2" set ARGS=-setup& goto run
 if "%OPT%"=="3" set ARGS=-loadonly& goto run
 if "%OPT%"=="4" set ARGS=-updateonly& goto run
+if "%OPT%"=="5" set ARGS=-unlock& goto run
 if "%OPT%"=="0" goto menu
 goto more
 
