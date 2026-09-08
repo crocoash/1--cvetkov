@@ -198,7 +198,21 @@ function Запустить1С([string[]]$Аргументы, [string]$Что, [
     Write-Host "== $Что" -ForegroundColor Cyan
     $лог = Join-Path $env:TEMP ("1c-apply-" + [guid]::NewGuid().ToString("N").Substring(0, 8) + ".log")
     $всё = $общие + $Аргументы + @("/Out", $лог)
-    $p = Start-Process -FilePath $exe -ArgumentList $всё -Wait -PassThru -WindowStyle Hidden
+    # Пакетный Конфигуратор работает скрытым окном и молчит до самого конца: загрузка
+    # из файлов и обновление БД на этой конфигурации идут минутами, и без отметок
+    # времени это неотличимо от зависшего скрипта. Отмечаемся раз в минуту.
+    $p = Start-Process -FilePath $exe -ArgumentList $всё -PassThru -WindowStyle Hidden
+    $часы = [System.Diagnostics.Stopwatch]::StartNew()
+    $отмечено = 0
+    while (-not $p.HasExited) {
+        Start-Sleep -Seconds 5
+        $мин = [int][Math]::Floor($часы.Elapsed.TotalMinutes)
+        if ($мин -gt $отмечено) {
+            $отмечено = $мин
+            Write-Host ("   идёт {0} мин, 1cv8 PID {1} — это нормально, прерывать не нужно" -f $мин, $p.Id) -ForegroundColor DarkGray
+        }
+    }
+    $p.WaitForExit()
     $текст = ""
     if (Test-Path $лог) {
         $текст = (Get-Content $лог -Raw -Encoding UTF8)
