@@ -13,8 +13,8 @@
 		<Autofill>false</Autofill>
 	</AutoCommandBar>
 	<Events>
-		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
 		<Event name="OnOpen">ПриОткрытии</Event>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
 	</Events>
 	<ChildItems>
 		<CommandBar name="ПанельОтметок" id="23">
@@ -85,68 +85,83 @@
 							<v8:content>Размеры панелей</v8:content>
 						</v8:item>
 					</Title>
-					<ToolTip>
-						<v8:item>
-							<v8:lang>ru</v8:lang>
-							<v8:content>изменить высоту и ширину панелей; платформа запомнит их для вашего пользователя</v8:content>
-						</v8:item>
-					</ToolTip>
 					<ExtendedTooltip name="ФормаНастроитьФормуРасширеннаяПодсказка" id="22"/>
 				</Button>
 			</ChildItems>
 		</CommandBar>
 		<UsualGroup name="ГруппаРабочая" id="160">
+			<HorizontalStretch>true</HorizontalStretch>
+			<VerticalStretch>true</VerticalStretch>
 			<Group>Horizontal</Group>
 			<Representation>None</Representation>
 			<ShowTitle>false</ShowTitle>
-			<HorizontalStretch>true</HorizontalStretch>
-			<VerticalStretch>true</VerticalStretch>
 			<ExtendedTooltip name="ГруппаРабочаяРасширеннаяПодсказка" id="161"/>
 			<ChildItems>
 				<Table name="ТаблицаХарактеристикНоменклатуры" id="51">
 					<Representation>List</Representation>
 					<ChangeRowSet>false</ChangeRowSet>
 					<ChangeRowOrder>false</ChangeRowOrder>
-					<TitleLocation>None</TitleLocation>
+					<Height>22</Height>
 					<DataPath>ТаблицаХарактеристикНоменклатуры</DataPath>
 					<SearchStringLocation>None</SearchStringLocation>
 					<ViewStatusLocation>None</ViewStatusLocation>
 					<SearchControlLocation>None</SearchControlLocation>
-					<Height>22</Height>
-					<HorizontalStretch>true</HorizontalStretch>
-					<VerticalStretch>true</VerticalStretch>
 					<RowFilter xsi:nil="true"/>
 					<ContextMenu name="ТаблицаХарактеристикНоменклатурыКонтекстноеМеню" id="52">
 						<ChildItems>
-						<Button name="МенюКартинкаВБуфер" id="25">
-							<Type>CommandBarButton</Type>
-							<CommandName>Form.Command.КартинкаВБуфер</CommandName>
-							<ExtendedTooltip name="МенюКартинкаВБуферРасширеннаяПодсказка" id="26"/>
-						</Button>
-						<Button name="МенюСсылкаНаСайт" id="27">
-							<Type>CommandBarButton</Type>
-							<CommandName>Form.Command.СсылкаНаСайт</CommandName>
-							<ExtendedTooltip name="МенюСсылкаНаСайтРасширеннаяПодсказка" id="28"/>
-						</Button>
-						<Button name="МенюОткрытьСайт" id="29">
-							<Type>CommandBarButton</Type>
-							<CommandName>Form.Command.ОткрытьСайт</CommandName>
-							<ExtendedTooltip name="МенюОткрытьСайтРасширеннаяПодсказка" id="30"/>
-						</Button>
-						<Button name="МенюРедактироватьЦвет" id="31">
-							<Type>CommandBarButton</Type>
-							<CommandName>Form.Command.РедактироватьЦвет</CommandName>
-							<ExtendedTooltip name="МенюРедактироватьЦветРасширеннаяПодсказка" id="32"/>
-						</Button>
+							<Button name="МенюКартинкаВБуфер" id="25">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.КартинкаВБуфер</CommandName>
+								<ExtendedTooltip name="МенюКартинкаВБуферРасширеннаяПодсказка" id="26"/>
+							</Button>
+							<Button name="МенюСсылкаНаСайт" id="27">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.СсылкаНаСайт</CommandName>
+								<ExtendedTooltip name="МенюСсылкаНаСайтРасширеннаяПодсказка" id="28"/>
+							</Button>
+							<Button name="МенюОткрытьСайт" id="29">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.ОткрытьСайт</CommandName>
+								<ExtendedTooltip name="МенюОткрытьСайтРасширеннаяПодсказка" id="30"/>
+							</Button>
+							<Button name="МенюРедактироватьЦвет" id="31">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.РедактироватьЦвет</CommandName>
+								<ExtendedTooltip name="МенюРедактироватьЦветРасширеннаяПодсказка" id="32"/>
+							</Button>
 						</ChildItems>
 					</ContextMenu>
 					<AutoCommandBar name="ТаблицаХарактеристикНоменклатурыКоманднаяПанель" id="53">
 						<Autofill>false</Autofill>
 					</AutoCommandBar>
 					<ExtendedTooltip name="ТаблицаХарактеристикНоменклатурыРасширеннаяПодсказка" id="54"/>
+					<SearchStringAddition name="ТаблицаХарактеристикНоменклатурыСтрокаПоиска" id="188">
+						<AdditionSource>
+							<Item>ТаблицаХарактеристикНоменклатуры</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ТаблицаХарактеристикНоменклатурыСтрокаПоискаКонтекстноеМеню" id="189"/>
+						<ExtendedTooltip name="ТаблицаХарактеристикНоменклатурыСтрокаПоискаРасширеннаяПодсказка" id="190"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="ТаблицаХарактеристикНоменклатурыСостояниеПросмотра" id="191">
+						<AdditionSource>
+							<Item>ТаблицаХарактеристикНоменклатуры</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ТаблицаХарактеристикНоменклатурыСостояниеПросмотраКонтекстноеМеню" id="192"/>
+						<ExtendedTooltip name="ТаблицаХарактеристикНоменклатурыСостояниеПросмотраРасширеннаяПодсказка" id="193"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="ТаблицаХарактеристикНоменклатурыУправлениеПоиском" id="194">
+						<AdditionSource>
+							<Item>ТаблицаХарактеристикНоменклатуры</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="ТаблицаХарактеристикНоменклатурыУправлениеПоискомКонтекстноеМеню" id="195"/>
+						<ExtendedTooltip name="ТаблицаХарактеристикНоменклатурыУправлениеПоискомРасширеннаяПодсказка" id="196"/>
+					</SearchControlAddition>
 					<Events>
-						<Event name="OnActivateRow">ХарактеристикиПриАктивизацииСтроки</Event>
 						<Event name="Selection">ХарактеристикиВыбор</Event>
+						<Event name="OnActivateRow">ХарактеристикиПриАктивизацииСтроки</Event>
 					</Events>
 					<ChildItems>
 						<InputField name="ХарактеристикиЦвет" id="33">
@@ -246,17 +261,17 @@
 					</ChildItems>
 				</Table>
 				<UsualGroup name="ГруппаПравая" id="158">
+					<HorizontalStretch>true</HorizontalStretch>
+					<VerticalStretch>true</VerticalStretch>
 					<Group>Vertical</Group>
 					<Representation>None</Representation>
 					<ShowTitle>false</ShowTitle>
-					<HorizontalStretch>true</HorizontalStretch>
-					<VerticalStretch>true</VerticalStretch>
 					<ExtendedTooltip name="ГруппаПраваяРасширеннаяПодсказка" id="159"/>
 					<ChildItems>
 						<Pages name="ГруппаСтраницыОтбора" id="91">
-							<PagesRepresentation>TabsOnTop</PagesRepresentation>
 							<HorizontalStretch>true</HorizontalStretch>
 							<VerticalStretch>true</VerticalStretch>
+							<PagesRepresentation>TabsOnTop</PagesRepresentation>
 							<ExtendedTooltip name="ГруппаСтраницыОтбораРасширеннаяПодсказка" id="92"/>
 							<ChildItems>
 								<Page name="СтраницаЦвет" id="65">
@@ -272,21 +287,42 @@
 											<Representation>List</Representation>
 											<ChangeRowSet>false</ChangeRowSet>
 											<ChangeRowOrder>false</ChangeRowOrder>
-											<TitleLocation>None</TitleLocation>
+											<Width>17</Width>
+											<Height>10</Height>
 											<DataPath>ЦветСписок</DataPath>
 											<SearchStringLocation>None</SearchStringLocation>
 											<ViewStatusLocation>None</ViewStatusLocation>
 											<SearchControlLocation>None</SearchControlLocation>
-											<Width>17</Width>
-											<Height>10</Height>
-											<HorizontalStretch>true</HorizontalStretch>
-											<VerticalStretch>true</VerticalStretch>
 											<RowFilter xsi:nil="true"/>
 											<ContextMenu name="ЦветСписокКонтекстноеМеню" id="62"/>
 											<AutoCommandBar name="ЦветСписокКоманднаяПанель" id="63">
 												<Autofill>false</Autofill>
 											</AutoCommandBar>
 											<ExtendedTooltip name="ЦветСписокРасширеннаяПодсказка" id="64"/>
+											<SearchStringAddition name="ЦветСписокСтрокаПоиска" id="197">
+												<AdditionSource>
+													<Item>ЦветСписок</Item>
+													<Type>SearchStringRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="ЦветСписокСтрокаПоискаКонтекстноеМеню" id="198"/>
+												<ExtendedTooltip name="ЦветСписокСтрокаПоискаРасширеннаяПодсказка" id="199"/>
+											</SearchStringAddition>
+											<ViewStatusAddition name="ЦветСписокСостояниеПросмотра" id="200">
+												<AdditionSource>
+													<Item>ЦветСписок</Item>
+													<Type>ViewStatusRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="ЦветСписокСостояниеПросмотраКонтекстноеМеню" id="201"/>
+												<ExtendedTooltip name="ЦветСписокСостояниеПросмотраРасширеннаяПодсказка" id="202"/>
+											</ViewStatusAddition>
+											<SearchControlAddition name="ЦветСписокУправлениеПоиском" id="203">
+												<AdditionSource>
+													<Item>ЦветСписок</Item>
+													<Type>SearchControl</Type>
+												</AdditionSource>
+												<ContextMenu name="ЦветСписокУправлениеПоискомКонтекстноеМеню" id="204"/>
+												<ExtendedTooltip name="ЦветСписокУправлениеПоискомРасширеннаяПодсказка" id="205"/>
+											</SearchControlAddition>
 											<ChildItems>
 												<CheckBoxField name="ЦветСписокПометка" id="55">
 													<DataPath>ЦветСписок.Пометка</DataPath>
@@ -336,21 +372,42 @@
 											<Representation>List</Representation>
 											<ChangeRowSet>false</ChangeRowSet>
 											<ChangeRowOrder>false</ChangeRowOrder>
-											<TitleLocation>None</TitleLocation>
+											<Width>17</Width>
+											<Height>10</Height>
 											<DataPath>РазмерСписок</DataPath>
 											<SearchStringLocation>None</SearchStringLocation>
 											<ViewStatusLocation>None</ViewStatusLocation>
 											<SearchControlLocation>None</SearchControlLocation>
-											<Width>17</Width>
-											<Height>10</Height>
-											<HorizontalStretch>true</HorizontalStretch>
-											<VerticalStretch>true</VerticalStretch>
 											<RowFilter xsi:nil="true"/>
 											<ContextMenu name="РазмерСписокКонтекстноеМеню" id="74"/>
 											<AutoCommandBar name="РазмерСписокКоманднаяПанель" id="75">
 												<Autofill>false</Autofill>
 											</AutoCommandBar>
 											<ExtendedTooltip name="РазмерСписокРасширеннаяПодсказка" id="76"/>
+											<SearchStringAddition name="РазмерСписокСтрокаПоиска" id="206">
+												<AdditionSource>
+													<Item>РазмерСписок</Item>
+													<Type>SearchStringRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="РазмерСписокСтрокаПоискаКонтекстноеМеню" id="207"/>
+												<ExtendedTooltip name="РазмерСписокСтрокаПоискаРасширеннаяПодсказка" id="208"/>
+											</SearchStringAddition>
+											<ViewStatusAddition name="РазмерСписокСостояниеПросмотра" id="209">
+												<AdditionSource>
+													<Item>РазмерСписок</Item>
+													<Type>ViewStatusRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="РазмерСписокСостояниеПросмотраКонтекстноеМеню" id="210"/>
+												<ExtendedTooltip name="РазмерСписокСостояниеПросмотраРасширеннаяПодсказка" id="211"/>
+											</ViewStatusAddition>
+											<SearchControlAddition name="РазмерСписокУправлениеПоиском" id="212">
+												<AdditionSource>
+													<Item>РазмерСписок</Item>
+													<Type>SearchControl</Type>
+												</AdditionSource>
+												<ContextMenu name="РазмерСписокУправлениеПоискомКонтекстноеМеню" id="213"/>
+												<ExtendedTooltip name="РазмерСписокУправлениеПоискомРасширеннаяПодсказка" id="214"/>
+											</SearchControlAddition>
 											<ChildItems>
 												<CheckBoxField name="РазмерСписокПометка" id="67">
 													<DataPath>РазмерСписок.Пометка</DataPath>
@@ -400,21 +457,42 @@
 											<Representation>List</Representation>
 											<ChangeRowSet>false</ChangeRowSet>
 											<ChangeRowOrder>false</ChangeRowOrder>
-											<TitleLocation>None</TitleLocation>
+											<Width>17</Width>
+											<Height>10</Height>
 											<DataPath>ТканьСписок</DataPath>
 											<SearchStringLocation>None</SearchStringLocation>
 											<ViewStatusLocation>None</ViewStatusLocation>
 											<SearchControlLocation>None</SearchControlLocation>
-											<Width>17</Width>
-											<Height>10</Height>
-											<HorizontalStretch>true</HorizontalStretch>
-											<VerticalStretch>true</VerticalStretch>
 											<RowFilter xsi:nil="true"/>
 											<ContextMenu name="ТканьСписокКонтекстноеМеню" id="86"/>
 											<AutoCommandBar name="ТканьСписокКоманднаяПанель" id="87">
 												<Autofill>false</Autofill>
 											</AutoCommandBar>
 											<ExtendedTooltip name="ТканьСписокРасширеннаяПодсказка" id="88"/>
+											<SearchStringAddition name="ТканьСписокСтрокаПоиска" id="215">
+												<AdditionSource>
+													<Item>ТканьСписок</Item>
+													<Type>SearchStringRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="ТканьСписокСтрокаПоискаКонтекстноеМеню" id="216"/>
+												<ExtendedTooltip name="ТканьСписокСтрокаПоискаРасширеннаяПодсказка" id="217"/>
+											</SearchStringAddition>
+											<ViewStatusAddition name="ТканьСписокСостояниеПросмотра" id="218">
+												<AdditionSource>
+													<Item>ТканьСписок</Item>
+													<Type>ViewStatusRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="ТканьСписокСостояниеПросмотраКонтекстноеМеню" id="219"/>
+												<ExtendedTooltip name="ТканьСписокСостояниеПросмотраРасширеннаяПодсказка" id="220"/>
+											</ViewStatusAddition>
+											<SearchControlAddition name="ТканьСписокУправлениеПоиском" id="221">
+												<AdditionSource>
+													<Item>ТканьСписок</Item>
+													<Type>SearchControl</Type>
+												</AdditionSource>
+												<ContextMenu name="ТканьСписокУправлениеПоискомКонтекстноеМеню" id="222"/>
+												<ExtendedTooltip name="ТканьСписокУправлениеПоискомРасширеннаяПодсказка" id="223"/>
+											</SearchControlAddition>
 											<ChildItems>
 												<CheckBoxField name="ТканьСписокПометка" id="79">
 													<DataPath>ТканьСписок.Пометка</DataPath>
@@ -454,67 +532,77 @@
 							</ChildItems>
 						</Pages>
 						<UsualGroup name="ГруппаПанельГруппСкладов" id="154">
+							<HorizontalStretch>true</HorizontalStretch>
+							<VerticalStretch>true</VerticalStretch>
 							<Group>Vertical</Group>
 							<Representation>None</Representation>
 							<ShowTitle>false</ShowTitle>
-							<HorizontalStretch>true</HorizontalStretch>
-							<VerticalStretch>true</VerticalStretch>
 							<ExtendedTooltip name="ГруппаПанельГруппСкладовРасширеннаяПодсказка" id="155"/>
 							<ChildItems>
 								<Table name="ТабГруппСкладов" id="109">
 									<Representation>List</Representation>
 									<ChangeRowSet>false</ChangeRowSet>
 									<ChangeRowOrder>false</ChangeRowOrder>
+									<Width>28</Width>
+									<Height>8</Height>
 									<DataPath>ТабГруппСкладов</DataPath>
 									<SearchStringLocation>None</SearchStringLocation>
 									<ViewStatusLocation>None</ViewStatusLocation>
 									<SearchControlLocation>None</SearchControlLocation>
-									<Width>28</Width>
-									<Height>8</Height>
-									<HorizontalStretch>true</HorizontalStretch>
-									<VerticalStretch>true</VerticalStretch>
 									<RowFilter xsi:nil="true"/>
 									<ContextMenu name="ТабГруппСкладовКонтекстноеМеню" id="110"/>
 									<AutoCommandBar name="ТабГруппСкладовКоманднаяПанель" id="111">
 										<Autofill>false</Autofill>
 										<ChildItems>
-										<Button name="КнопкаУбратьГруппу" id="93">
-											<Type>CommandBarButton</Type>
-											<CommandName>Form.Command.УбратьГруппуСкладов</CommandName>
-											<Title>
-												<v8:item>
-													<v8:lang>ru</v8:lang>
-													<v8:content>Убрать</v8:content>
-												</v8:item>
-											</Title>
-											<ToolTip>
-												<v8:item>
-													<v8:lang>ru</v8:lang>
-													<v8:content>убрать группу из списка - она больше не появится</v8:content>
-												</v8:item>
-											</ToolTip>
-											<ExtendedTooltip name="КнопкаУбратьГруппуРасширеннаяПодсказка" id="94"/>
-										</Button>
-										<Button name="КнопкаВернутьГруппы" id="95">
-											<Type>CommandBarButton</Type>
-											<CommandName>Form.Command.ВернутьГруппыСкладов</CommandName>
-											<Title>
-												<v8:item>
-													<v8:lang>ru</v8:lang>
-													<v8:content>Вернуть все</v8:content>
-												</v8:item>
-											</Title>
-											<ToolTip>
-												<v8:item>
-													<v8:lang>ru</v8:lang>
-													<v8:content>показать все группы складов заново</v8:content>
-												</v8:item>
-											</ToolTip>
-											<ExtendedTooltip name="КнопкаВернутьГруппыРасширеннаяПодсказка" id="96"/>
-										</Button>
+											<Button name="КнопкаУбратьГруппу" id="93">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.УбратьГруппуСкладов</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>ru</v8:lang>
+														<v8:content>Убрать</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="КнопкаУбратьГруппуРасширеннаяПодсказка" id="94"/>
+											</Button>
+											<Button name="КнопкаВернутьГруппы" id="95">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.ВернутьГруппыСкладов</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>ru</v8:lang>
+														<v8:content>Вернуть все</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="КнопкаВернутьГруппыРасширеннаяПодсказка" id="96"/>
+											</Button>
 										</ChildItems>
 									</AutoCommandBar>
 									<ExtendedTooltip name="ТабГруппСкладовРасширеннаяПодсказка" id="112"/>
+									<SearchStringAddition name="ТабГруппСкладовСтрокаПоиска" id="224">
+										<AdditionSource>
+											<Item>ТабГруппСкладов</Item>
+											<Type>SearchStringRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="ТабГруппСкладовСтрокаПоискаКонтекстноеМеню" id="225"/>
+										<ExtendedTooltip name="ТабГруппСкладовСтрокаПоискаРасширеннаяПодсказка" id="226"/>
+									</SearchStringAddition>
+									<ViewStatusAddition name="ТабГруппСкладовСостояниеПросмотра" id="227">
+										<AdditionSource>
+											<Item>ТабГруппСкладов</Item>
+											<Type>ViewStatusRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="ТабГруппСкладовСостояниеПросмотраКонтекстноеМеню" id="228"/>
+										<ExtendedTooltip name="ТабГруппСкладовСостояниеПросмотраРасширеннаяПодсказка" id="229"/>
+									</ViewStatusAddition>
+									<SearchControlAddition name="ТабГруппСкладовУправлениеПоиском" id="230">
+										<AdditionSource>
+											<Item>ТабГруппСкладов</Item>
+											<Type>SearchControl</Type>
+										</AdditionSource>
+										<ContextMenu name="ТабГруппСкладовУправлениеПоискомКонтекстноеМеню" id="231"/>
+										<ExtendedTooltip name="ТабГруппСкладовУправлениеПоискомРасширеннаяПодсказка" id="232"/>
+									</SearchControlAddition>
 									<Events>
 										<Event name="Selection">ТабГруппСкладовВыбор</Event>
 									</Events>
@@ -598,19 +686,19 @@
 							</ChildItems>
 						</UsualGroup>
 						<UsualGroup name="ГруппаФлажков" id="139">
+							<HorizontalStretch>true</HorizontalStretch>
+							<VerticalStretch>false</VerticalStretch>
 							<Group>Vertical</Group>
 							<Representation>None</Representation>
 							<ShowTitle>false</ShowTitle>
-							<HorizontalStretch>true</HorizontalStretch>
-							<VerticalStretch>false</VerticalStretch>
 							<ExtendedTooltip name="ГруппаФлажковРасширеннаяПодсказка" id="140"/>
 							<ChildItems>
 								<UsualGroup name="ГруппаФлажкиРяд1" id="126">
+									<HorizontalStretch>false</HorizontalStretch>
+									<VerticalStretch>false</VerticalStretch>
 									<Group>Horizontal</Group>
 									<Representation>None</Representation>
 									<ShowTitle>false</ShowTitle>
-									<HorizontalStretch>false</HorizontalStretch>
-									<VerticalStretch>false</VerticalStretch>
 									<ExtendedTooltip name="ГруппаФлажкиРяд1РасширеннаяПодсказка" id="127"/>
 									<ChildItems>
 										<CheckBoxField name="ФлажокРезерв" id="117">
@@ -685,11 +773,11 @@
 									</ChildItems>
 								</UsualGroup>
 								<UsualGroup name="ГруппаФлажкиРяд2" id="137">
+									<HorizontalStretch>false</HorizontalStretch>
+									<VerticalStretch>false</VerticalStretch>
 									<Group>Horizontal</Group>
 									<Representation>None</Representation>
 									<ShowTitle>false</ShowTitle>
-									<HorizontalStretch>false</HorizontalStretch>
-									<VerticalStretch>false</VerticalStretch>
 									<ExtendedTooltip name="ГруппаФлажкиРяд2РасширеннаяПодсказка" id="138"/>
 									<ChildItems>
 										<CheckBoxField name="ФлажокВыгрузка" id="128">
@@ -766,67 +854,77 @@
 							</ChildItems>
 						</UsualGroup>
 						<UsualGroup name="ГруппаПанельСкладов" id="156">
+							<HorizontalStretch>true</HorizontalStretch>
+							<VerticalStretch>true</VerticalStretch>
 							<Group>Vertical</Group>
 							<Representation>None</Representation>
 							<ShowTitle>false</ShowTitle>
-							<HorizontalStretch>true</HorizontalStretch>
-							<VerticalStretch>true</VerticalStretch>
 							<ExtendedTooltip name="ГруппаПанельСкладовРасширеннаяПодсказка" id="157"/>
 							<ChildItems>
 								<Table name="ТабСклады" id="150">
 									<Representation>List</Representation>
 									<ChangeRowSet>false</ChangeRowSet>
 									<ChangeRowOrder>false</ChangeRowOrder>
+									<Width>28</Width>
+									<Height>10</Height>
 									<DataPath>ТабСклады</DataPath>
 									<SearchStringLocation>None</SearchStringLocation>
 									<ViewStatusLocation>None</ViewStatusLocation>
 									<SearchControlLocation>None</SearchControlLocation>
-									<Width>28</Width>
-									<Height>10</Height>
-									<HorizontalStretch>true</HorizontalStretch>
-									<VerticalStretch>true</VerticalStretch>
 									<RowFilter xsi:nil="true"/>
 									<ContextMenu name="ТабСкладыКонтекстноеМеню" id="151"/>
 									<AutoCommandBar name="ТабСкладыКоманднаяПанель" id="152">
 										<Autofill>false</Autofill>
 										<ChildItems>
-										<Button name="КнопкаИнвертировать" id="113">
-											<Type>CommandBarButton</Type>
-											<CommandName>Form.Command.ИнвертироватьСклады</CommandName>
-											<Title>
-												<v8:item>
-													<v8:lang>ru</v8:lang>
-													<v8:content>±</v8:content>
-												</v8:item>
-											</Title>
-											<ToolTip>
-												<v8:item>
-													<v8:lang>ru</v8:lang>
-													<v8:content>инвертировать отметки складов</v8:content>
-												</v8:item>
-											</ToolTip>
-											<ExtendedTooltip name="КнопкаИнвертироватьРасширеннаяПодсказка" id="114"/>
-										</Button>
-										<Button name="КнопкаСнятьВсеФлажки" id="115">
-											<Type>CommandBarButton</Type>
-											<CommandName>Form.Command.СнятьВсеФлажки</CommandName>
-											<Title>
-												<v8:item>
-													<v8:lang>ru</v8:lang>
-													<v8:content>Снять</v8:content>
-												</v8:item>
-											</Title>
-											<ToolTip>
-												<v8:item>
-													<v8:lang>ru</v8:lang>
-													<v8:content>снять все отметки складов</v8:content>
-												</v8:item>
-											</ToolTip>
-											<ExtendedTooltip name="КнопкаСнятьВсеФлажкиРасширеннаяПодсказка" id="116"/>
-										</Button>
+											<Button name="КнопкаИнвертировать" id="113">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.ИнвертироватьСклады</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>ru</v8:lang>
+														<v8:content>±</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="КнопкаИнвертироватьРасширеннаяПодсказка" id="114"/>
+											</Button>
+											<Button name="КнопкаСнятьВсеФлажки" id="115">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.СнятьВсеФлажки</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>ru</v8:lang>
+														<v8:content>Снять</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="КнопкаСнятьВсеФлажкиРасширеннаяПодсказка" id="116"/>
+											</Button>
 										</ChildItems>
 									</AutoCommandBar>
 									<ExtendedTooltip name="ТабСкладыРасширеннаяПодсказка" id="153"/>
+									<SearchStringAddition name="ТабСкладыСтрокаПоиска" id="233">
+										<AdditionSource>
+											<Item>ТабСклады</Item>
+											<Type>SearchStringRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="ТабСкладыСтрокаПоискаКонтекстноеМеню" id="234"/>
+										<ExtendedTooltip name="ТабСкладыСтрокаПоискаРасширеннаяПодсказка" id="235"/>
+									</SearchStringAddition>
+									<ViewStatusAddition name="ТабСкладыСостояниеПросмотра" id="236">
+										<AdditionSource>
+											<Item>ТабСклады</Item>
+											<Type>ViewStatusRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="ТабСкладыСостояниеПросмотраКонтекстноеМеню" id="237"/>
+										<ExtendedTooltip name="ТабСкладыСостояниеПросмотраРасширеннаяПодсказка" id="238"/>
+									</ViewStatusAddition>
+									<SearchControlAddition name="ТабСкладыУправлениеПоиском" id="239">
+										<AdditionSource>
+											<Item>ТабСклады</Item>
+											<Type>SearchControl</Type>
+										</AdditionSource>
+										<ContextMenu name="ТабСкладыУправлениеПоискомКонтекстноеМеню" id="240"/>
+										<ExtendedTooltip name="ТабСкладыУправлениеПоискомРасширеннаяПодсказка" id="241"/>
+									</SearchControlAddition>
 									<Events>
 										<Event name="Selection">ТабСкладыВыбор</Event>
 									</Events>
@@ -885,11 +983,11 @@
 			</ChildItems>
 		</UsualGroup>
 		<UsualGroup name="ГруппаПодвал" id="186">
+			<HorizontalStretch>true</HorizontalStretch>
+			<VerticalStretch>false</VerticalStretch>
 			<Group>Horizontal</Group>
 			<Representation>None</Representation>
 			<ShowTitle>false</ShowTitle>
-			<HorizontalStretch>true</HorizontalStretch>
-			<VerticalStretch>false</VerticalStretch>
 			<ExtendedTooltip name="ГруппаПодвалРасширеннаяПодсказка" id="187"/>
 			<ChildItems>
 				<InputField name="ПолеМР" id="162">
@@ -965,8 +1063,8 @@
 						</v8:item>
 					</Title>
 					<EditMode>EnterOnInput</EditMode>
-					<ClearButton>true</ClearButton>
 					<Width>20</Width>
+					<ClearButton>true</ClearButton>
 					<ContextMenu name="ПолеГруппаСкладовКонтекстноеМеню" id="175"/>
 					<ExtendedTooltip name="ПолеГруппаСкладовРасширеннаяПодсказка" id="176"/>
 					<Events>
@@ -1445,8 +1543,8 @@
 						</v8:item>
 					</Title>
 					<Type>
-						<v8:Type>cfg:CatalogRef.ХарактеристикиНоменклатуры</v8:Type>
 						<v8:Type>xs:string</v8:Type>
+						<v8:Type>cfg:CatalogRef.ХарактеристикиНоменклатуры</v8:Type>
 						<v8:StringQualifiers>
 							<v8:Length>150</v8:Length>
 							<v8:AllowedLength>Variable</v8:AllowedLength>
@@ -1717,8 +1815,8 @@
 						</v8:item>
 					</Title>
 					<Type>
-						<v8:Type>cfg:CatalogRef.ХарактеристикиНоменклатуры</v8:Type>
 						<v8:Type>xs:string</v8:Type>
+						<v8:Type>cfg:CatalogRef.ХарактеристикиНоменклатуры</v8:Type>
 						<v8:StringQualifiers>
 							<v8:Length>150</v8:Length>
 							<v8:AllowedLength>Variable</v8:AllowedLength>
@@ -1989,8 +2087,8 @@
 						</v8:item>
 					</Title>
 					<Type>
-						<v8:Type>cfg:CatalogRef.ХарактеристикиНоменклатуры</v8:Type>
 						<v8:Type>xs:string</v8:Type>
+						<v8:Type>cfg:CatalogRef.ХарактеристикиНоменклатуры</v8:Type>
 						<v8:StringQualifiers>
 							<v8:Length>150</v8:Length>
 							<v8:AllowedLength>Variable</v8:AllowedLength>
