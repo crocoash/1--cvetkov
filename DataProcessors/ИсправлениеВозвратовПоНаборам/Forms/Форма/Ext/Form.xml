@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.18">
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<ChildItems>
+		<UsualGroup name="ГруппаОтбор" id="10">
+			<Group>Horizontal</Group>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаОтборРасширеннаяПодсказка" id="11"/>
+			<ChildItems>
+				<InputField name="ДатаНачала" id="12">
+					<DataPath>ДатаНачала</DataPath>
+					<Title>
+			<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Возвраты с</v8:content>
+			</v8:item>
+			</Title>
+					<ToolTip>
+			<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Пусто - без ограничения снизу</v8:content>
+			</v8:item>
+			</ToolTip>
+					<ContextMenu name="ДатаНачалаКонтекстноеМеню" id="13"/>
+					<ExtendedTooltip name="ДатаНачалаРасширеннаяПодсказка" id="14"/>
+				</InputField>
+				<InputField name="ДатаОкончания" id="15">
+					<DataPath>ДатаОкончания</DataPath>
+					<Title>
+			<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>по</v8:content>
+			</v8:item>
+			</Title>
+					<ToolTip>
+			<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Пусто - по сегодняшний день</v8:content>
+			</v8:item>
+			</ToolTip>
+					<ContextMenu name="ДатаОкончанияКонтекстноеМеню" id="16"/>
+					<ExtendedTooltip name="ДатаОкончанияРасширеннаяПодсказка" id="17"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<CommandBar name="ГруппаКоманды" id="30">
+			<ExtendedTooltip name="ГруппаКомандыРасширеннаяПодсказка" id="31"/>
+			<ChildItems>
+				<Button name="ФормаПоказатьИзменения" id="32">
+					<Type>CommandBarButton</Type>
+					<DefaultButton>true</DefaultButton>
+					<CommandName>Form.Command.ПоказатьИзменения</CommandName>
+					<ExtendedTooltip name="ФормаПоказатьИзмененияРасширеннаяПодсказка" id="33"/>
+				</Button>
+				<Button name="ФормаЗаписатьИзменения" id="34">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.ЗаписатьИзменения</CommandName>
+					<ExtendedTooltip name="ФормаЗаписатьИзмененияРасширеннаяПодсказка" id="35"/>
+				</Button>
+			</ChildItems>
+		</CommandBar>
+		<InputField name="Итого" id="36">
+			<DataPath>Итого</DataPath>
+			<ReadOnly>true</ReadOnly>
+			<Title>
+			<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Итого</v8:content>
+			</v8:item>
+			</Title>
+			<Height>4</Height>
+			<MultiLine>true</MultiLine>
+			<ContextMenu name="ИтогоКонтекстноеМеню" id="37"/>
+			<ExtendedTooltip name="ИтогоРасширеннаяПодсказка" id="38"/>
+		</InputField>
+		<Table name="Строки" id="40">
+			<Representation>List</Representation>
+			<ReadOnly>true</ReadOnly>
+			<DataPath>Строки</DataPath>
+			<SearchStringLocation>None</SearchStringLocation>
+			<ViewStatusLocation>None</ViewStatusLocation>
+			<SearchControlLocation>None</SearchControlLocation>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="СтрокиКонтекстноеМеню" id="41"/>
+			<AutoCommandBar name="СтрокиКоманднаяПанель" id="42">
+				<Autofill>false</Autofill>
+			</AutoCommandBar>
+			<ExtendedTooltip name="СтрокиРасширеннаяПодсказка" id="43"/>
+			<SearchStringAddition name="СтрокиСтрокаПоиска" id="53">
+				<AdditionSource>
+					<Item>Строки</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СтрокиСтрокаПоискаКонтекстноеМеню" id="54"/>
+				<ExtendedTooltip name="СтрокиСтрокаПоискаРасширеннаяПодсказка" id="55"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="СтрокиСостояниеПросмотра" id="56">
+				<AdditionSource>
+					<Item>Строки</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СтрокиСостояниеПросмотраКонтекстноеМеню" id="57"/>
+				<ExtendedTooltip name="СтрокиСостояниеПросмотраРасширеннаяПодсказка" id="58"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="СтрокиУправлениеПоиском" id="59">
+				<AdditionSource>
+					<Item>Строки</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="СтрокиУправлениеПоискомКонтекстноеМеню" id="60"/>
+				<ExtendedTooltip name="СтрокиУправлениеПоискомРасширеннаяПодсказка" id="61"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<InputField name="СтрокиВозврат" id="44">
+					<DataPath>Строки.Возврат</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="СтрокиВозвратКонтекстноеМеню" id="45"/>
+					<ExtendedTooltip name="СтрокиВозвратРасширеннаяПодсказка" id="46"/>
+				</InputField>
+				<InputField name="СтрокиРеализации" id="47">
+					<DataPath>Строки.Реализации</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="СтрокиРеализацииКонтекстноеМеню" id="48"/>
+					<ExtendedTooltip name="СтрокиРеализацииРасширеннаяПодсказка" id="49"/>
+				</InputField>
+				<InputField name="СтрокиБыло" id="50">
+					<DataPath>Строки.Было</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="СтрокиБылоКонтекстноеМеню" id="51"/>
+					<ExtendedTooltip name="СтрокиБылоРасширеннаяПодсказка" id="52"/>
+				</InputField>
+				<InputField name="СтрокиСтанет" id="62">
+					<DataPath>Строки.Станет</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="СтрокиСтанетКонтекстноеМеню" id="63"/>
+					<ExtendedTooltip name="СтрокиСтанетРасширеннаяПодсказка" id="64"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:DataProcessorObject.ИсправлениеВозвратовПоНаборам</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+		</Attribute>
+		<Attribute name="ДатаНачала" id="2">
+			<Title>
+			<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Дата начала</v8:content>
+			</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>Date</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ДатаОкончания" id="3">
+			<Title>
+			<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Дата окончания</v8:content>
+			</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>Date</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Итого" id="4">
+			<Title>
+			<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Итого</v8:content>
+			</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Строки" id="5">
+			<Title>
+			<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Строки</v8:content>
+			</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Возврат" id="1">
+					<Title>
+			<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Возврат</v8:content>
+			</v8:item>
+			</Title>
+					<Type>
+						<v8:Type>cfg:DocumentRef.ВозвратТоваровОтПокупателя</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Реализации" id="2">
+					<Title>
+			<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Реализация</v8:content>
+			</v8:item>
+			</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Было" id="3">
+					<Title>
+			<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Было</v8:content>
+			</v8:item>
+			</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Станет" id="4">
+					<Title>
+			<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Станет</v8:content>
+			</v8:item>
+			</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ПоказатьИзменения" id="1">
+			<Title>
+			<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Показать изменения</v8:content>
+			</v8:item>
+			</Title>
+			<ToolTip>
+			<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Собрать возвраты, оформленные на карточку набора, - у которых характеристика совпадает с НК проведённой реализации по той же сделке</v8:content>
+			</v8:item>
+			</ToolTip>
+			<Action>ПоказатьИзменения</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ЗаписатьИзменения" id="2">
+			<Title>
+			<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Записать</v8:content>
+			</v8:item>
+			</Title>
+			<ToolTip>
+			<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Перезаполнить товары показанных возвратов по реализации и перепровести</v8:content>
+			</v8:item>
+			</ToolTip>
+			<Action>ЗаписатьИзменения</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>
