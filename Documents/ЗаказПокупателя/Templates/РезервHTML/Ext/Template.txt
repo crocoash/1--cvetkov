@@ -841,6 +841,13 @@ img.thumb{
   outline-offset:2px;
 }
 
+/* На телефоні QR ні до чого: свій же екран не сканують, у платіж веде
+   шторка з банками. Клас ставить скрипт нижче, для друку QR залишається. */
+
+@media screen{
+  .is-phone .qrbox{display:none}
+}
+
 /* Вибір банку — шторка над кнопкою «Відкрити в банку» */
 
 .bank-sheet{
@@ -1677,6 +1684,12 @@ document.querySelectorAll(".copyable").forEach(bindCopy);
   // iPadOS видає себе за Mac — відрізняємо за сенсорним екраном
   var isIOS=/iPhone|iPad|iPod/i.test(ua)
     ||(/Macintosh/i.test(ua)&&navigator.maxTouchPoints>1);
+
+  // QR на телефоні прибираємо, навіть якщо шторка тут не працює (WebView).
+  if(isAndroid||isIOS){
+    document.documentElement.className=
+      (document.documentElement.className+" is-phone").replace(/^ /,"");
+  }
 
   // Комп'ютер і WebView залишаються на звичайному посиланні НБУ (там свій QR).
   if(!((isAndroid&&!isWebView)||isIOS))return;
