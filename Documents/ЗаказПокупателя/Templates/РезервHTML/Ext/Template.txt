@@ -841,6 +841,147 @@ img.thumb{
   outline-offset:2px;
 }
 
+/* Вибір банку — шторка над кнопкою «Відкрити в банку» */
+
+.bank-sheet{
+  position:fixed;
+  inset:0;
+  z-index:60;
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  padding:0;
+  background:rgba(20,40,25,.5);
+}
+
+.bank-sheet.is-open{display:flex}
+
+.bank-sheet__dialog{
+  width:100%;
+  max-width:460px;
+  max-height:92vh;
+  overflow:auto;
+  padding:14px 16px 16px;
+  background:var(--paper);
+  border-radius:18px 18px 0 0;
+  box-shadow:0 -12px 40px rgba(20,40,25,.35);
+  animation:bank-sheet-up .2s ease-out;
+}
+
+@keyframes bank-sheet-up{
+  from{transform:translateY(16px)}
+  to{transform:none}
+}
+
+.bank-sheet__grip{
+  width:38px;
+  height:4px;
+  margin:0 auto 12px;
+  background:var(--line-strong);
+  border-radius:2px;
+}
+
+.bank-sheet__head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.bank-sheet__ttl{
+  color:var(--brand-dark);
+  font-family:"Nunito",sans-serif;
+  font-size:15px;
+  font-weight:800;
+}
+
+.bank-sheet__sum{
+  color:var(--ink);
+  font-size:14px;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+.bank-sheet__sub{
+  margin:4px 0 12px;
+  color:var(--muted);
+  font-size:11.5px;
+}
+
+.bank-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-bottom:12px;
+}
+
+.bank{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:11px 10px;
+  color:var(--ink);
+  background:#fff;
+  border:1px solid var(--line);
+  border-left:3px solid var(--bank,var(--brand));
+  border-radius:10px;
+  font-size:12.5px;
+  font-weight:700;
+  text-decoration:none;
+  transition:.15s;
+}
+
+.bank:hover,
+.bank:active{
+  background:var(--mint-soft);
+  border-color:var(--mint-line);
+  border-left-color:var(--bank,var(--brand));
+}
+
+.bank:focus-visible{
+  outline:2px solid var(--brand-dark);
+  outline-offset:2px;
+}
+
+.bank__go{
+  margin-left:auto;
+  color:var(--faint);
+}
+
+.bank-sheet .btn{
+  display:block;
+  width:100%;
+  flex:none;
+  margin-bottom:8px;
+  padding:12px;
+  font-size:12px;
+}
+
+.bank-sheet__hint{
+  margin:10px 0 0;
+  color:var(--faint);
+  font-size:10.5px;
+  line-height:1.5;
+}
+
+.bank-sheet__close{
+  display:block;
+  width:100%;
+  margin-top:8px;
+  padding:8px;
+  color:var(--muted);
+  background:none;
+  border:0;
+  cursor:pointer;
+  font:inherit;
+  font-size:11.5px;
+  font-weight:700;
+}
+
+@media (prefers-reduced-motion:reduce){
+  .bank-sheet__dialog{animation:none}
+}
+
 /* Модальное фото */
 
 .image-modal{
@@ -939,6 +1080,7 @@ img.thumb{
   .back-link,
   .pay-actions,
   .balance-action,
+  .bank-sheet,
   .image-modal{
     display:none!important;
   }
@@ -1453,7 +1595,7 @@ document.querySelectorAll(".tab").forEach(function(btn){
   });
 });
 
-document.querySelectorAll(".copyable").forEach(function(el){
+function bindCopy(el){
   el.setAttribute("tabindex","0");
   el.setAttribute("role","button");
 
@@ -1502,7 +1644,155 @@ document.querySelectorAll(".copyable").forEach(function(el){
       copy();
     }
   });
-});
+}
+
+document.querySelectorAll(".copyable").forEach(bindCopy);
+
+/* Вибір банку. Кнопка «Відкрити в банку» на телефоні відкриває шторку
+   зі списком застосунків — далі банк підставляє реквізити сам.
+   Посилання те саме, що зашите в QR: змінюється лише точка входу.
+   Android — intent:// з package (немає застосунку -> Google Play).
+   iOS — власна точка входу банку: universal link або схема; аналога
+   package там немає, тому в списку лише банки, що таку точку публікують. */
+(function(){
+  var BANKS=[
+    // назва          колір      android-package                  точка входу iOS
+    ["monobank",     "#1A1A1A","com.ftband.mono",                "https://mbnk.app/qr/{p}"],
+    ["Приват24",     "#7BB32E","ua.privatbank.ap24",             "https://www.privat24.ua/rd/send_qr/nbu/{p}"],
+    ["ПУМБ",         "#123A76","com.fuib.android.spot",          "pumb-online.app://bank.gov.ua/qr/{p}"],
+    ["Sense",        "#E11D2E","ua.alfabank.mobile.android",     "https://superapp.sensebank.com.ua/mob/qr/{p}"],
+    ["А-Банк",       "#F05A28","ua.com.abank",                   "abank24://bank.gov.ua/qr/{p}"],
+    ["Raiffeisen",   "#F5C400","ua.raiffeisen.myraif",           "https://my-raif.apps.raiffeisen.ua/qr?payload={p}"],
+    ["OTP Bank",     "#56A429","ua.otpbank.android",             "otpbankua://bank.gov.ua/qr/{p}"],
+    ["izibank",      "#7A5CFF","ua.izibank.app",                 ""],
+    ["NovaPay",      "#E11B22","ua.novapay.novapaymobile",       ""],
+    ["Кредобанк",    "#00549F","",                               "https://online.kredobank.com.ua/qr/{p}"],
+    ["ВСТ Банк",     "#009CA6","",                               "vostok://bank.gov.ua/qr/{p}"]
+  ];
+
+  var ua=navigator.userAgent||"";
+  var isAndroid=/Android/i.test(ua);
+  // вбудований браузер (Viber, частина месенджерів) intent:// не відкриває
+  var isWebView=/; wv\)/.test(ua);
+  // iPadOS видає себе за Mac — відрізняємо за сенсорним екраном
+  var isIOS=/iPhone|iPad|iPod/i.test(ua)
+    ||(/Macintosh/i.test(ua)&&navigator.maxTouchPoints>1);
+
+  // Комп'ютер і WebView залишаються на звичайному посиланні НБУ (там свій QR).
+  if(!((isAndroid&&!isWebView)||isIOS))return;
+
+  var links=document.querySelectorAll('.pay-actions a[href*="bank.gov.ua/qr/"]');
+  if(!links.length)return;
+
+  // payload НБУ — base64url, у посилання підставляється як є.
+  function bankHref(bank,payload){
+    if(isIOS)return bank[3]?bank[3].replace("{p}",payload):"";
+    if(!bank[2])return "";
+
+    return "intent://bank.gov.ua/qr/"+payload
+      +"#Intent;scheme=https;action=android.intent.action.VIEW;"
+      +"category=android.intent.category.BROWSABLE;package="+bank[2]
+      +";S.browser_fallback_url="
+      +encodeURIComponent("https://play.google.com/store/apps/details?id="+bank[2])
+      +";end";
+  }
+
+  var sheet=document.createElement("div");
+  sheet.className="bank-sheet";
+  sheet.setAttribute("role","dialog");
+  sheet.setAttribute("aria-modal","true");
+  sheet.setAttribute("aria-label","Вибір банку");
+  sheet.innerHTML=''
+    +'<div class="bank-sheet__dialog">'
+    +  '<div class="bank-sheet__grip"></div>'
+    +  '<div class="bank-sheet__head">'
+    +    '<div class="bank-sheet__ttl">Оберіть свій банк</div>'
+    +    '<div class="bank-sheet__sum num"></div>'
+    +  '</div>'
+    +  '<p class="bank-sheet__sub">Суму та реквізити застосунок підставить сам — залишиться підтвердити платіж.</p>'
+    +  '<div class="bank-grid"></div>'
+    +  '<a class="btn btn-ghost" data-other target="_blank" rel="noopener">Інший банк</a>'
+    +  '<button type="button" class="btn btn-ghost copyable" data-copy-sum>Скопіювати суму</button>'
+    +  '<p class="bank-sheet__hint">Немає вашого банку — «Інший банк» відкриє сторінку НБУ з QR. Якщо застосунок не відкрився, скопіюйте суму та реквізити з рахунку і введіть платіж вручну.</p>'
+    +  '<button type="button" class="bank-sheet__close">Закрити</button>'
+    +'</div>';
+  document.body.appendChild(sheet);
+
+  var grid=sheet.querySelector(".bank-grid");
+  var other=sheet.querySelector("[data-other]");
+  var sumBtn=sheet.querySelector("[data-copy-sum]");
+  var sumView=sheet.querySelector(".bank-sheet__sum");
+  var lastFocused=null;
+
+  for(var i=0;i<BANKS.length;i++){
+    // Немає точки входу для цієї платформи — банк у списку не показуємо.
+    if(!bankHref(BANKS[i],"payload"))continue;
+
+    var tile=document.createElement("a");
+    tile.className="bank";
+    tile.style.setProperty("--bank",BANKS[i][1]);
+    tile.setAttribute("data-bank",i);
+    tile.innerHTML='<span class="bank__name"></span><span class="bank__go">›</span>';
+    tile.querySelector(".bank__name").textContent=BANKS[i][0];
+    grid.appendChild(tile);
+  }
+
+  var tiles=grid.querySelectorAll(".bank");
+
+  function open(link){
+    var payload=link.getAttribute("href").split("bank.gov.ua/qr/")[1];
+    if(!payload)return false;
+
+    for(var t=0;t<tiles.length;t++){
+      tiles[t].setAttribute(
+        "href",
+        bankHref(BANKS[tiles[t].getAttribute("data-bank")],payload)
+      );
+    }
+
+    other.setAttribute("href",link.getAttribute("href"));
+
+    var panel=link.closest?link.closest(".tabpanel"):null;
+    var val=panel?panel.querySelector(".amount__val"):null;
+    var digits=val?val.textContent.replace(/[^0-9]/g,""):"";
+
+    sumView.textContent=val?val.textContent.replace(/\s+/g," ").trim():"";
+    sumBtn.setAttribute("data-copy",digits);
+    sumBtn.style.display=digits?"":"none";
+
+    lastFocused=link;
+    sheet.classList.add("is-open");
+    document.body.style.overflow="hidden";
+    if(tiles.length)tiles[0].focus();
+
+    return true;
+  }
+
+  function close(){
+    sheet.classList.remove("is-open");
+    document.body.style.overflow="";
+    if(lastFocused)lastFocused.focus();
+  }
+
+  for(var k=0;k<links.length;k++)(function(link){
+    link.addEventListener("click",function(event){
+      if(event.metaKey||event.ctrlKey||event.shiftKey)return;
+      if(open(link))event.preventDefault();
+    });
+  })(links[k]);
+
+  sheet.querySelector(".bank-sheet__close").addEventListener("click",close);
+
+  sheet.addEventListener("click",function(event){
+    if(event.target===sheet)close();
+  });
+
+  document.addEventListener("keydown",function(event){
+    if(event.key==="Escape"&&sheet.classList.contains("is-open"))close();
+  });
+
+  bindCopy(sumBtn);
+})();
 </script>
 
 </body>
