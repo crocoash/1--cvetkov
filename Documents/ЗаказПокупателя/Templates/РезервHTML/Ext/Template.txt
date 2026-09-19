@@ -980,12 +980,18 @@ img.thumb{
   object-fit:contain;
 }
 
-.bank__dot{
-  width:10px;
-  height:10px;
+.bank__mark{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:20px;
+  height:20px;
   flex:0 0 auto;
-  border-radius:50%;
-  background:var(--bank,var(--brand));
+  color:var(--brand-dark);
+  background:var(--mint);
+  border-radius:6px;
+  font-size:11px;
+  font-weight:800;
 }
 
 .bank:focus-visible{
@@ -1689,32 +1695,65 @@ document.querySelectorAll(".amount__val").forEach(function(el){
 (function(){
   var ЛОГО="https://cvetkovtm.com/assets/shop/i/banks/";
 
+  // Список банків і точки входу. Джерела, звідки взято маршрути:
+  //   bank.gov.ua/.well-known/assetlinks.json — які android-пакети приймають
+  //   посилання НБУ (перевірено 19.09.2026, 64 записи);
+  //   bank.gov.ua/.well-known/apple-app-site-association — те саме для iOS.
+  // ios:"nbu" означає, що свого входу банк не публікує, але його застосунок
+  // заявив шлях /qr/* — відкриється по загальному посиланню НБУ.
+  // Банків, яких немає в жодному з цих файлів (Ощадбанк, Укрексім,
+  // ТАСкомбанк), у списку немає: кнопка для них відкривала б не їхній
+  // застосунок, а сторінку НБУ або чужий банк.
   var BANKS=[
     // top — кнопка на всю ширину; logoOnly — назва вже є в логотипі
-    {name:"monobank",  logo:"mono.svg",       logoOnly:true, top:true,
+    {name:"monobank",      logo:"mono.svg", logoOnly:true, top:true,
      bg:"#1A1A1A", fg:"#fff",
-     pkg:"com.ftband.mono",            ios:"https://mbnk.app/qr/{p}"},
-    {name:"Приват24",  logo:"p24.svg",        top:true,
-     pkg:"ua.privatbank.ap24",         ios:"https://www.privat24.ua/rd/send_qr/nbu/{p}"},
-    {name:"ПУМБ",      logo:"pumb.svg",       top:true,
-     pkg:"com.fuib.android.spot",      ios:"pumb-online.app://bank.gov.ua/qr/{p}"},
-    {name:"Sense",     logo:"sense.svg",
-     pkg:"ua.alfabank.mobile.android", ios:"https://superapp.sensebank.com.ua/mob/qr/{p}"},
-    {name:"А-Банк",    logo:"abank.svg",
-     pkg:"ua.com.abank",               ios:"abank24://bank.gov.ua/qr/{p}"},
-    {name:"Raiffeisen",logo:"raiffeisen.svg", logoOnly:true,
-     pkg:"ua.raiffeisen.myraif",       ios:"https://my-raif.apps.raiffeisen.ua/qr?payload={p}"},
-    {name:"OTP Bank",  logo:"otp.svg",
-     pkg:"ua.otpbank.android",         ios:"otpbankua://bank.gov.ua/qr/{p}"},
-    {name:"Кредобанк", logo:"kredobank.svg",
-     pkg:"",                           ios:"https://online.kredobank.com.ua/qr/{p}"},
-    {name:"ВСТ Банк",  logo:"vostok.svg",
-     pkg:"",                           ios:"vostok://bank.gov.ua/qr/{p}"},
-    // логотипів немає — плитка з крапкою кольору банку
-    {name:"izibank",   color:"#7A5CFF",
-     pkg:"ua.izibank.app",             ios:""},
-    {name:"NovaPay",   color:"#E11B22",
-     pkg:"ua.novapay.novapaymobile",   ios:""}
+     pkg:"com.ftband.mono",             ios:"https://mbnk.app/qr/{p}"},
+    {name:"Приват24",      logo:"p24.svg", top:true,
+     pkg:"ua.privatbank.ap24",          ios:"https://www.privat24.ua/rd/send_qr/nbu/{p}"},
+    {name:"ПУМБ",          logo:"pumb.svg", top:true,
+     pkg:"com.fuib.android.spot",       ios:"pumb-online.app://bank.gov.ua/qr/{p}"},
+
+    {name:"Sense",         logo:"sense.svg",
+     pkg:"ua.alfabank.mobile.android",  ios:"https://superapp.sensebank.com.ua/mob/qr/{p}"},
+    {name:"А-Банк",        logo:"abank.svg",
+     pkg:"ua.com.abank",                ios:"abank24://bank.gov.ua/qr/{p}"},
+    {name:"Raiffeisen",    logo:"raiffeisen.svg", logoOnly:true,
+     pkg:"ua.raiffeisen.myraif",        ios:"https://my-raif.apps.raiffeisen.ua/qr?payload={p}"},
+    {name:"OTP Bank",      logo:"otp.svg",
+     pkg:"ua.otpbank.android",          ios:"otpbankua://bank.gov.ua/qr/{p}"},
+    {name:"Кредобанк",     logo:"kredobank.svg",
+     pkg:"",                            ios:"https://online.kredobank.com.ua/qr/{p}"},
+    {name:"ВСТ Банк",      logo:"vostok.svg",
+     pkg:"com.vostok.bv",               ios:"vostok://bank.gov.ua/qr/{p}"},
+    {name:"izibank",
+     pkg:"ua.izibank.app",              ios:"nbu"},
+    {name:"NovaPay",
+     pkg:"ua.novapay.novapaymobile",    ios:"nbu"},
+    {name:"УкрСиббанк",
+     pkg:"com.ukrsibbank.uso.android",  ios:"nbu"},
+    {name:"Креді Агріколь", logo:"agricole.svg",
+     pkg:"ua.creditagricole.mobile.app",ios:"nbu"},
+    {name:"Південний",     logo:"pivdenny.svg",
+     pkg:"com.bank.pivdenny",           ios:"nbu"},
+    {name:"МТБ Банк",      logo:"mtb.svg",
+     pkg:"com.ua.mtb.bank",             ios:"nbu"},
+    {name:"Ідея Банк",     logo:"idea.svg",
+     pkg:"ua.ideabank.obank",           ios:"nbu"},
+    {name:"Укргазбанк",    logo:"ukrgazbank.svg",
+     pkg:"",                            ios:"nbu"},
+    {name:"Правекс",
+     pkg:"ua.com.pravex.online",        ios:"nbu"},
+    {name:"Радабанк",
+     pkg:"com.radabank.rb24",           ios:"nbu"},
+    {name:"Банк Альянс",
+     pkg:"ua.monvel.bankalliance",      ios:"nbu"},
+    {name:"Глобус",
+     pkg:"com.t18.bone.personal.globus",ios:"nbu"},
+    {name:"Кредит Дніпро",
+     pkg:"com.creditdnepr.mb",          ios:"nbu"},
+    {name:"ПроКредит",
+     pkg:"com.quipugmbh.mba.ukraine",   ios:"nbu"}
   ];
 
   var ua=navigator.userAgent||"";
@@ -1740,6 +1779,7 @@ document.querySelectorAll(".amount__val").forEach(function(el){
     // відкриють застосунок, або сторінку банку, але не мертву кнопку.
     if(isIOS||isWebView){
       var адреса=банк.ios||"";
+      if(адреса==="nbu")адреса="https://bank.gov.ua/qr/{p}";
       if(isWebView&&адреса.indexOf("https")!==0)return "";
       return адреса?адреса.replace("{p}",payload):"";
     }
@@ -1811,9 +1851,10 @@ document.querySelectorAll(".amount__val").forEach(function(el){
       if(банк.logo){
         плитка.appendChild(лого(банк));
       }else{
-        var крапка=элемент("span","bank__dot");
-        крапка.style.setProperty("--bank",банк.color);
-        плитка.appendChild(крапка);
+        // Логотипа немає — ставимо монограму, кольори банку не вигадуємо.
+        плитка.appendChild(элемент(
+          "span","bank__mark",банк.name.charAt(0).toUpperCase()
+        ));
       }
 
       if(!банк.logoOnly)плитка.appendChild(элемент("span","",банк.name));
