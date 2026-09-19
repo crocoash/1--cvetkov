@@ -652,6 +652,15 @@ img.thumb{
   letter-spacing:-.01em;
 }
 
+/* Сума копіюється тапом по собі — підкреслення ближче до цифр */
+
+.amount__val.copyable{
+  line-height:1.1;
+  border-bottom-color:var(--mint-line);
+}
+
+.amount__val.copyable:hover{border-bottom-color:var(--brand)}
+
 /* Разбивка */
 
 .breakdown{
@@ -1656,6 +1665,19 @@ function bindCopy(el){
 
 document.querySelectorAll(".copyable").forEach(bindCopy);
 
+/* Суму копіюємо тапом по самій сумі — цифрами, без пробілів і «грн»,
+   щоб її можна було вставити в банк. Текст елемента не чіпаємо:
+   його розбирають сайт і бот, міняються лише клас і data-атрибут. */
+document.querySelectorAll(".amount__val").forEach(function(el){
+  var digits=el.textContent.replace(/[^0-9]/g,"");
+  if(!digits)return;
+
+  el.className+=" copyable";
+  el.setAttribute("data-copy",digits);
+  el.setAttribute("title","Натисніть, щоб скопіювати суму");
+  bindCopy(el);
+});
+
 /* Вибір банку прямо в рахунку. Кнопка банку відкриває його застосунок з тим
    самим payload НБУ, що зашитий у QR, — реквізити й суму підставляє банк.
    Android — intent:// з package (немає застосунку -> Google Play).
@@ -1809,22 +1831,11 @@ document.querySelectorAll(".copyable").forEach(bindCopy);
       });
     })(кнопкаЕще,сетка);
 
-    var панель=box.closest?box.closest(".tabpanel"):null;
-    var сумма=панель?панель.querySelector(".amount__val"):null;
-    var цифры=сумма?сумма.textContent.replace(/[^0-9]/g,""):"";
-
-    if(цифры){
-      var кнопкаСуммы=элемент("button","btn btn-ghost copyable","Скопіювати суму");
-      кнопкаСуммы.type="button";
-      кнопкаСуммы.setAttribute("data-copy",цифры);
-      box.appendChild(кнопкаСуммы);
-      bindCopy(кнопкаСуммы);
-    }
-
     box.appendChild(элемент(
       "p","banks__hint",
       "Немає вашого банку у списку або застосунок не відкрився —"
-      +" скопіюйте суму та реквізити вище і введіть платіж вручну."
+      +" натисніть на суму та реквізити вище, щоб скопіювати їх,"
+      +" і введіть платіж вручну."
     ));
   }
 })();
