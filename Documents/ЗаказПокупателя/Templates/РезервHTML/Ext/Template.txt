@@ -848,7 +848,10 @@ img.thumb{
   .is-phone .qrbox{display:none}
 }
 
-/* Вибір банку: кнопки застосунків замість однієї кнопки «Відкрити в банку» */
+/* Вибір банку: кнопки застосунків. Тільки на телефоні — на комп'ютері
+   в панелі оплати залишаються реквізити та QR */
+
+.pay-actions:empty{display:none}
 
 .pay-actions--banks{
   display:block;
@@ -1418,11 +1421,10 @@ img.thumb{
 </div>
 
 <!--БЛОК:КнопкаБанк-->
-<div class="pay-actions">
-  <a class="btn btn-primary" href="{{URL}}" target="_blank" rel="noopener">
-    Відкрити в банку
-  </a>
-</div>
+<!-- Кнопки банків підставляє скрипт і тільки на телефоні; сюди приходить
+     посилання НБУ, з якого він бере payload. На комп'ютері блок лишається
+     порожнім (.pay-actions:empty приховано) — там оплата йде через QR. -->
+<div class="pay-actions" data-nbu="{{URL}}"></div>
 
 <!--БЛОК:КнопкаКопироватьКарту-->
 <div class="pay-actions">
@@ -1707,11 +1709,19 @@ document.querySelectorAll(".copyable").forEach(bindCopy);
       (document.documentElement.className+" is-phone").replace(/^ /,"");
   }
 
-  // Комп'ютер і WebView залишаються на звичайному посиланні НБУ (там свій QR).
-  if(!((isAndroid&&!isWebView)||isIOS))return;
+  // Комп'ютер лишається з QR і реквізитами — кнопок застосунків там немає.
+  if(!(isAndroid||isIOS))return;
 
   function посилання(банк,payload){
-    if(isIOS)return банк.ios?банк.ios.replace("{p}",payload):"";
+    // WebView месенджера (Viber): intent:// не відкриває, а власна схема
+    // банку дає помилку. Лишаємо тільки https-точки входу — вони або
+    // відкриють застосунок, або сторінку банку, але не мертву кнопку.
+    if(isIOS||isWebView){
+      var адреса=банк.ios||"";
+      if(isWebView&&адреса.indexOf("https")!==0)return "";
+      return адреса?адреса.replace("{p}",payload):"";
+    }
+
     if(!банк.pkg)return "";
 
     return "intent://bank.gov.ua/qr/"+payload
@@ -1737,19 +1747,16 @@ document.querySelectorAll(".copyable").forEach(bindCopy);
     return картинка;
   }
 
-  var links=document.querySelectorAll('.pay-actions a[href*="bank.gov.ua/qr/"]');
+  var боксы=document.querySelectorAll(".pay-actions[data-nbu]");
 
-  for(var i=0;i<links.length;i++){
-    var link=links[i];
-    var payload=link.getAttribute("href").split("bank.gov.ua/qr/")[1];
+  for(var i=0;i<боксы.length;i++){
+    var box=боксы[i];
+    var payload=(box.getAttribute("data-nbu")||"")
+      .split("bank.gov.ua/qr/")[1];
     if(!payload)continue;
 
-    var box=link.parentNode;
     box.className+=" pay-actions--banks";
-    box.insertBefore(
-      элемент("div","banks__lbl","Оберіть свій банк"),
-      link
-    );
+    box.appendChild(элемент("div","banks__lbl","Оберіть свій банк"));
 
     var сетка=элемент("div","bank-grid");
     var кнопкаЕще=элемент("button","banks__more");
@@ -1772,7 +1779,7 @@ document.querySelectorAll(".copyable").forEach(bindCopy);
         if(банк.fg)кнопка.style.color=банк.fg;
         кнопка.appendChild(лого(банк));
         if(!банк.logoOnly)кнопка.appendChild(элемент("span","",банк.name));
-        box.insertBefore(кнопка,link);
+        box.appendChild(кнопка);
         continue;
       }
 
@@ -1791,8 +1798,8 @@ document.querySelectorAll(".copyable").forEach(bindCopy);
       сетка.appendChild(плитка);
     }
 
-    box.insertBefore(кнопкаЕще,link);
-    box.insertBefore(сетка,link);
+    box.appendChild(кнопкаЕще);
+    box.appendChild(сетка);
 
     (function(кнопка,сетка){
       кнопка.addEventListener("click",function(){
@@ -1802,11 +1809,7 @@ document.querySelectorAll(".copyable").forEach(bindCopy);
       });
     })(кнопкаЕще,сетка);
 
-    // Стара кнопка залишається як запас: сторінка НБУ для банку не зі списку.
-    link.textContent="Інший банк";
-    link.className="btn btn-ghost";
-
-    var панель=link.closest?link.closest(".tabpanel"):null;
+    var панель=box.closest?box.closest(".tabpanel"):null;
     var сумма=панель?панель.querySelector(".amount__val"):null;
     var цифры=сумма?сумма.textContent.replace(/[^0-9]/g,""):"";
 
@@ -1820,8 +1823,8 @@ document.querySelectorAll(".copyable").forEach(bindCopy);
 
     box.appendChild(элемент(
       "p","banks__hint",
-      "Якщо застосунок не відкрився — скопіюйте суму та реквізити вище"
-      +" і введіть платіж у своєму банку вручну."
+      "Немає вашого банку у списку або застосунок не відкрився —"
+      +" скопіюйте суму та реквізити вище і введіть платіж вручну."
     ));
   }
 })();
