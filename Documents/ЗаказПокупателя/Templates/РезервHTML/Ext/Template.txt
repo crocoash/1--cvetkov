@@ -920,22 +920,28 @@ img.thumb{
 .banks__more{
   display:flex;
   align-items:center;
-  justify-content:space-between;
+  justify-content:center;
+  gap:8px;
   width:100%;
+  min-height:48px;
   margin-bottom:8px;
   padding:12px 14px;
-  color:var(--brand-dark);
-  background:var(--mint);
-  border:1px solid var(--mint-line);
+  color:#fff;
+  background:var(--brand);
+  border:1px solid var(--brand);
   border-radius:10px;
   cursor:pointer;
   font:inherit;
-  font-size:12.5px;
+  font-size:14px;
   font-weight:700;
+  transition:.15s;
 }
 
-.banks__chev{
-  transition:transform .15s;
+.banks__more:hover{background:var(--brand-dark);border-color:var(--brand-dark)}
+
+.banks__more:focus-visible{
+  outline:2px solid var(--brand-dark);
+  outline-offset:2px;
 }
 
 .banks__more[aria-expanded="true"] .banks__chev{
@@ -954,8 +960,9 @@ img.thumb{
 .bank-grid[hidden]{display:none}
 
 .banks__chev{
-  font-size:15px;
+  font-size:16px;
   line-height:1;
+  transition:transform .15s;
 }
 
 .bank{
@@ -1824,7 +1831,7 @@ document.querySelectorAll(".amount__val").forEach(function(el){
     var кнопкаЕще=элемент("button","banks__more");
     кнопкаЕще.type="button";
     кнопкаЕще.setAttribute("aria-expanded","false");
-    кнопкаЕще.appendChild(элемент("span","","Обрати інший банк"));
+    кнопкаЕще.appendChild(элемент("span","","Відкрити в іншому банку"));
     кнопкаЕще.appendChild(элемент("span","banks__chev","⌄"));
     сетка.hidden=true;
 
